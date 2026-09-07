@@ -24,3 +24,8 @@ it does not replace the approved documents.
 - **IMPLEMENTATION — engineering:** Added a pre-clock launch plan and demo
   contract. Product source, persistence, provider routes, and deployments remain
   untouched; the hackathon slice begins only when the event clock starts.
+- **SECURITY REMEDIATION — engineering:** The 35 open Dependabot alerts all
+  entered through the latest pinned Vercel CLI. Retained `vercel@59.11.7` and
+  constrained its affected transitive packages to published patched versions;
+  added an explicit dependency-audit command. Product source and deployment
+  state remain unchanged.
