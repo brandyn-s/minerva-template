@@ -2,7 +2,7 @@
   "name": "minerva",
   "version": "0.0.0",
   "private": true,
-  "description": "R0 groundwork for the greenfield Minerva prototype.",
+  "description": "Pre-clock launchpad for the greenfield Minerva prototype.",
   "engines": {
     "node": "24.20.0",
     "npm": "12.0.2"
@@ -17,8 +17,7 @@
     "test": "node --test",
     "security:audit": "npm audit --audit-level=low",
     "secrets:scan": "sh scripts/scan-secrets.sh",
-    "roadmap:status": "node scripts/roadmap-status.mjs",
-    "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run secrets:scan && npm run roadmap:status"
+    "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run secrets:scan"
   },
   "dependencies": {
     "next": "16.3.4",
@@ -30,7 +29,6 @@
     "@types/node": "24.13.3",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
-    "ajv": "8.20.0",
     "eslint": "10.10.0",
     "eslint-config-next": "16.3.4",
     "typescript": "5.9.3",

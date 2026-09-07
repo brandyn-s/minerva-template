@@ -1,8 +1,9 @@
 # Minerva hackathon launch plan
 
 Status: **pre-clock launch packet**. This document makes the repository ready
-to begin a two-hour build. It does not authorize or claim completion of any
-ROADMAP gate, and it does not replace the approved authority chain.
+to reach a working checkpoint in two hours and, when useful, refine it for up
+to eight. It does not authorize or claim completion of any ROADMAP gate, and it
+does not replace the approved authority chain.
 
 ## Clock boundary
 
@@ -62,7 +63,7 @@ or R6 and must not be used to close their evidence gates.
   different approaches before generation.
 - The three arms stay neutral and land independently as ordinary cards; failed
   work remains visible.
-- The user can arrange the alternatives, write an ordinary Harvest card, and
+- The user can arrange the alternatives, write an ordinary synthesis card, and
   explain one consequential connection, tension, or direction.
 
 ### Stretch — only after the target is frozen
@@ -81,14 +82,15 @@ The host default may not match the locked toolchain. Before the event, cache and
 exercise the exact versions without changing repository dependencies:
 
 ```sh
+gitleaks version
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 node --version
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm --version
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run security:audit
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
-The first two commands must report `v24.20.0` and `12.0.2`. The pre-clock
-operator then leaves `main` clean and synchronized.
+The first three commands must report `8.30.1`, `v24.20.0`, and `12.0.2`. The
+pre-clock operator then leaves `main` clean and synchronized.
 
 ## Clock-start sequence
 
@@ -115,6 +117,45 @@ unless the machine or lockfile changed after the pre-clock check.
 | T+105–115 | Freeze features, run the demo contract, repair only material failures, and preserve truthful degraded states. | No new capability after T+105. |
 | T+115–120 | Rehearse the four-minute narrative, commit the exact demo revision, and record what is real, simulated, partial, or cut. | Deploy only a frozen, safe build; otherwise demo locally. |
 
+## Optional refinement window: T+120–480
+
+T+120 is a mandatory working-prototype checkpoint, not a soft milestone.
+Refinement is not authorized by the T+0 declaration. Commit and demo the exact
+T+120 revision, then record a separate product-owner go/no-go in `JOURNAL.md`.
+Stopping is a valid outcome. If continuing, the owner may choose zero or one
+primary improvement—either repair the floor or deepen creative leverage—and,
+only when distinct and safe, zero or one reliability improvement. An agent may
+propose the options; it may not choose them or quietly turn every option into
+scope.
+
+If the T+120 floor passed, default priority for a leverage improvement is:
+
+1. replace a simulated Branch with one safe, bounded, visibly attributed live
+   provider path;
+2. if Branch is already live and stable, deepen the intended thinking loop with
+   the neutral three-arm Searchlight;
+3. if Searchlight is already stable, add Compare or contribution-level
+   Recombine based on the product owner's real-problem rehearsal—not both by
+   default.
+
+The reliability improvement addresses the first observed material weakness in
+durability, failure truth, keyboard/structured access, responsive interaction,
+or secret/spend containment. Visual polish is eligible only when it makes
+context, lineage, actions, or state easier to understand.
+
+| Time | Decision and outcome | Cut line |
+|---|---|---|
+| T+120–150 | Run the exact demo on a real problem, inspect failure/reload behavior, and record the stop/continue choice, selected primary improvement, and any distinct reliability improvement. | If the floor is not reliable, choose repair as the primary improvement; do not expand scope. |
+| T+150–300 | Implement the selected primary improvement: repair the floor or deepen one source of leverage through the existing product-owned seams. | No new platform, generalized framework, Voice, auth, ingestion, or History system. |
+| T+300–390 | If separately chosen and still safe, resolve one distinct reliability/accessibility weakness and exercise its unhappy path; otherwise rehearse and simplify the primary loop. | If the primary work destabilizes a passing T+120 loop, revert or isolate it rather than repairing indefinitely. |
+| T+390–435 | Repeat the real-problem rehearsal; make only evidence-driven interaction or explanation fixes. | No checklist-driven features and no redesign detached from observed friction. |
+| T+435–465 | Freeze, run the demo and native checks, and deploy a protected preview only if the exact build is safe. | A local truthful artifact outranks a rushed or ambiguous deployment. |
+| T+465–480 | Record accepted, modified, and rejected model proposals; exact evidence; cuts; unsupported claims; and the final human judgment. | Stop feature work. Preserve both T+120 and T+480 revisions. |
+
+The optional window does not promise that every item above will ship. Its proof
+of maturity is selective depth, explicit rejection, preserved checkpoints, and
+a more truthful experience—not eight hours of generated surface area.
+
 ## Implementation constraints
 
 - The workspace kernel, not React, the renderer, IndexedDB callbacks, or the
@@ -130,7 +171,7 @@ unless the machine or lockfile changed after the pre-clock check.
 - Generated material is immediately editable and durable; it does not require a
   second permission dialog.
 - Do not edit approved authority documents to rationalize a shortcut. Record
-  hackathon compromises in the journal or final demo receipt.
+  hackathon compromises in the journal or final demo record.
 
 ## Stop rules
 
@@ -145,9 +186,11 @@ unless the machine or lockfile changed after the pre-clock check.
 - A false durability claim, hidden context, exposed secret, or unlabeled
   simulation stops the affected path immediately.
 
-## End-of-clock handoff
+## Checkpoint and final handoff
 
-Record the exact commit and complete [DEMO.md](./DEMO.md). Separate observed
-behavior from planned behavior and list every cut. The hackathon artifact then
-enters the approved roadmap as evidence or a disposable experiment; it does not
-silently become the production architecture.
+At T+120, record the exact commit and complete the checkpoint in
+[DEMO.md](./DEMO.md). If refinement continues, preserve that record and add the
+T+480 delta rather than rewriting history. Separate observed behavior from
+planned behavior and list every cut. The hackathon artifact then enters the
+approved roadmap as evidence or a disposable experiment; it does not silently
+become the production architecture.

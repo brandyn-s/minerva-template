@@ -18,9 +18,9 @@ outcome rather than implementation volume.
 5. **Keep thinking.** Continue arranging or editing while work runs. Show each
    result arriving as an ordinary card outside Focus with visible lineage and an
    honest live, simulated, partial, or failed state.
-6. **Make judgment.** Arrange the alternatives, write a Harvest card, and name
-   one consequential direction, connection, or tension that was not present at
-   the beginning. Minerva must not declare a winner.
+6. **Make judgment.** Arrange the alternatives, write an ordinary synthesis
+   card, and name one consequential direction, connection, or tension that was
+   not present at the beginning. Minerva must not declare a winner.
 7. **Prove durability.** Reload and show that acknowledged cards, placement,
    Focus, the useful result, and lineage remain.
 
@@ -53,7 +53,7 @@ is unavailable, do not perform the reload step or call the state durable.
 - Voice, semantic Undo/Redo with preserved Paths, anonymous cloud sharing,
   multi-user collaboration, or matched product-evaluation results.
 
-## End-of-clock receipt
+## T+120 checkpoint record
 
 Fill this in against the exact demo commit:
 
@@ -67,4 +67,21 @@ Fill this in against the exact demo commit:
 | Stretch | Not run |
 | Consequential discovery | Not evaluated |
 | Material failures or cuts | Not evaluated |
+| Deployment, if any | None |
+
+## Optional T+480 delta record
+
+Do not overwrite the T+120 record. Re-run the same four-minute narrative, then
+record only the consequential delta:
+
+| Field | Observation |
+|---|---|
+| T+120 commit | Not yet built |
+| T+480 commit | Not yet built |
+| Human stop/continue decision and primary improvement, if any | Not evaluated |
+| Distinct reliability improvement, if any | Not evaluated |
+| Material model proposals modified or rejected | Not evaluated |
+| User friction removed or introduced | Not evaluated |
+| Consequential discovery changed | Not evaluated |
+| Remaining unsupported claims | Not evaluated |
 | Deployment, if any | None |

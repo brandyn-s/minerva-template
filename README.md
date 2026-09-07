@@ -5,12 +5,15 @@ infrastructure has passed; product implementation has not started. The current
 tree intentionally provides no product capability, provider route, workspace
 store, database, authentication, analytics, or deployment.
 
-Start with the [two-hour launch plan](./HACKATHON.md) and its prewritten
-[demo contract](./DEMO.md). They compress the hackathon into a useful experience
-slice without claiming that the approved multi-gate prototype roadmap is done.
+Start with the [hackathon launch plan](./HACKATHON.md) and its prewritten
+[T+120 demo contract](./DEMO.md). The working prototype is frozen at two hours;
+an optional evidence-directed refinement window may continue to T+480 without
+claiming that the approved multi-gate prototype roadmap is done.
 
-The authority chain and current authorization live in [AGENTS.md](./AGENTS.md)
-and [ROADMAP.md](./ROADMAP.md). Tracked gate evidence is indexed in
+The authority chain lives in [AGENTS.md](./AGENTS.md) and
+[ROADMAP.md](./ROADMAP.md). The current operating state is
+[CURRENT_GATE.md](./CURRENT_GATE.md); consequential decisions and gate
+closeouts live in [JOURNAL.md](./JOURNAL.md). Evidence handling rules are in
 [evidence/README.md](./evidence/README.md).
 
 ## R0 isolation
@@ -24,9 +27,11 @@ and [ROADMAP.md](./ROADMAP.md). Tracked gate evidence is indexed in
 
 ## Local baseline
 
-Use the exact Node and npm versions in `.nvmrc` and `package.json`, then install:
+Use the exact Node and npm versions in `.nvmrc` and `package.json`. The retained
+secret guard also requires `gitleaks` 8.30.1 on `PATH`. Verify it, then install:
 
 ```sh
+gitleaks version
 npm ci
 ```
 

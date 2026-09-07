@@ -6,16 +6,34 @@ Authority order: [INTENT.md](./INTENT.md), approved entries in
 sequence and authorization; [JUDGMENT_AT_SPEED_FINDINGS.md](./JUDGMENT_AT_SPEED_FINDINGS.md)
 is supporting critique only.
 
-Work only on the currently authorized roadmap gate. Record human approvals and
-corrections in [JOURNAL.md](./JOURNAL.md), keep tracked evidence content-free,
-and never import predecessor code, state, deployment metadata, or secrets.
+Start each session with [CURRENT_GATE.md](./CURRENT_GATE.md). It is the concise
+operational status and retrieval guide; it cannot override the authority chain.
+Work only within the product-owner authorization recorded there. Record
+consequential human/model choices and corrections in
+[JOURNAL.md](./JOURNAL.md), keep tracked evidence content-free, and never import
+predecessor code, state, deployment metadata, or secrets.
 
-The current authorization is pre-clock hackathon preparation only. Until the
-event clock starts, do not add product domain code, workspace persistence,
-canvas behavior, AI routes, Voice, product UI, or a deployment. At clock start,
+While `CURRENT_GATE.md` says **PRE-CLOCK**, do not add product domain code,
+workspace persistence, canvas behavior, AI routes, Voice, product UI, or a
+deployment. After a recorded product-owner clock start,
 [HACKATHON.md](./HACKATHON.md) supplies the bounded build plan and
 [DEMO.md](./DEMO.md) supplies its acceptance contract; neither document closes
-or replaces an approved roadmap gate.
+or replaces an approved roadmap gate. The clock begins only when the product
+owner explicitly declares it and the base revision is recorded in the journal.
+
+For each active slice:
+
+1. Name the user-visible outcome, smallest decisive evidence, first material
+   falsifier, and time budget before building.
+2. Surface assumptions that could change the product, scope, safety, spend, or
+   demo claim. The product owner decides consequential tradeoffs; silence is not
+   approval.
+3. Build the smallest complete vertical proof, then use native tests or runtime
+   readback at the surface that owns the claim.
+4. Stop when the evidence answers the decision. Record material errors,
+   friction, cuts, and whether the human approved, modified, or rejected the
+   model's proposal; do not record private reasoning or manufacture activity
+   telemetry as a proxy for judgment.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
