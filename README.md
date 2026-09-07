@@ -41,6 +41,11 @@ npm run dev
 
 `npm run check` is bounded infrastructure evidence, not product proof.
 
+The pinned Vercel CLI currently requires patched transitive overrides in
+`package.json`. Run `npm run security:audit` after every Vercel CLI update. An
+upgrade may remove an override only when the unlocked dependency graph audits
+cleanly and the authenticated project inspection still succeeds.
+
 ## Pre-clock boundary
 
 Before the event clock, changes are limited to product documents, locked

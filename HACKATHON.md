@@ -83,6 +83,7 @@ exercise the exact versions without changing repository dependencies:
 ```sh
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 node --version
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm --version
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run security:audit
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
