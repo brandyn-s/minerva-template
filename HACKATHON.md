@@ -75,14 +75,27 @@ Voice, touch, semantic History/Paths, multi-generation agentic expeditions,
 cloud workspaces, ingestion beyond paste, authentication, analytics, and visual
 polish beyond legibility are outside this two-hour build.
 
+## Pre-clock toolchain check
+
+The host default may not match the locked toolchain. Before the event, cache and
+exercise the exact versions without changing repository dependencies:
+
+```sh
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 node --version
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm --version
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
+```
+
+The first two commands must report `v24.20.0` and `12.0.2`. The pre-clock
+operator then leaves `main` clean and synchronized.
+
 ## Clock-start sequence
 
-The pre-clock operator leaves `main` clean and synchronized. When the event
-clock starts:
+When the event clock starts:
 
 ```sh
 git switch -c codex/hackathon-slice
-npm run dev
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 ```
 
 Do not spend clock time reinstalling or re-running the entire readiness suite
