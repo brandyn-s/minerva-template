@@ -1,5 +1,15 @@
 # Minerva — Roadmap
 
+> **Product-starter amendment, September 7, 2026:** Start with
+> [README.md](./README.md), not this plan. Construction order, lane assignments,
+> effort estimates, planning artifacts, and execution ceremonies below are
+> historical guidance, not prerequisites for approved implementation.
+> Genuine behavioral dependencies, full-product acceptance, live activation
+> permissions, and human evaluation/release decisions remain requirements.
+> An authorized subset may be built directly but must be labelled incomplete;
+> this amendment does not waive product obligations or claim a gate passed.
+> This amendment supersedes conflicting execution language below.
+
 ## 1. Status, authority, and scope
 
 | Field | Value |
@@ -14,7 +24,9 @@
 | Scope | Greenfield first prototype through staged product evaluation and a terminal evidence-backed decision |
 | Historical boundary | Searchlight, Atlas, Gestures, their repositories, schemas, deployments, prompts, and secrets are evidence only |
 
-This file governs sequence, dependencies, stopping rules, and release gates. It cannot weaken an approved product or architecture contract. If a roadmap step conflicts with an authoritative document, the roadmap changes.
+This file retains product dependencies, stopping criteria, and release gates.
+Its earlier engineering sequence is optional under the amendment above. It
+cannot weaken an approved product or architecture contract.
 
 The original R0 authorization was exercised and R0 was recorded passed. A
 product-owner launch may authorize a named range of implementation work once,
@@ -109,8 +121,8 @@ complete. R3 closes only after R2A/R2B evidence; no early screen closes R1.
 Live Branch still requires its durable-landing, admission, and hard-bound
 proofs and explicit spend permission.
 
-Use [the short delivery guide](./docs/delivery-workflow.md) for the default
-one-implementer path. Worker protocols, event streams, and separate review
+Use [README.md](./README.md) as the product-starter entry point.
+Worker protocols, event streams, and separate review
 agents are not required; the later simplification supersedes those process
 requirements in amendment 1.3 without changing product gates. Prefer the preflighted
 Vercel AI Gateway transport; changing transport does not weaken EXP-003.

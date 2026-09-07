@@ -1,12 +1,17 @@
 # Minerva hackathon launch plan
 
+> **Optional experiment profile, not the default build workflow.**
+> Its clock, checkpoints, prepared scene, and evidence packet apply only when
+> the owner explicitly selects this experiment. For ordinary implementation,
+> start with [README.md](./README.md). The reusable shell remains content-free.
+
 Status: **pre-clock launch packet**. This document makes the repository ready
 to reach a working checkpoint in two hours and, when useful, refine it for up
 to eight. It does not authorize or claim completion of any ROADMAP gate, and it
 does not replace the approved authority chain.
 Use this profile only when selected at launch; a full-prototype request follows
-`ROADMAP.md`. The shared operating procedure is
-[the delivery workflow](./docs/delivery-workflow.md).
+the full-product acceptance criteria retained in `ROADMAP.md`.
+There is no shared mandatory execution procedure.
 
 ## Clock boundary
 
@@ -289,7 +294,7 @@ improvement, each with its rationale.
 ## Execution
 
 One implementer owns the first complete creative loop and its delivery.
-Follow [the short guide](./docs/delivery-workflow.md). Separate agents, lane
+Use [the starter](./README.md). Separate agents, lane
 issues, worker protocols, integration PRs, and structured telemetry are not
 required. Add parallel work only when its benefit exceeds the handoff cost.
 

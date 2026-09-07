@@ -751,3 +751,20 @@ rejects the proposal.
 - Remaining uncertainty: End-to-end product delivery improvement still needs
   an equal-scope build. No deployment, spend, product implementation, or human
   acceptance is authorized by this simplification.
+
+### J-20260907-16 - Product brief and starter, not an execution framework
+
+- Human disposition: The owner requested refactoring the template into a
+  product brief and runnable starter, removing process from the default path.
+- Decision: README now leads with the product, runnable shell, and relevant
+  acceptance boundaries. Archive the delivery workflow; remove mandatory
+  proposal/AI-process narratives from ordinary contributions. Provisioning
+  and deployment helpers are optional tools; hackathon timing is opt-in.
+- Authority: ROADMAP construction choreography and estimates are historical
+  guidance. Preserve actual behavioral dependencies, approved product
+  requirements, live permissions, and full-product/human release criteria.
+  Partial implementations remain partial. No gate is passed by this change.
+- Scope: Documentation only. The shell, dependencies, CI, operational helpers,
+  durability, privacy, and atomic admission/hard spend requirements are intact.
+- Limit: This reduces mandatory process, not a demonstrated delivery-time
+  improvement. No new timing harness or product implementation is authorized.

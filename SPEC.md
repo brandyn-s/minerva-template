@@ -21,6 +21,10 @@ close a `ROADMAP.md` gate.
 
 This specification defines observable product behavior. It deliberately does not select a canvas renderer, storage technology, AI model or provider, voice transport, orchestration framework, telemetry stack, or Vercel deployment topology.
 
+The September 7 product-starter amendment in `ROADMAP.md` makes its engineering
+sequence and execution ceremonies optional. Product obligations, actual
+behavioral dependencies, and acceptance/release criteria are unchanged.
+
 **Approved interpretation:** Branch, Compare, Recombine, standalone Harvest, and Searchlight are user-invoked AI-assisted canvas operations that may create cards; Searchlight's eligible Harvest is an authorized AI substage. This follows the approved requirement that every named capability sees a frozen context projection. A user may always create or edit an ordinary card manually, but the named operations themselves use the common AI-operation contract below.
 
 ## 2. Product contract

@@ -1,17 +1,20 @@
 # Build, exercise, repair, deliver
 
+> Historical operating guide, superseded by the product-starter refactor.
+> Not a required workflow. Start with [README.md](../../README.md).
+
 One implementer, one branch, one working interaction. No worker registry,
 event protocol, adapter certification, or extra planning document is required.
 Add a tool only when the current task is cheaper or safer with it.
 
 ## Start with the decision already made
 
-Read [CURRENT_GATE.md](../CURRENT_GATE.md) and only the relevant requirements.
+Read [CURRENT_GATE.md](../../CURRENT_GATE.md) and only the relevant requirements.
 State the outcome, what would make it fail, and missing external permissions.
 For approved work, start implementing rather than reopening design or asking
 again. Locate the exact file/API contract; stop research when it is answered.
 
-The [launch helper](./launch-cli.md) replaces provisioning steps. Use its
+The [launch helper](../launch-cli.md) replaces provisioning steps. Use its
 private default and explicit resume/readbacks, preserving source/product
 identity. Install dependencies once. Investigate hosting or provider access
 early if the current outcome requires it, not for a browser-local slice.
@@ -48,6 +51,6 @@ not another source commit. Journal only consequential product decisions.
 When timing is requested, record request, first working loop, finish, and major
 repair/wait causes; do not add overlapping intervals as total elapsed time.
 
-Use the [deployment helper](./deploy-cli.md) only with authorization. Verify
+Use the [deployment helper](../deploy-cli.md) only with authorization. Verify
 the stable origin and real reviewer path, not just a protected preview or HTTP
 response. Missing deployment or human evidence remains missing, not complete.

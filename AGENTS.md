@@ -1,30 +1,17 @@
 # Working agreement
 
-Read [CURRENT_GATE.md](./CURRENT_GATE.md), preserve existing work, and use
-[the short delivery guide](./docs/delivery-workflow.md).
-Read product documents only for the question at hand. Authority remains
-`INTENT.md` -> approved `DECISIONS.md` -> `SPEC.md` -> `ARCHITECTURE.md`;
-`ROADMAP.md` supplies product sequence, not a mandatory agent organization.
+Start with [README.md](./README.md) and [CURRENT_GATE.md](./CURRENT_GATE.md).
+Read only requirements relevant to the change. Product authority remains
+`INTENT.md` -> approved `DECISIONS.md` -> `SPEC.md` -> `ARCHITECTURE.md`.
 
-- Build the smallest complete interaction first. One implementer and one
-  branch are the default. No extra planning document, worker registry,
-  telemetry protocol, or separate review agent is required.
-- Complexity must earn its place by saving demonstrated work or protecting
-  a real boundary. Delete unnecessary machinery rather than wrapping it.
-- While PRE-CLOCK, keep the app content-free: no workspace store, canvas,
-  provider routes, or product implementation.
-- Preserve explicit context, durable acknowledgement, lineage, and failure
-  truth. Simulations remain labelled. Tests and silence are not human acceptance.
-- Do not change product intent or claim approval for a human decision.
-  Deployment, publicity, spend, and participant contact need separate permission.
-- Work on a branch and PR, never directly on main. Keep credentials and private
-  content out of source, logs, and evidence; never import predecessor state.
-- Use existing tools and targeted regressions. Test actual interaction and
-  failure boundaries, then run the complete candidate's required checks.
-- If blocked, report the cause promptly and stop unrelated polish. Do not
-  repeatedly research a known contract or wait silently for an optional agent.
-- Put outcome, limits, and evidence in the PR. Use `JOURNAL.md` only when a
-  consequential decision changes; do not maintain a second activity tracker.
+- Keep this template content-free; product code belongs in an authorized clone.
+- Preserve existing work, explicit context, durable acknowledgement, lineage,
+  privacy, and hard spend bounds. Do not invent human acceptance or permission
+  for hosting, deployment, provider spend, or participant contact.
+- Implement approved work directly. Do not add planning rituals, agent lanes,
+  timing protocols, or speculative abstractions.
+- Use a branch and PR, existing tests, and required CI. Keep secrets and private
+  content out of source. Put outcome and limitations in the PR once.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
