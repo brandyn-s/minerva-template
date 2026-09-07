@@ -105,16 +105,11 @@ product exists or that a deployment is ready.
 
 ## Repository guide
 
-| Start here | Purpose |
-|---|---|
-| [CURRENT_GATE.md](./CURRENT_GATE.md) | Current authorization, active state, and next transition |
-| [AGENTS.md](./AGENTS.md) | Compact working agreement for coding agents and human collaborators |
-| [INTENT.md](./INTENT.md) and [DECISIONS.md](./DECISIONS.md) | Product thesis and approved consequential choices |
-| [SPEC.md](./SPEC.md) and [ARCHITECTURE.md](./ARCHITECTURE.md) | Product behavior and implementation boundaries |
-| [HACKATHON.md](./HACKATHON.md) and [DEMO.md](./DEMO.md) | Two-hour build plan, cut lines, and acceptance narrative |
-| [ROADMAP.md](./ROADMAP.md) | Longer product sequence; not implied by the hackathon slice |
-| [JOURNAL.md](./JOURNAL.md) | Consequential proposals, human dispositions, corrections, and gate transitions |
-| [evidence/README.md](./evidence/README.md) | Rules for small, content-free, decision-relevant evidence |
+Start at [CURRENT_GATE.md](./CURRENT_GATE.md) for what is currently
+authorized, then [AGENTS.md](./AGENTS.md), which routes every kind of work to
+the documents and sections that govern it. The product thesis is
+[INTENT.md](./INTENT.md); consequential human decisions and corrections are
+in [JOURNAL.md](./JOURNAL.md).
 
 The repository is agent-first without making agent activity the product. The
 same concise contract is available to Codex through `AGENTS.md` and to Claude

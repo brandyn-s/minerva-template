@@ -21,7 +21,7 @@ record and cannot override those sources.
 | Product direction or copy | Relevant sections of `INTENT.md`, `DECISIONS.md`, and `SPEC.md` |
 | Domain behavior | Relevant sections of `SPEC.md` and `ARCHITECTURE.md` |
 | Architecture or persistence | Relevant decision IDs and `ARCHITECTURE.md` |
-| Hackathon implementation | `CURRENT_GATE.md`, `HACKATHON.md`, and `DEMO.md` |
+| Hackathon implementation | `CURRENT_GATE.md` and `HACKATHON.md`, including its demo contract |
 | Release or security | `CURRENT_GATE.md`, relevant architecture boundaries, and `SECURITY.md` |
 | Long-form sequencing | The relevant `ROADMAP.md` gate only |
 

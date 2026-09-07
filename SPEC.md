@@ -639,41 +639,32 @@ The durable `PROV-*` requirements in this section apply to canvas-generating ope
 
 ## 18. Product evaluation requirements
 
-`EVAL-001` The product-owner rehearsal MUST occur as soon as one complete central loop works and before recruiting external participants. It includes the canonical library example and one genuine current ambiguous problem in separate clean evaluation states; this does not add multiple-workspace management to the product.
+The evaluation contract is stated once, in D-008 of `DECISIONS.md`, which this
+specification cannot change. Each `EVAL-*` identifier below remains a
+first-prototype obligation with the force of `MUST`; its normative text is the
+cited D-008 clause. The table exists so acceptance scenarios and traceability
+can cite a stable identifier without duplicating the decision.
 
-`EVAL-002` Owner rehearsal is a readiness falsifier, not positive comparative proof. Failure to change thinking, inability to complete the loop, context confusion, or canvas burden requires simplification before recruitment.
-
-`EVAL-003` The initial external evaluation MUST use three matched pairs of comparable solo creative or strategic practitioners, one Minerva participant and one capable linear-chat participant per pair.
-
-`EVAL-004` The initial external task MUST use the same frozen library problem, source packet, constraints, model/version where controllable, and 30-minute period. Resource usage is recorded rather than artificially equalized by call count.
-
-`EVAL-005` Participants MUST receive mechanics-only practice on an unrelated problem. Moderator coaching during the measured session invalidates that session.
-
-`EVAL-006` The baseline MUST be capable ordinary linear chat, not a deliberately weakened interface or prompt. The primary matched evaluation keeps Voice off in both conditions; Voice is evaluated separately against D-007.
-
-`EVAL-007` Every participant MUST freeze known directions, relationships, tensions, constraints, and intended next action before the session, then submit no more than three interface-neutral carry-forward discoveries or `none`.
-
-`EVAL-008` A qualified consequential shift MUST satisfy all five D-008 conditions: absent from the frozen inventory, materially consequential, constraint-preserving or conflict-revealing, still endorsed after 24 hours, and supported by an interaction trace.
-
-`EVAL-009` A Minerva-qualified shift MUST be traceable to explicit Focus or spatial structure, Branch, Searchlight, Compare, contribution-level Recombine, Harvest, or a preserved Path—not merely to a useful generated card.
-
-`EVAL-010` Every session MUST preserve one normalized case packet: frozen task and source packet; pre-session inventory and constraints; model/configuration, time, and resource receipt; final workspace or transcript; up to three carry-forward discoveries or `none`; 24-hour response; failures and incomplete work; and the brief post-session account. A Minerva packet additionally preserves relevant context manifests, operation records, lineage, History, and Harvest.
-
-`EVAL-011` Every Minerva session MUST be reviewed for canvas-management burden, context predictability, first-loop discoverability, Searchlight overload or collapsed approaches, cancellation and recovery, durability and truthful state, latency/inference/spend relative to benefit, and whether any apparent advantage survives a skillfully used chat baseline. A qualified shift does not erase a material countermetric.
-
-`EVAL-012` An independent reviewer MUST first check the normalized packet without the condition label, then review the trace. The participant owns the value judgment; the reviewer checks the evidence contract. Negative results and disagreements remain preserved.
-
-`EVAL-013` The first gate passes only when at least two of three pairs favor Minerva, no material burden/context/control/trust failure recurs across two Minerva users, and at least one claimed Minerva contribution is reconstructable from native records.
-
-`EVAL-014` At most two additional pairs may run when mixed or invalid evidence could change the decision. After five valid pairs, at least three must favor Minerva. Otherwise the thesis is unsupported at this prototype stage and the product must simplify or rework rather than expand capability.
-
-`EVAL-015` Capability expansion MUST stop early when two valid Minerva sessions produce more material or visible variation but no qualified consequential shift beyond their matched chats, or when two independent Minerva users encounter canvas burden, context confusion, or loss of control that negates the thinking benefit.
-
-`EVAL-016` A provider outage or material implementation defect invalidates the affected condition. It MUST remain reported and MAY be repeated only once after repair.
-
-`EVAL-017` Hidden context, irreversible loss, silent mutation, late commit after cancellation, false completion, or UI state that contradicts runtime MUST stop evaluation until repaired. If the same material trust defect recurs after one repair, the current implementation approach stops rather than receiving further evaluation runs.
-
-`EVAL-018` Card counts, branch counts, prompt counts, token counts, lexical or embedding distance, automated novelty or quality scores, model self-evaluation, visual preference, delight, time on canvas, NPS, test counts, infrastructure, and telemetry volume MUST NOT serve as proof of consequential discovery.
+| ID | Obligation | Normative source in D-008 |
+|---|---|---|
+| `EVAL-001` | Owner rehearsal runs as soon as one complete central loop works and before recruiting; it uses the canonical example and one genuine problem in separate clean evaluation states, which adds no multiple-workspace product feature | Stage 1; *Latest responsible point* |
+| `EVAL-002` | Owner rehearsal is a readiness falsifier, not comparative proof | Stage 1 |
+| `EVAL-003` | Three matched pairs, one Minerva and one capable linear-chat participant each | Stage 2, first bullet |
+| `EVAL-004` | Same frozen problem, source packet, constraints, model where controllable, and 30-minute period; resource use recorded, not equalized | Stage 2, second bullet |
+| `EVAL-005` | Mechanics-only practice on an unrelated problem; moderator coaching invalidates the session | Stage 2, third bullet |
+| `EVAL-006` | Capable ordinary linear chat as baseline; Voice off in both primary conditions and evaluated separately against D-007 | Stage 2, fourth bullet |
+| `EVAL-007` | Frozen pre-session inventory; at most three interface-neutral carry-forward discoveries or `none` | Stage 2, fifth bullet |
+| `EVAL-008` | A qualified consequential shift satisfies all five conditions | *Qualified consequential shift* |
+| `EVAL-009` | A Minerva-qualified shift traces to a Minerva-specific interaction, not merely a useful generated card | *Qualified consequential shift*, final paragraph |
+| `EVAL-010` | One normalized case packet per session with the listed contents | *Evidence and judgment* |
+| `EVAL-011` | Every Minerva session is reviewed against the countermetrics | *Countermetrics* |
+| `EVAL-012` | Independent reviewer checks the blinded packet first, then the trace; the participant owns the value judgment | *Evidence and judgment* |
+| `EVAL-013` | Initial gate: at least two of three pairs favor Minerva, no recurring material failure across two Minerva users, one reconstructable contribution | *Decision gate* |
+| `EVAL-014` | At most two additional pairs when evidence is genuinely mixed; after five valid pairs at least three must favor Minerva | *Decision gate* |
+| `EVAL-015` | Capability expansion stops early on the two named negative patterns | *Falsifier* row; *Decision gate* |
+| `EVAL-016` | Provider outage or material defect invalidates the affected condition; repeat once after repair | *Invalid sessions and immediate stops* |
+| `EVAL-017` | Trust defects stop evaluation until repaired; recurrence after one repair stops the approach | *Invalid sessions and immediate stops* |
+| `EVAL-018` | Counts, distance, automated scores, delight, and infrastructure are not proof of consequential discovery | *Intentionally not used as proof* |
 
 ## 19. Observable acceptance scenarios
 

@@ -287,46 +287,111 @@ rejects the proposal.
 - Revision and references: pull request 2; `ccf2ed5`; GitHub Actions runs
   `34083669179` and `34083863062`; commit containing this entry
 
-## Clock-start entry template
+## September 7, 2026
 
-Copy this only when the product owner explicitly starts the event clock:
+### J-20260907-01 — Repair the contributor path and drop the unused Vercel CLI
 
-```md
-### J-YYYYMMDD-NN — Start the hackathon slice
+- Gate or slice: Repository readiness
+- Actors: Product owner (human), repository agent
+- Context: A review of the public repository found that `npm run check` failed
+  with exit 127 when gitleaks was absent while README and CONTRIBUTING said
+  gitleaks was needed only for `secrets:scan`, and that the pinned Vercel CLI
+  development dependency was invoked by nothing yet supplied 336 of 736
+  lockfile entries, the whole override block, and every alert remediated in
+  pull request 1.
+- Agent proposal: Fail fast with a named install hint rather than skip the
+  gitleaks-dependent tests; document the no-mutation `npx` toolchain path;
+  remove the Vercel CLI and its overrides and run it as `npx vercel@59.11.7`
+  only when a gate authorizes deployment; remove CODEOWNERS because the ruleset
+  does not enforce it; correct stale copy in SECURITY.md and CURRENT_GATE.md.
+- Human disposition and rationale: **Accepted.** The owner instructed all
+  ranked review items to be implemented. A skipped test reports the same exit
+  code as a passing one, and CI should not be gated on a tool the repository
+  does not run.
+- Evidence or result: Pull request 4 merged as `c45a1d6` and pull request 5 as
+  `3329d7d`; each passed `Verify repository`. Pinned-toolchain `npm ci`,
+  `npm run check` (six tests, build compiled), `security:audit`, and
+  `secrets:scan` all exit 0. Lockfile entries fell from 736 to 400 and
+  installed packages from 587 to 340 with zero audit findings.
+- Errors, friction, or cuts: Auto-merge is not enabled on the repository, so
+  each pull request was merged directly after its checks passed. The
+  repository was renamed to `brandyn-s/minerva-template` and marked as a
+  GitHub template during this work; the old name redirects, and hardcoded
+  `brandyn-s/minerva` URLs in README, SECURITY.md, the issue-template config,
+  and package.json still resolve but were not changed.
+- Remaining uncertainty / reopen when: The owner decides what the template is
+  for; instantiated repositories would inherit those URLs.
+- Revision and references: `c45a1d6`, `3329d7d`; pull requests 4 and 5
 
-- Time: YYYY-MM-DDTHH:MM:SS±HH:MM
-- Gate or slice: Hackathon T+0
-- Actors: Product owner (human), operator, tool/model family when useful
-- Context: Product owner declares the clock started
-- Agent proposal: T+120 scope or sequencing proposal, if any
-- Human disposition and rationale: The T+120 floor, target, cut lines, and demo
-  claim are accepted or modified as follows: ...
-- Evidence or result: Clean base revision ..., build branch ..., locked runtime
-  preflight ...
-- Errors, friction, or cuts: ...
-- Remaining uncertainty / reopen when: First material falsifier or a cut changes
-  the demo claim
-- Revision and references: base SHA ..., branch ..., content-free session
-  reference only when useful ...
-```
+### J-20260907-02 — Hold the post-review decision drafts as a pending proposal
 
-After the frozen T+120 artifact is demonstrated, record a separate decision:
+- Gate or slice: Authority documents
+- Actors: Product owner (human), repository agent
+- Context: Drafts approving architecture decisions A-008 and A-009 and product
+  decisions D-009 through D-011, dated September 7, existed only as
+  uncommitted edits on the owner's machine, based on `4773e6e` and therefore
+  conflicting with pull requests 2 and 3. No spike, product code, or T+120
+  artifact yet exists to inform them, and `ARCHITECTURE.md` keeps spike-gated
+  selections open until a named experiment supplies evidence.
+- Agent proposal: Preserve the drafts unchanged on the branch
+  `proposal/a008-a009-d009-d011-2026-09-07`, record their disposition as
+  pending, and revisit them after the T+120 artifact exists rather than
+  merging paper-approved decisions ahead of evidence.
+- Human disposition and rationale: **Pending** for the decisions themselves;
+  the owner accepted recording them as proposals. The decision set on `main`
+  is unchanged: D-001 through D-008 and A-001 through A-007.
+- Evidence or result: Branch pushed at `99cef44`; `main` carries no A-008,
+  A-009, or D-009 through D-011 text.
+- Errors, friction, or cuts: The branch is not rebased onto current `main`;
+  six files will conflict when it is revisited.
+- Remaining uncertainty / reopen when: After the T+120 artifact, or earlier if
+  a spike produces evidence bearing on renderer protocol or lineage validation.
+- Revision and references: `99cef44` on the proposal branch
 
-```md
-### J-YYYYMMDD-NN — Decide whether to refine after T+120
+### J-20260907-03 — Record the Voice critical-path tradeoff
 
-- Time: YYYY-MM-DDTHH:MM:SS±HH:MM
-- Gate or slice: Hackathon T+120 checkpoint
-- Actors: Product owner (human), operator, tool/model family when useful
-- Context: Observed T+120 demo, failures, and friction
-- Agent proposal: Ranked stop/continue options and their tradeoffs
-- Human disposition and rationale: accepted | modified | rejected — stop now,
-  or continue to T+480 with zero or one named primary improvement (floor repair
-  or creative leverage) and, only when distinct and safe, zero or one
-  reliability improvement because ...
-- Evidence or result: T+120 commit ..., demo record ..., observed friction ...
-- Errors, friction, or cuts: ...
-- Remaining uncertainty / reopen when: The selected work destabilizes the
-  checkpoint or new evidence changes the demo claim
-- Revision and references: T+120 SHA ..., content-free evidence refs ...
-```
+- Gate or slice: ROADMAP sequencing
+- Actors: Product owner (human), repository agent
+- Context: D-008 evaluates the thesis with Voice off, yet R8 depends on R7 and
+  R9 depends on R8, so R6V and R7 (about five of the 22 critical-path days)
+  gate the thesis test on a capability that test does not use. Section 24
+  resolved the R5 ordering but not R9.
+- Agent proposal: Split R8 into a Voice-off evaluation candidate that feeds R9
+  and a separate later Voice freeze, so the thesis test does not wait on
+  Voice integration.
+- Human disposition and rationale: **Pending.** The owner accepted recording
+  the tradeoff in `ROADMAP.md` Section 20; changing approved gate order is a
+  product-owner decision to be taken at R5 closeout with rehearsal evidence.
+- Evidence or result: The dependency table in `ROADMAP.md` Section 7 and the
+  22-day critical-path estimate in Section 20.
+- Remaining uncertainty / reopen when: R5 closeout.
+- Revision and references: commit containing this entry
+
+### J-20260907-04 — Freeze authority documents and consolidate duplicated text
+
+- Gate or slice: Authority documents / repository readiness
+- Actors: Product owner (human), repository agent
+- Context: Ten governance files totalled about 3,500 normative lines and 232
+  specification identifiers against 88 lines of application code, and the
+  documents were still growing before any evidence existed.
+- Agent proposal: Freeze `INTENT.md`, `DECISIONS.md`, `SPEC.md`,
+  `ARCHITECTURE.md`, and `ROADMAP.md` until the T+120 artifact exists, and
+  remove duplicated text without changing any requirement: `SPEC.md`
+  Section 18 becomes a table mapping each `EVAL-*` identifier to its D-008
+  clause; `ROADMAP.md` Section 3 points to the invariants and decisions
+  instead of restating them; the Section 24 interview findings move to
+  `docs/archive/`; `ARCHITECTURE.md` Section 26 stops repeating approvals;
+  `DEMO.md` merges into `HACKATHON.md` as its demo contract; the README
+  repository table becomes a pointer to `AGENTS.md`; and the two journal
+  templates are replaced by the field list in `HACKATHON.md`.
+- Human disposition and rationale: **Accepted.** Every new paragraph is a
+  drift liability with no test behind it; the next input to these documents
+  should be evidence from the build.
+- Evidence or result: The commit containing this entry; `EVAL-*` identifiers
+  and Section 23 traceability are preserved, and no `MUST` obligation is
+  removed. `CURRENT_GATE.md` records the freeze.
+- Errors, friction, or cuts: Historical journal entries still name `DEMO.md`;
+  they are not rewritten.
+- Remaining uncertainty / reopen when: The T+120 artifact exists, or a
+  demonstrated defect in an authority document blocks the event.
+- Revision and references: commit containing this entry
