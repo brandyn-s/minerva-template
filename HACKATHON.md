@@ -17,7 +17,7 @@ The pre-clock baseline is intentionally uneventful:
 | Ready before the clock | Deliberately starts at T+0 |
 |---|---|
 | Greenfield repository and clean `main` | Product-owned domain records and commands |
-| Isolated Vercel project with no deployment | Browser-local workspace repository |
+| Vercel team `thalient` reachable; the project is created at T+0 | Browser-local workspace repository |
 | Exact Node/npm lock and reproducible install | Editable spatial canvas and Focus behavior |
 | Minimal Next.js shell and one bounded `npm run check` | Branch/Searchlight operation adapters |
 | Reserved environment and storage names; provider routes disabled | Provider selection, route implementation, or credentials |
@@ -44,6 +44,10 @@ stable, the targeted divergence behavior from R6. It does not pass R1, R2, R3,
 or R6 and must not be used to close their evidence gates.
 
 ## Scope ladder
+
+T+120 aims at the target. The floor is the cut line that keeps the demo
+truthful, not the goal; reaching only the floor is recorded as a shortfall,
+not as success.
 
 ### Floor — protect this first
 
@@ -87,11 +91,17 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 node --version
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm --version
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run security:audit
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
+npx --yes vercel@59.11.7 whoami
+npx --yes vercel@59.11.7 project ls --scope thalient
 ```
 
-The first three commands must report `8.30.1`, `v24.20.0`, and `12.0.2`. The
-pre-clock operator then leaves the template's `main` clean and synchronized;
-the product repository does not exist before the clock starts.
+The first three commands must report `8.30.1`, `v24.20.0`, and `12.0.2`; the
+last two must show an authenticated user and an empty `thalient` project list.
+The pre-clock operator then leaves the template's `main` clean and
+synchronized. Neither the product repository nor the Vercel project exists
+before the clock starts; the template checkout's own `.vercel/project.json`,
+if present, points at the project deleted before September 7, 2026 and must
+not be reused.
 
 ## Clock-start sequence
 
@@ -105,10 +115,15 @@ template repository, and the clock-start journal entry names the template
 revision the product repository was generated from.
 
 Template generation copies files, not settings. The block below re-applies the
-same controls the template carries; `.github/rulesets/main.json` is the
-exported `main` ruleset.
+same controls the template carries (`.github/rulesets/main.json` is the
+exported `main` ruleset), then creates and links the isolated Vercel project
+as content-free infrastructure with nothing deployed. Run it from the
+directory that should contain the product clone: `gh repo create --clone`
+clones into the current directory, so running it inside the template checkout
+would nest one repository in another.
 
 ```sh
+cd "$(dirname "$(git rev-parse --show-toplevel)")"   # parent of the template checkout
 gh repo create brandyn-s/minerva --public --template brandyn-s/minerva-template \
   --description "A spatial thinking workspace for directing AI with explicit context, durable lineage, and human judgment." \
   --clone
@@ -129,14 +144,19 @@ printf '%s' '{"security_and_analysis":{"secret_scanning_push_protection":{"statu
   | gh api -X PATCH repos/brandyn-s/minerva --input -
 gh api -X PATCH repos/brandyn-s/minerva/code-scanning/default-setup \
   -f state=configured -f query_suite=default
+npx --yes vercel@59.11.7 project add minerva --scope thalient
+npx --yes vercel@59.11.7 link --yes --team thalient --project minerva
+npx --yes vercel@59.11.7 env ls
 git switch -c codex/hackathon-slice
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 ```
 
-Read the controls back with `gh api repos/brandyn-s/minerva/rulesets` and
-`gh repo view brandyn-s/minerva --json isTemplate,defaultBranchRef` before the
-first push. The fresh clone needs one `npm ci`; with the npm cache warm from
+Read the controls back with `gh api repos/brandyn-s/minerva/rulesets`,
+`gh repo view brandyn-s/minerva --json isTemplate,defaultBranchRef`, and
+`npx --yes vercel@59.11.7 project ls --scope thalient` before the first push.
+`vercel env ls` must list no provider credential; provider routes stay
+disabled. The `.vercel/` link directory is gitignored and never committed. The fresh clone needs one `npm ci`; with the npm cache warm from
 the pre-clock check it takes seconds. Do not otherwise spend clock time
 reinstalling or re-running the readiness suite unless the machine or lockfile
 changed after the pre-clock check.
@@ -149,6 +169,59 @@ lines, and demo claim are accepted or modified. After the frozen T+120 artifact
 is demonstrated, append a second entry recording the stop/continue decision,
 the zero-or-one primary improvement, and the zero-or-one distinct reliability
 improvement, each with its rationale.
+
+## Execution matrix
+
+The slice runs as three lanes with one integration owner. Lanes fan out only
+after mission control freezes the shared contracts at the end of T+10–30;
+until then everyone works in one lane. Each lane has its own worktree and
+branch off the integration branch `codex/hackathon-slice`, opens one pull
+request per integration unit into that branch, and never edits another lane's
+paths. Only mission control edits shared contracts, `package.json`, the
+lockfile, CI, and integration files. A worker that needs a shared change asks
+for it in its lane issue and keeps working against the frozen contract until
+the change lands. Mission control merges into the integration branch after
+`npm run check` passes and opens the single pull request to `main` that
+freezes the T+120 revision.
+
+| Lane | Owns | Does not touch | Acceptance evidence |
+|---|---|---|---|
+| Mission control | Shared record and command contracts, ports, `package.json` and lockfile, CI, the integration branch and its merges, the Vercel project and any deployment | Lane implementations | Contracts frozen by T+30 and posted in each lane issue; every merge green; T+120 revision tagged; deployment readback if reached |
+| Canvas/state | Card, Focus, relationship, and operation records behind the frozen contracts; the browser-local repository adapter; the canvas surface, drag, pan, select, Focus controls, receipts, and lineage marks | Provider adapters, route handlers | Create, edit, move, and Focus survive reload; moving an unrelated card leaves the manifest unchanged; **AI sees N cards** is correct |
+| Inference | The closed generation port, the labelled deterministic fixture adapter, the bounded route handler when a safe provider path exists, Branch, and the three-arm Searchlight scheduler | Renderer, persistence internals | Branch lands one derived card outside Focus with lineage and a receipt; failed work stays visible; **Simulated** is shown whenever the fixture is in use |
+| Voice (only if separately authorized after T+120) | Page-scoped Voice session, exact context receipt, read-only authority, interruption and failure states | Workspace commands | Not part of the T+120 slice |
+
+The exact owned paths are fixed at the T+30 contract freeze and written into
+each lane's issue. This table names responsibilities, not a directory layout,
+so the slice is not forced into the long-form module map before EXP-002.
+
+Open one issue per lane in the product repository at T+0 and record
+shared-contract requests, cuts, and friction as comments there:
+
+```sh
+for lane in mission-control canvas-state inference; do
+  gh issue create --repo brandyn-s/minerva --title "Lane: $lane" --body "$(printf '%s\n' \
+    'Owned paths (fixed at T+30): ...' \
+    'Does not touch: ...' \
+    'Acceptance evidence: ...' \
+    'Shared-contract requests, cuts, and friction are recorded as comments here.')"
+done
+```
+
+### Deployment lane (stretch)
+
+Only mission control deploys, and only a frozen, safe revision with no secret
+in the bundle and provider routes disabled or bounded:
+
+```sh
+npx --yes vercel@59.11.7 deploy --yes
+npx --yes vercel@59.11.7 inspect <deployment-url> --wait --timeout 90s
+curl -sSI <deployment-url> | head -1
+```
+
+Record the immutable deployment URL, the READY state, the HTTP status, and a
+browser walkthrough of the demo contract on that URL. A local truthful
+artifact outranks a rushed or ambiguous deployment.
 
 ## 120-minute execution map
 

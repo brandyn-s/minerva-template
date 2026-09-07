@@ -507,3 +507,46 @@ rejects the proposal.
   the false-negative risk. Neither is free.
 - Remaining uncertainty / reopen when: Owner decision; R4 exit at the latest.
 - Revision and references: commit containing this entry
+
+### J-20260907-09 — Correct the Vercel record, repair the bootstrap, and add the execution matrix
+
+- Gate or slice: Repository readiness / hackathon preparation
+- Actors: Product owner (human), repository agent, external reviewer (Codex)
+- Context: An external review reported that the `thalient/minerva` Vercel
+  project no longer exists. An independent live read confirmed it: the team's
+  project list is empty and `prj_JqzTIJqpZZZomnXhqMVnEPSNNzFe` returns 404,
+  so `CURRENT_GATE.md` was asserting a false current state. The same review
+  found that `gh repo create --clone` run inside the template checkout would
+  nest the product repository, that the hackathon packet had no lane
+  ownership map or shared-contract freeze, and that the scope ladder read as
+  if the floor were the goal.
+- Agent proposal: Correct the operating record; create and link the Vercel
+  project at T+0 as content-free infrastructure with a pre-clock
+  authentication check; move the bootstrap to the template checkout's parent
+  directory; add a three-lane execution matrix (mission control, canvas/state,
+  inference) with a T+30 contract freeze, one issue per lane, and a
+  mission-control-only deployment lane; state that T+120 aims at the target.
+  Decline the reviewer's per-lane JSONL ledgers because the repository retired
+  an equivalent receipt system on September 6 for growing larger than the
+  decisions it served. Decline, pending a separate owner decision, the
+  reviewer's proposals to add Expedition, terrain/basins/attractors, an
+  Oblique Strategies deck, and Voice to the event, because each is a named
+  exclusion in `INTENT.md`, `SPEC.md` Section 21, or D-005, or reverses the
+  owner's earlier cut in `J-20260906-04` and `J-20260906-07`.
+- Human disposition and rationale: **Accepted** for the four gate-internal
+  changes. The product-scope expansions remain **pending** an explicit owner
+  decision because they change approved authority, not the hackathon packet.
+- Evidence or result: Live Vercel readback on September 7, 2026 (team
+  `thalient`: zero projects; recorded project ID: 404). Vercel CLI 59.11.7
+  flags for `project add`, `link --yes --team --project`, `deploy --yes`, and
+  `inspect --wait --timeout` verified against the CLI's own help.
+  `HACKATHON.md` and `CURRENT_GATE.md` updated; frozen authority documents
+  untouched.
+- Errors, friction, or cuts: Who deleted the Vercel project and when is not
+  recorded anywhere reachable; the R0 receipt in Git history and pull request
+  3's readback remain accurate for their own dates. The Vercel commands in the
+  clock-start block are unexercised until T+0, like the GitHub settings block.
+- Remaining uncertainty / reopen when: The owner decides on the scope
+  expansions; a T+0 Vercel command fails; or the project is created before the
+  clock-start declaration.
+- Revision and references: commit containing this entry
