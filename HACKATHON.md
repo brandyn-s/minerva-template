@@ -90,22 +90,60 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
 The first three commands must report `8.30.1`, `v24.20.0`, and `12.0.2`. The
-pre-clock operator then leaves `main` clean and synchronized.
+pre-clock operator then leaves the template's `main` clean and synchronized;
+the product repository does not exist before the clock starts.
 
 ## Clock-start sequence
 
-When the event clock starts:
+`brandyn-s/minerva-template` is the frozen launch packet, not the build
+repository. When the event clock starts, the first action is to generate the
+product repository `brandyn-s/minerva` from the template and work only there.
+The product owner accepted on September 7, 2026 that the generated repository
+does not inherit commit history: the intent-before-code sequence and every
+revision cited in `JOURNAL.md` before clock start remain reachable in the
+template repository, and the clock-start journal entry names the template
+revision the product repository was generated from.
+
+Template generation copies files, not settings. The block below re-applies the
+same controls the template carries; `.github/rulesets/main.json` is the
+exported `main` ruleset.
 
 ```sh
+gh repo create brandyn-s/minerva --public --template brandyn-s/minerva-template \
+  --description "A spatial thinking workspace for directing AI with explicit context, durable lineage, and human judgment." \
+  --clone
+cd minerva
+gh api -X POST repos/brandyn-s/minerva/rulesets --input .github/rulesets/main.json
+gh repo edit brandyn-s/minerva --enable-issues --enable-wiki=false --enable-projects=false \
+  --enable-squash-merge --enable-merge-commit=false --enable-rebase-merge=false \
+  --delete-branch-on-merge
+gh api -X PUT repos/brandyn-s/minerva/actions/permissions \
+  -F enabled=true -f allowed_actions=selected -F sha_pinning_required=true
+gh api -X PUT repos/brandyn-s/minerva/actions/permissions/selected-actions \
+  -F github_owned_allowed=true -F verified_allowed=false
+gh api -X PUT repos/brandyn-s/minerva/actions/permissions/workflow \
+  -f default_workflow_permissions=read -F can_approve_pull_request_reviews=false
+gh api -X PUT repos/brandyn-s/minerva/private-vulnerability-reporting
+gh api -X PUT repos/brandyn-s/minerva/automated-security-fixes
+printf '%s' '{"security_and_analysis":{"secret_scanning_push_protection":{"status":"enabled"}}}' \
+  | gh api -X PATCH repos/brandyn-s/minerva --input -
+gh api -X PATCH repos/brandyn-s/minerva/code-scanning/default-setup \
+  -f state=configured -f query_suite=default
 git switch -c codex/hackathon-slice
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 ```
 
-Do not spend clock time reinstalling or re-running the entire readiness suite
-unless the machine or lockfile changed after the pre-clock check.
+Read the controls back with `gh api repos/brandyn-s/minerva/rulesets` and
+`gh repo view brandyn-s/minerva --json isTemplate,defaultBranchRef` before the
+first push. The fresh clone needs one `npm ci`; with the npm cache warm from
+the pre-clock check it takes seconds. Do not otherwise spend clock time
+reinstalling or re-running the readiness suite unless the machine or lockfile
+changed after the pre-clock check.
 
 Append one `JOURNAL.md` entry using the standard entry contract with: the ISO
-8601 start time; the clean base revision; the build branch; the operator and,
+8601 start time; the template revision the product repository was generated
+from; the build branch; the operator and,
 when useful, the tool/model family; and whether the T+120 floor, target, cut
 lines, and demo claim are accepted or modified. After the frozen T+120 artifact
 is demonstrated, append a second entry recording the stop/continue decision,
@@ -116,7 +154,7 @@ improvement, each with its rationale.
 
 | Time | Outcome | Cut line |
 |---|---|---|
-| T+0–10 | Create the build branch, start the locked shell, open the canonical example, and keep the current placeholder available as a known baseline. | If the shell does not start, repair only the first material failure. |
+| T+0–10 | Generate `brandyn-s/minerva` from the template, apply its controls, clone, create the build branch, install, start the locked shell, open the canonical example, and keep the current placeholder available as a known baseline. | If the shell does not start, repair only the first material failure. |
 | T+10–30 | Establish the smallest product-owned records and command seam for Card, Focus, relationship, and operation state. | No full History engine, migrations framework, or generalized command bus. |
 | T+30–55 | Implement acknowledged browser-local card creation/edit/move, Focus, example/blank start, and reload. | Use one bounded native IndexedDB adapter; do not add a second store or renderer-owned truth. |
 | T+55–75 | Make the spatial surface direct and legible: drag cards, pan, select, add/remove/clear Focus, and show lineage/context receipts where they act. | Prefer plain DOM/CSS for this disposable slice; do not turn that into an R2 renderer decision. |

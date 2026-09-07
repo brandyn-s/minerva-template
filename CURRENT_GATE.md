@@ -12,11 +12,12 @@
 | Repository work | **COMPLETE** — public delivery and launch preparation closed |
 | Product capability | None; the tracked application remains a shell |
 | Readiness change | Pull requests 2 and 3 merged as `ccf2ed5` and `64f8b88`; each exact `main` push check passed |
-| Publication state | **PUBLIC** — GitHub controls enabled; renamed to `brandyn-s/minerva-template` and marked as a GitHub template on September 7, 2026 (the old name redirects); Vercel remains undeployed and unlinked from Git |
+| Publication state | **PUBLIC** — GitHub controls enabled; renamed to `brandyn-s/minerva-template` and marked as a GitHub template on September 7, 2026; Vercel remains undeployed and unlinked from Git |
+| Product repository | **Not yet created** — `brandyn-s/minerva` is generated from this template as the first T+0 action and does not inherit commit history (`J-20260907-05`) |
 | Event checkpoint | Working prototype at T+120; optional refinement requires a separate T+120 owner decision |
 | Long-form roadmap | R1 through R9 remain unauthorized |
 | Authority documents | **FROZEN** until the T+120 artifact exists; see `J-20260907-04` |
-| Last transition | Authority freeze and consolidation recorded in `JOURNAL.md` entry `J-20260907-04` |
+| Last transition | T+0 repository decision recorded in `JOURNAL.md` entry `J-20260907-05` |
 
 ## Authorized before clock start
 
@@ -62,9 +63,11 @@ operating record, not a substitute monitor.
 
 ## Next product transition
 
-When the product owner explicitly declares the event clock started, record the
-time, clean base revision, branch, operator, and tool/model family when useful
-in `JOURNAL.md`. Then follow [HACKATHON.md](./HACKATHON.md), with
+When the product owner explicitly declares the event clock started, generate
+`brandyn-s/minerva` from this template and re-apply its controls as the first
+action, then record the time, template revision, branch, operator, and
+tool/model family when useful in the product repository's `JOURNAL.md`. Then
+follow [HACKATHON.md](./HACKATHON.md), with
 its demo contract as the T+120 acceptance contract. Preserve the T+120
 revision before any separately authorized refinement.
 
@@ -72,8 +75,9 @@ revision before any separately authorized refinement.
 
 Before clock start: product behavior, a secret, inherited predecessor state, a
 deployment, or a Git-to-Vercel link enters the baseline; the locked shell cannot
-start; or the public controls above drift in a way that defeats the contributor
-or evidence path. Once the clock starts, the detailed outcome, cut lines,
+start; the public controls above drift in a way that defeats the contributor
+or evidence path; or a repository named `brandyn-s/minerva` is created before
+the clock-start declaration. Once the clock starts, the detailed outcome, cut lines,
 falsifiers, and stop rules live in `HACKATHON.md` rather than being
 duplicated here.
 
