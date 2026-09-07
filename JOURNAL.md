@@ -454,3 +454,56 @@ rejects the proposal.
   marker, Simulated label placement, and light-only versus dark remain open
   and should be settled before T+0 or at T+0–10 by the owner.
 - Revision and references: commit containing this entry
+
+### J-20260907-07 — Proposal: prove the provider envelope with Branch only in R2B
+
+- Gate or slice: ROADMAP R2B (proposal; roadmap frozen)
+- Actors: Product owner (human), repository agent, external reviewer (Codex)
+- Context: R2B.1 defines and contract-tests schemas for all seven provider
+  stages and R2B.6 runs every stage against the provider before R3 builds the
+  first Branch. Five of those stages belong to capabilities R4 and R6 build
+  later, which sits badly with `SCOPE-003` and the roadmap's "proof stays
+  smaller than product work" constraint.
+- Agent proposal: Keep the closed discriminated stage contract, but implement
+  and exercise only `branch` in R2B while rejecting every other stage value.
+  R2B still proves the stage-agnostic properties it exists for: admission,
+  hard envelope, replay, cancellation, and late-result rejection. Add
+  `compare`, `recombine`, and `harvest` schemas and real calls in R4, and the
+  three Searchlight stages in R6, under the same contract-test harness. R6
+  already reopens R2B if Searchlight exceeds the server maximum.
+- Human disposition and rationale: **Pending.** `ROADMAP.md` is frozen; this
+  entry records the proposal for the owner to accept, modify, or reject.
+- Evidence or result: `ROADMAP.md` R2B.1, R2B.6, and `SPEC.md` `SCOPE-003`.
+- Errors, friction, or cuts: Deferring stage schemas risks discovering at R6
+  that a Searchlight stage does not fit the envelope; the existing R6 reopen
+  rule bounds that risk.
+- Remaining uncertainty / reopen when: Owner decision; R1 exit at the latest.
+- Revision and references: commit containing this entry
+
+### J-20260907-08 — Proposal: split the R5 pass condition and move the discovery veto
+
+- Gate or slice: ROADMAP R5, R6, R6V, R7 (proposal; roadmap frozen)
+- Actors: Product owner (human), repository agent, external reviewer (Codex)
+- Context: Interview finding 1 (archived) deliberately made `none` unable to
+  pass R5 so that Searchlight and Voice would not be built on an instrument
+  that changed no thinking. The counterargument is that Branch is one
+  directed expansion and cannot address the convergence problem `INTENT.md`
+  names; Searchlight is the mechanism aimed at it. A Branch-only rehearsal
+  that yields `none` is therefore a likely false negative and would stop the
+  build before its distinctive mechanism exists.
+- Agent proposal: Split R5. Usability, context predictability, and canvas
+  burden remain a hard gate for R6. The provisional consequential shift is
+  recorded, but `none` alone does not block R6. Add an owner rehearsal with
+  Searchlight at R6 closeout where `none` does stop the build. Gate R6V and
+  R7 (Voice) on that post-Searchlight rehearsal rather than on R5, which also
+  resolves the critical-path tradeoff in `J-20260907-03`.
+- Human disposition and rationale: **Pending.** This reverses an approved
+  interview resolution and `ROADMAP.md` is frozen; the owner decides.
+- Evidence or result: `ROADMAP.md` R5 exit decision and smallest decisive
+  evidence; `docs/archive/roadmap-interview-findings-2026-09-06.md` item 1;
+  `INTENT.md` problem statement.
+- Errors, friction, or cuts: Accepting spends R6's four-day budget on
+  Searchlight before any thinking-change evidence exists; rejecting accepts
+  the false-negative risk. Neither is free.
+- Remaining uncertainty / reopen when: Owner decision; R4 exit at the latest.
+- Revision and references: commit containing this entry

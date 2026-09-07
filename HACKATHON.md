@@ -174,6 +174,16 @@ only when distinct and safe, zero or one reliability improvement. An agent may
 propose the options; it may not choose them or quietly turn every option into
 scope.
 
+**Chat self-baseline (T+120–150).** Immediately after the demo, open a plain
+capable chat on the same problem and spend at most five minutes reconstructing
+the same context the Focus field held: paste or retype the focused cards and
+ask for the same Branch. Record wall time and the count of actions for both
+paths (Focus: add, remove, arrange, invoke; chat: paste, type, send). This is
+one owner on one problem and is readiness evidence only; it does not count
+toward D-008 and is never reported as a matched result. Its purpose is to make
+the third checkpoint question answerable with a number instead of an
+impression.
+
 If the T+120 floor passed, default priority for a leverage improvement is:
 
 1. replace a simulated Branch with one safe, bounded, visibly attributed live
@@ -191,7 +201,7 @@ context, lineage, actions, or state easier to understand.
 
 | Time | Decision and outcome | Cut line |
 |---|---|---|
-| T+120–150 | Run the exact demo on a real problem, inspect failure/reload behavior, and record the stop/continue choice, selected primary improvement, and any distinct reliability improvement. | If the floor is not reliable, choose repair as the primary improvement; do not expand scope. |
+| T+120–150 | Run the exact demo on a real problem, inspect failure/reload behavior, run the five-minute chat self-baseline below, answer the three checkpoint questions, and record the stop/continue choice, selected primary improvement, and any distinct reliability improvement. | If the floor is not reliable, choose repair as the primary improvement; do not expand scope. |
 | T+150–300 | Implement the selected primary improvement: repair the floor or deepen one source of leverage through the existing product-owned seams. | No new platform, generalized framework, Voice, auth, ingestion, or History system. |
 | T+300–390 | If separately chosen and still safe, resolve one distinct reliability/accessibility weakness and exercise its unhappy path; otherwise rehearse and simplify the primary loop. | If the primary work destabilizes a passing T+120 loop, revert or isolate it rather than repairing indefinitely. |
 | T+390–435 | Repeat the real-problem rehearsal; make only evidence-driven interaction or explanation fixes. | No checklist-driven features and no redesign detached from observed friction. |
@@ -352,7 +362,9 @@ is unavailable, do not perform the reload step or call the state durable.
 
 ### T+120 checkpoint record
 
-Fill this in against the exact demo commit:
+Fill this in against the exact demo commit. The three question rows are the
+minimum the demo must answer; an honest *not evaluable* is a valid answer and
+is preferred to narration.
 
 | Field | Observation |
 |---|---|
@@ -363,6 +375,9 @@ Fill this in against the exact demo commit:
 | Target | Not run |
 | Stretch | Not run |
 | Consequential discovery | Not evaluated |
+| Q1 — Could the user predict exactly what the AI saw? | Not evaluated — cite the receipt and the unrelated-card move |
+| Q2 — Did the spatial interaction expose a consequential direction or tension? | Not evaluated — state live or simulated; if simulated, record *not evaluable* |
+| Q3 — Did operating the canvas cost less than reconstructing context in chat? | Not evaluated — record both self-baseline times and action counts |
 | Material failures or cuts | Not evaluated |
 | Deployment, if any | None |
 
