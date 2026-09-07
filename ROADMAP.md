@@ -55,7 +55,10 @@ The first prototype is complete only when required capabilities are implemented 
 
 - The canonical greenfield repository and minimal Next.js shell exist; approved
   authority history precedes generated code and R0 has passed.
-- Node 24.20.0, npm 12.0.2, and Vercel CLI 59.11.7 are locked in the repository.
+- Node 24.20.0 and npm 12.0.2 are locked in the repository. Vercel CLI 59.11.7
+  was a development dependency at R0 closeout; it was removed on September 7,
+  2026 because no script invokes it, and it is run as `npx vercel@59.11.7`
+  only when a gate authorizes deployment.
 - The isolated Vercel project is linked locally but undeployed.
   Browser-storage and admission namespaces are reserved; no browser database,
   provider route, credential, or product capability exists yet.

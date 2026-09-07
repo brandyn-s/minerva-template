@@ -40,49 +40,9 @@
     "@types/react-dom": "19.2.7",
     "eslint": "10.10.0",
     "eslint-config-next": "16.3.4",
-    "typescript": "5.9.3",
-    "vercel": "59.11.7"
-  },
-  "overrides": {
-    "@tootallnate/once": "2.0.1",
-    "@vercel/backends": {
-      "path-to-regexp": "8.4.0"
-    },
-    "@vercel/express": {
-      "path-to-regexp": "8.4.0"
-    },
-    "@vercel/fun": {
-      "path-to-regexp": "8.4.0"
-    },
-    "@vercel/hono": {
-      "path-to-regexp": "8.4.0"
-    },
-    "@vercel/node": {
-      "path-to-regexp": "6.3.0"
-    },
-    "@vercel/python-analysis": {
-      "js-yaml": "4.3.1",
-      "minimatch": "10.2.3",
-      "smol-toml": "1.6.1"
-    },
-    "@vercel/remix-builder": {
-      "path-to-regexp": "6.3.0"
-    },
-    "@vercel/rust": {
-      "smol-toml": "1.6.1"
-    },
-    "@vercel/static-config": {
-      "ajv": "8.18.0"
-    },
-    "tar": "7.5.21",
-    "undici@<=6.27.0": "6.28.1",
-    "vercel": {
-      "smol-toml": "1.6.1"
-    }
+    "typescript": "5.9.3"
   },
   "allowScripts": {
-    "esbuild@0.27.0": true,
-    "fsevents@2.3.3": true,
     "unrs-resolver@1.12.2": true
   }
 }
