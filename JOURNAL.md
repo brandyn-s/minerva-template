@@ -648,3 +648,45 @@ rejects the proposal.
 - Remaining uncertainty / reopen when: The owner revises any of them at
   T+0–10, or the T+120 rehearsal shows one of them costs legibility.
 - Revision and references: commit containing this entry
+
+### J-20260907-13 — Align pre-clock preparation with deployed creative iteration
+
+- Gate or slice: Hackathon preparation; PRE-CLOCK remains inactive
+- Actors: Product owner (human), repository agent
+- Context: The launch packet treated deployment as stretch, allowed D-013
+  before its authorized refinement window, and retained a blanket Voice
+  prohibition inside the D-012 window. Template-facing metadata still named
+  the future product repository.
+- Agent proposal: Make a reviewer-accessible deployed interaction and a
+  meaningful second iteration core acceptance. Prepare a concrete library
+  example and an unassisted first action; reconcile experiment timing and
+  template identity. Preserve independent-arm Searchlight, with iterative
+  Branch as the fallback rather than introducing batch exploration.
+- Human disposition and rationale: The owner authorized implementation of
+  the recommendations after their evaluation against the current repository.
+  This authorizes the pre-clock corrections and preparation, not clock start,
+  product implementation, provider spend, or deployment. Exact example copy,
+  arrangement, and revised time allocations are agent-authored choices
+  submitted for review, not separately owner-approved product decisions.
+- Evidence or result: `HACKATHON.md` now carries required delivery and access
+  evidence, a prepared five-card example, a second-iteration journey, revised
+  scope and cut rules, and matching checkpoint fields. `README.md` and
+  `CURRENT_GATE.md` reflect that planned outcome without claiming product
+  progress. Template badge, package metadata, and private-reporting links
+  identify `minerva-template`; the bootstrap checklist scopes their
+  substitutions in the generated product.
+- Errors, friction, or cuts: The earlier optional-deployment and
+  floor-as-automatic-shortfall execution advice is superseded for this slice.
+  D-013 remains T+120–480 only; D-012 remains a conditional refinement choice.
+  Batch exploration, public anonymous provider access, and long-form roadmap
+  changes are not adopted. ESLint peer compatibility remains maintenance
+  debt; no dependency change is justified by this preparation work.
+- Remaining uncertainty / reopen when: The owner reviews the editorial
+  choices; T+0 measurements expose timing friction; provider/admission or
+  reviewer access cannot meet the delivery boundary; or the deployed
+  rehearsal fails to support meaningful refinement. A simulated interaction
+  does not establish consequential discovery.
+- Revision and references: commit containing this entry; proposal issue #15.
+  `INTENT.md`, `DECISIONS.md`, `SPEC.md`, `ARCHITECTURE.md`, and `ROADMAP.md`
+  remain unchanged. No product code, application fixtures, provider calls,
+  project creation, or deployment is part of this change.

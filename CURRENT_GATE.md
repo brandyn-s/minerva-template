@@ -15,11 +15,11 @@
 | Publication state | **PUBLIC** — GitHub controls enabled; renamed to `brandyn-s/minerva-template` and marked as a GitHub template on September 7, 2026 |
 | Vercel | **No project exists.** The `thalient/minerva` project recorded at R0 was gone by September 7, 2026 (`prj_JqzTIJqpZZZomnXhqMVnEPSNNzFe` returns 404; the team listed no projects then and holds only unrelated ones now). Nothing is deployed. The project is recreated at T+0 as content-free infrastructure (`J-20260907-09`) |
 | Product repository | **Not yet created** — `brandyn-s/minerva` is generated from this template as the first T+0 action and does not inherit commit history (`J-20260907-05`) |
-| Event checkpoint | Working prototype at T+120; optional refinement requires a separate T+120 owner decision |
+| Event checkpoint | Reviewer-accessible deployed creative loop at T+120, including a visible second iteration; optional refinement requires a separate T+120 owner decision |
 | Long-form roadmap | R1 through R9 remain unauthorized |
 | Authority documents | **FROZEN** until the T+120 artifact exists (`J-20260907-04`), with two owner-approved exceptions on September 7: D-012 through D-014 in `DECISIONS.md` (`J-20260907-10`) and ROADMAP amendment 1.2 (`J-20260907-11`) |
 | Authorized experiments | **D-012** Voice spike, **D-013** Oblique-seeded Searchlight slice, **D-014** bounded Expedition and descriptive terrain — T+120–480 only, disposable, one at a time as the owner's primary improvement, cannot close a gate or claim the conformance they depart from |
-| Last transition | ROADMAP amendment 1.2 accepted in `JOURNAL.md` entry `J-20260907-11` |
+| Last transition | Pre-clock launch acceptance and preparation aligned in `JOURNAL.md` entry `J-20260907-13`; clock remains inactive and authority documents remain frozen |
 
 ## Authorized before clock start
 
