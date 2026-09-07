@@ -395,3 +395,38 @@ rejects the proposal.
 - Remaining uncertainty / reopen when: The T+120 artifact exists, or a
   demonstrated defect in an authority document blocks the event.
 - Revision and references: commit containing this entry
+
+### J-20260907-05 — Generate the product repository from the template at T+0
+
+- Gate or slice: Hackathon T+0 / repository readiness
+- Actors: Product owner (human), repository agent
+- Context: `brandyn-s/minerva` was renamed to `brandyn-s/minerva-template` and
+  marked as a GitHub template. The owner directed that the first action at
+  clock start is to create a new `brandyn-s/minerva` repository from it.
+- Agent proposal: Create an empty repository and push the template's history
+  instead of using template generation, so the intent-before-code commit
+  sequence and every revision cited in this journal stay reachable in the
+  product repository. Either way, export the `main` ruleset to
+  `.github/rulesets/main.json` and script the settings re-application,
+  because template generation copies files and not settings.
+- Human disposition and rationale: **Modified.** The owner accepted not
+  inheriting the commit history; template generation is the chosen path. The
+  ruleset export and settings block are accepted.
+- Evidence or result: `HACKATHON.md` clock-start sequence now begins with
+  generating the product repository and re-applying its controls; the T+0–10
+  execution row and the pre-clock check reflect it. `CURRENT_GATE.md` records
+  the product repository as not yet created and treats an early
+  `brandyn-s/minerva` as a pre-clock falsifier. `.github/rulesets/main.json`
+  is the live `main` ruleset exported on September 7, 2026.
+- Errors, friction, or cuts: Revision references in entries `J-20260906-01`
+  through `J-20260907-05` point at commits in `brandyn-s/minerva-template`,
+  not the product repository. Once `brandyn-s/minerva` exists, the redirect
+  from the old name ends and the template's own README badge, security
+  advisory link, issue-template contact, and package metadata resolve to the
+  product repository. The settings block has not been exercised against a
+  live repository; its flags were verified against `gh` help and the
+  template's current settings, and the clock-start operator reads the result
+  back before the first push.
+- Remaining uncertainty / reopen when: A settings command fails at T+0, or
+  the owner changes the product repository name or visibility.
+- Revision and references: commit containing this entry
