@@ -13,7 +13,7 @@
 | Product capability | None; the tracked application remains a shell |
 | Readiness change | Pull requests 2 and 3 merged as `ccf2ed5` and `64f8b88`; each exact `main` push check passed |
 | Publication state | **PUBLIC** — GitHub controls enabled; renamed to `brandyn-s/minerva-template` and marked as a GitHub template on September 7, 2026 |
-| Vercel | **No project exists.** The `thalient/minerva` project recorded at R0 was gone by September 7, 2026 (team listing empty; `prj_JqzTIJqpZZZomnXhqMVnEPSNNzFe` returns 404). Nothing is deployed. The project is recreated at T+0 as content-free infrastructure (`J-20260907-09`) |
+| Vercel | **No project exists.** The `thalient/minerva` project recorded at R0 was gone by September 7, 2026 (`prj_JqzTIJqpZZZomnXhqMVnEPSNNzFe` returns 404; the team listed no projects then and holds only unrelated ones now). Nothing is deployed. The project is recreated at T+0 as content-free infrastructure (`J-20260907-09`) |
 | Product repository | **Not yet created** — `brandyn-s/minerva` is generated from this template as the first T+0 action and does not inherit commit history (`J-20260907-05`) |
 | Event checkpoint | Working prototype at T+120; optional refinement requires a separate T+120 owner decision |
 | Long-form roadmap | R1 through R9 remain unauthorized |
@@ -59,7 +59,9 @@ Live readback closed the publication boundary:
   advisory rather than a merge requirement.
 - The `thalient/minerva` Vercel project that R0 created and pull request 3
   read back with zero deployments no longer existed on September 7, 2026:
-  the team's project list is empty and the recorded project ID returns 404.
+  the recorded project ID returns 404. The team's project list was empty on
+  that date and now holds only unrelated projects; no `minerva` project
+  exists.
   Nothing has ever been deployed. The clock-start sequence in `HACKATHON.md`
   recreates and links an isolated project; the template checkout's local
   `.vercel/project.json` points at the deleted project and is not reused.
