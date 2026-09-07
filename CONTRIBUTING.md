@@ -38,7 +38,7 @@ npm run secrets:scan
 CI runs all three. `secrets:scan` matters most when your change touches
 configuration, dependencies, workflows, fixtures, or environment boundaries.
 During repair, use the smallest affected selection of the existing runner;
-`npm run test:process` covers launch, control, and fixture-harness behavior.
+`npm run test:ops` covers launch, deployment, and shell safeguards.
 Run the full guard on the frozen integration candidate, not after every patch.
 
 ## Make a focused change
@@ -52,13 +52,11 @@ Run the full guard on the frozen integration candidate, not after every patch.
    changes.
 6. Open a pull request using the repository template.
 
-For multi-worker work, use the acknowledged control and integration handoff in
-[the delivery workflow](./docs/delivery-workflow.md). Keep `.minerva/` local and
-ignored; it contains launch permissions and the canonical routine event stream.
-Do not commit raw events or maintain a second manually edited status narrative.
-Review one complete, frozen, wired batch before delivery, not overlapping
-intermediate snapshots. Separate software integration from live activation
-and human acceptance in the pull request.
+Follow [the short delivery guide](./docs/delivery-workflow.md), not a mandatory
+multi-worker protocol. Keep `.minerva/` ignored for local operational receipts.
+Review the complete change proportionately to its risk; a separate agent is
+optional. State software outcome, live activation, and human acceptance honestly
+in the PR, without a second progress tracker.
 
 Commits do not need a special prefix. Use a short imperative subject and keep
 unrelated changes separate. By contributing, you agree that your contribution

@@ -152,13 +152,22 @@ function api(ctx, endpoint, method = "GET", body) {
   const result = ctx.run("gh", args, { cwd: ctx.cwd, input: body === undefined ? undefined : JSON.stringify(body) });
   if (result.status !== 0) {
     const text = result.stderr ?? "";
-    if (/HTTP 401|\b401\b|not logged|authentication|authenticate|GH_TOKEN/i.test(text)) {
-      return { state: "authentication-failure" };
-    }
-    if (/HTTP 403|\b403\b/.test(text)) return { state: "unavailable", reason: "HTTP 403: permission, entitlement, or rate limit" };
-    if (/HTTP 404|\b404\b/.test(text)) return { state: "absent-or-hidden", reason: "HTTP 404: absent or inaccessible" };
-    if (/HTTP 409|\b409\b/.test(text) && endpoint.includes("/git/ref/")) return { state: "empty-repository" };
-    return { state: "transport-or-api-failure" };
+    // Read only gh's status marker, never bare numbers from a URL or response body.
+    const statuses = [...text.matchAll(/(?:^gh: HTTP ([45]\d{2})[ \t]*$|\(HTTP ([45]\d{2})\)[ \t]*$)/gm)]
+      .map((match) => Number(match[1] ?? match[2]));
+    const httpStatus = statuses.length && statuses.every((status) => status === statuses[0]) ? statuses[0] : null;
+    const authentication = httpStatus === 401 || (!statuses.length
+      && /not logged|authentication|authenticate|GH_TOKEN|gh auth login/i.test(text));
+    const errorClass = authentication ? "authentication-failure"
+      : ({
+        400: "validation-failure", 403: "permission-entitlement-or-rate-limit",
+        404: "absent-or-hidden", 409: "conflict", 422: "validation-failure", 429: "rate-limited",
+      })[httpStatus] ?? (httpStatus >= 500 ? "server-failure"
+        : httpStatus ? "http-failure" : "transport-or-unclassified-failure");
+    const state = authentication ? "authentication-failure"
+      : httpStatus === 403 ? "unavailable" : httpStatus === 404 ? "absent-or-hidden"
+        : httpStatus === 409 && endpoint.includes("/git/ref/") ? "empty-repository" : "transport-or-api-failure";
+    return { state, httpStatus, errorClass, reason: `${httpStatus ? `HTTP ${httpStatus}: ` : ""}${errorClass}` };
   }
   try { return { state: "observed", data: result.stdout.trim() ? JSON.parse(result.stdout) : null }; }
   catch { return { state: "invalid-api-response" }; }
@@ -169,7 +178,10 @@ function row(gate, state, evidence) {
 }
 
 function observation(gate, result, evidence = "Read-only API response received; not an atomic delivery proof.") {
-  return row(gate, result.state, result.reason ?? (result.state === "observed" ? evidence : "No verified evidence."));
+  return {
+    ...row(gate, result.state, result.reason ?? (result.state === "observed" ? evidence : "No verified evidence.")),
+    ...(result.errorClass ? { httpStatus: result.httpStatus, errorClass: result.errorClass } : {}),
+  };
 }
 
 function statusObservation(gate, result, allowed, latest = false) {
@@ -203,13 +215,19 @@ export function checkPins(cwd) {
 }
 
 async function preflight(config, online, ctx) {
-  const npmAgent = typeof ctx.env.npm_config_user_agent === "string"
-    ? ctx.env.npm_config_user_agent.match(/^npm\/(\d+\.\d+\.\d+)/)?.[1] : undefined;
+  // npm-run metadata can describe an outer npx, not the npm running this script.
+  const selectedNpm = typeof ctx.env.npm_execpath === "string" && ctx.env.npm_execpath.length > 0;
+  const npm = selectedNpm
+    ? ctx.run(process.execPath, [resolve(ctx.cwd, ctx.env.npm_execpath), "--version"], { cwd: ctx.cwd })
+    : ctx.run("npm", ["--version"], { cwd: ctx.cwd });
+  const npmVersion = npm.status === 0 && /^\d+\.\d+\.\d+$/.test(npm.stdout.trim())
+    ? npm.stdout.trim() : null;
+  const npmState = npmVersion ? npmVersion === NPM ? "ready" : "blocked"
+    : !selectedNpm && npm.status === -1 ? "unverified" : "blocked";
   const rows = [
     checkPins(ctx.cwd),
     row("runtime-node", process.versions.node === NODE ? "ready" : "blocked", { required: NODE, actual: process.versions.node }),
-    row("runtime-npm", npmAgent ? npmAgent === NPM ? "ready" : "blocked" : "unverified",
-      { required: NPM, actual: npmAgent ?? null }),
+    row("runtime-npm", npmState, { required: NPM, actual: npmVersion }),
     row("implementation", "authorized", "Recorded owner scope and first implementation; live permissions do not block local work."),
     row("hosting-integration", "unverified", "Separate authorized Vercel integration/project readback is needed."),
     row("hosting-creation", config.hosting.creationAuthorized ? "authorized-not-executed" : "not-authorized",

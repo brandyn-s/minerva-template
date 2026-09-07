@@ -109,9 +109,10 @@ complete. R3 closes only after R2A/R2B evidence; no early screen closes R1.
 Live Branch still requires its durable-landing, admission, and hard-bound
 proofs and explicit spend permission.
 
-Use [the delivery workflow](./docs/delivery-workflow.md) for T+10 platform,
-T+20 editable-durable-card intervention thresholds, short acknowledged worker
-units, one event source, and frozen integration review. Prefer the preflighted
+Use [the short delivery guide](./docs/delivery-workflow.md) for the default
+one-implementer path. Worker protocols, event streams, and separate review
+agents are not required; the later simplification supersedes those process
+requirements in amendment 1.3 without changing product gates. Prefer the preflighted
 Vercel AI Gateway transport; changing transport does not weaken EXP-003.
 Track implementation, integration, live activation, and human acceptance
 independently. This amendment changes delivery order, not first-prototype scope
@@ -119,7 +120,8 @@ or the terminal evidence-backed product decision.
 Default to one implementer through the first complete creative loop; adapter
 lanes are optional independent work. Review a blocked critical dependency after
 five minutes. Obtain an early first-use comprehension observation before polish
-or Searchlight, without replacing the named human gates.
+or Searchlight, without replacing the named human gates. Responsibility and
+lane labels elsewhere in this reference do not require spawning separate agents.
 
 ## 4. Domains and execution path
 

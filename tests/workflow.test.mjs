@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 
 const root = new URL("../", import.meta.url);
@@ -19,10 +19,15 @@ test("Vercel uses the repository's exact toolchain without inherited project ide
   ]);
 });
 
-test("routine process state remains outside Git and lint inputs", () => {
+test("operational receipts stay ignored without a required coordination framework", () => {
   assert.match(read(".gitignore"), /^\.minerva\/$/m);
   assert.match(read("eslint.config.mjs"), /"\.minerva\/\*\*"/);
   const pkg = JSON.parse(read("package.json"));
   assert.equal(pkg.scripts.launch, "node scripts/launch.mjs");
-  assert.equal(pkg.scripts.process, "node scripts/process.mjs");
+  assert.equal(pkg.scripts.process, undefined);
+  assert.equal(pkg.scripts["test:process"], undefined);
+  assert.equal(pkg.scripts["test:ops"], "node --test tests/launch.test.mjs tests/deploy.test.mjs tests/workflow.test.mjs");
+  for (const file of ["scripts/process.mjs", "contracts/index.mjs", "tests/process.test.mjs", "tests/contracts.test.mjs"]) {
+    assert.equal(existsSync(new URL(file, root)), false, `${file} must not remain a maintenance dependency`);
+  }
 });

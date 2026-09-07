@@ -25,9 +25,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test",
     "launch": "node scripts/launch.mjs",
-    "process": "node scripts/process.mjs",
     "deploy:ops": "node scripts/deploy.mjs",
-    "test:process": "node --test tests/launch.test.mjs tests/process.test.mjs tests/contracts.test.mjs tests/deploy.test.mjs tests/workflow.test.mjs",
+    "test:ops": "node --test tests/launch.test.mjs tests/deploy.test.mjs tests/workflow.test.mjs",
     "security:audit": "npm audit --audit-level=low",
     "secrets:scan": "sh scripts/scan-secrets.sh",
     "check": "npm run lint && npm run typecheck && npm test && npm run build"

@@ -1,6 +1,6 @@
 # Launch CLI
 
-Run from the template checkout. No dependencies beyond Node, Git, and (for
+Run from the template checkout. No dependencies beyond Node, npm, Git, and (for
 online commands) authenticated GitHub CLI are needed.
 
 ```sh
@@ -11,6 +11,15 @@ node scripts/launch.mjs create --file .minerva/launch.json --directory ../launch
 # Only after an interrupted operation with proven repository ownership:
 node scripts/launch.mjs create --resume --file .minerva/launch.json --directory ../launch-sample
 ```
+
+To select the exact pinned toolchain for preflight:
+
+```sh
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run launch -- preflight --file .minerva/launch.json
+```
+
+The launcher may download pinned packages if they are not cached. The preflight
+itself makes no network requests unless `--online` is supplied.
 
 ## Receipt
 
@@ -43,7 +52,7 @@ Git permission field are treated as not authorized for that action.
 ## Read-only preflight
 
 `preflight [--file PATH] [--online]` emits a JSON `readiness` table. Offline is
-the default and invokes no commands. It checks exact Node/npm pins across
+the default and invokes only a bounded local npm version probe. It checks exact Node/npm pins across
 `.node-version`, `.nvmrc`, package engines, `packageManager`, `.npmrc`, and
 Vercel install/build commands. Online adds read-only GitHub API probes for the
 exact source/revision and target, privacy/non-template flags, populated default
@@ -52,9 +61,17 @@ statuses, and up to three deployment records with their latest statuses.
 Combined commit and latest deployment states are exposed only through fixed
 allowlists; missing or malformed states are explicitly unverified. No status
 bodies, URLs, or logs are emitted.
-The active Node version is checked separately. Active npm is checked from its
-version-only invocation metadata when available; direct Node execution without
-that metadata reports npm as unverified rather than inferring it from the pin.
+The active Node version is checked separately. Active npm is verified by
+executing `npm_execpath` with the running Node executable and `--version` when
+available, otherwise by executing `npm --version` from PATH (including direct
+Node CLI use). These are argument-array executions, not shell interpolation.
+Inherited `npm_config_user_agent` is never version evidence: nested launchers
+can retain an outer npm's metadata. A selected executable that fails, a
+malformed version response, or a version mismatch blocks readiness; no PATH
+fallback conceals a failed selected executable. Missing PATH npm is unverified,
+not ready. Only successful, exact version-only output is accepted; executable
+paths and diagnostic output are not printed. The operator controls the local
+executable/PATH trust boundary; this is version verification, not binary attestation.
 
 HTTP 404 means absent **or hidden**, not proven nonexistence. HTTP 403 means
 unavailable permission, entitlement, or rate limit; authentication and transport
@@ -66,6 +83,30 @@ receipt records a budget instruction, not a technically enforced spending cap.
 No raw API bodies, environment values, or tokens are
 printed. Gateway credentials are checked for presence only using
 `AI_GATEWAY_API_KEY` or `VERCEL_OIDC_TOKEN`.
+
+Failed API observations and optional-control results include a numeric
+`httpStatus` (or `null` when no unambiguous HTTP status is available) and a fixed
+`errorClass`, plus sanitized evidence:
+
+| Reported HTTP status | `errorClass` |
+| --- | --- |
+| 400, 422 | `validation-failure` |
+| 401, or recognized CLI authentication diagnostic | `authentication-failure` |
+| 403 | `permission-entitlement-or-rate-limit` |
+| 404 | `absent-or-hidden` |
+| 409 | `conflict` |
+| 429 | `rate-limited` |
+| 5xx | `server-failure` |
+| Other 4xx | `http-failure` |
+| Missing, malformed, or conflicting HTTP status | `transport-or-unclassified-failure` |
+
+These labels describe reported failure categories, not the underlying cause or
+permission proof. A missing status cannot distinguish transport failure from an
+unclassified CLI/API error. Raw stdout/stderr, response bodies, request URLs,
+tokens, and provider error messages are never included. Existing conservative
+`state` values remain unchanged: validation, rate-limit, server, and unclassified
+failures still have `state=transport-or-api-failure`; 409 on a Git ref probe
+retains `empty-repository`. Classification does not authorize automatic retries.
 
 Local `.vercel/project.json` is not proof that its project exists. Hosting
 integration and linkage remain **unverified**, including online mode. GitHub
@@ -124,6 +165,10 @@ calls repository creation again or changes visibility. Required controls are
 reapplied and read back; optional controls remain independently reported.
 Rulesets are read by recorded ID or bounded inventory before any POST, avoiding
 duplicates. An ambiguous POST with no matching readback requires reconciliation.
+Diagnostic detail does not relax that rule: validation failures, 429, 5xx, and
+transport/unclassified failures retain the pending POST checkpoint. The existing
+401/403/404 path clears that checkpoint, but only an explicit resume with the
+usual ownership and inventory checks can attempt another POST.
 
 An existing directory is accepted only after this operation recorded a clone
 attempt and Git proves its exact root, expected GitHub origin, current default-ref
@@ -135,8 +180,8 @@ repaired automatically. An interrupted clone retaining unverified `.vercel/`
 metadata requires manual reconciliation rather than inheriting or deleting it.
 A completed checkout that disappears is not re-cloned.
 
-Creation/resume uses an exclusive local operation lock, separate from process
-workflow locks. It is released on ordinary success/failure. After a crash:
+Creation/resume uses an exclusive local operation lock, released on ordinary
+success/failure. After a crash:
 
 1. Inspect the `.json.lock` PID and verify that **no owning launch process is
    running**; do not remove a live lock or rely on PID absence alone after reuse.
@@ -155,5 +200,5 @@ Live observations are separate and non-atomic. Failures can leave resources
 behind; unknown ownership intentionally requires manual reconciliation rather
 than automatic adoption.
 
-Validation: `node --test tests/launch.test.mjs` uses isolated local fixtures and
+Validation: `node --test tests/launch.test.mjs tests/deploy.test.mjs` uses isolated local fixtures and
 an injected fake command runner, without network or external mutations.
