@@ -343,16 +343,30 @@ further cost, and they are cut first.
 - Explicit structure membership must look different from mere placement
   (`STR-003`); ivory on parchment alone does not carry that difference.
 
-### Still open before T+0
+### Decided September 7, 2026 (agent defaults, owner accepted)
 
-- Where the Focus field lives and how **AI sees N cards** reads at a glance.
-- The visible marker for explicit membership versus placement.
-- Where the **Simulated** label sits and how loud it is. Default proposal:
-  mono, ink-colored, on the card and in the narration, and not a lineage
-  accent color.
-- Light-only for the slice, or a parchment dark counterpart. The current
-  shell CSS has a dark mode with no parchment equivalent; light-only is the
-  smaller choice.
+The owner accepted these four defaults "for now"; any of them may be revised
+at T+0–10 by the owner without a journal entry, since they are presentation
+choices inside the disposable slice.
+
+- **Focus field.** A persistent mono strip pinned to the top-left of the
+  viewport, not scrolling with the canvas, reading `FOCUS · AI SEES N CARDS`.
+  It expands in place to list every included card with its inclusion reason
+  (`CTX-001`, `CTX-006`). A card in Focus carries a thin teal left rule and a
+  mono `IN FOCUS` header tag, so Focus is readable on the card itself.
+- **Membership marker.** A member card carries a mono `MEMBER OF <structure>`
+  header tag and takes the structure's border tone. A card merely placed
+  inside a region keeps the default ivory border and no tag. Dragging across a
+  region boundary shows a dashed preview outline and a ghost of the tag before
+  commit; nothing changes until drop (`STR-002`, `STR-003`).
+- **Simulated label.** Mono `SIMULATED` in dark green ink at the right of the
+  header of every fixture-generated card, repeated in that card's receipt, and
+  shown in the Focus strip while the fixture adapter is active. Never a
+  lineage accent color, so state and lineage stay visually distinct.
+- **Light only.** Remove the `prefers-color-scheme: dark` block from the shell
+  CSS at T+0–10. Parchment has no designed dark counterpart and nothing in
+  `SPEC.md` requires a dark mode for the slice; dark parchment is a later
+  decision.
 
 ## Implementation constraints
 
