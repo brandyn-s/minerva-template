@@ -10,6 +10,13 @@ Work only on the currently authorized roadmap gate. Record human approvals and
 corrections in [JOURNAL.md](./JOURNAL.md), keep tracked evidence content-free,
 and never import predecessor code, state, deployment metadata, or secrets.
 
+The current authorization is pre-clock hackathon preparation only. Until the
+event clock starts, do not add product domain code, workspace persistence,
+canvas behavior, AI routes, Voice, product UI, or a deployment. At clock start,
+[HACKATHON.md](./HACKATHON.md) supplies the bounded build plan and
+[DEMO.md](./DEMO.md) supplies its acceptance contract; neither document closes
+or replaces an approved roadmap gate.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

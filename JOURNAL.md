@@ -18,3 +18,9 @@ it does not replace the approved documents.
   `minerva.workspace.prototype.v1`, and environment-specific
   `minerva-development`, `minerva-preview`, and `minerva-production`
   admission namespaces. Provider routes remain disabled and absent.
+- **CLARIFICATION — product owner (human):** Before the two-hour hackathon clock,
+  prepare the repository structure, scaffolding, infrastructure boundaries, and
+  execution plans only. Do not begin building the Minerva application.
+- **IMPLEMENTATION — engineering:** Added a pre-clock launch plan and demo
+  contract. Product source, persistence, provider routes, and deployments remain
+  untouched; the hackathon slice begins only when the event clock starts.

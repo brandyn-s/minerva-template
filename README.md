@@ -1,8 +1,13 @@
 # Minerva
 
-R0 infrastructure has passed. R1 and all product behavior remain unauthorized.
-This repository does not provide a product capability, provider route,
-workspace store, database, authentication, analytics, or deployment.
+This repository is the pre-clock launchpad for the Minerva hackathon build. R0
+infrastructure has passed; product implementation has not started. The current
+tree intentionally provides no product capability, provider route, workspace
+store, database, authentication, analytics, or deployment.
+
+Start with the [two-hour launch plan](./HACKATHON.md) and its prewritten
+[demo contract](./DEMO.md). They compress the hackathon into a useful experience
+slice without claiming that the approved multi-gate prototype roadmap is done.
 
 The authority chain and current authorization live in [AGENTS.md](./AGENTS.md)
 and [ROADMAP.md](./ROADMAP.md). Tracked gate evidence is indexed in
@@ -35,3 +40,11 @@ npm run dev
 ```
 
 `npm run check` is bounded infrastructure evidence, not product proof.
+
+## Pre-clock boundary
+
+Before the event clock, changes are limited to product documents, locked
+tooling, content-free infrastructure, evidence, and planning. The domain model,
+browser repository, canvas, AI operations, Voice, and deployable product begin
+at T+0. The clock-start commands and feature cut lines are in
+[HACKATHON.md](./HACKATHON.md).
