@@ -1,25 +1,71 @@
 {
   "schemaVersion": 1,
   "gate": "R0",
-  "status": "accepted",
-  "sourceRevision": "4318a97801fbfd28cf561e660327e6e9ccebd2b2",
-  "dependencies": [
-    "ROADMAP Approved 1.0",
+  "status": "passed",
+  "sourceRevision": "c52636821a26ae20f56fc8411d75b48cf91b2b61",
+  "dependencyReceipts": [],
+  "authorityReferences": [
+    "ROADMAP.md Approved 1.0",
     "authority commit a1a1ff90850303cfa490cc8a464de2fb63afc7e1"
   ],
-  "externalProjects": {
+  "environmentIds": {
     "githubRepository": "brandyn-s/minerva",
-    "githubRemote": "https://github.com/brandyn-s/minerva.git",
     "githubVisibility": "private",
     "canonicalBranch": "main",
     "vercelScope": "thalient",
-    "vercelProject": "minerva",
     "vercelTeamId": "team_CPMDIZRXjSVqupCatDjsDq4Q",
+    "vercelProject": "minerva",
     "vercelProjectId": "prj_JqzTIJqpZZZomnXhqMVnEPSNNzFe",
-    "vercelFramework": "nextjs",
-    "vercelNodeVersion": "24.x",
-    "deployment": "none",
+    "deploymentCount": 0,
+    "integrationCount": 0,
     "productionAlias": "none"
+  },
+  "configurationIds": [
+    {
+      "id": "7mG9esJU3FHHe7Hq",
+      "key": "MINERVA_ADMISSION_NAMESPACE",
+      "target": "development"
+    },
+    {
+      "id": "NnRQsWAA80W2eIfT",
+      "key": "MINERVA_PROVIDER_ROUTES_ENABLED",
+      "target": "development"
+    },
+    {
+      "id": "W20s28g9z0WwANS6",
+      "key": "MINERVA_ADMISSION_NAMESPACE",
+      "target": "preview"
+    },
+    {
+      "id": "empQW9ckPZH4S2mP",
+      "key": "MINERVA_PROVIDER_ROUTES_ENABLED",
+      "target": "preview"
+    },
+    {
+      "id": "NoFbYWkIHBQTKxE4",
+      "key": "MINERVA_ADMISSION_NAMESPACE",
+      "target": "production"
+    },
+    {
+      "id": "6KU344BtnS3iKohE",
+      "key": "MINERVA_PROVIDER_ROUTES_ENABLED",
+      "target": "production"
+    }
+  ],
+  "configuration": {
+    "browserDatabaseNamespace": "minerva.workspace.prototype.v1",
+    "admissionNamespaces": {
+      "development": "minerva-development",
+      "preview": "minerva-preview",
+      "production": "minerva-production"
+    },
+    "providerRoutesEnabled": {
+      "development": false,
+      "preview": false,
+      "production": false
+    },
+    "vercelFramework": "nextjs",
+    "vercelNodeVersion": "24.x"
   },
   "toolVersions": {
     "git": "2.50.1",
@@ -30,110 +76,149 @@
     "react": "19.2.8",
     "reactDom": "19.2.8",
     "typescript": "5.9.3",
-    "eslint": "9.39.5",
+    "eslint": "10.10.0",
+    "eslintConfigNext": "16.3.4",
+    "eslintCompat": "2.1.1",
+    "ajv": "8.20.0",
     "vercelCli": "59.11.7",
     "gitleaks": "8.30.1"
   },
-  "namespaces": {
-    "browserDatabase": "minerva.workspace.prototype.v1",
-    "admission": {
-      "development": "minerva-development",
-      "preview": "minerva-preview",
-      "production": "minerva-production"
-    }
-  },
-  "providerRoutesEnabled": {
-    "development": false,
-    "preview": false,
-    "production": false
-  },
   "commands": [
+    {
+      "command": "root commit and authority preservation checks",
+      "result": "pass",
+      "summary": "Root a1a1ff90850303cfa490cc8a464de2fb63afc7e1 contains exactly the six approved documents; all six are unchanged after that commit."
+    },
     {
       "command": "git diff --check",
       "result": "pass",
       "summary": "0 whitespace errors"
     },
     {
+      "command": "npm registry supported-tool metadata readback",
+      "result": "pass",
+      "summary": "ESLint 10.10.0 is current and supports Node 24; eslint-config-next 16.3.4 declares ESLint >=9; @eslint/compat 2.1.1 supports ESLint 10 and Node 24."
+    },
+    {
       "command": "npm run lint",
       "result": "pass",
-      "summary": "0 errors and 0 warnings"
+      "summary": "0 errors and 0 warnings under Node 24.20.0"
     },
     {
       "command": "npm run typecheck",
       "result": "pass",
-      "summary": "0 TypeScript diagnostics"
+      "summary": "0 TypeScript diagnostics under Node 24.20.0"
     },
     {
       "command": "npm test",
       "result": "pass",
-      "summary": "1 test passed, 0 failed"
+      "summary": "8 passed, 0 failed, including 7 negative controls"
     },
     {
       "command": "npm run build",
       "result": "pass",
-      "summary": "Next.js 16.3.4 compiled and generated the static root shell"
+      "summary": "Next.js 16.3.4 compiled and generated the static root shell under Node 24.20.0"
     },
     {
       "command": "npm run secrets:scan",
       "result": "pass",
-      "summary": "gitleaks scanned the reviewable working tree; 0 leaks"
+      "summary": "Native tracked-ignored guard returned 0 paths; gitleaks Git-history scan found 0 leaks"
     },
     {
       "command": "npm run roadmap:status",
       "result": "pass",
-      "summary": "accepted_gates=0 before this receipt, as required"
+      "summary": "Schema and repository checks passed; METRIC accepted_gates=1"
+    },
+    {
+      "command": "npm run check",
+      "result": "pass",
+      "summary": "Bounded lint, typecheck, 8 tests, build, secret scan, and roadmap status all passed under Node 24.20.0/npm 12.0.2"
     },
     {
       "command": "local development HTTP smoke",
       "result": "pass",
-      "summary": "HTTP 200 and 2 of 2 groundwork/no-capability assertions passed"
+      "summary": "HTTP 200 and 2 of 2 groundwork/no-capability assertions passed after Vercel link and development env verification"
     },
     {
-      "command": "Vercel environment name inventory",
+      "command": "GitHub repository and Git remote readback",
       "result": "pass",
-      "summary": "6 of 6 required name/environment entries present; development pull had 2 of 2 required names"
+      "summary": "brandyn-s/minerva is private on main and origin is the only remote"
+    },
+    {
+      "command": "Vercel project and local link readback",
+      "result": "pass",
+      "summary": "thalient/minerva IDs match .vercel/project.json; framework nextjs and Node 24.x"
+    },
+    {
+      "command": "Vercel environment inventory and development pull",
+      "result": "pass",
+      "summary": "6 of 6 ID/key/target entries are distinct across development, preview, and production; the pulled development env contains both required names"
+    },
+    {
+      "command": "Vercel deployment, alias, and integration-resource inventories",
+      "result": "pass",
+      "summary": "0 deployments, 0 aliases, and 0 integration resources"
     },
     {
       "command": "provider route source inspection",
       "result": "pass",
-      "summary": "0 route files"
+      "summary": "0 route files; provider routes remain absent and disabled"
     },
     {
-      "command": "Vercel deployment inventory",
-      "result": "pass",
-      "summary": "0 deployments"
-    },
-    {
-      "command": "npm audit --omit=dev",
+      "command": "npm audit --omit=dev --json",
       "result": "pass",
       "summary": "0 production dependency advisories"
+    },
+    {
+      "command": "npm audit --json",
+      "result": "fail",
+      "summary": "Non-blocking Vercel CLI development-tree observation: 28 total advisories (1 critical, 14 high, 12 moderate, 1 low)"
     }
   ],
-  "observableOutcome": "A canonical isolated repository and minimal authority controls exist for later Minerva work.",
-  "demoResult": "Git history places approved authority before scaffold code; the private GitHub and linked Vercel identities and reserved namespaces are Minerva-specific.",
+  "observableOutcome": "The isolated Minerva repository now has a schema-enforced, source-bound R0 receipt and native secret boundary while retaining only an infrastructure shell.",
+  "demoResult": "The exact remediation revision passes the bounded Node 24 check; the local linked shell returns HTTP 200 and states that no Minerva product capability exists.",
   "smallestDecisiveEvidence": [
-    "Root authority commit contains exactly the six approved documents.",
-    "Implementation revision contains the minimal shell, locked dependencies, controls, and no provider route.",
-    "GitHub reports brandyn-s/minerva private with one origin.",
-    "Vercel project readback matches thalient/minerva and has zero deployments.",
-    "Fresh Node 24 check and linked local HTTP smoke passed."
+    "The immutable root commit contains exactly the six authority documents, which remain unchanged.",
+    "Eight automated tests include real temporary Git commits and all requested receipt and secret-scan negative controls.",
+    "The receipt schema, filename/gate check, unique gate check, and source resolution/ancestry checks accept this receipt.",
+    "GitHub and Vercel native readbacks match the isolated IDs with zero deployments, aliases, or integration resources.",
+    "The Node 24 check, Git-history secret scan, and linked local HTTP smoke pass."
   ],
   "evidenceLevel": "E0 infrastructure only",
   "firstMaterialFalsifier": "Any predecessor repository state, deployment metadata, persistent data, secret, alias, analytics, or unstated product contract is imported.",
   "falsifierOccurred": false,
   "failures": [
-    "The initial unscoped gitleaks directory scan found 7 generated/local-only matches in ignored .next and .env.local paths; no values were printed."
+    "Spec review rejected the prior receipt vocabulary, incomplete receipt enforcement, custom secret allowlist, deprecated ESLint pin, and stale README opening.",
+    "The first ESLint 10.10.0 lint run failed in an eslint-config-next bundled legacy plugin rule until the supported compatibility adapter was applied.",
+    "npm audit --json exits 1 for the development tree with 28 advisories: 1 critical, 14 high, 12 moderate, and 1 low; these are in the repository-locked Vercel CLI development tree.",
+    "A prior unscoped gitleaks directory scan reported seven matches in ignored generated/local files; no values were printed."
   ],
   "partialResults": [
-    "No app was deployed and no alias was created; deployed-web evidence is intentionally not claimed."
+    "eslint-config-next 16.3.4 bundles plugins whose peer ranges end at ESLint 9; @eslint/compat 2.1.1 is required for the supported ESLint 10.10.0 runtime, and final lint passes.",
+    "No app was deployed and no alias was created; deployed-web evidence is intentionally not claimed.",
+    "Authenticated Vercel readback was restricted to IDs, names, targets, counts, and nonsecret project settings; no environment values were emitted."
   ],
   "unsupportedCases": [
-    "Product behavior, browser persistence, provider execution, AdmissionLedger, authentication, analytics, and managed data resources were not implemented or evaluated in R0."
+    "Product behavior, provider execution, browser persistence, AdmissionLedger, authentication, analytics, managed data resources, and deployed-web behavior were not implemented or evaluated in R0."
   ],
   "materialRepairs": [
-    "The one allowed custom-verifier repair scoped gitleaks allowlisting to Git-ignored generated/local paths; the final reviewable-tree scan passed with 0 leaks.",
-    "The empty Vercel project defaulted to framework Other; it was corrected to Next.js before verification."
+    "Replaced out-of-contract receipt statuses with the ROADMAP vocabulary and retained accepted_gates only as the required administrative metric name.",
+    "Added full JSON Schema validation with Ajv plus filename/gate, unique gate, resolvable commit, and ancestor-of-HEAD enforcement.",
+    "Discarded the reviewed custom gitleaks allowlist after its second verifier defect; replaced it with the native tracked-ignored guard followed by a redacted gitleaks Git-history scan.",
+    "Replaced deprecated ESLint 9.39.5 with current ESLint 10.10.0 and added the supported @eslint/compat 2.1.1 adapter for eslint-config-next's legacy bundled rules.",
+    "Updated the README opening to record that R0 infrastructure passed while R1 and all product behavior remain unauthorized."
   ],
-  "decision": "Accept R0 infrastructure only. R1 remains unauthorized pending explicit product-owner authorization.",
-  "productOwnerApproval": "ROADMAP Approved 1.0 records product-owner approval on September 6, 2026 and authorizes R0 alone."
+  "decisions": {
+    "opened": [],
+    "closed": [
+      "R0 infrastructure evidence controls satisfy the approved receipt contract at the remediation source revision.",
+      "The custom secret allowlist is permanently discarded in favor of native tracked-file and Git-history evidence."
+    ],
+    "result": "Pass R0 infrastructure only. R1 and product behavior remain unauthorized."
+  },
+  "productOwnerApproval": {
+    "required": true,
+    "recorded": true,
+    "reference": "ROADMAP.md Approved 1.0 records product-owner approval on September 6, 2026 and authorizes R0 alone."
+  }
 }
