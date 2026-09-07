@@ -205,10 +205,44 @@
           }
         }
       }
+    },
+    {
+      "if": { "properties": { "status": { "const": "passed" } } },
+      "then": {
+        "properties": {
+          "falsifierOccurred": { "const": false }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": { "const": "passed" },
+          "productOwnerApproval": {
+            "type": "object",
+            "properties": {
+              "required": { "const": true }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "productOwnerApproval": {
+            "type": "object",
+            "properties": {
+              "recorded": { "const": true }
+            }
+          }
+        }
+      }
     }
   ],
   "$defs": {
-    "gateId": { "type": "string", "pattern": "^R[0-9]+[A-Z]?$" },
+    "gateId": {
+      "type": "string",
+      "enum": ["R0", "R1", "R2A", "R2B", "R3", "R4", "R5", "R6", "R6V", "R7", "R8", "R9"]
+    },
     "gitRevision": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
     "nonEmptyString": { "type": "string", "minLength": 1 },
     "stringList": {

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { execFileSync, spawnSync } from "node:child_process";
 import {
   chmodSync,
+  copyFileSync,
   existsSync,
   mkdtempSync,
   mkdirSync,
@@ -55,6 +56,12 @@ function fakeSecret() {
 }
 
 function runSecretScan(repository, environment = {}) {
+  const scanScript = join(projectRoot, "scripts/scan-secrets.sh");
+  if (existsSync(scanScript)) {
+    mkdirSync(join(repository, "scripts"), { recursive: true });
+    copyFileSync(scanScript, join(repository, "scripts/scan-secrets.sh"));
+  }
+
   return spawnSync("/bin/sh", ["-c", packageJson.scripts["secrets:scan"]], {
     cwd: repository,
     encoding: "utf8",
@@ -105,6 +112,65 @@ test("rejects a secret in the current contents of a modified tracked file", (t) 
   assert.equal(result.status, 1);
   assert.match(output, /leaks found: 1/);
   assert.equal(output.includes(secret), false, "gitleaks output must redact the secret");
+  assert.deepEqual(readdirSync(temporaryParent), [], "temporary scan data must be removed");
+});
+
+test("rejects a staged secret after the working-tree copy is made safe", (t) => {
+  const repository = createRepository(t);
+  const trackedFile = join(repository, "tracked.txt");
+  writeFileSync(trackedFile, "safe fixture\n");
+  git(repository, "add", "tracked.txt");
+  commit(repository, "track safe fixture");
+
+  const secret = fakeSecret();
+  writeFileSync(trackedFile, `TOKEN=${secret}\n`);
+  git(repository, "add", "tracked.txt");
+  writeFileSync(trackedFile, "safe working-tree replacement\n");
+
+  const result = runSecretScan(repository);
+  const output = `${result.stdout}\n${result.stderr}`;
+
+  assert.equal(result.status, 1);
+  assert.match(output, /leaks found: 1/);
+  assert.equal(output.includes(secret), false, "gitleaks output must redact the secret");
+});
+
+test("fails before scanning when Git cannot enumerate the current snapshot", (t) => {
+  const repository = createRepository(t);
+  const binDirectory = join(repository, "test-bin");
+  const marker = join(repository, "gitleaks-ran");
+  const temporaryParent = mkdtempSync(join(tmpdir(), "minerva-scan-parent-"));
+  t.after(() => rmSync(temporaryParent, { recursive: true, force: true }));
+  mkdirSync(binDirectory);
+
+  const fakeGit = join(binDirectory, "git");
+  writeFileSync(
+    fakeGit,
+    [
+      "#!/bin/sh",
+      'if [ "$*" = "ls-files -z --cached --others --exclude-standard" ]; then',
+      "  exit 73",
+      "fi",
+      'exec "$MINERVA_REAL_GIT" "$@"',
+      "",
+    ].join("\n"),
+  );
+  chmodSync(fakeGit, 0o755);
+
+  const fakeGitleaks = join(binDirectory, "gitleaks");
+  writeFileSync(fakeGitleaks, '#!/bin/sh\nprintf "run\\n" >> "$MINERVA_GITLEAKS_MARKER"\n');
+  chmodSync(fakeGitleaks, 0o755);
+
+  const realGit = execFileSync("/usr/bin/which", ["git"], { encoding: "utf8" }).trim();
+  const result = runSecretScan(repository, {
+    MINERVA_GITLEAKS_MARKER: marker,
+    MINERVA_REAL_GIT: realGit,
+    PATH: `${binDirectory}:${process.env.PATH ?? ""}`,
+    TMPDIR: temporaryParent,
+  });
+
+  assert.equal(result.status, 73);
+  assert.equal(readFileSync(marker, "utf8"), "run\nrun\n");
   assert.deepEqual(readdirSync(temporaryParent), [], "temporary scan data must be removed");
 });
 

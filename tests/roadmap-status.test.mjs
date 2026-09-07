@@ -168,6 +168,57 @@ test("rejects a receipt status outside the roadmap vocabulary", (t) => {
   assert.match(result.stderr, /schema validation failed/);
 });
 
+test("rejects a gate outside the approved roadmap set", (t) => {
+  const repository = createRepository(t);
+  const sourceRevision = git(repository, "rev-parse", "HEAD");
+  writeReceipt(
+    repository,
+    "R999.json",
+    validReceipt(sourceRevision, { gate: "R999" }),
+  );
+
+  const result = runStatus(repository);
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /schema validation failed/);
+});
+
+test("rejects a passed receipt whose falsifier occurred", (t) => {
+  const repository = createRepository(t);
+  const sourceRevision = git(repository, "rev-parse", "HEAD");
+  writeReceipt(
+    repository,
+    "R0.json",
+    validReceipt(sourceRevision, { falsifierOccurred: true }),
+  );
+
+  const result = runStatus(repository);
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /schema validation failed/);
+});
+
+test("rejects a passed receipt with required approval unrecorded", (t) => {
+  const repository = createRepository(t);
+  const sourceRevision = git(repository, "rev-parse", "HEAD");
+  writeReceipt(
+    repository,
+    "R0.json",
+    validReceipt(sourceRevision, {
+      productOwnerApproval: {
+        required: true,
+        recorded: false,
+        reference: "ROADMAP Approved 1.0",
+      },
+    }),
+  );
+
+  const result = runStatus(repository);
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /schema validation failed/);
+});
+
 test("rejects a receipt whose filename does not match its gate", (t) => {
   const repository = createRepository(t);
   writeReceipt(
