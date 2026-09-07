@@ -53,7 +53,8 @@ or R6 and must not be used to close their evidence gates.
 - Explicit Focus with a visible **AI sees N cards** count. Geometry alone never
   changes AI context.
 - One Branch action whose result lands as an ordinary editable card with a
-  visible `derived from` relationship and a compact context receipt.
+  visible `derived from` relationship and a selection-local textual target
+  chip backed by the same compact context receipt.
 - Reload restores the last acknowledged cards, positions, Focus, and lineage.
 
 ### Target — the best two-hour demo
@@ -71,9 +72,12 @@ or R6 and must not be used to close their evidence gates.
 - One contribution-level Recombine action.
 - A protected Vercel Preview of the exact frozen revision.
 
-Voice, touch, semantic History/Paths, multi-generation agentic expeditions,
-cloud workspaces, ingestion beyond paste, authentication, analytics, and visual
-polish beyond legibility are outside this two-hour build.
+Voice, touch, semantic History/Paths, the reusable `SceneProtocol` conformance
+experiment, multi-generation agentic expeditions, cloud workspaces, ingestion
+beyond paste (including transcript intake), authentication, analytics, and
+visual polish beyond legibility are outside this two-hour build. Record any
+text-chip orientation failure for EXP-002; do not add the visual-reference
+thumbnail during this two-hour slice.
 
 ## Pre-clock toolchain check
 
@@ -129,6 +133,10 @@ unless the machine or lockfile changed after the pre-clock check.
   in the interface and in the demo narration.
 - Generated material is immediately editable and durable; it does not require a
   second permission dialog.
+- The slice validates the lineage facts it can create: the Branch parent exists,
+  child and parent differ, parent references are unique, and Branch result
+  cardinality is valid. General cycle/hydration fixtures and reverse-child
+  indexes remain in R1 rather than the two-hour build.
 - Do not edit approved authority documents to rationalize a shortcut. Record
   hackathon compromises in the journal or final demo receipt.
 

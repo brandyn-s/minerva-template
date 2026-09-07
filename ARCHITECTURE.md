@@ -4,17 +4,17 @@
 
 | Field | Value |
 |---|---|
-| Status | **Approved 1.0 — architecture decisions `A-001`–`A-007` approved; named spike selections remain open** |
-| Date | September 6, 2026 |
+| Status | **Approved 1.1 — architecture decisions `A-001`–`A-009` approved; named spike selections remain open** |
+| Date | September 7, 2026 |
 | Approved foundation | `A-001` — browser-local modular monolith with a product-owned semantic kernel |
-| Approved detailed decisions | `A-002` — hybrid immutable-version journal plus rebuildable current projection; `A-003` — one writable tab with visibly read-only secondary tabs; `A-004` — page-scoped AI/Searchlight coordination with no server workspace state; `A-005` — content-free durable server admission state only; `A-006` — main-thread authority initially, with evidence-gated worker extraction; `A-007` — sibling structured nonvisual projection over the same domain and commands |
+| Approved detailed decisions | `A-002` — hybrid immutable-version journal plus rebuildable current projection; `A-003` — one writable tab with visibly read-only secondary tabs; `A-004` — page-scoped AI/Searchlight coordination with no server workspace state; `A-005` — content-free durable server admission state only; `A-006` — main-thread authority initially, with evidence-gated worker extraction; `A-007` — sibling structured nonvisual projection over the same domain and commands; `A-008` — minimal renderer `SceneProtocol`; `A-009` — canonical lineage validation and rebuildable reverse lookup |
 | Product authority | [`INTENT.md`](./INTENT.md), then approved entries in [`DECISIONS.md`](./DECISIONS.md), then [`SPEC.md`](./SPEC.md) |
 | Purpose of this file | Define how the approved first-prototype behavior is implemented without changing it |
 | Historical boundary | Searchlight, Atlas, Gestures, their deployments, and their source are evidence only. Minerva is greenfield. |
 
 `MUST`, `SHOULD`, `MAY`, and **[OPEN]** retain the meanings defined in `SPEC.md`. An architecture choice cannot weaken a product requirement. If this file conflicts with the approved product documents, the product documents win and the architecture must change.
 
-This file does not authorize implementation. It establishes the design to be approved before `ROADMAP.md` sequences work.
+This file does not authorize implementation. It defines the approved design boundary; `ROADMAP.md` alone sequences and authorizes work.
 
 ## 2. Architecture decision A-001
 
@@ -183,7 +183,7 @@ All records use globally unique client-generated IDs and explicit schema version
 | `Attempt` | One provider execution and its factual outcome/usage |
 | `OperationEffect` | Landed result, failure, Harvest, or discarded late response attributable to a Moment |
 | `LineageRecord` | Immutable child-version-to-parent-version causality plus inherited and changed material |
-| `ContributionRecord` | Immutable Recombine mapping from each exact parent version and selected contribution to the child version |
+| `ContributionRecord` | Immutable Recombine mapping from each exact parent version and either an exact-excerpt selector or short user-authored description to the child version |
 | `RevisionFact` | Commit order and exact changed-record references |
 | `Moment` | One semantic user action plus dependencies and child effects |
 | `Path` | Fork boundary, ordered Moment references, active head, preserved future linkage |
@@ -191,6 +191,21 @@ All records use globally unique client-generated IDs and explicit schema version
 | `WriterGeneration` | Current browser writer authority; operational, not product History |
 
 The architecture MUST retain exact historical card versions referenced by lineage, contributions, manifests, operations, or preserved Paths even when those versions are no longer active. `LineageRecord` and `ContributionRecord` are factual provenance and remain separate from editable visible relationships. Removing or relabeling a canvas link cannot rewrite them.
+
+A Recombine `OperationEffect` MAY identify newly generated bridges among contribution IDs. Such a bridge is labeled as a hypothesis and newly generated synthesis; it is not a `ContributionRecord` or `RelationshipVersion`. It becomes an editable canvas relationship only through a later ordinary user command.
+
+Card-local highlighting materializes an exact-excerpt selector against one immutable `CardVersion`. A DOM `Range`, mutable editor offset, or paint-layer selection is never canonical provenance. EXP-002 and R4 select the smallest stable quote-selector representation that survives the supported edit/display path and has an equivalent structured nonvisual form; the short-description selector remains fully supported.
+
+### Approved lineage-integrity boundary — A-009
+
+| Field | Decision |
+|---|---|
+| Status | **Approved — September 7, 2026** |
+| Choice | **Canonical child-to-parent lineage with incremental admission, full hydration validation, and rebuildable reverse lookup** |
+
+Before a lineage-bearing `CommitPlan` is persisted, a pure kernel validator confirms that every exact parent version exists, the child differs from every parent, parents are unique, adding the edges creates no indirect cycle, every contribution names one of those exact parents, and the originating operation satisfies its own closed parent/result/contribution cardinality. A preserved inactive historical version is a valid parent. Minerva permits multiple independent source roots; it does not import a single-root conversation invariant.
+
+Hydration runs the same invariants across the complete causal graph. An orphan, self-edge, cycle, duplicate parent, or invalid operation cardinality makes the affected Revision internally invalid and invokes the existing last-good recovery contract; Minerva never drops or rewrites an edge silently. Parent-to-child lookup is a disposable `childrenByParentVersion` projection rebuilt from canonical `LineageRecord` objects, not a reciprocal source of truth.
 
 ## 8. Command and acknowledgement contract
 
@@ -280,7 +295,7 @@ Startup proceeds in this order:
 2. Refuse silent downgrade when application code is older than the workspace.
 3. Acquire writer authority or enter explicit read-only secondary-tab mode.
 4. Run the selected atomic migration strategy.
-5. Validate the cached head against immutable Revision commit markers and record hashes.
+5. Validate the cached head against immutable Revision commit markers, record hashes, and the complete lineage/contribution graph.
 6. If needed, locate the newest complete internally valid Revision and enter explicit recovery/read-only mode.
 7. Load or rebuild its active projection from canonical records.
 8. Mark browser-owned `queued` or `running` work `interrupted`; never restart it.
@@ -315,6 +330,8 @@ It MUST:
 
 Provider-specific token measurement is an adapter. It may report an unsupported boundary but cannot change semantic inclusion.
 
+`TargetReceiptView` is a presentation of `ContextCompiler.Ready`, never an independently assembled renderer record. Its first treatment is a selection-local textual chip naming the capability, selected targets, and supporting Focus/count; expansion exposes the exact inclusion reasons. Once invoked, it points to the durable frozen manifest. Only if bounded owner evidence shows that text is insufficient may `CanvasAdapter` add a Revision-keyed ephemeral thumbnail labeled **Visual reference only**. That image never enters context, provenance, persistence, a provider request, or semantic accessibility state.
+
 ## 11. Client island and interaction state
 
 The Next.js shell MAY server-render metadata, static layout, and loading/error boundaries. The workspace is one client island rooted at a single `WorkspaceRuntime`, created above the canvas subtree so renderer remounts cannot duplicate state listeners, persistence coordination, provider work, or media ownership.
@@ -334,6 +351,22 @@ Pointer Events are the input seam for mouse, trackpad, pen, and possible future 
 `CanvasAdapter` renders scene projections, owns screen/world coordinate conversion, camera, hit testing, pointer capture, culling, and tentative direct-manipulation feedback, and emits device-neutral intents. It also supports programmatic reveal, selection mirroring, edit focus, orientation recovery, and clean disposal.
 
 It MUST NOT persist product state, construct AI context, decide Focus or membership from geometry, call providers, acknowledge mutations, or use native renderer history as Minerva History.
+
+### Approved renderer protocol boundary — A-008
+
+| Field | Decision |
+|---|---|
+| Status | **Approved — September 7, 2026** |
+| Choice | **A minimal versioned `SceneProtocol` between `WorkspaceRuntime` and `CanvasAdapter`** |
+
+The protocol has only two renderer-neutral message families:
+
+- `SceneProjection` carries the protocol version, source Revision, stable card/version identities, committed geometry, Focus membership, visible relationships, and application-owned ephemeral selection.
+- `CanvasIntent` carries selection or movement intent, stable entity identities, and the Revision observed by the adapter. It never carries mutable renderer objects or claims that a mutation committed.
+
+The application facade translates valid intents into ordinary kernel commands. A stale-Revision intent is rejected rather than rebased silently; `WorkspaceRuntime` republishes the latest complete committed projection and the adapter replaces its scene. Camera, hit-test caches, drag ghosts, and animation remain adapter-local and outside the protocol.
+
+One renderer-neutral conformance fixture MUST cover cards, Focus, relationships, selection, movement, and stale-Revision recovery. Provider and Voice modules cannot emit `SceneProtocol`, import renderer commands, or bypass the facade; their valid outputs may affect the scene only after the existing operation or ephemeral-highlight paths validate them.
 
 ### Renderer candidates
 
@@ -444,6 +477,8 @@ Each `POST /api/ai/execute` request uses a closed discriminated stage:
 - `searchlight.harvest`
 
 The versioned request contains opaque request/operation/attempt IDs, the exact manifest and hash, the permitted stage input, and no arbitrary system instruction. The server recomputes the manifest hash, validates a strict schema and size, selects the server-approved provider configuration and limits, and rejects overflow without changing context.
+
+The `recombine` stage input carries the selected parents and their contribution selectors beside the one canonical manifest; it does not define a merge-specific support-context system. Its closed result separates inherited contribution references from newly generated synthesis and marks any newly proposed bridge as a hypothesis.
 
 The response contains matching IDs and hash, one closed result object or normalized failure, a versioned provider-configuration ID, timestamps, stop reason, and available usage. Raw provider errors, secrets, and stack traces are never returned.
 
@@ -573,10 +608,10 @@ Every releasable deployment records its exact source revision, immutable deploym
 
 | Boundary | Smallest decisive evidence |
 |---|---|
-| Kernel and History | Pure command/property tests covering Moments, Paths, dependency order, exact Redo, and authority revocation |
-| Repository | Real-browser transaction, reload, quota/migration fault, and two-tab contract tests |
+| Kernel and History | Pure command/property tests covering Moments, Paths, dependency order, exact Redo, authority revocation, and incremental lineage admission/cardinality |
+| Repository | Real-browser transaction, reload, quota/migration fault, two-tab, and malformed-lineage hydration tests |
 | Context | Deterministic payload/hash fixtures invariant under geometry and exact under Focus/selection changes |
-| Canvas adapter | One central-loop browser journey plus keyboard/nonvisual parity |
+| Canvas adapter | One `SceneProtocol` conformance fixture including stale-Revision recovery, plus a central-loop browser journey and keyboard/nonvisual parity |
 | AI protocol | One real call for each stage class plus malformed/oversized/adversarial cases |
 | Searchlight | Concurrency-two, pause/resume/cancel, partial, Retry, Harvest, and injected late-result scenario |
 | Voice | Real microphone/playback journey with canvas manipulation, barge-in, context update, and text degradation |
@@ -602,7 +637,7 @@ Each spike exists to make one decision. It is discarded or reduced after that de
 ### `EXP-001` — Interleaved local truth
 
 - **Outcome:** Prove or reject the Revision/Moment/Path model and browser transaction boundary.
-- **Smallest evidence:** A minimal text/debug surface runs create/edit/move/Focus, Searchlight authorization, an arriving arm, an unrelated edit, failure, Retry, Harvest, Undo/Redo, Continue from history, injected late response, reload, a second-tab write attempt, a partial write, and recoverable corruption of the cached head and latest records.
+- **Smallest evidence:** A minimal text/debug surface runs create/edit/move/Focus, Searchlight authorization, an arriving arm, an unrelated edit, failure, Retry, Harvest, Undo/Redo, Continue from history, injected late response, reload, a second-tab write attempt, a partial write, recoverable corruption of the cached head and latest records, incremental rejection of every invalid lineage form, successful use of a retained historical parent, and reverse-child lookup rebuild.
 - **First falsifier:** False acknowledgement, destroyed future, wrong Undo target, provider call during Redo, late cross-Path commit, silent second writer, inability to locate and truthfully expose the last internally valid Revision, or browser/framework objects required in the kernel.
 - **Budget:** Two engineer-days; simplify after the first architecture-level falsifier.
 - **Unlocks:** Journal shape, object stores, wrapper, writer mechanism, migration strategy.
@@ -610,8 +645,8 @@ Each spike exists to make one decision. It is discarded or reduced after that de
 ### `EXP-002` — Disposable renderer and structured view
 
 - **Outcome:** Select the smallest renderer that remains a projection and makes the central loop inviting.
-- **Smallest evidence:** Custom card, Group/Region, relationship, Focus drop preview, rich edit, multi-select, pointer and keyboard move, one semantic Undo/Redo, orientation recovery, and sibling structured operation under simulated Voice/Searchlight load.
-- **First falsifier:** Renderer state becomes semantic authority, structured operation depends on geometry, production licensing remains unresolved, or the owner experiences the surface as canvas management/graph editing rather than thinking.
+- **Smallest evidence:** One minimal `SceneProtocol` and shared conformance fixture exercise cards, Focus, relationships, selection, movement, stale-Revision rejection/full-projection recovery, Custom card, Group/Region, Focus drop preview, rich edit, multi-select, pointer and keyboard move, one semantic Undo/Redo, orientation recovery, and sibling structured operation under simulated Voice/Searchlight load.
+- **First falsifier:** Renderer state becomes semantic authority, an adapter cannot pass the common protocol fixture, stale intent is rebased or committed silently, structured operation depends on geometry, production licensing remains unresolved, or the owner experiences the surface as canvas management/graph editing rather than thinking.
 - **Budget:** Two engineer-days total across no more than two candidates.
 - **Unlocks:** Renderer, scene protocol, supported initial corpus, initial interaction threshold.
 
@@ -641,11 +676,14 @@ Each spike exists to make one decision. It is discarded or reduced after that de
 - Multiple local workspaces or a workspace library.
 - Durable server workflows, queues, cron, service workers, and closed-page AI.
 - A general agent runtime, tool platform, prompt endpoint, or model router in the domain.
+- A mandatory conflict-detection or conflict-resolution stage, or a second Recombine-specific context system.
 - Vector databases, embeddings, hidden context retrieval, novelty scoring, or automated quality ranking.
 - Per-pointer worker messaging, WebGL/OffscreenCanvas, or AudioWorklet without measured need.
 - Token streaming as an assumed requirement.
 - Public unrestricted anonymous provider access.
 - Automatic pruning of Moments, Paths, attempts, failures, or provenance.
+
+`TranscriptSourceAdapter` is a reserved name for a later-horizon port, not a current module, store, interface, or scaffold. If D-011 and a later implementation decision authorize it, the adapter receives only an explicitly user-selected source; reads it without writeback; preserves stable provider/source, session, and turn identities where available; and advances only through explicit **Refresh** using an append watermark. A repeated Refresh is idempotent. New turns produce immutable source snapshots and ordinary attributable cards only through user-directed materialization. Changed, removed, or reordered upstream turns create a source revision or visible discrepancy rather than rewriting prior cards. No background scan, broad filesystem access, transcript writeback, or guessed identity is permitted.
 
 ## 26. Approved decisions and spike-gated details
 
@@ -657,11 +695,13 @@ Each spike exists to make one decision. It is discarded or reduced after that de
 - `A-005` — **Approved September 6, 2026.** Permit only content-free durable server admission state in the prototype.
 - `A-006` — **Approved September 6, 2026.** Keep the main thread authoritative initially; add a worker only for a measured coarse bottleneck.
 - `A-007` — **Approved September 6, 2026.** Require a sibling structured nonvisual projection driven by the same domain and commands.
+- `A-008` — **Approved September 7, 2026.** Require a minimal versioned `SceneProtocol` and common renderer conformance fixture; providers and Voice cannot emit it.
+- `A-009` — **Approved September 7, 2026.** Validate canonical lineage incrementally and at hydration; keep reverse-child lookup rebuildable.
 
 ### Remain open until a named spike
 
 - IndexedDB wrapper, object-store split, migration strategy, writer primitive.
-- Canvas renderer and measured supported corpus.
+- Canvas renderer and measured supported corpus within the approved `SceneProtocol` boundary.
 - AI provider, model/configuration, output mechanism, and hard envelopes.
 - Admission-store product and exact evaluator-capability exchange.
 - Voice provider, transport, credential mechanism, and browser/audio matrix.
@@ -669,4 +709,4 @@ Each spike exists to make one decision. It is discarded or reduced after that de
 
 ## 27. Architecture approval
 
-Architecture decisions `A-001` through `A-007` are approved. Every explicitly spike-gated item remains **[OPEN]** until its named experiment supplies decisive evidence. This approval authorizes work on `ROADMAP.md`, not implementation.
+Architecture decisions `A-001` through `A-009` are approved. Every explicitly spike-gated item remains **[OPEN]** until its named experiment supplies decisive evidence. This approval authorizes work on `ROADMAP.md`, not implementation.

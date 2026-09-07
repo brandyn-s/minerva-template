@@ -29,3 +29,23 @@ it does not replace the approved documents.
   constrained its affected transitive packages to published patched versions;
   added an explicit dependency-audit command. Product source and deployment
   state remain unchanged.
+
+## September 7, 2026
+
+- **APPROVAL — product owner (human):** Rejected a mandatory conflict-aware
+  Recombine stage. Approved optional card-local excerpt highlighting while
+  retaining short descriptions, Focus as the sole supporting context, preserved
+  conflicting contributions, and hypothesis labels for newly generated bridges.
+- **APPROVAL — product owner (human):** Approved a text-first selection-local
+  target chip over the canonical manifest. A **Visual reference only** thumbnail
+  may be tested later only if text is insufficient and remains ephemeral and
+  nonsemantic.
+- **APPROVAL — product owner (human):** Required EXP-002 to produce a minimal
+  `SceneProtocol` and common conformance fixture, and required lineage admission
+  and hydration coverage with rebuildable reverse-child lookup.
+- **ROADMAP BOUNDARY — product owner (human):** Future transcript intake uses a
+  read-only `TranscriptSourceAdapter`, stable source/session/turn identities,
+  explicit Refresh, and append watermarks. No transcript adapter or background
+  source access enters the first prototype.
+- **SCOPE — engineering:** These refinements change planning authorities only.
+  They do not authorize product implementation or enlarge the hackathon floor.

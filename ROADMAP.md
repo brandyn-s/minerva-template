@@ -4,8 +4,8 @@
 
 | Field | Value |
 |---|---|
-| Status | **Approved 1.0 — product-owner approved September 6, 2026; R0 alone authorized** |
-| Date | September 6, 2026 |
+| Status | **Approved 1.1 — initial approval September 6, 2026; selective refinements approved September 7, 2026; R0 alone authorized** |
+| Date | September 7, 2026 |
 | Effort | **XL** — execute as bounded gate plans, never as one undifferentiated build |
 | Product authority | [INTENT.md](./INTENT.md), then approved entries in [DECISIONS.md](./DECISIONS.md), then [SPEC.md](./SPEC.md) |
 | Architecture authority | [ARCHITECTURE.md](./ARCHITECTURE.md) |
@@ -205,16 +205,16 @@ Demo: Repository history shows the approved intent commit before generated code;
 
 | Task | Scope | Action, tool, and owner | Depends on | Expected output |
 |---|---|---|---|---|
-| R1.1 | Critical | Define framework-independent domain records, typed commands, CommitPlan, repository ports, canonical versioned ContextManifest/hash and closed stage-input schemas, deterministic IDs/clocks, and fake async-result inputs; domain lane | R0 | No React, DOM, IndexedDB, provider, or renderer types enter the kernel; later provider fixtures cannot invent a competing manifest contract |
-| R1.2 | Critical | Implement the immutable-version journal, rebuildable projection, Moment/Path rules, dependency-aware Undo/Redo, authority epochs, and exact Redo fixtures; domain lane | R1.1 | Pure contract suite for semantic truth |
+| R1.1 | Critical | Define framework-independent domain records, typed commands, CommitPlan, repository ports, canonical versioned ContextManifest/hash, closed stage-input schemas, canonical child-to-parent lineage/contribution schemas, a rebuildable reverse-child lookup, deterministic IDs/clocks, and fake async-result inputs; domain lane | R0 | No React, DOM, IndexedDB, provider, or renderer types enter the kernel; later provider fixtures cannot invent a competing manifest or provenance contract |
+| R1.2 | Critical | Implement the immutable-version journal, rebuildable projection, Moment/Path rules, dependency-aware Undo/Redo, authority epochs, exact Redo fixtures, and table-driven lineage edge-admission tests for missing parents, self-parenting, indirect cycles, duplicate parents, invalid operation cardinality, and valid retained historical parents; domain lane | R1.1 | Pure contract suite for semantic truth |
 | R1.3 | Critical | Compare native IndexedDB, idb, and Dexie only against the required transaction, migration, blocked-open, failure-injection, and testability contract; repository lane | R1.1 | One selected wrapper or native path with recorded rejection reasons |
-| R1.4 | Critical | Exercise the full EXP-001 sequence through a disposable text/debug surface in a real browser; browser harness | R1.2 and R1.3 | Revision-by-revision record of normal, partial, interrupted, and corrupt cases |
+| R1.4 | Critical | Exercise the full EXP-001 sequence through a disposable text/debug surface in a real browser, including hydration of a retained historical parent, each malformed-lineage fixture, and reverse-child lookup reconstruction; browser harness | R1.2 and R1.3 | Revision-by-revision record of normal, partial, interrupted, corrupt, and last-valid-recovery cases |
 | R1.5 | Critical | Select the object-store split, indexes, migration strategy, writer primitive, and last-good-revision recovery procedure; record the decision in JOURNAL.md | R1.4 | Closed R1 implementation choices without altering A-002 or A-003 |
 | R1.6 | Critical | Retain only the proven kernel/repository foundation and discard or quarantine the disposable debug surface; main integration lane | R1.5 | Product foundation independent of the spike UI |
 
 Demo: A real-browser debug surface performs create, edit, move, Focus, simulated Searchlight authorization, an arriving result, an unrelated edit, failure, Retry, Harvest, Undo/Redo, Continue from history, a late response, reload, second-tab write, partial write, and recoverable corruption while displaying the exact Revision, Moment, Path, and authority outcome.
 
-**Smallest decisive evidence:** Pure domain contracts plus one real-browser IndexedDB sequence showing atomic acknowledgement, preserved futures, exact no-provider Redo, read-only secondary tab behavior, and truthful last-good recovery.
+**Smallest decisive evidence:** Pure domain contracts plus one real-browser IndexedDB sequence showing atomic acknowledgement, preserved futures, exact no-provider Redo, read-only secondary tab behavior, incremental lineage rejection, full-graph hydration validation, rebuildable reverse lookup, and truthful last-good recovery.
 
 **First material falsifier:** False acknowledgement, destroyed future, wrong Undo target, provider work during Redo, late cross-Path landing, silent second writer, failure to expose the newest internally valid Revision, or any requirement for framework objects in the kernel.
 
@@ -233,19 +233,19 @@ R2A and R2B begin only after R1 freezes their shared domain and port contracts. 
 | Task | Scope | Action, tool, and owner | Depends on | Expected output |
 |---|---|---|---|---|
 | R2A.1 | Critical | Paper-screen tldraw, React Flow, and custom DOM/SVG against production licensing, editing, regions, links, accessibility, and second-store risk; renderer lane | R1 | At most two candidates proceed |
-| R2A.2 | Critical | Define one stable-ID SceneProjection and device-neutral CanvasIntent protocol over the approved kernel; shared contract lane | R1 | Renderer-independent scene and interaction seam |
-| R2A.3 | Critical | Implement disposable central-slice adapters for the surviving candidates using the same representative subset of the canonical library example, without native persistence or product History; isolated renderer worktrees | R2A.1 and R2A.2 | Comparable card, region, relationship, Focus, selection, movement, pan, zoom, and orientation slice rather than an empty-canvas beauty test |
+| R2A.2 | Critical | Define the minimal versioned `SceneProtocol`—`SceneProjection` plus `CanvasIntent`—and one renderer-neutral conformance fixture covering cards, Focus, relationships, application-owned selection, movement, and stale-Revision rejection/full-projection recovery; shared contract lane | R1 | Renderer-independent scene and interaction seam that providers and Voice cannot emit |
+| R2A.3 | Critical | Implement disposable central-slice adapters for the surviving candidates against the same `SceneProtocol`, conformance fixture, and representative subset of the canonical library example, including the same selection-local textual target chip and no thumbnail, without native persistence or product History; isolated renderer worktrees | R2A.1 and R2A.2 | Comparable protocol-conformant card, region, relationship, Focus, selection, movement, target orientation, pan, zoom, and recovery slice rather than an empty-canvas beauty test |
 | R2A.4 | Critical | Build the sibling structured view against the same projections and commands, including keyboard/non-drag movement and one semantic Undo/Redo; accessibility lane | R2A.2 | No duplicate semantic store |
 | R2A.5 | Critical | Predeclare an initial interaction corpus and thresholds, then profile both candidates under simulated Searchlight and audio update load; real browser | R2A.3 and R2A.4 | Measured comparison and one selected renderer |
-| R2A.6 | Critical | Record owner judgment on whether the surface feels like a thinking environment or graph administration; product owner | R2A.5 | Qualitative decision alongside technical evidence |
+| R2A.6 | Critical | Record owner judgment on whether the surface feels like a thinking environment or graph administration and whether the textual target chip provides enough orientation. Only on a recorded text-treatment failure, test one Revision-keyed ephemeral **Visual reference only** thumbnail within the same budget and reject it if it changes semantics or adds friction; product owner and renderer lane | R2A.5 | Qualitative renderer decision plus either a text-sufficient receipt or one bounded thumbnail result |
 
-Demo: The selected candidate supports an editable card, Group/Region, relationship, Focus drop preview, rich edit, multi-select, pointer and keyboard movement, semantic Undo/Redo, orientation recovery, and a sibling structured operation; replacing the adapter preserves semantic state.
+Demo: The selected candidate supports an editable card, Group/Region, relationship, Focus drop preview, rich edit, multi-select, a selection-local textual target chip, pointer and keyboard movement, semantic Undo/Redo, orientation recovery, stale-intent rejection with full committed-scene recovery, and a sibling structured operation; replacing the adapter preserves semantic state.
 
-**Smallest decisive evidence:** One real-browser central slice, programmatic and keyboard inspection, a license decision, bounded performance measurements, and rebuild from canonical projection after renderer disposal.
+**Smallest decisive evidence:** One common `SceneProtocol` fixture passing against each candidate, one real-browser central slice, textual-chip/manifest agreement and owner orientation judgment, programmatic and keyboard inspection, a license decision, bounded performance measurements, and rebuild from canonical projection after renderer disposal.
 
-**First material falsifier:** Renderer state or history becomes semantic authority, the structured view depends on geometry, production licensing remains unresolved, the predeclared interaction budget fails, or the owner experiences the surface as graph management.
+**First material falsifier:** Renderer state or history becomes semantic authority, an adapter cannot pass the common conformance fixture, stale intent is rebased or committed silently, the structured view depends on geometry, production licensing remains unresolved, the predeclared interaction budget fails, or the owner experiences the surface as graph management.
 
-**Exit decision:** Select renderer, scene protocol, initial supported corpus, and initial interaction thresholds.
+**Exit decision:** Select the renderer, freeze the minimal `SceneProtocol` v1 shape, and select the initial supported corpus and interaction thresholds.
 
 ### R2B — EXP-003: bounded provider, admission, and cancellation
 
@@ -285,12 +285,12 @@ Demo: From a clean browser, a one-use invitation becomes a Secure, HttpOnly, Sam
 | R3.2 | Critical | Add the ordinary-card substrate: create, edit, move, remove/restore, lightweight semantic role, pan/zoom, selection/multi-selection, and orientation recovery; canvas lane | R2A | An editable spatial surface backed only by committed projections |
 | R3.3 | Critical | Add Groups/Regions, explicit membership, labeled relationships, persistent **Focus — AI sees N cards**, selected targets, direct Add/Remove/Clear controls, and an inspectable inclusion preview; domain and projection lanes | R3.2 | Visible context semantics with no geometry inference |
 | R3.4 | Critical | Add bounded local intake for paste, client-side `.txt` and `.md`, and URL reference cards; browser adapter lane | R3.2 | Ordinary editable source cards with visible provenance and zero automatic network/provider work |
-| R3.5 | Critical | Implement the canonical manifest compiler and compact context receipt; context lane | R3.3 | Deterministic versioned payload/hash invariant under pure view changes and exact under explicit context changes |
+| R3.5 | Critical | Implement the canonical manifest compiler and a selection-local textual target/context chip derived from it; expand the chip to the exact manifest and adopt a thumbnail only if EXP-002 records both text insufficiency and nonsemantic benefit; context lane | R3.3 | Deterministic versioned payload/hash and receipt identity invariant under pure view changes and exact under explicit context changes |
 | R3.6 | Critical | Route Branch through the shared authorization, manifest, admission, transport, normalization, kernel-validation, and durable-commit path; operation lane | R2B and R3.5 | At most one durable result outside Focus, exact `derived from` lineage, and visible attempt/failure state |
-| R3.7 | Critical | Provide the same create/edit/context/Branch/receipt/Undo/Redo outcomes in the sibling structured projection and keyboard path; accessibility lane | R3.2 through R3.6 | Semantic parity without geometry interpretation |
+| R3.7 | Critical | Provide the same create/edit/context/Branch/receipt/Undo/Redo outcomes, including equivalent target-chip text and manifest inspection, in the sibling structured projection and keyboard path; accessibility lane | R3.2 through R3.6 | Semantic parity without geometry interpretation |
 | R3.8 | Critical | Exercise the vertical slice locally and in one protected Vercel Preview deployment with one real provider call; integration lane | R3.6 and R3.7 | E1–E5 receipts for this slice, not a full-product release claim |
 
-Demo: In a fresh browser, open the neighborhood-library example, change a card, add an explicit card to Focus, select a target outside Focus, inspect **AI sees N cards**, invoke Branch without a mandatory direction, keep editing while it runs, inspect the landed card's frozen receipt and lineage, reload, and find the exact acknowledged result. Repeat the semantic path by keyboard in the structured view. Then show that a pasted source, local file, and URL reference neither enter Focus nor cause network work.
+Demo: In a fresh browser, open the neighborhood-library example, change a card, add an explicit card to Focus, select a target outside Focus, inspect the selection-local textual target chip and **AI sees N cards**, invoke Branch without a mandatory direction, keep editing while it runs, inspect the landed card's same frozen receipt and lineage, reload, and find the exact acknowledged result. Repeat the semantic path by keyboard in the structured view. Then show that a pasted source, local file, and URL reference neither enter Focus nor cause network work.
 
 **Smallest decisive evidence:** AC-001 through AC-004 and AC-013 on the central slice, one real protected provider call with a durable local landing, and a reload proving the result and operation record survived.
 
@@ -310,18 +310,18 @@ Demo: In a fresh browser, open the neighborhood-library example, change a card, 
 |---|---|---|---|---|
 | R4.1 | Critical | Finish direct, selection-local structure and relationship actions, including the reserved `member of` and `derived from` facts plus optional free-form labels; domain/UI lane | R3 | Inspectable meaning without spatial inference or graph-editor ceremony |
 | R4.2 | Critical | Add neutral Compare for at least two explicit selected cards through the common pipeline; operation lane | R3.6 | Durable source-backed commonalities, differences, tensions, and tradeoffs with no winner |
-| R4.3 | Critical | Add Recombine with explicit contribution selection from at least two parents; operation and provenance lanes | R4.2 | One editable child whose exact inherited contributions can be reconstructed |
+| R4.3 | Critical | Add Recombine with explicit contributions from at least two parents; support optional card-local exact-excerpt highlighting and retained short descriptions, use Focus as the sole supporting context, preserve conflicting mappings without a resolver stage, and label newly generated bridges as hypotheses; operation and provenance lanes | R4.2 | One editable child whose exact inherited contributions and newly proposed bridges can be distinguished and reconstructed |
 | R4.4 | Critical | Add standalone explicit Harvest for a chosen nonempty context; operation lane | R4.2 | Concise source-linked consequences and limitations without fabricated consensus |
 | R4.5 | Critical | Expose semantic Undo/Redo, History preview, dependency explanations, **Continue from here**, active Path, and preserved former futures; history UI lane | R4.1 through R4.4 | Meaningful action order independent of async arrival and zero-spend exact Redo |
 | R4.6 | Critical | Complete one-writer UX, blocked-open handling, last-good recovery, interrupted-operation truth, and local operation during provider failure; persistence/failure lane | R4.5 | No false durability, silent takeover, hidden resume, or offline queue |
-| R4.7 | Critical | Extend the structured projection, keyboard actions, names, state, focus management, and bounded live announcements for every R4 semantic outcome; accessibility lane | R4.1 through R4.6 | Continuous parity rather than a late accessibility replica |
-| R4.8 | Critical | Run the complete canonical-example loop locally and on one protected Preview using real integrated Compare, Recombine, and Harvest calls; include durable landing/provenance/reload plus one normalized provider failure, retry, unrelated edit, Undo/Redo, and Path departure; integration lane | R4.7 | Traceable AC-005–AC-007, AC-012, AC-014, AC-017, and AC-018 evidence at E1–E5 for the exact loop build |
+| R4.7 | Critical | Extend the structured projection, keyboard actions, contribution capture by excerpt or description, hypothesis labels, names, state, focus management, and bounded live announcements for every R4 semantic outcome; accessibility lane | R4.1 through R4.6 | Continuous parity rather than a late accessibility replica |
+| R4.8 | Critical | Run the complete canonical-example loop locally and on one protected Preview using real integrated Compare, Recombine, and Harvest calls; exercise both contribution-selector forms, conflicting contributions, one hypothesis bridge, operation-specific lineage cardinality, durable landing/provenance/reload, one normalized provider failure, retry, unrelated edit, Undo/Redo, and Path departure; integration lane | R4.7 | Traceable AC-005–AC-007, AC-012, AC-014, AC-017, AC-018, and AC-020 evidence at E1–E5 for the exact loop build |
 
 Demo: Starting from the example, explicitly structure and focus material, Branch, neutrally Compare two selected cards, Recombine named contributions, Harvest a chosen context, inspect lineage versus History, preview an older Moment, Continue from there, and reload with both Paths preserved. Undoing and redoing an AI Moment restores its exact durable consequences without a provider call. A second tab is visibly read-only, and a persistence or provider failure never produces a false success.
 
 **Smallest decisive evidence:** Local and protected-deployment real-browser traces showing live Compare, Recombine, and Harvest results durably land with exact manifests/contributions; one dependency-aware Undo; one preserved former future after reload; zero provider requests during Redo; one normalized provider failure/recovery path; and structured-view parity.
 
-**First material falsifier:** Compare ranks a winner; Recombine cannot identify exact parent contributions; Harvest invents agreement or hides a failed source; async arrival corrupts action order; Undo destroys a future or permits a dependent orphan; Redo regenerates; recovery claims an uncommitted state; or managing structures displaces the thinking work.
+**First material falsifier:** Compare ranks a winner; Recombine cannot identify exact parent contributions, discards a conflict, duplicates Focus, or presents a generated bridge as inherited fact; invalid lineage commits; Harvest invents agreement or hides a failed source; async arrival corrupts action order; Undo destroys a future or permits a dependent orphan; Redo regenerates; recovery claims an uncommitted state; or managing structures displaces the thinking work.
 
 **Exit decision:** Freeze a coherent Branch-based rehearsal build. If the central loop is not understandable and useful without Searchlight or Voice, simplify the implicated interaction before adding either capability.
 
@@ -501,6 +501,9 @@ Demo: First show the executable ordinary-chat baseline dry run and every preregi
 | D-006 — semantic Undo/Redo with preserved Paths | R1, R4, R6, R8 | Meaningful action ordering, dependency safety, exact zero-spend Redo, preserved futures, and late-result rejection |
 | D-007 — persistent bounded companion | R6V, R7, R8 | Real concurrent Voice is Quiet by default, exact-context, read-only, ephemeral unless pinned, and hard-bounded |
 | D-008 — staged matched evaluation | R5, R8, R9 | Owner readiness packet, frozen candidate, matched packets, countermetrics, and the declared product decision |
+| D-009 — Recombine capture and hypothesis boundary | R4, R8 | Both contribution-selector forms remain available; conflicts remain mapped; Focus is the sole support context; generated bridges are hypotheses |
+| D-010 — selection-local target orientation | R2A, R3, R8 | Text-first chip and expanded receipt agree with the canonical manifest; any later thumbnail remains ephemeral and nonsemantic |
+| D-011 — future transcript-source lifecycle | No gate in this roadmap | No transcript adapter or dormant abstraction is built; the later horizon preserves explicit Refresh, stable identity, append watermark, and source read-only constraints |
 
 ### Acceptance scenarios to gates
 
@@ -525,13 +528,14 @@ Demo: First show the executable ordinary-chat baseline dry run and every preregi
 | AC-017 — accessible core loop | R2A and every later construction gate | R8 |
 | AC-018 — complete product loop | R4 and R5 | R8 |
 | AC-019 — matched product evidence | R9 | R9 terminal report |
+| AC-020 — lineage integrity | R1 and R4 | R8 |
 
 ### Architecture experiments to gates
 
 | Experiment | Gate | Selection made only after |
 |---|---|---|
-| EXP-001 — interleaved state and failure | R1 | The journal/projection model survives the complete debug sequence in a real browser |
-| EXP-002 — renderer and structured projection | R2A | One adapter passes semantic-authority, accessibility, licensing, feel, and measured-load tests |
+| EXP-001 — interleaved state and failure | R1 | The journal/projection model and canonical lineage survive the complete admission/hydration debug sequence in a real browser |
+| EXP-002 — renderer and structured projection | R2A | One adapter passes the common `SceneProtocol` fixture plus semantic-authority, stale-recovery, accessibility, licensing, feel, and measured-load tests |
 | EXP-003 — provider/admission envelope | R2B | Every closed stage works, atomic bounds hold, and cancellation defeats a late valid result |
 | EXP-004 — concurrent Voice | R6V | Actual browser audio passes transport, credential, barge-in, echo, latency, retention, and spend tests before R7 adds exact workspace context and policy |
 
@@ -634,7 +638,7 @@ No gate may start early by building against a guessed adapter. Paper analysis an
 | Open choice | Decision gate | Evidence required | Must not happen earlier |
 |---|---|---|---|
 | IndexedDB wrapper, stores, indexes, migration, and writer primitive | R1 | EXP-001 transaction/failure sequence | Selecting from convenience or predecessor familiarity |
-| Canvas renderer and SceneProjection protocol | R2A | Real-browser semantic, accessible, licensing, feel, and load comparison | Letting a renderer define the domain or product History |
+| Canvas renderer within the approved `SceneProtocol` | R2A | Common-fixture conformance plus real-browser semantic, accessible, stale-recovery, licensing, feel, and load comparison | Letting a renderer define the domain or product History |
 | Generation provider/configuration and structured-output mechanism | R2B | Every closed stage succeeds within the hard envelope | Exposing a general prompt endpoint or relying on advertised capability |
 | Admission store, capability exchange, and spend/token/time limits | R2B | Atomic contention, replay, expiry, environment, kill-switch, and usage receipts | Public provider access or content-bearing server state |
 | Searchlight product/session ceilings and timeouts within the R2B server maximum | R6 | Measured complete, partial, cancel, retry, and reload cases citing the same maximum-policy ID | Adding hidden recovery, changing the fixed graph, or exceeding R2B without reopening its proofs |
@@ -728,6 +732,8 @@ These horizons preserve approved direction without planting dormant controls, sc
 
 The horizon order is not a release schedule. Bounded agentic expeditions precede ambient exploration; all other ordering remains a future product decision.
 
+The first future intake experiment, if authorized after D-008, defines a `TranscriptSourceAdapter` rather than a transcript-specific workspace model. It receives only a user-selected source, preserves stable source/session/turn identities, reads without writeback, and runs only on explicit **Refresh**. Each successful refresh advances an append watermark and adds only unseen stable turns; repeating Refresh is idempotent. Changed, removed, reordered, or identity-unstable upstream content produces a new source revision or visible discrepancy and stops guessed incremental reconciliation. Previously materialized ordinary cards remain unchanged. No current gate creates this port, schema, or scanner.
+
 ## 24. Interview Findings
 
 One bounded adversarial pass challenged the completed roadmap. The pass used eight questions; all were resolved from the approved documents, and none remains as an implementation-time guess.
@@ -753,7 +759,7 @@ This is the sole terminal plan review. Execution may revisit a gate only when it
 
 This roadmap is the canonical execution plan for the first Minerva prototype. It intentionally lives beside the approved product documents rather than in a second planning system.
 
-Approval changes the status from **Draft 0.1** to **Approved 1.0** and authorizes only R0. Before each later gate, the implementation session must:
+Initial approval changed the status from **Draft 0.1** to **Approved 1.0** and authorized only R0. The September 7 selective refinements produce **Approved 1.1** without authorizing any later gate. Before each later gate, the implementation session must:
 
 1. read the current approved authority files and preceding gate receipt;
 2. confirm that the gate's dependencies and open-choice boundary still hold;

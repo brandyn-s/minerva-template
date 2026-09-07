@@ -1,6 +1,6 @@
 # Minerva — Decision Register
 
-> **Status:** Active product decision record. `INTENT.md` was approved on September 6, 2026. Decisions are added here only after explicit product-owner approval.
+> **Status:** Active product decision record. `INTENT.md` was approved on September 6, 2026. D-009 through D-011 were approved on September 7, 2026. Decisions are added here only after explicit product-owner approval.
 
 ## How this register works
 
@@ -327,8 +327,51 @@ A provider outage or material implementation defect invalidates the affected ses
 - Test count, architectural elegance, deployed infrastructure, or telemetry volume.
 - Deferred capabilities, general market demand, retention, collaboration, or commercial return.
 
+### D-009 — Recombine contribution capture and hypothesis boundary
+
+| Field | Decision |
+|---|---|
+| Status | **Approved — September 7, 2026** |
+| Decided by | **Product owner (human)** |
+| Scope | First-prototype refinement |
+| Decision | Recombine keeps the existing exact-excerpt or short-description contribution model. Card-local highlighting is an optional fast path for capturing an exact excerpt, not a required mode. Focus remains the sole supporting-context system. Named contributions remain mapped even when they conflict; Recombine does not force resolution. Any newly generated bridge that is not inherited from a named contribution is visibly labeled as a hypothesis. |
+| Why | This adds faster evidence selection and clearer epistemic status without creating a second context model, forcing every contribution into a contiguous text span, or turning generative synthesis into extractive assembly. |
+| Alternative rejected | Do not add a mandatory pre-synthesis conflict-detection or conflict-resolution stage. Compare, user-named contributions, preserved parents, and hypothesis labels already expose consequential tension without another provider stage or workflow. |
+| Consequences | Exact highlights may accelerate contribution capture; conceptual or noncontiguous contributions may still use short descriptions. Focus-only cards remain supporting context rather than implicit parents. Recombine remains generative, but inherited contributions and proposed bridges stay distinguishable. |
+| Reversibility | **High.** The capture affordance and hypothesis presentation may change without rewriting contribution or lineage semantics. |
+| Latest responsible point | Resolve the exact highlight anchoring and hypothesis presentation while implementing Recombine in R4, after representative edits and accessibility paths are available. |
+| Falsifier | Revisit if highlighting becomes mandatory, short descriptions become second-class, a merge-specific context system duplicates Focus, a hidden conflict stage performs extra work, or a generated bridge is presented as inherited fact. |
+
+### D-010 — Selection-local target orientation
+
+| Field | Decision |
+|---|---|
+| Status | **Approved — September 7, 2026** |
+| Decided by | **Product owner (human)** |
+| Scope | First-prototype refinement |
+| Decision | First test a selection-local textual target chip backed by the existing canonical manifest and context-preview contract. Add an ephemeral thumbnail only if that text treatment fails to provide enough orientation; any such thumbnail is labeled **Visual reference only**. |
+| Why | The user needs fast confidence about what an action targets, but a rendered image must not become a second, visually inferred account of AI context. Text is the smallest inspectable presentation of the existing truth. |
+| Consequences | The chip adds no new selection, context, or persistence model. A later experimental thumbnail may aid orientation, but it cannot change inclusion, become durable provenance, or be sent to a provider. |
+| Reversibility | **High.** The presentation can be replaced while the underlying manifest and target semantics remain unchanged. |
+| Latest responsible point | Test the textual chip in EXP-002 and the first durable Branch slice before adding any image capture or thumbnail dependency. |
+| Falsifier | Reject the treatment if it disagrees with the canonical manifest or creates a second context authority. Reject a thumbnail if users mistake it for provider input, it survives as workspace state, or it adds more friction than orientation. |
+
+### D-011 — Future transcript-source lifecycle
+
+| Field | Decision |
+|---|---|
+| Status | **Approved roadmap boundary — September 7, 2026** |
+| Decided by | **Product owner (human)** |
+| Scope | Post-evaluation roadmap only; no first-prototype implementation |
+| Decision | Future transcript intake uses stable source, session, and turn identities; an explicit user-invoked **Refresh**; append watermarks; and read-only handling of the selected external source. Previously imported turns are not silently rewritten during refresh. |
+| Why | Existing LLM sessions can become attributable source material without background surveillance, duplicate imports, destructive reconciliation, or turning Minerva into transcript storage. |
+| Consequences | A future adapter may append newly observed turns after the recorded watermark. Replacement, deletion, reordering, or conflicting edits in the source require a truthful visible state rather than silent repair. The source is never modified by Minerva. |
+| Reversibility | **Moderate.** Additional source types may share this lifecycle, but changing stable identity or watermark semantics after import would require migration. |
+| Latest responsible point | After D-008 supports further investment and before implementing any Claude Desktop, Codex, export, or shared-link intake. |
+| Falsifier | Revisit if a supported source cannot provide sufficiently stable turn identity or append detection. Reject an adapter that scans without an explicit user action, writes to the source, reimports duplicates, or silently rewrites prior imported material. |
+
 ## Decision queue
 
-**D-001 through D-008 are approved. The first-prototype product decision set is closed.**
+**D-001 through D-010 are approved first-prototype decisions. D-011 is an approved roadmap-only boundary. The first-prototype product decision set remains closed.**
 
-Architecture-specific choices—renderer, local store, AI provider, voice transport, orchestration, and deployment mechanics—remain open. They should be resolved only after `SPEC.md` translates the approved intent and decisions into one coherent, testable product contract.
+Architecture-specific choices—renderer implementation within A-008, local-store mechanism, AI provider, voice transport, orchestration, and deployment mechanics—remain open. They are resolved only through the named architecture and roadmap gates without changing the approved product contract.

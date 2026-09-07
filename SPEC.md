@@ -4,11 +4,11 @@
 
 | Field | Value |
 |---|---|
-| Status | **Approved — September 6, 2026** |
-| Date | September 6, 2026 |
+| Status | **Approved 1.1 — initial approval September 6, 2026; D-009–D-011 refinements approved September 7, 2026** |
+| Date | September 7, 2026 |
 | Product owner | Brandyn Schult |
-| Current phase | Greenfield product definition; no implementation architecture is selected |
-| Authority after approval | This file governs what the first Minerva prototype must do. `INTENT.md` governs the product problem and thesis. Approved entries in `DECISIONS.md` govern choices already made and cannot be changed here. `ARCHITECTURE.md` will govern implementation mechanisms; `ROADMAP.md` will govern sequence and release gates. |
+| Current phase | Greenfield pre-implementation planning; volatile adapter and measured-support choices remain open |
+| Authority after approval | This file governs what the first Minerva prototype must do. `INTENT.md` governs the product problem and thesis. Approved entries in `DECISIONS.md` govern choices already made and cannot be changed here. `ARCHITECTURE.md` governs implementation mechanisms; `ROADMAP.md` governs sequence and release gates. |
 | Historical boundary | Searchlight, Atlas, Gestures, source code, deployments, prompts, and transcripts are evidence only. They create no requirement unless it appears in approved Minerva documents. |
 | Change rule | Removing or materially changing an approved requirement requires an explicit decision update, corresponding acceptance changes, and a traceability update. |
 
@@ -288,6 +288,8 @@ The user sees the exact failed stage, retains committed work and successful sibl
 
 `CTX-013` An eligible Searchlight Harvest is a disclosed derived stage of the original sweep, not a later standalone action. Its exact stage manifest MUST contain the original frozen sweep manifest, the three fixed approach briefs, and only the current landed result version for each contributing approach. It MUST exclude later card edits, unrelated canvas state, prior failed output content, and all other cards outside the original manifest. This stage does not add any arm result to persistent Focus or authorize that result for unrelated later operations.
 
+`CTX-014` The first target-orientation treatment MUST be a selection-local textual chip derived from the same canonical compiler used for invocation. Before invocation it MUST identify the selected targets and supporting Focus in the prospective projection; after invocation it MUST resolve to the exact frozen `ContextManifest`. It creates no second context record. An ephemeral thumbnail MAY be tested only if bounded user evidence shows the text treatment is insufficient for orientation. Any thumbnail MUST be labeled **Visual reference only**, keyed to the relevant Revision, and excluded from AI context, provenance, persistence, and provider requests.
+
 ### Operation and lineage records
 
 The durable `PROV-*` requirements in this section apply to canvas-generating operations and Searchlight. Voice-turn context, attempts, responses, and failures remain ephemeral under Section 14 unless the user pins one utterance; pinning preserves only the approved card and lightweight source anchor, not the surrounding transcript or frozen voice context.
@@ -303,6 +305,10 @@ The durable `PROV-*` requirements in this section apply to canvas-generating ope
 `PROV-005` Operation records MUST be inspectable from their result cards and from History without forcing the user through a form before ordinary actions.
 
 `PROV-006` Failures, cancelled attempts, discarded late responses, and negative results MUST remain inspectable even when they create no result card.
+
+`PROV-007` A causal lineage or contribution edge MUST be admitted only when every exact parent version resolves, child and parent identities differ, parent references are unique, adding the edge cannot create an indirect causal cycle, and the originating operation satisfies its own parent and contribution cardinality contract. The same invariants MUST be checked during hydration. An inactive but retained historical parent remains valid. These constraints apply to factual lineage and contribution records, not editable free-form relationships.
+
+`PROV-008` Child-to-parent records are canonical. Any parent-to-child lookup MUST be rebuildable from them and MUST NOT become a separately authoritative mutable edge set.
 
 ## 9. Content entry and import
 
@@ -378,15 +384,17 @@ The durable `PROV-*` requirements in this section apply to canvas-generating ope
 
 ### Recombine
 
-`REC-001` Recombine MUST require at least two selected parent cards and at least one explicitly named contribution from each parent.
+`REC-001` Recombine MUST require at least two selected parent cards and at least one explicitly named contribution from each parent. Selected parents are operation targets; any supporting card beyond those parents MUST enter only through the canonical Focus projection.
 
-`REC-002` A contribution MAY be identified by an exact excerpt or a short user-authored description tied to a parent version. The interaction SHOULD be local to the selected cards and MUST NOT require a procedural questionnaire.
+`REC-002` A contribution MAY be identified by an exact excerpt or a short user-authored description tied to a parent version. Card-local highlighting MAY provide a fast path for an exact excerpt, but the short-description path and an equivalent nonvisual identification MUST remain available. Highlighting MUST NOT edit the parent or become a second context-selection system. The interaction SHOULD be local to the selected cards and MUST NOT require a procedural questionnaire.
 
 `REC-003` A recombination MUST create one new child card, preserve each parent unchanged, and record a contribution-to-parent mapping plus `derived from` lineage to every parent.
 
-`REC-004` The operation record MUST distinguish the named inherited contributions from the newly generated synthesis without claiming private reasoning.
+`REC-004` The operation record MUST distinguish the named inherited contributions from the newly generated synthesis without claiming private reasoning. A bridge introduced by the synthesis rather than inherited from a named contribution MUST be visibly identified as a hypothesis, not represented as inherited fact or automatically adopted as a canvas relationship.
 
 `REC-005` Later edits or removal of a parent MUST NOT alter the recombination's frozen contribution citations.
+
+`REC-006` Recombine MUST NOT add an automatic conflict-detection or conflict-resolution stage. When selected contributions conflict, Minerva MUST preserve both mappings and MUST NOT force a choice, block creation merely because of the conflict, or silently discard either contribution.
 
 ### Harvest
 
@@ -546,7 +554,7 @@ The durable `PROV-*` requirements in this section apply to canvas-generating ope
 
 `PER-002` Durable state MUST include workspaces, cards and versions, structures and membership, relationships, Focus, operation records, landed and failed results, History Moments, Undo/Redo position, active Path, preserved futures, and interrupted-work status.
 
-`PER-003` Temporary selection, hover, ephemeral voice highlights, raw audio, and unpinned conversation MUST NOT become durable workspace state.
+`PER-003` Temporary selection, hover, visual-reference thumbnails, ephemeral voice highlights, raw audio, and unpinned conversation MUST NOT become durable workspace state.
 
 `PER-004` Browser-local durability MUST use an atomic or recoverably equivalent commit boundary. A crash, reload, or tab close during persistence MUST yield either the prior acknowledged revision or the complete new acknowledged revision, never a falsely acknowledged mixture.
 
@@ -676,10 +684,10 @@ The durable `PROV-*` requirements in this section apply to canvas-generating ope
 |---|---|---|---|
 | `AC-001` | First encounter | A fresh browser reaches either an editable library workspace or blank canvas directly; both choices are visible and the example uses ordinary controls. | A tour, read-only example, hidden blank path, sign-in, or preferred answer blocks first use. |
 | `AC-002` | Durable local mutation | Create/edit/move/focus a card, receive success, reload and restart the same supported browser, and recover the exact acknowledged state and History Moment. | Any acknowledged state is absent, mixed, silently reset, or represented as cloud-backed. |
-| `AC-003` | Explicit context | Capture a manifest, then pan, zoom, and move cards without changing content or explicit structures; the serialized AI payload remains exact while a durable geometry move may advance the recorded workspace revision. Add/remove Focus or targets and the visible count and payload change accordingly. | Geometry changes the payload, an excluded card appears, a link pulls an endpoint, or overflow truncates silently. |
+| `AC-003` | Explicit context | Inspect the selection-local textual chip, capture its manifest, then pan, zoom, and move cards without changing content or explicit structures; the chip and serialized AI payload remain exact while a durable geometry move may advance the recorded workspace revision. Add/remove Focus or targets and the visible chip, count, and payload change accordingly. If a visual-reference thumbnail is tested, it disappears without changing context or durable state. | The chip and manifest disagree; geometry changes the payload; an excluded card appears; a link pulls an endpoint; overflow truncates silently; or a thumbnail becomes semantic, durable, or provider input. |
 | `AC-004` | Frozen Branch | Invoke Branch, then edit and move its source while work runs. The landed card remains outside Focus and cites the original source version and manifest. | Source mutation changes the running input, the original is edited, or the result arrives without durable lineage. |
 | `AC-005` | Neutral Compare | Compare at least two selected cards and inspect a durable source-backed comparison. | It ranks a winner, silently compares Focus-only cards, or loses source versions. |
-| `AC-006` | Contribution Recombine | Name one exact contribution from each of two parents and create a child whose record maps both contributions and preserves both parents. | Parent contributions are vague/untraceable, a parent is overwritten, or later edits rewrite the record. |
+| `AC-006` | Contribution Recombine | Use an exact excerpt from one parent and a short description from another, optionally through card-local highlighting, then create a child whose record maps both contributions and preserves both parents. Include one Focus-only supporting card and one conflicting pair; both named contributions remain mapped, and every newly synthesized bridge is labeled as a hypothesis. | Highlighting is required; Focus is duplicated by a merge-specific context system; a parent or conflicting contribution is overwritten or omitted; a bridge is presented as inherited fact; or later edits rewrite the record. |
 | `AC-007` | Harvest | Harvest a nonempty context and inspect a concise editable source-linked result containing supported consequences and limitations. | It fabricates consensus, hides failures, lacks citations, or silently updates later. |
 | `AC-008` | Searchlight isolation | Inspect three briefs fixed before generation and captured arm requests showing identical frozen context plus only each arm's own brief, with no sibling result. | Briefs are chosen adaptively after results, sibling content leaks, or a hidden stage/call occurs. |
 | `AC-009` | Searchlight control | While two arms run, keep using the canvas; pause queued work, resume against original input, then cancel and inject a late provider response. Landed siblings persist and the late response creates no card. | Canvas blocks, later edits enter resumed work, cancellation erases landed cards, or a late result commits. |
@@ -693,6 +701,7 @@ The durable `PROV-*` requirements in this section apply to canvas-generating ope
 | `AC-017` | Accessible core loop | Complete the loop using keyboard and the nonvisual structure representation with voice and touch unavailable. | A semantic action requires drag, color, spatial sight, touch, or voice. |
 | `AC-018` | Complete product loop | On the owner-rehearsal problem, complete every central-loop step and reconstruct one claimed result from visible manifests, contributions, lineage, operation records, and History. Record separately whether the primary canvas felt like a responsive thinking instrument or like operating a graph-management interface. | The loop depends on a hidden guide/workflow, the result's cause cannot be reconstructed, or operating the interface displaces the thinking work. |
 | `AC-019` | Matched product evidence | Execute D-008 with preserved packets, 24-hour checks, reviewer records, countermetrics, and the declared decision gate. | Output volume or model scoring substitutes for participant-owned consequence, or conditions are materially unmatched. |
+| `AC-020` | Lineage integrity | At both incremental admission and hydration, exercise a missing parent, self-parent, indirect cycle, duplicate parent, and capability-specific cardinality mismatch. Each live mutation rejects atomically; each stored defect invokes last-valid-revision recovery without dropping an edge silently. A preserved historical parent remains valid, and rebuilding reverse-child lookup yields the same children. | An invalid edge commits; a valid historical parent is rejected; hydration silently repairs or drops provenance; or reverse lookup becomes independent authority. |
 
 ## 20. Evidence required for completion claims
 
@@ -702,7 +711,7 @@ Evidence is cumulative; a later level does not erase failures at an earlier leve
 |---|---|---|
 | `E0 — Plan` | Intended behavior is specified | Approved intent, decisions, spec, and traceability |
 | `E1 — Source` | Behavior is implemented in source | Exact source revision and bounded review of the relevant path |
-| `E2 — Automated contract` | Deterministic semantics hold in a harness | Context, state, history, cancellation, import, and accessibility contract tests |
+| `E2 — Automated contract` | Deterministic semantics hold in a harness | Context, state, lineage admission/hydration, history, cancellation, import, accessibility, and canvas-adapter conformance tests, including stale-Revision rejection |
 | `E3 — Local browser` | Integrated behavior works in a real browser | Fresh browser interaction, reload/restart, fault injection, and console/network evidence |
 | `E4 — Deployed web` | The exact build is reachable through its isolated Vercel deployment | Deployment identity, immutable URL, readiness, route response, and interactive readback |
 | `E5 — Live provider` | Real generation or voice behavior works end to end | Disclosed provider/model, real request, actual audio where claimed, spend/latency receipt, and durable visible outcome |
@@ -737,6 +746,8 @@ The following are outside the first prototype:
 - Compatibility with predecessor code, schemas, stored data, workflow state, deployments, or visual layouts.
 
 Roadmapped anonymous cloud workspaces, transcript ingestion, agentic expeditions, ambient exploration, and voice writes require new product and authority decisions before implementation. They are not latent first-prototype requirements.
+
+When a later decision authorizes transcript ingestion, the source remains distinct from the editable cards materialized from it. The future contract uses stable source, session, and turn identities where available; refreshes only through an explicit user action; advances an append watermark over previously acknowledged turns; and never rewrites or deletes previously materialized cards silently. Repeated Refresh is idempotent. Missing stable identity or non-append source change stops incremental refresh with a truthful explanation rather than guessed reconciliation. The selected external source remains read-only.
 
 ## 22. Open architecture and measurement decisions
 
@@ -776,9 +787,12 @@ An architecture choice is invalid if it weakens visible context, durable acknowl
 | D-006 semantic history and Paths | `STATE-005`–`STATE-006`, `HIS-*`, `AC-011`–`AC-012` |
 | D-007 bounded voice companion | `VOI-*`, `AC-015`–`AC-016` |
 | D-008 staged matched evaluation | `EVAL-*`, `AC-018`–`AC-019`, `E7` |
+| D-009 Recombine capture and hypothesis boundary | `REC-*`, `PROV-*`, `AC-006` |
+| D-010 selection-local target orientation | `CTX-014`, `PER-003`, `AC-003` |
+| D-011 future transcript-source lifecycle | Section 21 roadmap boundary; no first-prototype acceptance scenario |
 
 ## 24. Approval record
 
-The product owner approved this specification on September 6, 2026, including the explicit AI-assisted Compare/Recombine/Harvest interpretation in Section 1 and the one-current-workspace prototype boundary.
+The product owner approved this specification on September 6, 2026, including the explicit AI-assisted Compare/Recombine/Harvest interpretation in Section 1 and the one-current-workspace prototype boundary. The product owner approved the D-009 through D-011 refinements incorporated here on September 7, 2026; D-011 remains roadmap-only.
 
-This approval freezes the first-prototype behavior contract and permits work to proceed to `ARCHITECTURE.md`. It does not approve an implementation plan or authorize reuse of predecessor code.
+This approval freezes the first-prototype behavior contract. It does not itself authorize implementation or reuse of predecessor code; `ROADMAP.md` remains the execution authority and currently authorizes R0 alone.
