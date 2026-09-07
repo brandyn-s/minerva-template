@@ -624,3 +624,27 @@ rejects the proposal.
 - Remaining uncertainty / reopen when: R5 or R6.9 closeout; the owner
   decides `J-20260907-03`; or the owner reverses the R6V deviation.
 - Revision and references: commit containing this entry
+
+### J-20260907-12 — Accept the four remaining design-brief defaults
+
+- Gate or slice: Hackathon preparation
+- Actors: Product owner (human), repository agent
+- Context: The design brief left four first-screen choices open: Focus field
+  placement, the membership marker, the Simulated label, and light-only
+  versus dark.
+- Agent proposal: A pinned top-left mono Focus strip with per-card `IN FOCUS`
+  tags; a mono `MEMBER OF` header tag plus structure border tone with a
+  dashed drop preview; a mono ink `SIMULATED` header tag repeated in the
+  receipt and Focus strip, never a lineage accent; light-only for the slice.
+- Human disposition and rationale: **Accepted "for now".** The choices are
+  presentation inside the disposable slice and may be revised at T+0–10 by
+  the owner without a further entry.
+- Evidence or result: `HACKATHON.md` design brief section "Decided September
+  7, 2026" replaces "Still open before T+0". Each default cites the
+  `SPEC.md` requirement it serves; none changes context, Focus, membership,
+  or History semantics.
+- Errors, friction, or cuts: These defaults were proposed by the agent, not
+  authored by the owner, unlike the nine brief bullets; the section says so.
+- Remaining uncertainty / reopen when: The owner revises any of them at
+  T+0–10, or the T+120 rehearsal shows one of them costs legibility.
+- Revision and references: commit containing this entry
