@@ -97,12 +97,27 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 node --version
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm --version
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run security:audit
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
-npx --yes vercel@59.11.7 whoami
-npx --yes vercel@59.11.7 project ls --scope thalient
+npm_config_engine_strict=false npx --yes vercel@59.11.7 whoami
+npm_config_engine_strict=false npx --yes vercel@59.11.7 project ls --scope thalient
 ```
 
 The first three commands must report `8.30.1`, `v24.20.0`, and `12.0.2`; the
-last two must show an authenticated user and an empty `thalient` project list.
+last two must show an authenticated user and no `minerva` project under
+`thalient`. Unrelated projects in that team are expected and are not a
+falsifier; an existing `minerva` project is.
+
+Every `vercel` invocation carries `npm_config_engine_strict=false` because
+this repository's `.npmrc` sets `engine-strict=true`, which is deliberate and
+must not be relaxed: it is what makes `npm ci` refuse a toolchain other than
+the pinned Node and npm. That pin also applies to unrelated `npx` installs, so
+on a host whose default Node falls outside the Vercel CLI's dependency engine
+range the install fails with `EBADENGINE` instead of warning. The prefix scopes
+the exception to the one command that needs it. Keep it on every line: adding
+`--package=node@24.20.0` does not help, because the engine check runs in the
+outer npm before the pinned Node exists, and each line must stand alone since
+a shell that runs one command per invocation does not carry an `export`
+between them.
+
 The pre-clock operator then leaves the template's `main` clean and
 synchronized. Neither the product repository nor the Vercel project exists
 before the clock starts; the template checkout's own `.vercel/project.json`,
@@ -150,9 +165,9 @@ printf '%s' '{"security_and_analysis":{"secret_scanning_push_protection":{"statu
   | gh api -X PATCH repos/brandyn-s/minerva --input -
 gh api -X PATCH repos/brandyn-s/minerva/code-scanning/default-setup \
   -f state=configured -f query_suite=default
-npx --yes vercel@59.11.7 project add minerva --scope thalient
-npx --yes vercel@59.11.7 link --yes --team thalient --project minerva
-npx --yes vercel@59.11.7 env ls
+npm_config_engine_strict=false npx --yes vercel@59.11.7 project add minerva --scope thalient
+npm_config_engine_strict=false npx --yes vercel@59.11.7 link --yes --team thalient --project minerva
+npm_config_engine_strict=false npx --yes vercel@59.11.7 env ls
 git switch -c codex/hackathon-slice
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
@@ -160,7 +175,7 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 
 Read the controls back with `gh api repos/brandyn-s/minerva/rulesets`,
 `gh repo view brandyn-s/minerva --json isTemplate,defaultBranchRef`, and
-`npx --yes vercel@59.11.7 project ls --scope thalient` before the first push.
+`npm_config_engine_strict=false npx --yes vercel@59.11.7 project ls --scope thalient` before the first push.
 `vercel env ls` must list no provider credential; provider routes stay
 disabled. The `.vercel/` link directory is gitignored and never committed. The fresh clone needs one `npm ci`; with the npm cache warm from
 the pre-clock check it takes seconds. Do not otherwise spend clock time
@@ -221,8 +236,8 @@ Only mission control deploys, and only a frozen, safe revision with no secret
 in the bundle and provider routes disabled or bounded:
 
 ```sh
-npx --yes vercel@59.11.7 deploy --yes
-npx --yes vercel@59.11.7 inspect <deployment-url> --wait --timeout 90s
+npm_config_engine_strict=false npx --yes vercel@59.11.7 deploy --yes
+npm_config_engine_strict=false npx --yes vercel@59.11.7 inspect <deployment-url> --wait --timeout 90s
 curl -sSI <deployment-url> | head -1
 ```
 
