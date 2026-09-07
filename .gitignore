@@ -5,6 +5,11 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 
+# Operating-system and editor files
+.DS_Store
+*.swp
+*.swo
+
 # Local platform and environment state
 .vercel/
 .env*
@@ -16,4 +21,3 @@ coverage/
 # Content-bearing evaluation evidence is never tracked
 evaluation-artifacts/
 evidence/private/
-.vercel

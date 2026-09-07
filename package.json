@@ -2,7 +2,16 @@
   "name": "minerva",
   "version": "0.0.0",
   "private": true,
-  "description": "Pre-clock launchpad for the greenfield Minerva prototype.",
+  "description": "A spatial thinking environment for directing AI with explicit context and durable lineage.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandyn-s/minerva.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brandyn-s/minerva/issues"
+  },
+  "homepage": "https://github.com/brandyn-s/minerva#readme",
   "engines": {
     "node": "24.20.0",
     "npm": "12.0.2"
@@ -17,7 +26,7 @@
     "test": "node --test",
     "security:audit": "npm audit --audit-level=low",
     "secrets:scan": "sh scripts/scan-secrets.sh",
-    "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run secrets:scan"
+    "check": "npm run lint && npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
     "next": "16.3.4",

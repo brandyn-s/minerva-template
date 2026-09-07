@@ -30,8 +30,9 @@ bullet log without changing its substance.
 
 ## Entry contract
 
-Use only the fields that carry a decision, but always name the disposition,
-human judgment, evidence or result, and reopening condition.
+Use only fields that carry the decision. Separate the agent's proposal from the
+human disposition so a reviewer can evaluate judgment without reconstructing a
+transcript.
 
 ```md
 ### J-YYYYMMDD-NN — Short title
@@ -39,13 +40,14 @@ human judgment, evidence or result, and reopening condition.
 - Time: ISO 8601 when sequence matters; otherwise date
 - Gate or slice: Rn, hackathon, or repository
 - Actors: human, agent, reviewer, or system
-- Trigger or proposal: what required judgment
-- Disposition: approved | modified | rejected | reopened | observed |
-  implemented | falsified
-- Human judgment: the non-delegable choice or evaluation
+- Context: what required judgment
+- Agent proposal: the material recommendation or `None`
+- Human disposition and rationale: accepted | modified | rejected | pending,
+  followed by the non-delegable choice and why
 - Evidence or result: smallest outcome-bearing observation, including failures
-- References: source revision and content-free artifact links or IDs
+- Errors, friction, or cuts: only what affects the claim
 - Remaining uncertainty / reopen when: the condition that changes this decision
+- Revision and references: source revision and content-free artifact links
 ```
 
 ## September 6, 2026
@@ -94,13 +96,13 @@ human judgment, evidence or result, and reopening condition.
   owner authorized R0; engineering evidence subsequently recorded it passed as
   infrastructure only, with no product capability or R1 authorization.
 - Evidence or result: Clean source checks passed at `dcaa0bf`; repository and
-  Vercel readback identified only `brandyn-s/minerva` and `thalient/minerva`,
-  with zero deployments, aliases, integration resources, or provider routes.
+  Vercel readback identified only the isolated Minerva boundaries, with zero
+  deployments, aliases, integration resources, or provider routes.
   A transient canonical Git link was removed before closeout. Earlier verifier
   defects and development-dependency alerts remained visible rather than being
   converted into a product claim.
-- References: `dcaa0bf`, `7c70493`; the retired detailed R0 JSON remains in Git
-  history at `7c70493:evidence/gates/R0.json`
+- References: `dcaa0bf`, `7c70493`; the retired detailed R0 receipt remains in
+  reachable Git history
 - Remaining uncertainty / reopen when: Native readback reveals predecessor
   leakage, a deployment, a client secret, or a false isolation claim.
 
@@ -177,6 +179,43 @@ human judgment, evidence or result, and reopening condition.
   demo exposes different friction, or the product owner changes the truthful
   demo claim.
 
+### J-20260906-08 — Prepare the repository for public collaboration
+
+- Gate or slice: Repository readiness
+- Actors: Product owner (human), repository and review agents
+- Context: The product owner requested a professional, maintainable,
+  agent-first repository that is ready to be made public without implying that
+  the product has already been built.
+- Agent proposal: Lead with the Minerva thesis; add an MIT license, community
+  contribution and security contracts, SHA-pinned CI, dependency maintenance,
+  one canonical cross-agent instruction source, and structured judgment fields
+  in issues and pull requests. Do not build a real-time activity monitor or
+  change visibility as part of repository preparation.
+- Human disposition and rationale: **Accepted, with one publication choice
+  pending.** Repository preparation and a license were explicitly requested;
+  with no license family prescribed, the implementation selects the short,
+  permissive MIT License for the public project. Licenses already granted are
+  not retroactively revocable. The product owner has not yet decided the public
+  treatment of historical infrastructure identifiers.
+- Evidence or result: The public-facing README now distinguishes plan, shell,
+  and product; the contributor path needs no private platform access. A local
+  exact-toolchain run passed install, audit, lint, typecheck, five tests, build,
+  and full-history/current-content secret scanning; the CI workflow mirrors
+  those checks. `CLAUDE.md` imports `AGENTS.md`, and the obsolete pre-build
+  critique is archived as a dated historical snapshot.
+- Errors, friction, or cuts: GitHub branch rules, private vulnerability
+  reporting, secret scanning, and code scanning cannot be finalized in this
+  private/free repository state. A code of conduct is deferred rather than
+  publishing a fake or non-private enforcement contact. The retired R0 receipt
+  remains reachable in Git history and contains opaque Vercel identifiers, not
+  credentials.
+- Remaining uncertainty / reopen when: Before visibility changes, the owner
+  accepts those identifiers as public metadata or authorizes a clean-root
+  history, then enables the publication-time GitHub protections after the
+  readiness change reaches `main`.
+- Revision and references: base `4773e6e`; draft pull request 2; commit
+  containing this entry
+
 ## Clock-start entry template
 
 Copy this only when the product owner explicitly starts the event clock:
@@ -186,16 +225,18 @@ Copy this only when the product owner explicitly starts the event clock:
 
 - Time: YYYY-MM-DDTHH:MM:SS±HH:MM
 - Gate or slice: Hackathon T+0
-- Actors: Product owner (human), operator, model/session
-- Trigger or proposal: Product owner declares the clock started
-- Disposition: approved
-- Human judgment: The T+120 floor, target, cut lines, and demo claim are accepted
-  or modified as follows: ...
+- Actors: Product owner (human), operator, tool/model family when useful
+- Context: Product owner declares the clock started
+- Agent proposal: T+120 scope or sequencing proposal, if any
+- Human disposition and rationale: The T+120 floor, target, cut lines, and demo
+  claim are accepted or modified as follows: ...
 - Evidence or result: Clean base revision ..., build branch ..., locked runtime
   preflight ...
-- References: base SHA ..., branch ..., model/session IDs ...
+- Errors, friction, or cuts: ...
 - Remaining uncertainty / reopen when: First material falsifier or a cut changes
   the demo claim
+- Revision and references: base SHA ..., branch ..., content-free session
+  reference only when useful ...
 ```
 
 After the frozen T+120 artifact is demonstrated, record a separate decision:
@@ -205,14 +246,16 @@ After the frozen T+120 artifact is demonstrated, record a separate decision:
 
 - Time: YYYY-MM-DDTHH:MM:SS±HH:MM
 - Gate or slice: Hackathon T+120 checkpoint
-- Actors: Product owner (human), operator, model/session
-- Trigger or proposal: Observed T+120 demo, failures, friction, and agent options
-- Disposition: approved | modified | rejected
-- Human judgment: Stop now, or continue to T+480 with zero or one named primary
-  improvement (floor repair or creative leverage) and, only when distinct and
-  safe, zero or one reliability improvement because ...
+- Actors: Product owner (human), operator, tool/model family when useful
+- Context: Observed T+120 demo, failures, and friction
+- Agent proposal: Ranked stop/continue options and their tradeoffs
+- Human disposition and rationale: accepted | modified | rejected — stop now,
+  or continue to T+480 with zero or one named primary improvement (floor repair
+  or creative leverage) and, only when distinct and safe, zero or one
+  reliability improvement because ...
 - Evidence or result: T+120 commit ..., demo record ..., observed friction ...
-- References: T+120 SHA ..., content-free evidence refs ...
+- Errors, friction, or cuts: ...
 - Remaining uncertainty / reopen when: The selected work destabilizes the
   checkpoint or new evidence changes the demo claim
+- Revision and references: T+120 SHA ..., content-free evidence refs ...
 ```

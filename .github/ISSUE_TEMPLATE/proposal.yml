@@ -1,0 +1,53 @@
+name: Product or technical proposal
+description: Propose a scoped outcome, tradeoff, or change to the current contract.
+title: "proposal: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Real problem
+      description: What user or maintainer problem exists, and who experiences it?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should become observably possible without prescribing unnecessary implementation?
+    validations:
+      required: true
+  - type: textarea
+    id: nonobvious
+    attributes:
+      label: Why this belongs in Minerva
+      description: How does this preserve or deepen the product thesis instead of adding a familiar default?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and tradeoffs
+      description: What other approaches, including doing nothing, did you consider?
+    validations:
+      required: true
+  - type: textarea
+    id: exclusions
+    attributes:
+      label: What should not be built
+      description: Name the cuts or non-goals that keep this proposal bounded.
+    validations:
+      required: true
+  - type: textarea
+    id: judgment
+    attributes:
+      label: Human judgment required
+      description: Which choice must remain with the product owner or user?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Decisive evidence and falsifier
+      description: What smallest observation would support the change, and what would make the claim false?
+    validations:
+      required: true

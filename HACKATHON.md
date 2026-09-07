@@ -16,7 +16,7 @@ The pre-clock baseline is intentionally uneventful:
 
 | Ready before the clock | Deliberately starts at T+0 |
 |---|---|
-| Private greenfield GitHub repository and clean `main` | Product-owned domain records and commands |
+| Greenfield repository and clean `main` | Product-owned domain records and commands |
 | Isolated Vercel project with no deployment | Browser-local workspace repository |
 | Exact Node/npm lock and reproducible install | Editable spatial canvas and Focus behavior |
 | Minimal Next.js shell and one bounded `npm run check` | Branch/Searchlight operation adapters |

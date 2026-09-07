@@ -11,7 +11,6 @@
 | Architecture authority | [ARCHITECTURE.md](./ARCHITECTURE.md) |
 | Current execution | [CURRENT_GATE.md](./CURRENT_GATE.md) is the subordinate operational record; it cannot itself grant authority or alter the authorities above or this long-form sequence |
 | Event slice | [HACKATHON.md](./HACKATHON.md), evaluated with [DEMO.md](./DEMO.md), is prepared but inactive until a product-owner clock-start declaration is recorded |
-| Supporting pre-build critique | [JUDGMENT_AT_SPEED_FINDINGS.md](./JUDGMENT_AT_SPEED_FINDINGS.md); useful sequencing evidence, not product authority |
 | Scope | Greenfield first prototype through staged product evaluation and a terminal evidence-backed decision |
 | Historical boundary | Searchlight, Atlas, Gestures, their repositories, schemas, deployments, prompts, and secrets are evidence only |
 
@@ -54,10 +53,10 @@ The first prototype is complete only when required capabilities are implemented 
 
 ### R0 closeout baseline (historical)
 
-- The canonical private repository and minimal Next.js shell exist; approved
+- The canonical greenfield repository and minimal Next.js shell exist; approved
   authority history precedes generated code and R0 has passed.
 - Node 24.20.0, npm 12.0.2, and Vercel CLI 59.11.7 are locked in the repository.
-- The isolated `thalient/minerva` Vercel project is linked but undeployed.
+- The isolated Vercel project is linked locally but undeployed.
   Browser-storage and admission namespaces are reserved; no browser database,
   provider route, credential, or product capability exists yet.
 - `HACKATHON.md` and `DEMO.md` prepare the event slice without implementing it.
