@@ -690,3 +690,41 @@ rejects the proposal.
   `INTENT.md`, `DECISIONS.md`, `SPEC.md`, `ARCHITECTURE.md`, and `ROADMAP.md`
   remain unchanged. No product code, application fixtures, provider calls,
   project creation, or deployment is part of this change.
+
+### J-20260907-14 — Approve executable walking-skeleton delivery improvements
+
+- Gate or slice: Repository process maintenance; ROADMAP amendment 1.3
+- Actors: Product owner (human), repository agent
+- Context: Reusable delivery needed earlier visible integration, platform
+  preflight, reliable worker control, and less duplicate progress bookkeeping.
+  The owner further clarified: default to one implementer, use resumable
+  content-free operational tooling, check early comprehension, review blocked
+  work after five minutes, and do not import product or compiler shortcuts
+  from a different implementation.
+- Agent proposal: Parameterized private-by-default launch, Vercel/Gateway-first
+  preflight, one permission decision with distinct external boundaries,
+  editable-durable-card-first sequencing, short acknowledged worker units,
+  one machine-timestamped event source, portable adversarial contract fixtures,
+  frozen integration batches, and separate implementation/live/human states.
+- Human disposition and rationale: **Accepted for implementation.** This
+  authorizes process/tooling and delivery-order improvements in the template,
+  not product activation, deployment, provider spend, participant contact, or
+  weaker semantic and human-evaluation gates. Exact tooling interfaces are
+  engineering choices, not separately human-accepted product outcomes.
+- Evidence or result: Launch/control tools and fixture-harness self-tests are
+  reusable without a product implementation. README and the working agreement
+  route to one delivery procedure; HACKATHON uses a parameterized launch and
+  early visible milestones; ROADMAP 1.3 distinguishes thin implementation order
+  from acceptance dependencies. Vercel build configuration retains exact pins.
+- Errors, friction, or cuts: Manual duplicate status narratives, hardcoded
+  public product creation, long unacknowledged worker turns, and repeated
+  full-suite checks on intermediate snapshots are superseded. T+10/T+20 are
+  intervention thresholds, not measured savings or completion guarantees.
+  Guarded local commands do not intercept arbitrary external agent tools.
+- Remaining uncertainty / reopen when: A product adapter fails conformance;
+  platform entitlement or privacy readback differs; live admission or access
+  remains unproved; or the delivery cadence fails to expose a blocked path.
+  Template self-tests do not close product, live-provider, or human gates.
+- Revision and references: Commit containing this entry; proposal issue #17;
+  `docs/delivery-workflow.md`. No private product source or incident logs are
+  included; the template remains PRE-CLOCK.

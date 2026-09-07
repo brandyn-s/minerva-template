@@ -24,6 +24,7 @@ record and cannot override those sources.
 | Hackathon implementation | `CURRENT_GATE.md` and `HACKATHON.md`, including its demo contract |
 | Release or security | `CURRENT_GATE.md`, relevant architecture boundaries, and `SECURITY.md` |
 | Long-form sequencing | The relevant `ROADMAP.md` gate only |
+| Launch, coordination, or delivery | `docs/delivery-workflow.md`, then only the needed CLI reference |
 
 ## Working agreement
 
@@ -39,6 +40,23 @@ record and cannot override those sources.
 - Build the smallest complete vertical proof. Keep simulations conspicuously
   labelled and generated proposals behind the same validation and durability
   boundaries as human input.
+- Start with the editable durable card and one bounded Branch path, not every
+  internal subsystem. Follow the T+10/T+20 intervention thresholds in
+  `docs/delivery-workflow.md`; they are not completion-time guarantees.
+- Default to one implementer through the complete creative loop. Additional
+  lanes are optional independent work, not mandatory coordination. Review
+  critical-path blockers after five minutes; stop unrelated polish. Do not
+  restart approved planning or broad research once the runtime contract is known.
+- Check first-use comprehension as soon as the opening interaction exists,
+  before layout polish or Searchlight; preserve the final reviewer exercise.
+  A working button or an agent prediction is not human comprehension evidence.
+- Record one launch authorization with separate privacy, deployment, spend,
+  and contact boundaries. Do not ask again for unchanged in-scope work.
+- Freeze ports and file ownership before parallel work. Use short units,
+  explicit revision acknowledgements, and guarded execution. A queued message
+  is not a stop signal; stale or unacknowledged output cannot be integrated.
+- Record routine progress once with `npm run process`; derive status, timeline,
+  and feedback from its event stream. Do not maintain duplicate manual trackers.
 - Never expose secrets, put provider credentials in the browser, import
   predecessor code or state, or treat private reasoning as provenance.
 - Never push directly to `main`. Use a branch and pull request. Changing
@@ -55,6 +73,12 @@ first material falsifier, and time budget. Prefer native tests or runtime
 readback at the surface that owns the claim. Stop when the evidence answers the
 decision; a passing shell is not product or deployment proof.
 
+Run targeted regressions during implementation. Freeze the complete wired
+batch before one independent full-state correctness review, then repair and
+re-review only material affected boundaries unless broader evidence is
+invalidated. Required exact-head CI still applies. Reusable adapter fixtures
+live in `contracts/`; their harness self-tests do not prove product conformance.
+
 A handoff reports:
 
 - the user-visible outcome and exact revision or files changed;
@@ -62,6 +86,9 @@ A handoff reports:
 - the material proposal made and the human disposition, when one occurred;
 - assumptions, failures, friction, and cuts that affect the claim; and
 - remaining uncertainty and the next authorized action.
+
+Report implementation, integration, live activation, and human acceptance
+separately. Neither test results nor silence can supply human acceptance.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Status | **Approved 1.2 — original long-form plan approved September 6, 2026; R0 passed; event slice prepared but inactive; R5 pass condition split and the consequential-discovery veto moved to R6 closeout on September 7, 2026** |
+| Status | **Approved 1.3 — R0 passed; product launch inactive in this template; walking-skeleton delivery and consolidated implementation authorization approved September 7, 2026; product and human evidence gates retained** |
 | Date | September 6, 2026 |
 | Effort | **XL** — execute as bounded gate plans, never as one undifferentiated build |
 | Product authority | [INTENT.md](./INTENT.md), then approved entries in [DECISIONS.md](./DECISIONS.md), then [SPEC.md](./SPEC.md) |
@@ -16,9 +16,13 @@
 
 This file governs sequence, dependencies, stopping rules, and release gates. It cannot weaken an approved product or architecture contract. If a roadmap step conflicts with an authoritative document, the roadmap changes.
 
-The original R0 authorization was exercised and R0 was recorded passed. R1
-through R9 still require explicit product-owner authorization after their
-dependencies produce the named decisive evidence. `CURRENT_GATE.md` may record
+The original R0 authorization was exercised and R0 was recorded passed. A
+product-owner launch may authorize a named range of implementation work once,
+without a repeated permission request at each unchanged engineering step.
+Dependencies, acceptance evidence, live activation permissions, and human
+decisions still govern progression; blanket implementation authorization cannot
+pass R5, R6.9, or R9. No later product gate is active in this template.
+`CURRENT_GATE.md` may record
 an explicitly labelled, disposable experiment that the product owner authorizes
 outside gate order; that experiment cannot close, satisfy, or silently replace a roadmap
 gate. A failed gate triggers
@@ -88,6 +92,35 @@ The earliest product-risk test does not require every approved capability. A com
 
 This preserves the approved scope while applying the pre-build finding that voice and orchestration must not delay the first test of the spatial thesis.
 
+### Walking-skeleton delivery amendment (1.3)
+
+Build a thin visible path through the foundation and adapters before completing
+their full breadth: one editable card, atomic acknowledgement and reload,
+keyboard movement, exact Focus-plus-target context, then one bounded Branch
+and its durable result. The early renderer is an adapter to the same semantic
+authority, not a throwaway second state store. Relevant R1 contracts and
+revocation/recovery proofs precede the operations that rely on them.
+
+Once the minimal shared ports are frozen, thin R2A/R2B adapter preparation may
+accompany R1 implementation; it need not wait for all unrelated R1 breadth.
+The gate dependency diagram below remains the **acceptance** order, not a
+requirement to withhold the first screen until an entire internal layer is
+complete. R3 closes only after R2A/R2B evidence; no early screen closes R1.
+Live Branch still requires its durable-landing, admission, and hard-bound
+proofs and explicit spend permission.
+
+Use [the delivery workflow](./docs/delivery-workflow.md) for T+10 platform,
+T+20 editable-durable-card intervention thresholds, short acknowledged worker
+units, one event source, and frozen integration review. Prefer the preflighted
+Vercel AI Gateway transport; changing transport does not weaken EXP-003.
+Track implementation, integration, live activation, and human acceptance
+independently. This amendment changes delivery order, not first-prototype scope
+or the terminal evidence-backed product decision.
+Default to one implementer through the first complete creative loop; adapter
+lanes are optional independent work. Review a blocked critical dependency after
+five minutes. Obtain an early first-use comprehension observation before polish
+or Searchlight, without replacing the named human gates.
+
 ## 4. Domains and execution path
 
 ### Domains
@@ -115,13 +148,18 @@ This preserves the approved scope while applying the pre-build finding that voic
 Use the software-development chain phase by phase:
 
 1. Read `CURRENT_GATE.md`, then the relevant sections of the approved authorities and this roadmap.
-2. Use fresh, scoped subagents for independent file-level slices.
+2. Keep one implementer on the first creative loop; use scoped subagents only
+   for optional independent file-level work.
 3. Keep shared domain contracts and integration in one authoritative lane.
 4. Merge only after the gate's smallest decisive evidence passes.
 5. Stop on its first material falsifier.
 6. Record the result, decision, and any correction in JOURNAL.md.
 
-Do not run this XL roadmap through one long autonomous loop. R2A/R2B and R6/R6V are the only planned parallel build lanes. R6V is a disposable Voice-feasibility lane and does not edit R6's shared integration files. Browser-matrix checks in R8 may run in parallel against one immutable build because they are read-only observations.
+Execute this XL roadmap as bounded work units, not an uninterruptible worker
+turn. R2A/R2B and R6/R6V are optional parallel build lanes; amendment 1.3
+allows thin adapter preparation beside R1 after shared ports freeze. R6V
+remains disposable and cannot edit R6's integration files. Read-only R8
+browser-matrix checks may run in parallel against one immutable build.
 
 ## 5. Non-negotiable constraints
 
@@ -174,7 +212,7 @@ When implementation discovers an in-scope material defect, fix it and return to 
 | R8 | Critical | BUILD/MEASURE · LOCAL-FAST | R7 | Frozen evaluation candidate | Complete E0–E6 |
 | R9 | Critical | MEASURE · DURABLE | R8 | Staged matched evaluation and terminal product decision | E7 |
 
-Dependency summary:
+Acceptance dependencies (thin implementation order is amended in Section 3):
 
 ~~~text
 R0 → R1 → [R2A | R2B] → R3 → R4 → R5 → [R6 (R6.9 veto) | R6V] → R7 → R8 → R9
@@ -248,7 +286,10 @@ Demo: A real-browser debug surface performs create, edit, move, Focus, simulated
 
 ## 10. Wave 2 — Select volatile adapters in parallel
 
-R2A and R2B begin only after R1 freezes their shared domain and port contracts. They use isolated worktrees and do not edit the same implementation files.
+R2A and R2B begin only after R1 freezes their shared domain and port contracts.
+Thin adapter work may begin before the complete R1 closeout under amendment
+1.3; it does not pass an acceptance dependency. They use isolated worktrees and
+do not edit the same implementation files.
 
 ### R2A — EXP-002: disposable renderer and structured projection
 
@@ -767,7 +808,10 @@ pre-clock experiment boundary and simplifies R0 evidence administration without
 changing a product requirement or closing another gate. Amendment **1.2**
 (September 7, 2026) splits the R5 pass condition, adds the R6.9 owner
 rehearsal as the consequential-discovery veto, and gates R7 on it
-(`J-20260907-08`, `J-20260907-11`). `CURRENT_GATE.md` now
+(`J-20260907-08`, `J-20260907-11`). Amendment **1.3**
+(`J-20260907-14`) authorizes walking-skeleton-first sequencing and reusable
+launch/control tooling while preserving acceptance dependencies.
+`CURRENT_GATE.md` now
 carries the subordinate operating state. Before each later long-form gate, the
 implementation session must:
 
@@ -779,7 +823,8 @@ implementation session must:
 
 Changes to product intent, approved decisions, acceptance criteria, architecture authority, participant contact, or later-horizon scope return to the product owner. Ordinary in-scope implementation decisions remain with the executing engineering lane and are recorded in JOURNAL.md.
 
-**Next action:** keep the pre-clock baseline ready. When the product owner
-explicitly starts the event clock, record the transition and execute the slice
-in `HACKATHON.md` against its demo contract. If the event slice is not active, R1 is the
-next long-form gate and remains unauthorized until a separate owner decision.
+**Next action:** keep this template product-inactive. On an explicit launch,
+record the selected repository, full or hackathon profile, implementation
+authorization, and separate deployment/spend boundaries. A full-profile launch
+starts the amended R1 spine; a hackathon launch follows `HACKATHON.md`.
+Neither profile can supply missing human acceptance or live evidence.

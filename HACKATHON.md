@@ -4,6 +4,9 @@ Status: **pre-clock launch packet**. This document makes the repository ready
 to reach a working checkpoint in two hours and, when useful, refine it for up
 to eight. It does not authorize or claim completion of any ROADMAP gate, and it
 does not replace the approved authority chain.
+Use this profile only when selected at launch; a full-prototype request follows
+`ROADMAP.md`. The shared operating procedure is
+[the delivery workflow](./docs/delivery-workflow.md).
 
 ## Clock boundary
 
@@ -17,10 +20,10 @@ The pre-clock baseline is intentionally uneventful:
 | Ready before the clock | Deliberately starts at T+0 |
 |---|---|
 | Greenfield repository and clean `main` | Product-owned domain records and commands |
-| Vercel team `thalient` reachable; the project is created at T+0 | Browser-local workspace repository |
+| Owner-selected Vercel team reachable; exact project/linkage preflighted | Browser-local workspace repository |
 | Exact Node/npm lock and reproducible install | Editable spatial canvas and Focus behavior |
 | Minimal Next.js shell and one bounded `npm run check` | Branch/Searchlight operation adapters |
-| Reserved environment and storage names; provider routes disabled | Provider selection, route implementation, or credentials |
+| Gateway transport/prerequisite preflight; provider routes disabled | Route implementation, atomic admission, and authorized credential provisioning |
 | Approved intent, decisions, specification, architecture, and roadmap | Any demo deployment |
 
 Do not add speculative directories, empty abstractions, SDKs, sample product
@@ -176,13 +179,13 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm --version
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run security:audit
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 npm_config_engine_strict=false npx --yes vercel@59.11.7 whoami
-npm_config_engine_strict=false npx --yes vercel@59.11.7 project ls --scope thalient
+npm_config_engine_strict=false npx --yes vercel@59.11.7 project ls --scope "$VERCEL_TEAM"
 ```
 
 The first three commands must report `8.30.1`, `v24.20.0`, and `12.0.2`; the
-last two must show an authenticated user and no `minerva` project under
-`thalient`. Unrelated projects in that team are expected and are not a
-falsifier; an existing `minerva` project is.
+last two must show the expected authenticated user and the project inventory
+for the owner-selected `VERCEL_TEAM`. An existing project is a boundary to
+inspect, not permission to reuse its linkage, credentials, or deployments.
 
 Every `vercel` invocation carries `npm_config_engine_strict=false` because
 this repository's `.npmrc` sets `engine-strict=true`, which is deliberate and
@@ -196,69 +199,64 @@ outer npm before the pinned Node exists, and each line must stand alone since
 a shell that runs one command per invocation does not carry an `export`
 between them.
 
-The pre-clock operator then leaves the template's `main` clean and
-synchronized. Neither the product repository nor the Vercel project exists
-before the clock starts; the template checkout's own `.vercel/project.json`,
-if present, points at the project deleted before September 7, 2026 and must
-not be reused.
+The pre-clock operator leaves the template's `main` clean and synchronized.
+Do not create the product repository or Vercel project before the corresponding
+launch permission. The template checkout's own `.vercel/project.json`, if
+present, is not product identity and must not be reused. Repository-owned
+`vercel.json` pins install/build commands because Vercel's Node major selection
+alone does not satisfy this repository's exact Node/npm engines.
 
 ## Clock-start sequence
 
 `brandyn-s/minerva-template` is the frozen launch packet, not the build
 repository. When the event clock starts, the first action is to generate the
-product repository `brandyn-s/minerva` from the template and work only there.
+owner-selected product repository from the template and work only there.
 The product owner accepted on September 7, 2026 that the generated repository
 does not inherit commit history: the intent-before-code sequence and every
 revision cited in `JOURNAL.md` before clock start remain reachable in the
 template repository, and the clock-start journal entry names the template
 revision the product repository was generated from.
 
-Template generation copies files, not settings. The block below re-applies the
-same controls the template carries (`.github/rulesets/main.json` is the
-exported `main` ruleset), then creates and links the isolated Vercel project
-as content-free infrastructure with nothing deployed. Run it from the
-directory that should contain the product clone: `gh repo create --clone`
-clones into the current directory, so running it inside the template checkout
-would nest one repository in another.
+Record repository/profile/privacy and external permissions in one launch
+decision. The default is private with no deployment and zero provider spend.
+Include `--allow-deploy` only if the owner already authorized Preview hosting;
+record a finite `--spend-usd` only if separately authorized. Neither option
+activates a route or proves its bound. Unset external permissions must not
+block local editing and persistence work.
+Git-linked project provisioning also requires `--allow-hosting` and
+`--allow-git-deploys`: connecting Git enables automatic deployments on future
+pushes, including default-branch production deployments. Do not infer that
+permission from Preview-only approval.
 
 ```sh
-cd "$(dirname "$(git rev-parse --show-toplevel)")"   # parent of the template checkout
-gh repo create brandyn-s/minerva --public --template brandyn-s/minerva-template \
-  --description "A spatial thinking workspace for directing AI with explicit context, durable lineage, and human judgment." \
-  --clone
-cd minerva
-gh api -X POST repos/brandyn-s/minerva/rulesets --input .github/rulesets/main.json
-gh repo edit brandyn-s/minerva --enable-issues --enable-wiki=false --enable-projects=false \
-  --enable-squash-merge --enable-merge-commit=false --enable-rebase-merge=false \
-  --delete-branch-on-merge
-gh api -X PUT repos/brandyn-s/minerva/actions/permissions \
-  -F enabled=true -f allowed_actions=selected -F sha_pinning_required=true
-gh api -X PUT repos/brandyn-s/minerva/actions/permissions/selected-actions \
-  -F github_owned_allowed=true -F verified_allowed=false
-gh api -X PUT repos/brandyn-s/minerva/actions/permissions/workflow \
-  -f default_workflow_permissions=read -F can_approve_pull_request_reviews=false
-gh api -X PUT repos/brandyn-s/minerva/private-vulnerability-reporting
-gh api -X PUT repos/brandyn-s/minerva/automated-security-fixes
-printf '%s' '{"security_and_analysis":{"secret_scanning_push_protection":{"status":"enabled"}}}' \
-  | gh api -X PATCH repos/brandyn-s/minerva --input -
-gh api -X PATCH repos/brandyn-s/minerva/code-scanning/default-setup \
-  -f state=configured -f query_suite=default
-npm_config_engine_strict=false npx --yes vercel@59.11.7 project add minerva --scope thalient
-npm_config_engine_strict=false npx --yes vercel@59.11.7 link --yes --team thalient --project minerva
-npm_config_engine_strict=false npx --yes vercel@59.11.7 env ls
+npm run launch -- init --repo OWNER/REPO --profile hackathon
+npm run launch -- preflight --online
+npm run launch -- create --directory /absolute/path/to/product-clone
+cd /absolute/path/to/product-clone
 git switch -c codex/hackathon-slice
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 ```
 
-Read the controls back with `gh api repos/brandyn-s/minerva/rulesets`,
-`gh repo view brandyn-s/minerva --json isTemplate,defaultBranchRef`, and
-`npm_config_engine_strict=false npx --yes vercel@59.11.7 project ls --scope thalient` before the first push.
-`vercel env ls` must list no provider credential; provider routes stay
-disabled. The `.vercel/` link directory is gitignored and never committed. The fresh clone needs one `npm ci`; with the npm cache warm from
-the pre-clock check it takes seconds. Do not otherwise spend clock time
-reinstalling or re-running the readiness suite unless the machine or lockfile
-changed after the pre-clock check.
+The [launch CLI](./docs/launch-cli.md) waits for a populated default-branch ref
+before cloning and reads back privacy and supported controls. Template
+generation copies files, not settings. An unavailable private ruleset or
+security entitlement is a named limitation, never a reason to make a private
+repository public. Use the supported Actions controls and branch/PR discipline;
+do not claim missing branch protection exists.
+
+Carry the launch receipt into the product's ignored `.minerva/` state without
+copying template `.vercel/` metadata. Replace the copied `CURRENT_GATE.md` with
+the product's actual authorization before implementing. If hosting is
+authorized, create/link its isolated Vercel project using the recorded team
+and project identity, then verify linkage, exact build, and access. Never
+silently disable deployment protection or turn a successful SSO redirect into
+reviewer-access evidence. Provider routes remain disabled until their own
+permission and proof gates pass.
+
+The fresh clone needs one `npm ci`. Do not reinstall or re-run the complete
+readiness suite unless the environment, dependencies, or relevant configuration
+changed. Targeted regression checks continue throughout implementation.
 
 ### Transfer repository identity
 
@@ -268,9 +266,9 @@ before its first pull request, make only these substitutions:
 
 | Surface | Product-repository change |
 |---|---|
-| `README.md` | Change both CI badge URLs to `brandyn-s/minerva`; replace the template introduction with the product's actual status. |
-| `package.json` | Set `repository.url` to `git+https://github.com/brandyn-s/minerva.git`, `bugs.url` to `https://github.com/brandyn-s/minerva/issues`, and `homepage` to `https://github.com/brandyn-s/minerva#readme`. |
-| `SECURITY.md` | Point the private advisory form at `https://github.com/brandyn-s/minerva/security/advisories/new`. |
+| `README.md` | Change both CI badge URLs to the launch's `OWNER/REPO`; replace the template introduction with the product's actual status. |
+| `package.json` | Set `repository.url` to `git+https://github.com/OWNER/REPO.git`, `bugs.url` to `https://github.com/OWNER/REPO/issues`, and `homepage` to `https://github.com/OWNER/REPO#readme`. |
+| `SECURITY.md` | Point the advisory form at `https://github.com/OWNER/REPO/security/advisories/new` if supported; otherwise document the approved private reporting path. |
 | `.github/ISSUE_TEMPLATE/config.yml` | Point the security contact at the same product advisory form. |
 
 Keep the package name `minerva`; repository metadata changes do not require
@@ -290,42 +288,67 @@ improvement, each with its rationale.
 
 ## Execution matrix
 
-The slice runs as three lanes with one integration owner. Lanes fan out only
-after mission control freezes the shared contracts at the end of T+20–30;
-until then everyone works in one lane. Each lane has its own worktree and
-branch off the integration branch `codex/hackathon-slice`, opens one pull
-request per integration unit into that branch, and never edits another lane's
-paths. Only mission control edits shared contracts, `package.json`, the
+**Default: one implementer owns the first complete creative loop**, including
+its integration and delivery. The responsibility table below is not a mandate
+to create agents, worktrees, lane issues, or internal integration PRs.
+Additional lanes are optional only for genuinely independent work that cannot
+delay the critical path. Freeze their shared contracts and disjoint paths
+before dispatch; use separate worktrees when concurrent edits need isolation.
+Keep the ordinary branch/PR controls, not extra internal review ceremony.
+Use runnable checkpoints and acknowledged units of at most five minutes with the
+[process CLI](./docs/process-cli.md). A message is not a pause acknowledgement;
+stale control revisions cannot contribute to integration. Only mission control edits shared contracts, `package.json`, the
 lockfile, CI, and integration files. A worker that needs a shared change asks
 for it in its lane issue and keeps working against the frozen contract until
-the change lands. Mission control merges into the integration branch after
-`npm run check` passes and opens the single pull request to `main` that
-freezes the T+120 revision.
+the change lands. Mission control uses targeted checks for lane handoffs,
+freezes the complete integrated candidate for one full-state independent
+review and `npm run check`, and opens the pull request to `main`. Required
+exact-head CI applies to every merge; successful worker tests do not substitute
+for the integrated journey.
+
+If optional lanes are activated, use these responsibility boundaries. With one
+implementer, all responsibilities remain with that implementer.
 
 | Lane | Owns | Does not touch | Acceptance evidence |
 |---|---|---|---|
-| Mission control | Shared record and command contracts, ports, `package.json` and lockfile, CI, the integration branch and its merges, the Vercel project, reviewer access, and deployment | Lane implementations | Contracts frozen by T+30 and posted in each lane issue; every merge green; T+120 revision tagged; deployed revision and reviewer-access readback required |
+| Mission control | Shared record and command contracts, ports, `package.json` and lockfile, CI, the integration branch and its merges, the Vercel project, reviewer access, and deployment | Lane implementations | Ports/ownership frozen before dispatch; control revisions acknowledged; every merge green; T+120 revision tagged; deployed revision and reviewer-access readback required |
 | Canvas/state | Card, Focus, relationship, and operation records behind the frozen contracts; the browser-local repository adapter; the canvas surface, drag, pan, select, Focus controls, receipts, and lineage marks | Provider adapters, route handlers | Create, edit, move, and Focus survive reload; moving an unrelated card leaves the manifest unchanged; **AI sees N cards** is correct |
 | Inference | The closed generation port, the labelled deterministic fixture adapter, the bounded route handler when a safe provider path exists, iterative Branch, and the three-arm Searchlight scheduler | Renderer, persistence internals | Initial Branch and a child from changed context land outside Focus with exact lineage and receipts; failed work stays visible; **Simulated** is shown whenever the fixture is in use |
 | Voice (eligible under D-012; active only if chosen at T+120) | Page-scoped Voice session, exact context receipt, read-only authority, interruption and failure states, disclosed spend ceiling | Workspace commands | Not part of the T+120 slice; **Voice (spike)** label present; a mutation request is refused and pointed to the canvas action |
 | Expedition and terrain (eligible under D-014; active only if chosen at T+120) | Bounded Expedition action in the inference lane; descriptive terrain, basins, attractors, and minimap in the canvas/state lane | Focus, context, History semantics | Depth and ceilings recorded before work begins; terrain never ranks or changes context; cancel stops further generation |
 
-The exact owned paths are fixed at the T+30 contract freeze and written into
-each lane's issue. This table names responsibilities, not a directory layout,
+The exact owned paths are fixed before dispatch and recorded with the worker
+control revision. This table names responsibilities, not a directory layout,
 so the slice is not forced into the long-form module map before EXP-002.
 
-Open one issue per lane in the product repository at T+0 and record
-shared-contract requests, cuts, and friction as comments there:
+Record routine shared-contract requests, blockers, cuts, and friction once in
+the content-free process event stream. Generate status/timeline/feedback from
+it; do not maintain lane issues and several Markdown trackers as competing
+sources of progress. Issues remain useful for durable proposals, not as
+mandatory per-lane ceremony.
 
-```sh
-for lane in mission-control canvas-state inference; do
-  gh issue create --repo brandyn-s/minerva --title "Lane: $lane" --body "$(printf '%s\n' \
-    'Owned paths (fixed at T+30): ...' \
-    'Does not touch: ...' \
-    'Acceptance evidence: ...' \
-    'Shared-contract requests, cuts, and friction are recorded as comments here.')"
-done
-```
+Review blocked critical-path work after five minutes: fix its prerequisite,
+bring the integration owner onto it, or name the explicit permission/evidence
+blocker. Stop unrelated polish and capability expansion until the path is
+unblocked. Do not restart design/planning for already approved subtasks or
+repeat broad research after the relevant runtime contract is known.
+
+### Early comprehension checkpoint
+
+As soon as the opening interaction exists, before layout polish or Searchlight,
+ask an uncoached owner/reviewer to predict:
+
+**Cards the AI sees -> develop a direction -> change a constraint -> compare
+the new child with its source.**
+
+Use the existing five-card library example. Can the person predict which
+cards/versions Branch sees, identify the unchanged source, tighten the staffing
+constraint, and distinguish the new child from its source and alternatives?
+Record their actual observation or an explicit `not evaluated` blocker. A
+working button, an attractive canvas, or an agent's prediction of comprehension
+does not pass this checkpoint. Simplify unclear interaction before expansion.
+Retain the final unassisted T+115-120 reviewer exercise on the exact deployment.
+This is an early instrument check, not a new substitute for R5/R6.9/R9.
 
 ### Deployment and reviewer-access lane (required)
 
@@ -334,6 +357,12 @@ committed, identified safe revision with no secret in the bundle and provider
 routes disabled or bounded. Establish a content-free shell deployment early to expose hosting
 and access failures; it is not a passing product or submission. Repeat on the
 exact frozen checkpoint revision:
+
+Prefer [the Next.js REST operations helper](./docs/deploy-cli.md) for bounded
+readbacks and sanitized receipts. It preserves explicit permissions and
+distinguishes build failure, propagation delay, authentication redirects, and
+runtime/access evidence. The manual CLI path remains a fallback, not a second
+deployment to run after a successful helper operation:
 
 ```sh
 npm_config_engine_strict=false npx --yes vercel@59.11.7 deploy --yes
@@ -361,11 +390,14 @@ provider route to satisfy delivery.
 
 ### Live inference and safe fallback
 
-Prefer one live path that responds to actual reviewer edits. During T+20–30,
+Prefer one live path that responds to actual reviewer edits. At launch,
 resolve the provider/model, reviewer admission mechanism, and explicit finite
 call/token/time/spend envelope, or record the unresolved boundary and plan
-the labelled fallback. This is a decision checkpoint, not a guarantee that
-safe inference can be completed within ten minutes.
+the labelled fallback. Start with the Vercel AI Gateway candidate established
+by preflight, rather than building a direct-provider adapter first. Freeze its
+closed schema and routing/authentication policy before dispatch. Credential
+presence does not establish live readiness. This is a decision checkpoint, not
+a guarantee that safe inference can be completed within ten minutes.
 
 Follow `ARCHITECTURE.md` Sections 15–16: server-selected policy and a closed
 stage contract, atomic allowance reservation, deduplication, and no hidden
@@ -385,9 +417,10 @@ reload remain part of the interactive floor even without live inference.
 
 | Time | Outcome | Cut line |
 |---|---|---|
-| T+0–20 | Generate `brandyn-s/minerva`, transfer controls and repository identity, create/link Vercel, install, start the locked shell, and establish a content-free deployment and reviewer-access path. | Repair the first bootstrap or access failure; do not claim the shell is the product. |
-| T+20–30 | Freeze the smallest Card, Focus, relationship, operation, and persistence seams. Resolve the live-provider/admission plan or name its blocker; open the three execution lanes after the contract freeze. | No full History engine, migrations framework, generalized command bus, or assumption that safe inference already exists. |
-| T+30–55 | Canvas/state implements the prepared example, blank start, editable movable cards, explicit Focus, selection, and reload; inference implements the closed Branch path in parallel. | Prefer DOM/CSS and one native IndexedDB adapter. Preserve keyboard/non-drag actions; no second store or renderer-owned truth. |
+| T+0–10 | Record the consolidated launch; preflight platform/Gateway prerequisites, generate the named repository, and transfer controls. Start the locked shell and an authorized content-free Preview/access check. | Name any permission or platform blocker; continue safe local work instead of hiding the blocker behind more infrastructure. |
+| T+10–20 | Deliver one visible editable card with atomic placement, keyboard movement, acknowledgement, and reload. | If absent at T+20, stop breadth work and direct the integration owner to this path. No full subsystem is a prerequisite to showing this thin path. |
+| T+20–30 | Freeze the remaining Branch/context/admission seams; add an independent lane only if it helps the critical path. Resolve safe live permission/proof or name the fallback. | No migrations framework, generalized command bus, or assumption that configured credentials prove safe inference. |
+| T+30–55 | Extend the durable card into example/blank start, Focus and selection; integrate Branch and run the early comprehension checkpoint as soon as the opening interaction exists. | One implementer owns the loop. Simplify misunderstood actions before polish or AI breadth; preserve native persistence and keyboard paths. |
 | T+55–85 | Integrate Branch, exact source receipts, visible failure states, automatic result placement, and safe live admission when available. | Keep the source unchanged and results outside Focus; no target expansion while delivery or the local floor is blocked. |
 | T+85–95 | Complete and deploy the iterative floor: choose a result, tighten a constraint, Branch again, and retain both source versions and alternatives. | At T+90 without a safe live path, use the honestly limited simulated adapter. Do not cut refinement to show more cards. |
 | T+95–105 | Add the three-approach Searchlight and eligible Harvest only if the deployed iterative floor is stable. | Cut the sweep at the first instability; do not batch or reduce its arms under the Searchlight label. |
