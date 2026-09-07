@@ -8,9 +8,13 @@ What is included, excluded, simulated, partial, local-only, or not yet proven?
 
 ## Judgment and tradeoffs
 
-What consequential alternative did you evaluate? For material AI-assisted
-work, name one proposal you accepted, modified, or rejected and explain why.
-Do not include raw prompts, transcripts, or private reasoning.
+- Agent proposal:
+- Human disposition: pending | accepted | modified | rejected
+- Rationale:
+
+Authorization of an outcome is not acceptance of every implementation choice.
+Leave the disposition `pending` until a person explicitly decides. Do not
+include raw prompts, transcripts, or private reasoning.
 
 ## Evidence
 

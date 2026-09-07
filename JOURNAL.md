@@ -32,7 +32,10 @@ bullet log without changing its substance.
 
 Use only fields that carry the decision. Separate the agent's proposal from the
 human disposition so a reviewer can evaluate judgment without reconstructing a
-transcript.
+transcript. Authorization to pursue an outcome is not acceptance of every
+implementation choice. Never infer human acceptance from silence; record the
+disposition as `pending` until the human explicitly accepts, modifies, or
+rejects the proposal.
 
 ```md
 ### J-YYYYMMDD-NN — Short title
@@ -215,6 +218,34 @@ transcript.
   readiness change reaches `main`.
 - Revision and references: base `4773e6e`; draft pull request 2; commit
   containing this entry
+
+### J-20260906-09 — Correct attribution and authorize public delivery
+
+- Gate or slice: Repository readiness
+- Actors: Product owner (human), repository agent
+- Context: Entry `J-20260906-08` treated authorization of the public-readiness
+  outcome as acceptance of implementation details before the product owner had
+  explicitly dispositioned them.
+- Agent proposal: Keep MIT, the product-first README, one canonical agent
+  contract, bounded CI and GitHub maintenance, judgment fields instead of an
+  activity monitor, and a one-PR delivery lane. Either retain the retired R0
+  receipt with its opaque Vercel identifiers or replace the public Git history.
+- Human disposition and rationale: **Modified and approved.** The product owner
+  explicitly chose to retain the Vercel identifiers, instructed that the
+  attribution be corrected, and authorized the discussed GitHub configuration,
+  push, and merge. The identifiers are accepted as non-secret public metadata;
+  preserving the intent-before-code history is preferred to rewriting it.
+- Evidence or result: This append-only entry corrects `J-20260906-08` without
+  rewriting it. The pull-request and proposal templates are reduced to expose
+  the consequential proposal, explicit human disposition, rationale, decisive
+  evidence, and falsifier without collecting prompts or private reasoning.
+- Errors, friction, or cuts: At the time of this entry, publication and its
+  public-only protections are authorized but not yet claimed complete. Their
+  state must be established by GitHub and Vercel readback after merge.
+- Remaining uncertainty / reopen when: Reopen only if the sensitivity model for
+  those identifiers changes or live readback contradicts the no-deployment,
+  no-Git-link boundary.
+- Revision and references: draft pull request 2; commit containing this entry
 
 ## Clock-start entry template
 

@@ -3,45 +3,24 @@ description: Propose a scoped outcome, tradeoff, or change to the current contra
 title: "proposal: "
 body:
   - type: textarea
-    id: problem
+    id: problem_outcome
     attributes:
-      label: Real problem
-      description: What user or maintainer problem exists, and who experiences it?
+      label: Problem and observable outcome
+      description: What real problem exists, who experiences it, and what should become observably possible?
     validations:
       required: true
   - type: textarea
-    id: outcome
+    id: fit_scope
     attributes:
-      label: Desired outcome
-      description: What should become observably possible without prescribing unnecessary implementation?
+      label: Minerva fit and non-goals
+      description: How does this deepen the product thesis, and what must remain out of scope?
     validations:
       required: true
   - type: textarea
-    id: nonobvious
+    id: alternatives_judgment
     attributes:
-      label: Why this belongs in Minerva
-      description: How does this preserve or deepen the product thesis instead of adding a familiar default?
-    validations:
-      required: true
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternatives and tradeoffs
-      description: What other approaches, including doing nothing, did you consider?
-    validations:
-      required: true
-  - type: textarea
-    id: exclusions
-    attributes:
-      label: What should not be built
-      description: Name the cuts or non-goals that keep this proposal bounded.
-    validations:
-      required: true
-  - type: textarea
-    id: judgment
-    attributes:
-      label: Human judgment required
-      description: Which choice must remain with the product owner or user?
+      label: Alternatives and owner decision
+      description: What alternatives, including doing nothing, exist, and which choice must remain human?
     validations:
       required: true
   - type: textarea
