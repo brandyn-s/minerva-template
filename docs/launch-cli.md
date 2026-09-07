@@ -1,6 +1,6 @@
 # Launch CLI
 
-Run from the template checkout. No dependencies beyond Node, Git, and (for
+Run from the template checkout. No dependencies beyond Node, npm, Git, and (for
 online commands) authenticated GitHub CLI are needed.
 
 ```sh
@@ -11,6 +11,15 @@ node scripts/launch.mjs create --file .minerva/launch.json --directory ../launch
 # Only after an interrupted operation with proven repository ownership:
 node scripts/launch.mjs create --resume --file .minerva/launch.json --directory ../launch-sample
 ```
+
+To select the exact pinned toolchain for preflight:
+
+```sh
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run launch -- preflight --file .minerva/launch.json
+```
+
+The launcher may download pinned packages if they are not cached. The preflight
+itself makes no network requests unless `--online` is supplied.
 
 ## Receipt
 
@@ -43,7 +52,7 @@ Git permission field are treated as not authorized for that action.
 ## Read-only preflight
 
 `preflight [--file PATH] [--online]` emits a JSON `readiness` table. Offline is
-the default and invokes no commands. It checks exact Node/npm pins across
+the default and invokes only a bounded local npm version probe. It checks exact Node/npm pins across
 `.node-version`, `.nvmrc`, package engines, `packageManager`, `.npmrc`, and
 Vercel install/build commands. Online adds read-only GitHub API probes for the
 exact source/revision and target, privacy/non-template flags, populated default
@@ -52,9 +61,17 @@ statuses, and up to three deployment records with their latest statuses.
 Combined commit and latest deployment states are exposed only through fixed
 allowlists; missing or malformed states are explicitly unverified. No status
 bodies, URLs, or logs are emitted.
-The active Node version is checked separately. Active npm is checked from its
-version-only invocation metadata when available; direct Node execution without
-that metadata reports npm as unverified rather than inferring it from the pin.
+The active Node version is checked separately. Active npm is verified by
+executing `npm_execpath` with the running Node executable and `--version` when
+available, otherwise by executing `npm --version` from PATH (including direct
+Node CLI use). These are argument-array executions, not shell interpolation.
+Inherited `npm_config_user_agent` is never version evidence: nested launchers
+can retain an outer npm's metadata. A selected executable that fails, a
+malformed version response, or a version mismatch blocks readiness; no PATH
+fallback conceals a failed selected executable. Missing PATH npm is unverified,
+not ready. Only successful, exact version-only output is accepted; executable
+paths and diagnostic output are not printed. The operator controls the local
+executable/PATH trust boundary; this is version verification, not binary attestation.
 
 HTTP 404 means absent **or hidden**, not proven nonexistence. HTTP 403 means
 unavailable permission, entitlement, or rate limit; authentication and transport

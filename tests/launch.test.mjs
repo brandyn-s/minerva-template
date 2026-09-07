@@ -45,6 +45,7 @@ function fakeGitHub({ cwd, timeout = false, mismatch = false, targetExists = fal
     id: repositoryId, full_name: REPO, private: !mismatch, is_template: false, default_branch: "main", ...controls,
   });
   const run = (command, args, options) => {
+    if (command === "npm") return { status: -1, stdout: "", stderr: "" };
     calls.push({ command, args, input: options?.input });
     if (command === "git") {
       if (args[0] === "check-ignore") return ok();
@@ -107,7 +108,7 @@ function fakeGitHub({ cwd, timeout = false, mismatch = false, targetExists = fal
     return ok({});
   };
   return {
-    cwd, run, calls, sleep: async () => {}, attempts: 3,
+    cwd, env: {}, run, calls, sleep: async () => {}, attempts: 3,
     set: (values) => {
       if (values.badControls !== undefined) badControls = values.badControls;
       if (values.timeout !== undefined) timeout = values.timeout;
@@ -160,14 +161,18 @@ test("unknown, duplicate, malformed and secret input is rejected", () => {
   ]) assert.throws(() => parseArgs(args), undefined, args.join(" "));
 });
 
-test("offline preflight never runs commands and prints presence, never secrets or metadata values", async (t) => {
+test("offline preflight only probes local npm and prints presence, never secrets or metadata values", async (t) => {
   const cwd = fixture(t);
   await init(cwd);
   mkdirSync(resolve(cwd, ".vercel"));
   writeFileSync(resolve(cwd, ".vercel/project.json"), '{"projectId":"do-not-print-project"}');
   const result = await main(["preflight"], {
     cwd, env: { AI_GATEWAY_API_KEY: "synthetic-do-not-print" },
-    run: () => { throw new Error("Offline command execution"); },
+    run: (command, args) => {
+      assert.equal(command, "npm");
+      assert.deepEqual(args, ["--version"]);
+      return { status: -1, stdout: "", stderr: "" };
+    },
   });
   assert.equal(result.readiness.find((r) => r.gate === "toolchain").state, "ready");
   assert.equal(result.readiness.find((r) => r.gate === "hosting-linkage").state, "unverified");
@@ -187,9 +192,44 @@ test("preflight distinguishes active npm from coherent repository pins", async (
   const cwd = fixture(t);
   await init(cwd);
   for (const [version, state] of [["12.0.2", "ready"], ["11.19.0", "blocked"], [null, "unverified"]]) {
-    const result = await main(["preflight"], { cwd, env: version ? { npm_config_user_agent: `npm/${version} node/example` } : {} });
+    const result = await main(["preflight"], {
+      cwd, env: {},
+      run: (command, args) => {
+        assert.equal(command, "npm");
+        assert.deepEqual(args, ["--version"]);
+        return { status: version ? 0 : -1, stdout: version ? `${version}\n` : "", stderr: "" };
+      },
+    });
     assert.equal(result.readiness.find((entry) => entry.gate === "toolchain").state, "ready");
     assert.equal(result.readiness.find((entry) => entry.gate === "runtime-npm").state, state);
+  }
+});
+
+test("preflight proves selected npm executable rather than inherited advertised metadata", async (t) => {
+  const cwd = fixture(t);
+  await init(cwd);
+  for (const [status, stdout, state, actual] of [
+    [0, "12.0.2\n", "ready", "12.0.2"],
+    [0, "11.19.0\n", "blocked", "11.19.0"],
+    [1, "12.0.2\n", "blocked", null],
+    [-1, "", "blocked", null],
+    [0, "12.0.2\nsynthetic-sensitive-output", "blocked", null],
+    [0, "12.0.2-beta\n", "blocked", null],
+    [0, "", "blocked", null],
+  ]) {
+    const calls = [];
+    const npmPath = resolve(cwd, "synthetic npm;not-a-shell.cjs");
+    const result = await main(["preflight"], {
+      cwd, env: { npm_execpath: npmPath, npm_config_user_agent: "npm/11.19.0 synthetic-sensitive-metadata" },
+      run: (command, args) => {
+        calls.push({ command, args });
+        return { status, stdout, stderr: "synthetic-sensitive-stderr" };
+      },
+    });
+    assert.deepEqual(calls, [{ command: process.execPath, args: [npmPath, "--version"] }]);
+    assert.deepEqual(result.readiness.find((entry) => entry.gate === "runtime-npm"),
+      { gate: "runtime-npm", state, evidence: { required: "12.0.2", actual } });
+    assert.doesNotMatch(JSON.stringify(result), /synthetic-sensitive|not-a-shell/);
   }
 });
 test("preflight distinguishes authentication, absence and optional entitlement without aborting", async (t) => {
@@ -198,7 +238,10 @@ test("preflight distinguishes authentication, absence and optional entitlement w
     await init(cwd);
     const calls = [];
     const result = await main(["preflight", "--online"], {
-      cwd, env: {}, run: (_command, args) => { calls.push(args); return fail(code); },
+      cwd, env: {}, run: (command, args) => {
+        if (command === "npm") return { status: -1, stdout: "", stderr: "" };
+        calls.push(args); return fail(code);
+      },
     });
     assert.equal(result.readiness.find((r) => r.gate === "repository").state,
       { 401: "authentication-failure", 403: "unavailable", 404: "absent-or-hidden", 500: "transport-or-api-failure" }[code]);
@@ -276,6 +319,7 @@ test("online deployment observations are bounded, read-only, and never expose AP
   const result = await main(["preflight", "--online"], {
     cwd, env: {},
     run: (command, args, options) => {
+      if (command === "npm") return { status: -1, stdout: "", stderr: "" };
       calls.push(args);
       const endpoint = args[args.indexOf("--method") + 2];
       if (endpoint.endsWith("/git/ref/heads/main")) return ok({ object: { sha: SHA } });

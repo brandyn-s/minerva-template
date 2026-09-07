@@ -203,13 +203,19 @@ export function checkPins(cwd) {
 }
 
 async function preflight(config, online, ctx) {
-  const npmAgent = typeof ctx.env.npm_config_user_agent === "string"
-    ? ctx.env.npm_config_user_agent.match(/^npm\/(\d+\.\d+\.\d+)/)?.[1] : undefined;
+  // npm-run metadata can describe an outer npx, not the npm running this script.
+  const selectedNpm = typeof ctx.env.npm_execpath === "string" && ctx.env.npm_execpath.length > 0;
+  const npm = selectedNpm
+    ? ctx.run(process.execPath, [resolve(ctx.cwd, ctx.env.npm_execpath), "--version"], { cwd: ctx.cwd })
+    : ctx.run("npm", ["--version"], { cwd: ctx.cwd });
+  const npmVersion = npm.status === 0 && /^\d+\.\d+\.\d+$/.test(npm.stdout.trim())
+    ? npm.stdout.trim() : null;
+  const npmState = npmVersion ? npmVersion === NPM ? "ready" : "blocked"
+    : !selectedNpm && npm.status === -1 ? "unverified" : "blocked";
   const rows = [
     checkPins(ctx.cwd),
     row("runtime-node", process.versions.node === NODE ? "ready" : "blocked", { required: NODE, actual: process.versions.node }),
-    row("runtime-npm", npmAgent ? npmAgent === NPM ? "ready" : "blocked" : "unverified",
-      { required: NPM, actual: npmAgent ?? null }),
+    row("runtime-npm", npmState, { required: NPM, actual: npmVersion }),
     row("implementation", "authorized", "Recorded owner scope and first implementation; live permissions do not block local work."),
     row("hosting-integration", "unverified", "Separate authorized Vercel integration/project readback is needed."),
     row("hosting-creation", config.hosting.creationAuthorized ? "authorized-not-executed" : "not-authorized",
