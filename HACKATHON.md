@@ -202,6 +202,60 @@ The optional window does not promise that every item above will ship. Its proof
 of maturity is selective depth, explicit rejection, preserved checkpoints, and
 a more truthful experience—not eight hours of generated surface area.
 
+## Design brief for the slice
+
+The product owner wrote this brief on September 7, 2026 so that the visual
+and interaction defaults of the T+120 slice are a human choice rather than a
+model default. It applies only to the hackathon slice and is disposable with
+it; it does not select the renderer (EXP-002), decide product semantics
+(`SPEC.md`), or define a long-form visual system. It costs one token block in
+`app/globals.css` at T+0–10; only the texture and the web fonts carry any
+further cost, and they are cut first.
+
+### Owner's brief (verbatim)
+
+- Warm parchment surface with subdued cartographic texture.
+- Ivory paper cards.
+- Dark green ink and deep teal primary actions.
+- Restrained amber, coral, teal, and violet lineage accents.
+- Newsreader/Georgia for ideas and artifacts.
+- IBM Plex Mono for controls, state, provenance, and receipts.
+- Thin square borders, quiet shadows, limited rounding.
+- Compact cards that expand in place.
+- Thin functional edges; decorative marks never compete with lineage.
+
+### Constraints from the approved contract
+
+- Serif carries ideas; mono carries operation records, state, and receipts.
+  This is the `SPEC.md` card-versus-record distinction (`PROV-004`,
+  `HIS-014`) made visible; keep the two families from mixing on one surface.
+- A lineage accent color is never the only carrier of lineage or state
+  (`ACC-003`) and never changes context (`INV-002`). Every accent is paired
+  with the mono `derived from` label or the receipt. Teal is also the
+  primary-action color, so a teal lineage accent must not read as an action.
+- The texture sits behind cards only and never under text (`ACC-005`). It
+  is the first cut at T+45.
+- Web fonts load through `next/font` with Georgia and a system monospace
+  stack as real fallbacks; a font failure is not a floor failure.
+- Expanding a card in place is presentation only. It changes no AI context,
+  creates no History Moment, and is not a move (`CAN-002`).
+- Edges exist only for structural facts: `derived from`, `member of`, and
+  free-form labels. No ports, handles, node palette, or minimap by default
+  (`CAN-005`).
+- Explicit structure membership must look different from mere placement
+  (`STR-003`); ivory on parchment alone does not carry that difference.
+
+### Still open before T+0
+
+- Where the Focus field lives and how **AI sees N cards** reads at a glance.
+- The visible marker for explicit membership versus placement.
+- Where the **Simulated** label sits and how loud it is. Default proposal:
+  mono, ink-colored, on the card and in the narration, and not a lineage
+  accent color.
+- Light-only for the slice, or a parchment dark counterpart. The current
+  shell CSS has a dark mode with no parchment equivalent; light-only is the
+  smaller choice.
+
 ## Implementation constraints
 
 - The workspace kernel, not React, the renderer, IndexedDB callbacks, or the
