@@ -1,8 +1,8 @@
 # Minerva
 
-Minerva is at R0: isolated project groundwork is in progress. This repository
-does not yet provide a product capability, provider route, workspace store,
-database, authentication, analytics, or deployment.
+R0 infrastructure has passed. R1 and all product behavior remain unauthorized.
+This repository does not provide a product capability, provider route,
+workspace store, database, authentication, analytics, or deployment.
 
 The authority chain and current authorization live in [AGENTS.md](./AGENTS.md)
 and [ROADMAP.md](./ROADMAP.md). Tracked gate evidence is indexed in

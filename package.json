@@ -15,7 +15,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --test",
-    "secrets:scan": "gitleaks dir . --redact --no-banner --no-color",
+    "secrets:scan": "ignored_tracked=$(git ls-files --cached --ignored --exclude-standard); test -z \"$ignored_tracked\" || { printf '%s\\n' \"$ignored_tracked\" >&2; exit 1; }; gitleaks git --redact --no-banner --no-color",
     "roadmap:status": "node scripts/roadmap-status.mjs",
     "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run secrets:scan && npm run roadmap:status"
   },
@@ -25,10 +25,12 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@eslint/compat": "2.1.1",
     "@types/node": "24.13.3",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
-    "eslint": "9.39.5",
+    "ajv": "8.20.0",
+    "eslint": "10.10.0",
     "eslint-config-next": "16.3.4",
     "typescript": "5.9.3",
     "vercel": "59.11.7"
