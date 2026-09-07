@@ -430,3 +430,27 @@ rejects the proposal.
 - Remaining uncertainty / reopen when: A settings command fails at T+0, or
   the owner changes the product repository name or visibility.
 - Revision and references: commit containing this entry
+
+### J-20260907-06 — Record the owner's design brief for the slice
+
+- Gate or slice: Hackathon preparation
+- Actors: Product owner (human), repository agent
+- Context: In a two-hour build, every visual and interaction default not
+  chosen in advance is chosen by the model at T+30 to T+75. `CAN-005`,
+  R2A.6, and R5.5 all turn on the owner's judgment that the surface feels
+  like a thinking instrument, and the only visual decision in the repository
+  was the shell palette.
+- Agent proposal: Do not add a fourth authority document; record a one-page
+  disposable brief inside `HACKATHON.md` in the owner's own words, with the
+  approved-contract constraints that bound it and the choices still open.
+- Human disposition and rationale: **Accepted.** The owner authored the nine
+  brief bullets; the constraints and open items were derived from `SPEC.md`
+  and are labelled as such. The brief does not select the renderer or alter
+  product semantics.
+- Evidence or result: `HACKATHON.md` section "Design brief for the slice".
+- Errors, friction, or cuts: The cartographic texture and web fonts are the
+  only items with build-time cost; both are marked as the first cuts.
+- Remaining uncertainty / reopen when: Focus field placement, membership
+  marker, Simulated label placement, and light-only versus dark remain open
+  and should be settled before T+0 or at T+0–10 by the owner.
+- Revision and references: commit containing this entry
