@@ -84,6 +84,30 @@ No raw API bodies, environment values, or tokens are
 printed. Gateway credentials are checked for presence only using
 `AI_GATEWAY_API_KEY` or `VERCEL_OIDC_TOKEN`.
 
+Failed API observations and optional-control results include a numeric
+`httpStatus` (or `null` when no unambiguous HTTP status is available) and a fixed
+`errorClass`, plus sanitized evidence:
+
+| Reported HTTP status | `errorClass` |
+| --- | --- |
+| 400, 422 | `validation-failure` |
+| 401, or recognized CLI authentication diagnostic | `authentication-failure` |
+| 403 | `permission-entitlement-or-rate-limit` |
+| 404 | `absent-or-hidden` |
+| 409 | `conflict` |
+| 429 | `rate-limited` |
+| 5xx | `server-failure` |
+| Other 4xx | `http-failure` |
+| Missing, malformed, or conflicting HTTP status | `transport-or-unclassified-failure` |
+
+These labels describe reported failure categories, not the underlying cause or
+permission proof. A missing status cannot distinguish transport failure from an
+unclassified CLI/API error. Raw stdout/stderr, response bodies, request URLs,
+tokens, and provider error messages are never included. Existing conservative
+`state` values remain unchanged: validation, rate-limit, server, and unclassified
+failures still have `state=transport-or-api-failure`; 409 on a Git ref probe
+retains `empty-repository`. Classification does not authorize automatic retries.
+
 Local `.vercel/project.json` is not proof that its project exists. Hosting
 integration and linkage remain **unverified**, including online mode. GitHub
 status/deployment records are not live hosting or successful-inference proof.
@@ -141,6 +165,10 @@ calls repository creation again or changes visibility. Required controls are
 reapplied and read back; optional controls remain independently reported.
 Rulesets are read by recorded ID or bounded inventory before any POST, avoiding
 duplicates. An ambiguous POST with no matching readback requires reconciliation.
+Diagnostic detail does not relax that rule: validation failures, 429, 5xx, and
+transport/unclassified failures retain the pending POST checkpoint. The existing
+401/403/404 path clears that checkpoint, but only an explicit resume with the
+usual ownership and inventory checks can attempt another POST.
 
 An existing directory is accepted only after this operation recorded a clone
 attempt and Git proves its exact root, expected GitHub origin, current default-ref
@@ -172,5 +200,5 @@ Live observations are separate and non-atomic. Failures can leave resources
 behind; unknown ownership intentionally requires manual reconciliation rather
 than automatic adoption.
 
-Validation: `node --test tests/launch.test.mjs` uses isolated local fixtures and
+Validation: `node --test tests/launch.test.mjs tests/deploy.test.mjs` uses isolated local fixtures and
 an injected fake command runner, without network or external mutations.

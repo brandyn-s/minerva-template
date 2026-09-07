@@ -301,6 +301,59 @@ test("optional 404 continues independent controls without visibility changes", a
   assert.ok(fake.calls.filter((c) => c.input).every((c) => !Object.hasOwn(JSON.parse(c.input), "private")));
 });
 
+test("optional-control failures preserve sanitized HTTP classification without changing ruleset retries", async (t) => {
+  for (const [httpStatus, errorClass, state, retryable] of [
+    [400, "validation-failure", "transport-or-api-failure", false],
+    [422, "validation-failure", "transport-or-api-failure", false],
+    [401, "authentication-failure", "authentication-failure", true],
+    [403, "permission-entitlement-or-rate-limit", "unavailable", true],
+    [404, "absent-or-hidden", "absent-or-hidden", true],
+    [409, "conflict", "transport-or-api-failure", false],
+    [429, "rate-limited", "transport-or-api-failure", false],
+    [500, "server-failure", "transport-or-api-failure", false],
+    [503, "server-failure", "transport-or-api-failure", false],
+    [418, "http-failure", "transport-or-api-failure", false],
+    [null, "transport-or-unclassified-failure", "transport-or-api-failure", false],
+  ]) {
+    const cwd = fixture(t);
+    await init(cwd);
+    mkdirSync(resolve(cwd, ".github/rulesets"), { recursive: true });
+    writeFileSync(resolve(cwd, ".github/rulesets/main.json"), JSON.stringify({
+      name: "Protect main", target: "branch", enforcement: "active", rules: [],
+    }));
+    const fake = fakeGitHub({ cwd });
+    const runner = fake.run;
+    fake.run = (command, args, options) => {
+      const result = runner(command, args, options);
+      if (args.includes("POST") || args.includes(`repos/${REPO}/private-vulnerability-reporting`)) {
+        return {
+          status: 1,
+          stdout: '{"token":"synthetic-sensitive-body","message":"401 404 GH_TOKEN"}',
+          stderr: `gh: synthetic-sensitive-error https://example.invalid/?token=synthetic-sensitive-url&code=401${httpStatus ? ` (HTTP ${httpStatus})` : ""}`,
+        };
+      }
+      return result;
+    };
+    const result = await main(["create", "--directory", "checkout"], fake);
+    for (const gate of ["reporting", "ruleset"]) {
+      const control = result.controls.find((r) => r.gate === gate);
+      assert.equal(control.state, state);
+      assert.equal(control.httpStatus, httpStatus);
+      assert.equal(control.errorClass, errorClass);
+    }
+    assert.doesNotMatch(JSON.stringify(result), /synthetic-sensitive|https:\/\/example|GH_TOKEN/);
+    assert.equal(fake.calls.filter((c) => c.args.includes("POST")).length, 1);
+    assert.equal(JSON.parse(readFileSync(operationFile(cwd), "utf8")).rulesetPending, !retryable);
+    if (retryable) {
+      await main(["create", "--resume", "--directory", "checkout"], fake);
+      assert.equal(fake.calls.filter((c) => c.args.includes("POST")).length, 2);
+    } else {
+      await assert.rejects(main(["create", "--resume", "--directory", "checkout"], fake), /manual reconciliation/);
+      assert.equal(fake.calls.filter((c) => c.args.includes("POST")).length, 1);
+    }
+  }
+});
+
 test("explicit public creation uses public flag and requires public readback", async (t) => {
   const cwd = fixture(t);
   await init(cwd, ["--visibility", "public"]);
