@@ -10,14 +10,49 @@ one accumulating chat transcript.
 
 > **Status: pre-alpha planning scaffold.** The repository currently contains
 > the approved product contract, a reproducible Next.js shell, and the bounded
-> plan for a two-hour prototype. It does not yet contain the Minerva workspace,
+> full and two-hour delivery profiles with executable launch/control tooling.
+> It does not yet contain the Minerva workspace,
 > AI operations, persistence, provider integration, or a public deployment.
 
 This repository is the reusable **launch template**, not the product build.
-At an explicit clock start, generate `brandyn-s/minerva` and follow
+At an explicit launch, generate the owner-selected product repository and follow
 [the identity-transfer checklist](./HACKATHON.md#transfer-repository-identity).
 Do not reuse the template's deployment linkage or change historical template
 references into product references.
+
+## Launch a prototype
+
+Choose `full` for the complete [ROADMAP](./ROADMAP.md), or `hackathon` for
+the narrower [two-hour checkpoint](./HACKATHON.md). Both start with the
+[walking-skeleton delivery workflow](./docs/delivery-workflow.md), not a long
+invisible foundation phase. Product implementation still requires a launch
+instruction; this template's maintenance work does not start it.
+
+Using the pinned toolchain described below:
+
+```sh
+npm run launch -- init --repo OWNER/REPO --profile full
+npm run launch -- preflight --online
+```
+
+This records private visibility, no deployment, and zero provider spend by
+default. Preflight is read-only. Only after the owner authorizes creation:
+
+```sh
+npm run launch -- create --directory /absolute/path/to/product-clone
+```
+
+The [launch reference](./docs/launch-cli.md) covers explicit permissions,
+generation readiness, unsupported optional controls, and Vercel/AI Gateway
+prerequisites. Repository-owned Vercel commands preserve the exact Node/npm
+pins; configuration does not create a project or deploy it. The
+[Next.js REST operations helper](./docs/deploy-cli.md) prepares explicit
+provisioning, deployment, build/runtime/access observations, and sanitized
+receipts; it is not a product server and never authorizes itself. Use the
+[process CLI](./docs/process-cli.md) for one event log, generated status, and
+acknowledged worker control, and the
+[contract fixtures](./docs/contract-fixtures.md) to catch boundary regressions.
+Keep implemented, integrated, live, and human-accepted outcomes separate.
 
 ## Why Minerva
 
@@ -45,7 +80,7 @@ Three principles define the product:
 
 The full product thesis and non-goals live in [INTENT.md](./INTENT.md).
 
-## First prototype
+## Hackathon checkpoint
 
 The hackathon target is deliberately narrower than the long-form roadmap. At
 the two-hour checkpoint, a user should be able to open a stable deployed URL,

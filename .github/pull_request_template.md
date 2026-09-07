@@ -6,6 +6,16 @@ What user-visible or repository outcome does this change achieve?
 
 What is included, excluded, simulated, partial, local-only, or not yet proven?
 
+| State | Evidence or explicit blocker |
+|---|---|
+| Implemented | |
+| Integrated end to end | |
+| Live activation | |
+| Human accepted | |
+
+For tracked builds, reference the generated status/event sequence rather than
+maintaining another progress log. Tests and silence are not human acceptance.
+
 ## Judgment and tradeoffs
 
 - Agent proposal:
@@ -21,6 +31,10 @@ include raw prompts, transcripts, or private reasoning.
 - Smallest decisive check:
 - First material falsifier:
 - Commands or native readback and results:
+- Frozen integration handoff: revision, port/schema version, UI/adapter/durable
+  landing path, and known limitations.
+- Independent correctness review: exact head reviewed and material findings
+  resolved (or explicit reason not applicable).
 
 ## Failures, cuts, and uncertainty
 
