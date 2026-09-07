@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync, spawnSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import test from "node:test";
@@ -17,7 +17,7 @@ function git(repository, ...arguments_) {
   }).trim();
 }
 
-function createRepository(t) {
+function createRepository(t, { withGatesDirectory = true } = {}) {
   const repository = mkdtempSync(join(tmpdir(), "minerva-roadmap-status-"));
   t.after(() => rmSync(repository, { recursive: true, force: true }));
   git(repository, "init", "-b", "main");
@@ -34,7 +34,9 @@ function createRepository(t) {
     "-m",
     "fixture",
   );
-  mkdirSync(join(repository, "evidence/gates"), { recursive: true });
+  if (withGatesDirectory) {
+    mkdirSync(join(repository, "evidence/gates"), { recursive: true });
+  }
   return repository;
 }
 
@@ -113,6 +115,17 @@ function runStatus(repository) {
     encoding: "utf8",
   });
 }
+
+test("reports zero when the gates directory does not exist", (t) => {
+  const repository = createRepository(t, { withGatesDirectory: false });
+  assert.equal(existsSync(join(repository, "evidence/gates")), false);
+
+  const result = runStatus(repository);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.stdout, "METRIC accepted_gates=0\n");
+  assert.equal(result.stderr, "");
+});
 
 test("counts only passed gate receipts", (t) => {
   const repository = createRepository(t);

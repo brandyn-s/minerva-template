@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { dirname, resolve } from "node:path";
 import { parseArgs } from "node:util";
@@ -20,10 +20,12 @@ try {
   });
   const gatesDirectory = resolve(values.directory ?? "evidence/gates");
   const repository = resolve(".");
-  const receiptFiles = readdirSync(gatesDirectory, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
-    .map((entry) => entry.name)
-    .sort();
+  const receiptFiles = existsSync(gatesDirectory)
+    ? readdirSync(gatesDirectory, { withFileTypes: true })
+        .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+        .map((entry) => entry.name)
+        .sort()
+    : [];
   const receipts = [];
   let passedGates = 0;
 
