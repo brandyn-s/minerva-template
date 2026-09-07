@@ -245,9 +245,28 @@ test("preflight distinguishes authentication, absence and optional entitlement w
     });
     assert.equal(result.readiness.find((r) => r.gate === "repository").state,
       { 401: "authentication-failure", 403: "unavailable", 404: "absent-or-hidden", 500: "transport-or-api-failure" }[code]);
-    assert.ok(calls.length >= 8);
+    assert.equal(calls.length, 3, "Unavailable target metadata makes eight control queries uninformative");
+    for (const gate of ["rulesets", "reporting", "actions", "workflow-permissions", "selected-actions",
+      "security-alerts", "automated-security-fixes", "codeql-default-setup"]) {
+      const control = result.readiness.find((r) => r.gate === gate);
+      assert.equal(control.state, "unverified", gate);
+      assert.match(control.evidence, /^Skipped: target metadata unavailable/);
+    }
     assert.ok(calls.every((args) => args[args.indexOf("--method") + 1] === "GET"));
   }
+});
+
+test("preflight retains every optional-control readback when the target exists", async (t) => {
+  const cwd = fixture(t);
+  await init(cwd);
+  const fake = fakeGitHub({ cwd, targetExists: true });
+  await main(["preflight", "--online"], fake);
+  for (const suffix of ["rulesets", "private-vulnerability-reporting", "actions/permissions",
+    "actions/permissions/workflow", "actions/permissions/selected-actions", "vulnerability-alerts",
+    "automated-security-fixes", "code-scanning/default-setup"]) {
+    assert.ok(fake.calls.some((call) => call.args.includes(`repos/${REPO}/${suffix}`)), suffix);
+  }
+  assert.ok(fake.calls.every((call) => call.args[call.args.indexOf("--method") + 1] === "GET"));
 });
 
 test("create waits for populated ref, uses template/private without clone flag, reads controls, then clones", async (t) => {

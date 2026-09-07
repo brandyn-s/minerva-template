@@ -288,7 +288,9 @@ async function preflight(config, online, ctx) {
       ["selected-actions", "actions/permissions/selected-actions"],
       ["security-alerts", "vulnerability-alerts"], ["automated-security-fixes", "automated-security-fixes"],
       ["codeql-default-setup", "code-scanning/default-setup"],
-    ]) rows.push(observation(gate, api(ctx, `repos/${config.repo}/${suffix}`)));
+    ]) rows.push(target.state === "observed"
+      ? observation(gate, api(ctx, `repos/${config.repo}/${suffix}`))
+      : row(gate, "unverified", "Skipped: target metadata unavailable; controls still require readback after creation."));
   }
   rows.push(row("delivery-evidence", "needed", "Required checks, live hosting readback, authorized deploy, and an authorized model smoke test remain separate evidence. Observations are not atomic proof."));
   return { command: "preflight", online, repo: config.repo, readiness: rows };

@@ -1,53 +1,53 @@
-# Build and deliver
+# Build, exercise, repair, deliver
 
-Start with one implementer, one branch, and one working interaction. No worker
-registry, event protocol, adapter certification, or extra planning document is
-required. Add a tool only when a concrete task is cheaper or safer with it.
+One implementer, one branch, one working interaction. No worker registry,
+event protocol, adapter certification, or extra planning document is required.
+Add a tool only when the current task is cheaper or safer with it.
 
-## Start
+## Start with the decision already made
 
-Read [CURRENT_GATE.md](../CURRENT_GATE.md) for permission and the relevant
-product requirements. In the product repository, state the intended outcome,
-what would make it fail, and any external permission still missing. Do not
-restart approved planning or ask again for unchanged permissions.
+Read [CURRENT_GATE.md](../CURRENT_GATE.md) and only the relevant requirements.
+State the outcome, what would make it fail, and missing external permissions.
+For approved work, start implementing rather than reopening design or asking
+again. Locate the exact file/API contract; stop research when it is answered.
 
-The [launch helper](./launch-cli.md) replaces repository provisioning steps.
-Use its private default, explicit inputs, and resume/readbacks. Keep source and
-product identity separate. Install once with the pinned toolchain; do not
-reinstall without a dependency or environment reason.
+The [launch helper](./launch-cli.md) replaces provisioning steps. Use its
+private default and explicit resume/readbacks, preserving source/product
+identity. Install dependencies once. Investigate hosting or provider access
+early if the current outcome requires it, not for a browser-local slice.
 
-## Build
+## Build and exercise together
 
-Make the smallest complete loop work before adding breadth: editable cards,
-explicit Focus, Branch, a changed constraint, and a child with unchanged source
-lineage. This is an early proof, not completion of the full product.
+Make the smallest complete loop work before breadth: editable cards, Focus,
+Branch, a changed constraint, and a child with unchanged source lineage.
+The example explains the interaction; it is not a prescribed development script.
 
-Use the library example to explain the interaction, not as a script everyone
-must follow. Observe comprehension when a human is available; otherwise say
-not evaluated. Keep simulations labelled and live routes off until permission,
-durable landing, atomic admission, and the hard spend bound are established.
+Exercise the riskiest behavior as soon as its implementation exists, not in a
+late hardening phase. For an editor: reload acknowledged work, type during a
+pending save, fail a save, and discard using keyboard and pointer. Keep failed
+drafts visible and distinct from stored context. Use existing tests/browser
+tools directly, not a generic harness or prebuilt template product component.
 
-Use existing tests and real browser behavior. Exercise the changed failure
-boundary, not a generic adapter harness. In particular, acknowledged state must
-survive reload, newer drafts must survive older saves, failed edits must remain
-visible, and discard must not save. These are product outcomes, not prebuilt
-template components.
+Reproduce one failure, repair it, and rerun that case. Reload after runtime
+interface changes. Stop unrelated polish while blocked and report the cause.
+Delegate only when the handoff saves work; an agent prompt is not a timeout.
+Observe human comprehension when available, otherwise record not evaluated.
+Simulations remain labelled; live work requires permission, durable landing,
+atomic admission, and a proven hard spend bound.
 
-If blocked, say what is blocked and why; stop unrelated polish. Use an existing
-command timeout where available. An agent prompt is not an enforced deadline.
-Parallelize only independent work with an observable benefit.
+## Close once, not repeatedly
 
-## Deliver
+Run `npm run check` on the complete candidate. Review routine changes directly;
+use independent scrutiny when risk or the product contract requires it. After
+a narrow repair, revisit that boundary rather than restarting a broad review.
+Preserve branch/PR controls and exact-head CI.
 
-Run targeted checks during repairs, then `npm run check` on the complete
-candidate. Review proportionately to the risk; a separate agent is not a
-required gate. Keep branch/PR controls and exact-head CI.
+Push the finished change; write the PR explanation while CI runs, not more code.
+Put outcome, limits, and evidence there once. Put delivery timestamps in the PR,
+not another source commit. Journal only consequential product decisions.
+When timing is requested, record request, first working loop, finish, and major
+repair/wait causes; do not add overlapping intervals as total elapsed time.
 
-Use the [deployment helper](./deploy-cli.md) only when deployment is authorized.
-Verify the real reviewer path and stable origin; a protected Preview or an
-HTTP response alone is not proof of a working product.
-
-Put outcome, limitations, and decisive evidence in the PR. When timing is
-requested, record start, first working loop, finish, and significant delays
-there; ordinary timestamps and command timings suffice. Do not add concurrent
-durations together. Use `JOURNAL.md` only for consequential product decisions.
+Use the [deployment helper](./deploy-cli.md) only with authorization. Verify
+the stable origin and real reviewer path, not just a protected preview or HTTP
+response. Missing deployment or human evidence remains missing, not complete.

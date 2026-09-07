@@ -150,6 +150,12 @@ a differing receipt is never overwritten. No Vercel project, link, deployment,
 credential retrieval, or model call is performed. Arrange a **separately
 authorized hosting step**, using `--allow-hosting` at initialization when desired.
 
+When online preflight cannot read target repository metadata, it skips the
+eight dependent control queries and marks those controls unverified. Source
+and target identity probes remain; existing targets still receive all control
+readbacks. Creation still applies and verifies the required controls. This
+avoids redundant requests before a new repository exists, not a safety check.
+
 ## Interrupted creation and explicit resume
 
 Machine-only state lives under ignored `.minerva/launch-operations/` in the
