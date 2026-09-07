@@ -649,16 +649,10 @@ Each spike exists to make one decision. It is discarded or reduced after that de
 - Public unrestricted anonymous provider access.
 - Automatic pruning of Moments, Paths, attempts, failures, or provenance.
 
-## 26. Approved decisions and spike-gated details
+## 26. Spike-gated details
 
-### Approved
-
-- `A-002` — **Approved September 6, 2026.** Use the hybrid immutable-version journal plus rebuildable current projection described in Sections 6–8.
-- `A-003` — **Approved September 6, 2026.** Use one writable tab; secondary tabs are visibly read-only.
-- `A-004` — **Approved September 6, 2026.** Keep AI/Searchlight coordination page-scoped and server workspace state absent.
-- `A-005` — **Approved September 6, 2026.** Permit only content-free durable server admission state in the prototype.
-- `A-006` — **Approved September 6, 2026.** Keep the main thread authoritative initially; add a worker only for a measured coarse bottleneck.
-- `A-007` — **Approved September 6, 2026.** Require a sibling structured nonvisual projection driven by the same domain and commands.
+Approved decisions A-001 through A-007 are listed in Section 1 and stated in
+full in their own sections; they are not repeated here.
 
 ### Remain open until a named spike
 
