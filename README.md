@@ -1,6 +1,6 @@
 # Minerva
 
-[![CI](https://github.com/brandyn-s/minerva/actions/workflows/ci.yml/badge.svg)](https://github.com/brandyn-s/minerva/actions/workflows/ci.yml)
+[![CI](https://github.com/brandyn-s/minerva-template/actions/workflows/ci.yml/badge.svg)](https://github.com/brandyn-s/minerva-template/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
 Minerva is a spatial thinking environment for directing AI with explicit
@@ -12,6 +12,12 @@ one accumulating chat transcript.
 > the approved product contract, a reproducible Next.js shell, and the bounded
 > plan for a two-hour prototype. It does not yet contain the Minerva workspace,
 > AI operations, persistence, provider integration, or a public deployment.
+
+This repository is the reusable **launch template**, not the product build.
+At an explicit clock start, generate `brandyn-s/minerva` and follow
+[the identity-transfer checklist](./HACKATHON.md#transfer-repository-identity).
+Do not reuse the template's deployment linkage or change historical template
+references into product references.
 
 ## Why Minerva
 
@@ -42,18 +48,29 @@ The full product thesis and non-goals live in [INTENT.md](./INTENT.md).
 ## First prototype
 
 The hackathon target is deliberately narrower than the long-form roadmap. At
-the two-hour checkpoint, a user should be able to:
+the two-hour checkpoint, a user should be able to open a stable deployed URL,
+without developer setup, and:
 
-1. create, edit, and arrange durable cards on a spatial surface;
+1. start from a self-contained editable example or an equally visible blank
+   workspace, then create, edit, and arrange durable cards;
 2. establish an explicit Focus and inspect the number of cards the AI sees;
 3. branch from that frozen context into a separate, visibly derived card;
-4. use the result to name a consequential direction, connection, or tension;
-5. reload without losing acknowledged cards, placement, Focus, or lineage.
+4. select a result, change an idea or constraint, and branch again while
+   retaining alternatives and exact source lineage;
+5. name a consequential direction, connection, or tension, then reload without
+   losing acknowledged cards, placement, Focus, or lineage.
+
+The preferred target adds generation-isolated three-arm Searchlight; a complete
+Branch-based refinement loop remains a valid fallback. Deployment and meaningful
+iteration are not stretch goals. The interface must expose the first action
+without a narrated tour; a personal provider key or developer-team membership
+must not be required. No submission URL exists yet.
 
 If a live provider cannot be integrated safely, the same interaction will use
-a conspicuously labelled deterministic simulation. The prototype will not
-pretend that simulated inference, partial persistence, or local evidence is a
-production capability.
+a conspicuously labelled, honestly limited deterministic simulation. Unsupported
+edits must not appear to receive fresh generated responses. A simulation does
+not establish consequential discovery; partial persistence or a local-only demo
+does not satisfy the deployed interaction contract.
 
 ## Run locally
 
