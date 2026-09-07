@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/brandyn-s/minerva/evidence/gate-receipt.schema.json",
+  "title": "Minerva content-free gate receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "gate", "status", "sourceRevision"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "gate": { "type": "string", "pattern": "^R[0-9]+[A-Z]?$" },
+    "status": {
+      "enum": ["accepted", "active", "blocked", "falsified"]
+    },
+    "sourceRevision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "dependencies": { "type": "array", "items": { "type": "string" } },
+    "externalProjects": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "toolVersions": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "namespaces": { "type": "object" },
+    "providerRoutesEnabled": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["command", "result"],
+        "properties": {
+          "command": { "type": "string" },
+          "result": { "enum": ["pass", "fail", "not-run"] },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "observableOutcome": { "type": "string" },
+    "demoResult": { "type": "string" },
+    "smallestDecisiveEvidence": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidenceLevel": { "type": "string" },
+    "firstMaterialFalsifier": { "type": "string" },
+    "falsifierOccurred": { "type": "boolean" },
+    "failures": { "type": "array", "items": { "type": "string" } },
+    "partialResults": { "type": "array", "items": { "type": "string" } },
+    "unsupportedCases": { "type": "array", "items": { "type": "string" } },
+    "materialRepairs": { "type": "array", "items": { "type": "string" } },
+    "decision": { "type": "string" },
+    "productOwnerApproval": { "type": "string" }
+  }
+}

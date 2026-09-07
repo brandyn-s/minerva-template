@@ -1,0 +1,41 @@
+{
+  "name": "minerva",
+  "version": "0.0.0",
+  "private": true,
+  "description": "R0 groundwork for the greenfield Minerva prototype.",
+  "engines": {
+    "node": "24.20.0",
+    "npm": "12.0.2"
+  },
+  "packageManager": "npm@12.0.2",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test",
+    "secrets:scan": "gitleaks dir . --redact --no-banner --no-color",
+    "roadmap:status": "node scripts/roadmap-status.mjs",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run secrets:scan && npm run roadmap:status"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.4",
+    "typescript": "5.9.3",
+    "vercel": "59.11.7"
+  },
+  "allowScripts": {
+    "esbuild@0.27.0": true,
+    "fsevents@2.3.3": true,
+    "unrs-resolver@1.12.2": true
+  }
+}

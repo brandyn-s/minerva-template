@@ -1,0 +1,19 @@
+# Dependencies and Next.js output
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local platform and environment state
+.vercel/
+.env*
+!.env.example
+
+# Local test output
+coverage/
+
+# Content-bearing evaluation evidence is never tracked
+evaluation-artifacts/
+evidence/private/
+.vercel

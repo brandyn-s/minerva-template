@@ -1,0 +1,59 @@
+:root {
+  color-scheme: light dark;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  background: #f3f0e8;
+  color: #24231f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  display: grid;
+  align-content: center;
+  min-height: 100vh;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+h1 {
+  max-width: 12ch;
+  margin: 0.25rem 0 1rem;
+  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  font-weight: 560;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+p {
+  max-width: 42rem;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.eyebrow {
+  color: #6b685f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background: #171714;
+    color: #f1eee5;
+  }
+
+  .eyebrow {
+    color: #aaa69b;
+  }
+}
