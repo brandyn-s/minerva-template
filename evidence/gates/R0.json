@@ -155,6 +155,11 @@
       "summary": "thalient/minerva IDs match .vercel/project.json; framework nextjs, Node 24.x, and no Git link"
     },
     {
+      "command": "Vercel Git link isolation repair and readback",
+      "result": "pass",
+      "summary": "A transient canonical brandyn-s/minerva Git link was disconnected before push; project-scoped API readback returned link null and 0 deployments"
+    },
+    {
       "command": "Vercel environment inventory and development pull",
       "result": "pass",
       "summary": "6 of 6 ID/key/target entries are distinct across development, preview, and production; the pulled development env contains both required names"
@@ -204,6 +209,7 @@
     "Re-review found that the Git-history-only scan missed modified tracked and new untracked unignored content, and that the prior receipt named a source commit containing an obsolete invalid receipt.",
     "Final spec re-review found that source d53461a591aaf4c00f6e8c5f208d3a3c466151a4 depended on an empty evidence/gates directory that Git does not preserve, so its clean checkout could not produce the claimed zero result.",
     "Code-quality review found no separate staged-index scan, a producer-failure-masking path-list pipeline, permissive gate/passed-state receipt semantics, and a stale in-progress runtime heading.",
+    "Final live readback found the canonical brandyn-s/minerva GitHub repository linked to the Vercel project; it was not predecessor state, but push was held because the link could violate the zero-deployment boundary.",
     "The first ESLint 10.10.0 lint run failed in an eslint-config-next bundled legacy plugin rule until the supported compatibility adapter was applied.",
     "npm audit --json exits 1 for the development tree with 28 advisories: 1 critical, 14 high, 12 moderate, and 1 low; these are in the repository-locked Vercel CLI development tree.",
     "GitHub reports 35 open Dependabot alerts for the development dependency graph: 1 critical, 15 high, 15 medium, and 4 low; its grouping differs from npm audit.",
@@ -231,7 +237,8 @@
     "Created receipt-free source commit dcaa0bf0f40e71aef796f33f48ed68b0f48a99b7 and proved its zero result after fresh npm ci in a genuinely clean detached worktree before restoring this receipt separately.",
     "Replaced deprecated ESLint 9.39.5 with current ESLint 10.10.0 and added supported @eslint/compat 2.1.1 for eslint-config-next's legacy bundled rules.",
     "Updated the README opening to record that R0 infrastructure passed while R1 and all product behavior remain unauthorized.",
-    "Changed the sole page heading to state exactly that R0 groundwork is complete while preserving the no-product-capability statement."
+    "Changed the sole page heading to state exactly that R0 groundwork is complete while preserving the no-product-capability statement.",
+    "Disconnected the transient canonical GitHub link with the native project-scoped Vercel command before push and confirmed link null with zero deployments."
   ],
   "decisions": {
     "opened": [],
