@@ -63,8 +63,11 @@ not as success.
 
 ### Target — the best two-hour demo
 
-- A targeted Searchlight sweep selects three context-appropriate, deliberately
-  different approaches before generation.
+- A targeted Searchlight sweep fixes three deliberately different approach
+  briefs before generation. Under D-013 the event may seed them from three
+  cards drawn from the Oblique Strategies deck, each contextualized to the
+  frozen context; a slice built that way is named a **Searchlight slice** and
+  does not claim `SL-002`, `SL-003`, or D-005 conformance.
 - The three arms stay neutral and land independently as ordinary cards; failed
   work remains visible.
 - The user can arrange the alternatives, write an ordinary synthesis card, and
@@ -78,7 +81,10 @@ not as success.
 
 Voice, touch, semantic History/Paths, multi-generation agentic expeditions,
 cloud workspaces, ingestion beyond paste, authentication, analytics, and visual
-polish beyond legibility are outside this two-hour build.
+polish beyond legibility are outside this two-hour build. Under D-012 and
+D-014, a Voice spike and a bounded Expedition with descriptive terrain become
+eligible only in the T+120–480 window as the owner's single primary
+improvement; they are disposable experiments and cannot close a gate.
 
 ## Pre-clock toolchain check
 
@@ -189,7 +195,8 @@ freezes the T+120 revision.
 | Mission control | Shared record and command contracts, ports, `package.json` and lockfile, CI, the integration branch and its merges, the Vercel project and any deployment | Lane implementations | Contracts frozen by T+30 and posted in each lane issue; every merge green; T+120 revision tagged; deployment readback if reached |
 | Canvas/state | Card, Focus, relationship, and operation records behind the frozen contracts; the browser-local repository adapter; the canvas surface, drag, pan, select, Focus controls, receipts, and lineage marks | Provider adapters, route handlers | Create, edit, move, and Focus survive reload; moving an unrelated card leaves the manifest unchanged; **AI sees N cards** is correct |
 | Inference | The closed generation port, the labelled deterministic fixture adapter, the bounded route handler when a safe provider path exists, Branch, and the three-arm Searchlight scheduler | Renderer, persistence internals | Branch lands one derived card outside Focus with lineage and a receipt; failed work stays visible; **Simulated** is shown whenever the fixture is in use |
-| Voice (only if separately authorized after T+120) | Page-scoped Voice session, exact context receipt, read-only authority, interruption and failure states | Workspace commands | Not part of the T+120 slice |
+| Voice (eligible under D-012; active only if chosen at T+120) | Page-scoped Voice session, exact context receipt, read-only authority, interruption and failure states, disclosed spend ceiling | Workspace commands | Not part of the T+120 slice; **Voice (spike)** label present; a mutation request is refused and pointed to the canvas action |
+| Expedition and terrain (eligible under D-014; active only if chosen at T+120) | Bounded Expedition action in the inference lane; descriptive terrain, basins, attractors, and minimap in the canvas/state lane | Focus, context, History semantics | Depth and ceilings recorded before work begins; terrain never ranks or changes context; cancel stops further generation |
 
 The exact owned paths are fixed at the T+30 contract freeze and written into
 each lane's issue. This table names responsibilities, not a directory layout,
@@ -265,7 +272,15 @@ If the T+120 floor passed, default priority for a leverage improvement is:
    the neutral three-arm Searchlight;
 3. if Searchlight is already stable, add Compare or contribution-level
    Recombine based on the product owner's real-problem rehearsal—not both by
-   default.
+   default;
+4. under D-014, a bounded Expedition with descriptive terrain and a minimap,
+   with depth and ceilings fixed in the T+120 decision entry first;
+5. under D-012, a read-only context-aware Voice spike labelled **Voice
+   (spike)**, with a disclosed spend ceiling fixed first.
+
+Items 4 and 5 are experiments outside the first-prototype boundary; choosing
+one is the owner's call at T+120, and the demo record separates what it showed
+from any product claim.
 
 The reliability improvement addresses the first observed material weakness in
 durability, failure truth, keyboard/structured access, responsive interaction,
@@ -355,6 +370,16 @@ further cost, and they are cut first.
   second permission dialog.
 - Do not edit approved authority documents to rationalize a shortcut. Record
   hackathon compromises in the journal or final demo record.
+- Terrain, density, basins, and attractors are descriptive navigation over
+  committed state. They never rank, score, select a winner, change AI context,
+  Focus, membership, or History, and they can be hidden (D-014).
+- An Expedition has a fixed depth and disclosed call, token, time, and spend
+  ceilings written down before it starts; every generated card carries
+  `derived from` lineage; pause and cancel are honoured; nothing continues
+  after the page closes (D-014).
+- A Voice spike is read-only with no workspace command port, is labelled
+  **Voice (spike)**, and has a disclosed spend ceiling before the first call.
+  It is not D-007 conformance unless every D-007 condition is met (D-012).
 
 ## Stop rules
 
@@ -432,6 +457,10 @@ is unavailable, do not perform the reload step or call the state durable.
 - Validated Searchlight generation isolation if its three arms are simulated.
 - Voice, semantic Undo/Redo with preserved Paths, anonymous cloud sharing,
   multi-user collaboration, or matched product-evaluation results.
+- D-005 or `SL-*` conformance when the approach briefs are Oblique-seeded
+  (D-013); D-007 conformance for a Voice spike (D-012); any first-prototype
+  scope claim for Expedition or terrain (D-014). These produce evidence for
+  later decisions, not product capability.
 
 ### T+120 checkpoint record
 
@@ -469,4 +498,5 @@ record only the consequential delta:
 | User friction removed or introduced | Not evaluated |
 | Consequential discovery changed | Not evaluated |
 | Remaining unsupported claims | Not evaluated |
+| D-012–D-014 experiment run, if any, and what it showed versus claimed | Not evaluated |
 | Deployment, if any | None |
