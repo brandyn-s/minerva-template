@@ -17,9 +17,9 @@
 | Product repository | **Not yet created** — `brandyn-s/minerva` is generated from this template as the first T+0 action and does not inherit commit history (`J-20260907-05`) |
 | Event checkpoint | Working prototype at T+120; optional refinement requires a separate T+120 owner decision |
 | Long-form roadmap | R1 through R9 remain unauthorized |
-| Authority documents | **FROZEN** until the T+120 artifact exists (`J-20260907-04`), with one owner-approved addition on September 7: D-012 through D-014 in `DECISIONS.md` (`J-20260907-10`) |
+| Authority documents | **FROZEN** until the T+120 artifact exists (`J-20260907-04`), with two owner-approved exceptions on September 7: D-012 through D-014 in `DECISIONS.md` (`J-20260907-10`) and ROADMAP amendment 1.2 (`J-20260907-11`) |
 | Authorized experiments | **D-012** Voice spike, **D-013** Oblique-seeded Searchlight slice, **D-014** bounded Expedition and descriptive terrain — T+120–480 only, disposable, one at a time as the owner's primary improvement, cannot close a gate or claim the conformance they depart from |
-| Last transition | Hackathon experiments D-012 through D-014 approved in `JOURNAL.md` entry `J-20260907-10` |
+| Last transition | ROADMAP amendment 1.2 accepted in `JOURNAL.md` entry `J-20260907-11` |
 
 ## Authorized before clock start
 

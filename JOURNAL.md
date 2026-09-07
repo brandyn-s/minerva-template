@@ -590,3 +590,37 @@ rejects the proposal.
   the owner decides after the event whether any experiment becomes a product
   decision.
 - Revision and references: commit containing this entry
+
+### J-20260907-11 — Accept J-20260907-08: split R5 and move the discovery veto to R6.9
+
+- Gate or slice: ROADMAP amendment 1.2 (R5, R6, R7)
+- Actors: Product owner (human), repository agent
+- Context: The owner accepted the pending proposal `J-20260907-08`.
+- Agent proposal: Implement it as recorded, with one visible deviation: keep
+  the R6V transport spike parallel to R6 rather than gating it on R6.9,
+  because R6V is a disposable feasibility lane that retains no product code,
+  and serializing it would lengthen the critical path by about two days
+  without protecting anything the proposal exists to protect. Gate R7 (Voice
+  integration) on R6.9 as proposed.
+- Human disposition and rationale: **Accepted** for the proposal; the R6V
+  deviation is the agent's implementation choice and is reversible with one
+  dependency edit if the owner prefers the literal reading.
+- Evidence or result: `ROADMAP.md` is now Approved 1.2. R5 passes on
+  usability, context predictability, and canvas burden; a Branch-only
+  provisional shift or explicit `none` is recorded, not gating. New task R6.9
+  repeats the owner rehearsal on the Searchlight build and holds the
+  consequential-discovery veto; an explicit `none` there stops capability
+  expansion and R7 does not start. R7 depends on R6 including R6.9. The
+  dependency summary, D-008 and AC-018 traceability rows, the non-delegable
+  question, the critical-path estimate (22 to 23 days), the falsifier
+  provenance rows, the Section 24 pointer, and Section 25 are updated.
+  `DECISIONS.md` D-008 and `SPEC.md` are unchanged: Stage 1's "simplify
+  before recruiting" still holds because recruitment is R9.
+- Errors, friction, or cuts: `J-20260907-08` claimed that accepting it would
+  resolve `J-20260907-03`. That was an overstatement: gating R7 on evidence
+  does not remove Voice from the critical path, because R8 still depends on
+  R7. `J-20260907-03` remains pending and the Section 20 tradeoff paragraph
+  now says so.
+- Remaining uncertainty / reopen when: R5 or R6.9 closeout; the owner
+  decides `J-20260907-03`; or the owner reverses the R6V deviation.
+- Revision and references: commit containing this entry
