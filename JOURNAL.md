@@ -728,3 +728,26 @@ rejects the proposal.
 - Revision and references: Commit containing this entry; proposal issue #17;
   `docs/delivery-workflow.md`. No private product source or incident logs are
   included; the template remains PRE-CLOCK.
+
+### J-20260907-15 - Simplify the mandatory build path
+
+- Scope: Template process maintenance, superseding the coordination requirements
+  in J-20260907-14 and ROADMAP amendment 1.3, not the product behavior contract.
+- Human disposition: The owner authorized removing complexity that does not
+  earn its cost and requested demonstrated efficiency rather than more machinery.
+- Decision: Remove the process controller/event protocol and generic adapter
+  conformance framework, including their dedicated tests and manuals. One
+  implementer, one branch, existing native tools, targeted product regressions,
+  and an ordinary PR are the default. Separate agent review is risk-dependent,
+  not mandatory. Keep historical authority documents as references.
+- Retained: The pinned shell, private-by-default resumable launch, identity and
+  permission readbacks, Next.js deployment helper, CI, secret scanning, and
+  product safety/human-evidence boundaries. Narrow executable npm detection and
+  sanitized API error fixes address concrete failures without another protocol.
+- Evidence: Compare the shipped baseline with this candidate using the same
+  pinned check command on the same machine, plus reading-surface counts and
+  retained helper/shell smokes. Actual measurements and limitations belong on
+  this PR; fewer harness checks are not proof of a faster full product build.
+- Remaining uncertainty: End-to-end product delivery improvement still needs
+  an equal-scope build. No deployment, spend, product implementation, or human
+  acceptance is authorized by this simplification.

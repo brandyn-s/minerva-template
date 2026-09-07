@@ -286,52 +286,17 @@ is demonstrated, append a second entry recording the stop/continue decision,
 the zero-or-one primary improvement, and the zero-or-one distinct reliability
 improvement, each with its rationale.
 
-## Execution matrix
+## Execution
 
-**Default: one implementer owns the first complete creative loop**, including
-its integration and delivery. The responsibility table below is not a mandate
-to create agents, worktrees, lane issues, or internal integration PRs.
-Additional lanes are optional only for genuinely independent work that cannot
-delay the critical path. Freeze their shared contracts and disjoint paths
-before dispatch; use separate worktrees when concurrent edits need isolation.
-Keep the ordinary branch/PR controls, not extra internal review ceremony.
-Use runnable checkpoints and acknowledged units of at most five minutes with the
-[process CLI](./docs/process-cli.md). A message is not a pause acknowledgement;
-stale control revisions cannot contribute to integration. Only mission control edits shared contracts, `package.json`, the
-lockfile, CI, and integration files. A worker that needs a shared change asks
-for it in its lane issue and keeps working against the frozen contract until
-the change lands. Mission control uses targeted checks for lane handoffs,
-freezes the complete integrated candidate for one full-state independent
-review and `npm run check`, and opens the pull request to `main`. Required
-exact-head CI applies to every merge; successful worker tests do not substitute
-for the integrated journey.
+One implementer owns the first complete creative loop and its delivery.
+Follow [the short guide](./docs/delivery-workflow.md). Separate agents, lane
+issues, worker protocols, integration PRs, and structured telemetry are not
+required. Add parallel work only when its benefit exceeds the handoff cost.
 
-If optional lanes are activated, use these responsibility boundaries. With one
-implementer, all responsibilities remain with that implementer.
-
-| Lane | Owns | Does not touch | Acceptance evidence |
-|---|---|---|---|
-| Mission control | Shared record and command contracts, ports, `package.json` and lockfile, CI, the integration branch and its merges, the Vercel project, reviewer access, and deployment | Lane implementations | Ports/ownership frozen before dispatch; control revisions acknowledged; every merge green; T+120 revision tagged; deployed revision and reviewer-access readback required |
-| Canvas/state | Card, Focus, relationship, and operation records behind the frozen contracts; the browser-local repository adapter; the canvas surface, drag, pan, select, Focus controls, receipts, and lineage marks | Provider adapters, route handlers | Create, edit, move, and Focus survive reload; moving an unrelated card leaves the manifest unchanged; **AI sees N cards** is correct |
-| Inference | The closed generation port, the labelled deterministic fixture adapter, the bounded route handler when a safe provider path exists, iterative Branch, and the three-arm Searchlight scheduler | Renderer, persistence internals | Initial Branch and a child from changed context land outside Focus with exact lineage and receipts; failed work stays visible; **Simulated** is shown whenever the fixture is in use |
-| Voice (eligible under D-012; active only if chosen at T+120) | Page-scoped Voice session, exact context receipt, read-only authority, interruption and failure states, disclosed spend ceiling | Workspace commands | Not part of the T+120 slice; **Voice (spike)** label present; a mutation request is refused and pointed to the canvas action |
-| Expedition and terrain (eligible under D-014; active only if chosen at T+120) | Bounded Expedition action in the inference lane; descriptive terrain, basins, attractors, and minimap in the canvas/state lane | Focus, context, History semantics | Depth and ceilings recorded before work begins; terrain never ranks or changes context; cancel stops further generation |
-
-The exact owned paths are fixed before dispatch and recorded with the worker
-control revision. This table names responsibilities, not a directory layout,
-so the slice is not forced into the long-form module map before EXP-002.
-
-Record routine shared-contract requests, blockers, cuts, and friction once in
-the content-free process event stream. Generate status/timeline/feedback from
-it; do not maintain lane issues and several Markdown trackers as competing
-sources of progress. Issues remain useful for durable proposals, not as
-mandatory per-lane ceremony.
-
-Review blocked critical-path work after five minutes: fix its prerequisite,
-bring the integration owner onto it, or name the explicit permission/evidence
-blocker. Stop unrelated polish and capability expansion until the path is
-unblocked. Do not restart design/planning for already approved subtasks or
-repeat broad research after the relevant runtime contract is known.
+Use targeted regressions while building, then the required exact-head CI and
+a risk-proportionate review. Report blockers promptly; stop unrelated polish
+and repeated research. Keep meaningful decisions in the journal and outcome
+evidence in the PR. The T+120 product contract below remains unchanged.
 
 ### Early comprehension checkpoint
 
@@ -350,9 +315,9 @@ does not pass this checkpoint. Simplify unclear interaction before expansion.
 Retain the final unassisted T+115-120 reviewer exercise on the exact deployment.
 This is an early instrument check, not a new substitute for R5/R6.9/R9.
 
-### Deployment and reviewer-access lane (required)
+### Deployment and reviewer access (required)
 
-Only mission control deploys, after clock start and only from a clean,
+The implementer deploys only with authorization, after clock start and from a clean,
 committed, identified safe revision with no secret in the bundle and provider
 routes disabled or bounded. Establish a content-free shell deployment early to expose hosting
 and access failures; it is not a passing product or submission. Repeat on the
@@ -589,7 +554,7 @@ choices inside the disposable slice.
 
 ## Stop rules
 
-- At T+20 without a working reviewer-access path, mission control repairs
+- At T+20 without a working reviewer-access path, the implementer repairs
   delivery before target expansion. A local shell is not delivery evidence.
 - At T+45 without durable editable cards, remove renderer ambition and use the
   smallest direct DOM surface.

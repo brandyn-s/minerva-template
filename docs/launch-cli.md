@@ -180,8 +180,8 @@ repaired automatically. An interrupted clone retaining unverified `.vercel/`
 metadata requires manual reconciliation rather than inheriting or deleting it.
 A completed checkout that disappears is not re-cloned.
 
-Creation/resume uses an exclusive local operation lock, separate from process
-workflow locks. It is released on ordinary success/failure. After a crash:
+Creation/resume uses an exclusive local operation lock, released on ordinary
+success/failure. After a crash:
 
 1. Inspect the `.json.lock` PID and verify that **no owning launch process is
    running**; do not remove a live lock or rely on PID absence alone after reuse.
