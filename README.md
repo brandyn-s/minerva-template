@@ -61,10 +61,22 @@ Prerequisites:
 
 - Node.js `24.20.0`
 - npm `12.0.2`
+- `gitleaks` `8.30.1` on `PATH` (required by `npm run check`, whose tests
+  exercise the secret scanner; the scanner fails fast with an install hint
+  when it is missing)
 
-The exact versions are recorded in `.node-version`, `.nvmrc`, and
-`package.json`. Node.js may ship with a different npm version, so install the
-locked npm release after selecting Node.js:
+The exact Node.js and npm versions are recorded in `.node-version`, `.nvmrc`,
+and `package.json`, and `npm ci` refuses any other version. Choose one of two
+ways to satisfy the pin.
+
+Without changing your machine, run every command through the pinned toolchain:
+
+```sh
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
+```
+
+Or install the exact versions once (Node.js may ship with a different npm):
 
 ```sh
 npm install --global npm@12.0.2
@@ -83,17 +95,13 @@ Run the deterministic repository checks with:
 ```sh
 npm run check
 npm run security:audit
-```
-
-The full secret check additionally requires `gitleaks` `8.30.1` on `PATH`:
-
-```sh
 npm run secrets:scan
 ```
 
-Together, `npm ci` and `npm run check` prove that the shell installs, lints,
-typechecks, tests, and builds. They are not evidence that the product exists or
-that a deployment is ready.
+`check` lints, typechecks, tests, and builds; `secrets:scan` scans Git history
+and the current working-tree contents. Together with `npm ci` they prove that
+the shell installs and its controls hold. They are not evidence that the
+product exists or that a deployment is ready.
 
 ## Repository guide
 

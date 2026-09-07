@@ -11,7 +11,7 @@
 | Product mode | **PRE-CLOCK / INACTIVE** |
 | Repository work | **COMPLETE** — public delivery and launch preparation closed |
 | Product capability | None; the tracked application remains a shell |
-| Readiness change | Pull request 2 merged as `ccf2ed5`; its exact `main` push check passed |
+| Readiness change | Pull requests 2 and 3 merged as `ccf2ed5` and `64f8b88`; each exact `main` push check passed |
 | Publication state | **PUBLIC** — GitHub controls enabled; Vercel remains undeployed and unlinked from Git |
 | Event checkpoint | Working prototype at T+120; optional refinement requires a separate T+120 owner decision |
 | Long-form roadmap | R1 through R9 remain unauthorized |

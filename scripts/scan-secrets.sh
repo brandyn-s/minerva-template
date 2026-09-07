@@ -1,6 +1,14 @@
 #!/bin/sh
 set -eu
 
+if ! command -v gitleaks >/dev/null 2>&1; then
+  printf '%s\n' \
+    'scan-secrets: gitleaks is required on PATH but was not found.' \
+    'Install gitleaks 8.30.1 (for example `brew install gitleaks`, or a release from' \
+    'https://github.com/gitleaks/gitleaks/releases), then rerun `npm run check`.' >&2
+  exit 127
+fi
+
 ignored_tracked=$(git ls-files --cached --ignored --exclude-standard)
 if [ -n "$ignored_tracked" ]; then
   printf '%s\n' "$ignored_tracked" >&2
