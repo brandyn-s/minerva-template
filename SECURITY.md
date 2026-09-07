@@ -15,11 +15,11 @@ sensitive source material, or unattended use.
 Do not disclose a vulnerability in a public issue, discussion, pull request, or
 commit.
 
-Once this repository is public, use
+Use
 [GitHub's private security-advisory form](https://github.com/brandyn-s/minerva/security/advisories/new).
-Enabling that form is a publication prerequisite. If it is unavailable, do not
-send vulnerability details through a public channel; wait for the maintainer to
-restore private reporting or publish a verified private contact method.
+If it is unavailable, do not send vulnerability details through a public
+channel; wait for the maintainer to restore private reporting or publish a
+verified private contact method.
 
 Include only what is necessary to reproduce and assess the issue:
 

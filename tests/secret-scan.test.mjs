@@ -9,6 +9,7 @@ import {
   readFileSync,
   readdirSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
@@ -68,6 +69,19 @@ function runSecretScan(repository, environment = {}) {
     env: { ...process.env, ...environment },
   });
 }
+
+test("fails with an install hint when gitleaks is absent from PATH", (t) => {
+  const repository = createRepository(t);
+  const shellOnlyBinDirectory = join(repository, "shell-only-bin");
+  mkdirSync(shellOnlyBinDirectory);
+  symlinkSync("/bin/sh", join(shellOnlyBinDirectory, "sh"));
+
+  const result = runSecretScan(repository, { PATH: shellOnlyBinDirectory });
+
+  assert.equal(result.status, 127);
+  assert.match(result.stderr, /gitleaks is required on PATH/);
+  assert.match(result.stderr, /Install gitleaks 8\.30\.1/);
+});
 
 test("blocks a force-tracked ignored secret before gitleaks runs", (t) => {
   const repository = createRepository(t);

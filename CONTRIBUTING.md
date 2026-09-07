@@ -15,28 +15,28 @@ and what must wait.
 - Never include credentials, private workspace content, raw transcripts, or
   participant data in an issue, commit, pull request, or evidence file.
 
-For the current shell you need Node.js `24.20.0` and npm `12.0.2`:
+For the current shell you need Node.js `24.20.0`, npm `12.0.2`, and
+`gitleaks` `8.30.1` on `PATH`. The secret-scan tests inside `npm run check`
+call gitleaks and fail fast with an install hint when it is absent.
 
 ```sh
-npm install --global npm@12.0.2
-npm --version
-npm ci
-npm run dev
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 ```
 
-The version command must print `12.0.2`. Node.js may initially provide a
-different npm version; CI performs the same explicit bootstrap.
+Or install the exact versions once with `npm install --global npm@12.0.2`; the
+README shows both paths. CI performs the same explicit bootstrap.
 
 No Vercel account or provider key is required. Before submitting a change, run:
 
 ```sh
 npm run check
 npm run security:audit
+npm run secrets:scan
 ```
 
-Install `gitleaks` `8.30.1` and also run `npm run secrets:scan` when your change
-touches configuration, dependencies, workflows, fixtures, or environment
-boundaries. CI runs all three checks.
+CI runs all three. `secrets:scan` matters most when your change touches
+configuration, dependencies, workflows, fixtures, or environment boundaries.
 
 ## Make a focused change
 
