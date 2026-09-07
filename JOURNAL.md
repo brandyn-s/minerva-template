@@ -550,3 +550,43 @@ rejects the proposal.
   expansions; a T+0 Vercel command fails; or the project is created before the
   clock-start declaration.
 - Revision and references: commit containing this entry
+
+### J-20260907-10 — Approve three disposable hackathon experiments outside the prototype boundary
+
+- Gate or slice: Authority documents / hackathon T+120–480
+- Actors: Product owner (human), repository agent, external reviewer (Codex)
+- Context: The external review argued that the hackathon packet did not
+  express the owner's ambition and proposed adding Voice, an Oblique
+  Strategies-seeded Searchlight, and bounded Expedition with descriptive
+  terrain. Each is a named exclusion in `INTENT.md`, `SPEC.md` Section 21, or
+  D-005, or reverses the owner's earlier hackathon cut.
+- Agent proposal: Approve none of them and keep the Branch-first packet with
+  three-arm Searchlight as the target, because each changes approved authority
+  or skips a spike the roadmap requires. If any were approved, record them as
+  labelled disposable experiments under the `ROADMAP.md` Section 1 and
+  `SPEC.md` Section 1 experiment clauses rather than amending the
+  first-prototype contract.
+- Human disposition and rationale: **Rejected in favour of approving all
+  three.** The owner selected Voice at T+480, the Oblique Strategies
+  experiment, and Expedition plus terrain at T+480. The agent's fallback shape
+  was accepted: they are recorded as D-012, D-013, and D-014, eligible only in
+  the T+120–480 window as the single primary improvement, disposable, and
+  unable to close a gate or claim the conformance they depart from.
+  `INTENT.md`, `SPEC.md`, D-005, and D-007 are unchanged.
+- Evidence or result: `DECISIONS.md` gains the three decisions and a section
+  explaining their boundary; `HACKATHON.md` target, exclusions, refinement
+  priorities, execution matrix, implementation constraints, unmakeable claims,
+  and T+480 record are updated; `CURRENT_GATE.md` lists the authorized
+  experiments and the one owner-approved exception to the freeze.
+- Errors, friction, or cuts: D-012 skips the EXP-004 real-browser spike, so
+  media and credential risks are discovered live. D-014 gathers horizon
+  evidence before D-008, the reverse of `ROADMAP.md` Section 23's order; the
+  roadmap text is not changed because Section 1 already permits a disposable
+  owner-authorized experiment. D-009 through D-011 remain reserved for the
+  pending proposal branch. The pending proposals `J-20260907-03`, `-07`, and
+  `-08` are unaffected.
+- Remaining uncertainty / reopen when: The T+120 decision entry names which
+  experiment, if any, runs; a falsifier in D-012, D-013, or D-014 fires; or
+  the owner decides after the event whether any experiment becomes a product
+  decision.
+- Revision and references: commit containing this entry

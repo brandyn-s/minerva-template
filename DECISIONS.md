@@ -1,6 +1,6 @@
 # Minerva — Decision Register
 
-> **Status:** Active product decision record. `INTENT.md` was approved on September 6, 2026. Decisions are added here only after explicit product-owner approval.
+> **Status:** Active product decision record. `INTENT.md` was approved on September 6, 2026. D-001 through D-008 define the first prototype. D-012 through D-014, approved September 7, 2026, authorize disposable hackathon experiments outside that boundary. Decisions are added here only after explicit product-owner approval.
 
 ## How this register works
 
@@ -327,8 +327,64 @@ A provider outage or material implementation defect invalidates the affected ses
 - Test count, architectural elegance, deployed infrastructure, or telemetry volume.
 - Deferred capabilities, general market demand, retention, collaboration, or commercial return.
 
+## Hackathon experiments outside the first-prototype boundary
+
+The three decisions below authorize time-boxed, disposable experiments for the
+T+120–480 refinement window defined in `HACKATHON.md`. They do not change the
+first-prototype contract: `INTENT.md` non-goals, `SPEC.md` Section 21
+exclusions, D-005, and D-007 stand unchanged. An experiment built under them
+is evidence for a `ROADMAP.md` Section 23 horizon or for a later product
+decision; it cannot close a gate, claim conformance to the requirement it
+departs from, or enter the product without a further decision. Each is
+eligible only as the product owner's single T+120 primary-improvement choice
+and only after the T+120 floor is stable. D-009 through D-011 are reserved
+for the drafts held pending on the proposal branch (`J-20260907-02`).
+
+### D-012 — Voice feasibility spike eligible at T+480
+
+| Field | Decision |
+|---|---|
+| Status | **Approved — September 7, 2026** |
+| Scope | Hackathon T+120–480 window only |
+| Decision | A read-only, context-aware voice companion is **eligible** as the T+120 primary improvement. It is a disposable feasibility spike unless it meets the full D-007 contract, and it is labelled **Voice (spike)** in the interface and the demo record. |
+| Why | The owner wants the event to test whether concurrent voice is feasible on the slice rather than waiting for R6V. This reverses the exclusion recorded in `J-20260906-04` and `J-20260906-07` for the refinement window only; the two-hour build still excludes Voice. |
+| Contract | Explicit start, Quiet by default, page-scoped, no workspace command port, exact context receipt, interruptible, truthful failure states, no durable audio or transcript. Any departure from D-007 is named in the demo record. |
+| Consequences | The EXP-004 real-browser spike is not run first, so media contention, barge-in, and credential-scope risks are discovered live. Provider spend for Voice needs a disclosed hard ceiling before the first call. |
+| Reversibility | **High.** The spike is discarded or reduced after the event; R6V and R7 remain the product path. |
+| Latest responsible point | The T+120 decision entry, before any Voice work begins. |
+| Falsifier | Canvas/media contention, failed barge-in, a browser-visible long-lived credential, any workspace mutation from Voice, or durable unpinned conversation stops the spike immediately. |
+
+### D-013 — Oblique-seeded Searchlight slice as an event experiment
+
+| Field | Decision |
+|---|---|
+| Status | **Approved — September 7, 2026** |
+| Scope | Hackathon slice only |
+| Decision | The three fixed approach briefs of the event's Searchlight **may** be seeded from three cards drawn from the complete Oblique Strategies deck, each contextualized into one plain-language brief against the frozen context before any arm runs. |
+| Why | The owner wants to test a controlled source of deliberate difference at the event. D-005 requires approaches selected for the problem rather than drawn from a fixed catalog; this experiment departs from that deliberately and is therefore labelled. |
+| Contract | Exactly three arms, one brief each, all three fixed before generation, same frozen context for every arm, results land as ordinary cards outside Focus, no ranking. A slice built this way is named a **Searchlight slice** and does not claim `SL-002`, `SL-003`, or D-005 conformance. The deck is content, not a procedure catalog in the product. |
+| Consequences | Evidence about whether catalog-seeded difference exposes consequential contrast, which bears on the D-005 falsifier and its latest responsible point. It does not amend D-005. |
+| Reversibility | **High.** Removing the seed restores the D-005 selection stage. |
+| Latest responsible point | Before the approach-selection stage is implemented in the slice. |
+| Falsifier | Briefs chosen after results, a sibling result reaching an arm, a hidden stage, or the interface implying the deck ranks approaches stops the experiment. |
+
+### D-014 — Bounded Expedition and descriptive terrain eligible at T+480
+
+| Field | Decision |
+|---|---|
+| Status | **Approved — September 7, 2026** |
+| Scope | Hackathon T+120–480 window only |
+| Decision | A **bounded Expedition** action and **descriptive terrain** (density, basins, attractors, and a minimap) are **eligible** as the T+120 primary improvement. Both are disposable experiments producing evidence for the `ROADMAP.md` Section 23 horizons; neither enters the first prototype. |
+| Why | The owner wants the event to probe multi-step exploration and spatial orientation earlier than the roadmap orders them. `INTENT.md` names multi-generation expeditions a first-prototype non-goal and `SPEC.md` Section 21 excludes basin and attractor scoring; this decision authorizes an experiment outside that boundary, not a change to it. |
+| Expedition contract | One explicit action; fixed depth and call/token/time/spend ceilings written into the T+120 decision entry before any work begins; every generated card carries `derived from` lineage to its parent; the user can pause and cancel; no autonomous follow-up beyond the disclosed depth; no ambient or closed-page continuation. |
+| Terrain contract | Descriptive navigation only. Terrain, density, basins, and attractors never rank, score, select a winner, or imply quality; they never change AI context (`INV-002`), Focus, membership, or History; they are presentation over committed state and can be hidden. The minimap follows `CAN-004`. |
+| Consequences | Evidence about whether bounded depth and spatial orientation help or distract, gathered before D-008 rather than after it as Section 23 orders. Risk that the demo reads as output volume; the demo record must separate what terrain showed from what the user concluded. |
+| Reversibility | **High.** Both are removed or reduced after the event. |
+| Latest responsible point | The T+120 decision entry. |
+| Falsifier | Terrain or an Expedition result changes context or Focus silently, implies a winner, exceeds its disclosed depth or ceiling, or continues after cancellation. |
+
 ## Decision queue
 
-**D-001 through D-008 are approved. The first-prototype product decision set is closed.**
+**D-001 through D-008 are approved. The first-prototype product decision set is closed. D-012 through D-014 are approved hackathon experiments outside that set.**
 
 Architecture-specific choices—renderer, local store, AI provider, voice transport, orchestration, and deployment mechanics—remain open. They should be resolved only after `SPEC.md` translates the approved intent and decisions into one coherent, testable product contract.
