@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Status | **Approved 1.1 — original long-form plan approved September 6, 2026; R0 passed; event slice prepared but inactive** |
+| Status | **Approved 1.2 — original long-form plan approved September 6, 2026; R0 passed; event slice prepared but inactive; R5 pass condition split and the consequential-discovery veto moved to R6 closeout on September 7, 2026** |
 | Date | September 6, 2026 |
 | Effort | **XL** — execute as bounded gate plans, never as one undifferentiated build |
 | Product authority | [INTENT.md](./INTENT.md), then approved entries in [DECISIONS.md](./DECISIONS.md), then [SPEC.md](./SPEC.md) |
@@ -81,7 +81,8 @@ The earliest product-risk test does not require every approved capability. A com
 
 - the Branch-based central loop is built first;
 - the product-owner rehearsal runs immediately when that loop works;
-- Searchlight and Voice remain required first-prototype work, but begin only after that early rehearsal shows the basic instrument is usable enough to justify more capability;
+- Searchlight remains required first-prototype work and begins only after that early rehearsal shows the instrument is usable, its context predictable, and its canvas burden acceptable;
+- Voice integration (R7) begins only after the R6 closeout rehearsal (R6.9), with Searchlight available, produces at least one provisional consequential shift; the disposable R6V transport spike may run beside R6 because it retains no product code;
 - accessibility and failure truth ship with every slice, never as cleanup; and
 - the external matched evaluation remains the terminal product gate.
 
@@ -169,14 +170,14 @@ When implementation discovers an in-scope material defect, fix it and return to 
 | R5 | Critical | MEASURE · DURABLE | R4 | Earliest product-owner rehearsal | Readiness evidence toward E7 |
 | R6 | Critical | BUILD · LOCAL-FAST | R5 passes | Targeted Searchlight | E1–E5 for Searchlight |
 | R6V | Critical | MEASURE · LOCAL-FAST | R5 passes | EXP-004 selects or falsifies a real Voice transport | Narrow E5 actual-audio evidence |
-| R7 | Critical | BUILD/MEASURE · LOCAL-FAST | R6 and R6V | Bounded Voice integration | E1–E6 for Voice |
+| R7 | Critical | BUILD/MEASURE · LOCAL-FAST | R6 (including the R6.9 rehearsal) and R6V | Bounded Voice integration | E1–E6 for Voice |
 | R8 | Critical | BUILD/MEASURE · LOCAL-FAST | R7 | Frozen evaluation candidate | Complete E0–E6 |
 | R9 | Critical | MEASURE · DURABLE | R8 | Staged matched evaluation and terminal product decision | E7 |
 
 Dependency summary:
 
 ~~~text
-R0 → R1 → [R2A | R2B] → R3 → R4 → R5 → [R6 | R6V] → R7 → R8 → R9
+R0 → R1 → [R2A | R2B] → R3 → R4 → R5 → [R6 (R6.9 veto) | R6V] → R7 → R8 → R9
 ~~~
 
 ## 8. Wave 0 — Establish authority before implementation
@@ -354,7 +355,7 @@ Demo: Starting from the example, explicitly structure and focus material, Branch
 
 ### R5 — Product-owner rehearsal
 
-**Outcome:** Learn whether the Branch-based canvas is usable as a thinking instrument and whether the evidence contract can capture a consequential discovery before investing in Searchlight and Voice.
+**Outcome:** Learn whether the Branch-based canvas is usable as a thinking instrument with predictable context and acceptable burden, and whether the evidence contract can capture a consequential discovery, before investing in Searchlight.
 
 **Mode:** MEASURE · DURABLE. This is the first product-risk gate, not a release or comparative product claim.
 
@@ -371,11 +372,11 @@ Demo: Starting from the example, explicitly structure and focus material, Branch
 
 Demo: The product owner completes the canonical example and one real ambiguous problem without an operator driving the UI, identifies up to three provisional consequential shifts or explicitly records none, and reconstructs any claimed shift from the product's visible evidence. The packet makes failures, abandoned paths, friction, and negative judgments as visible as successes.
 
-**Smallest decisive evidence:** A complete owner packet in either outcome, one unassisted central-loop trace, a separate graph-burden judgment, and all observed friction ranked by whether it blocks the spatial thesis. Passing readiness additionally requires at least one participant-authored provisional consequential shift with a reconstructable Minerva contribution. `None` is valid negative evidence but cannot pass R5.
+**Smallest decisive evidence:** A complete owner packet in either outcome, one unassisted central-loop trace, a separate graph-burden judgment, and all observed friction ranked by whether it blocks the spatial thesis. The provisional-shift result is recorded either way and carried into R6.9. A participant-authored shift with a reconstructable Minerva contribution is the strongest readiness signal; an explicit `none` is valid negative evidence that does not by itself fail R5, because a Branch-only build cannot fairly test the convergence thesis (`J-20260907-08` superseded the earlier rule).
 
 **First material falsifier:** The owner cannot reach or understand the loop without hidden coaching; context or lineage cannot explain a claim; canvas operation consumes attention comparable to rebuilding context in chat; or the same material defect recurs after the one focused repair.
 
-**Exit decision:** Pass only if the instrument is usable enough and produces at least one provisional thinking change that justifies adding the already-approved Searchlight and Voice capabilities. Passing does not call that shift D-008-qualified and does not establish superiority to chat; delayed endorsement belongs to the terminal evaluation. An explicit `none` or failed rerun stops the current build direction and requires simplification or a new product/architecture decision.
+**Exit decision:** Pass when the owner can reach and complete the loop without hidden coaching, can predict what each AI action will see, and finds canvas burden clearly lower than reconstructing context in chat. Passing authorizes R6 and the R6V spike. It does not call any recorded shift D-008-qualified and does not establish superiority to chat; delayed endorsement belongs to the terminal evaluation. A failed rerun on the usability, predictability, or burden falsifiers stops the current build direction and requires simplification or a new product/architecture decision. An explicit `none` passes forward as the open question R6.9 must answer.
 
 ## 14. Wave 6 — Add targeted divergence through the common operation path
 
@@ -395,6 +396,7 @@ Demo: The product owner completes the canonical example and one real ambiguous p
 | R6.6 | Critical | Add the single eligible derived Harvest, insufficient-contrast state, explicit per-arm Retry Moment, updated Harvest without rewrite, and exact partial/complete assessment; operation/history lane | R6.4 and R6.5 | Old attempts, failures, assessments, and Harvests remain inspectable |
 | R6.7 | Critical | Represent one invocation as one expandable top-level History Moment; implement Searchlight Undo/Redo/Paths and equivalent keyboard/structured controls; history/accessibility lane | R6.6 | User-action ordering and zero-spend exact Redo |
 | R6.8 | Critical | Run adversarial isolation, concurrency, partial-result, cancellation, reload, retry, and History scenarios against fake and real bounded transports; integration lane | R6.7 | AC-008 through AC-011 at their appropriate evidence levels |
+| R6.9 | Critical | Repeat the R5 owner rehearsal on the R6 build with Searchlight available: the canonical example and one genuine current problem in clean evaluation states, up to three participant-authored provisional consequential shifts or an explicit `none`, each reconstructed from Branch or Searchlight evidence, plus the separate graph-burden judgment; product owner with evidence assembler | R6.8 | The consequential-discovery veto: at least one provisional shift with a reconstructable Minerva contribution authorizes R7; an explicit `none` stops capability expansion |
 
 Demo: Invoke Searchlight and inspect three briefs before generation. Observe two running and one queued while continuing to edit the canvas. Pause queued work, resume against the original inputs, cancel, and inject a late result; already landed cards remain. In a separate run, let one arm fail and a two-arm Harvest land, make an unrelated edit, retry the failed arm, receive a new result and three-arm Harvest, then Undo and Redo only the Retry Moment with zero provider calls.
 
@@ -402,11 +404,11 @@ Demo: Invoke Searchlight and inspect three briefs before generation. Observe two
 
 **First material falsifier:** Briefs are chosen after arm output; an arm sees sibling material; a hidden stage, retry, ranking, or repair executes; the canvas blocks; Pause or Resume changes input; Cancel permits a late commit; partial work says complete; a later retry rewrites earlier evidence; or Redo spends.
 
-**Exit decision:** Confirm Searchlight's product/session envelope within R2B's immutable server maximum and its integration with the common operation pipeline. Any proposed increase beyond that maximum reopens R2B's contention, denial, and zero-work evidence. Do not add multi-generation behavior, ambient exploration, or a procedure catalog.
+**Exit decision:** Confirm Searchlight's product/session envelope within R2B's immutable server maximum and its integration with the common operation pipeline. Any proposed increase beyond that maximum reopens R2B's contention, denial, and zero-work evidence. Do not add multi-generation behavior, ambient exploration, or a procedure catalog. R7 begins only if R6.9 records at least one participant-authored provisional consequential shift with a reconstructable Minerva contribution. An explicit `none` at R6.9 stops capability expansion: Voice integration does not start, and the build direction requires simplification or a new product/architecture decision (`J-20260907-08`).
 
 ### R6V — EXP-004: Voice transport feasibility
 
-R6V may run in parallel with R6 after R5 passes. It is a disposable feasibility lane and cannot delay or alter Searchlight's fixed operation contract.
+R6V may run in parallel with R6 after R5 passes. It is a disposable feasibility lane, retains no product code, and cannot delay or alter Searchlight's fixed operation contract. It does not integrate Voice; integration (R7) waits for the R6.9 rehearsal.
 
 **Outcome:** Select or falsify a real-browser Voice transport early enough that an infeasible required capability does not remain hidden until final integration.
 
@@ -525,7 +527,7 @@ Demo: First show the executable ordinary-chat baseline dry run and every preregi
 | D-005 — three-approach sweep | R6, R8 | Exactly three fixed isolated arms, concurrency two, factual partial states, eligible Harvest, and no hidden work |
 | D-006 — semantic Undo/Redo with preserved Paths | R1, R4, R6, R8 | Meaningful action ordering, dependency safety, exact zero-spend Redo, preserved futures, and late-result rejection |
 | D-007 — persistent bounded companion | R6V, R7, R8 | Real concurrent Voice is Quiet by default, exact-context, read-only, ephemeral unless pinned, and hard-bounded |
-| D-008 — staged matched evaluation | R5, R8, R9 | Owner readiness packet, frozen candidate, matched packets, countermetrics, and the declared product decision |
+| D-008 — staged matched evaluation | R5, R6, R8, R9 | Owner readiness packet, frozen candidate, matched packets, countermetrics, and the declared product decision |
 
 ### Acceptance scenarios to gates
 
@@ -548,7 +550,7 @@ Demo: First show the executable ordinary-chat baseline dry run and every preregi
 | AC-015 — real Voice concurrency | R7 | R8 |
 | AC-016 — Voice session memory | R7 | R8 |
 | AC-017 — accessible core loop | R2A and every later construction gate | R8 |
-| AC-018 — complete product loop | R4 and R5 | R8 |
+| AC-018 — complete product loop | R4, R5, and R6 | R8 |
 | AC-019 — matched product evidence | R9 | R9 terminal report |
 
 ### Architecture experiments to gates
@@ -609,7 +611,7 @@ A gate passes only when every applicable row is **yes**. The rows are not averag
 | Scope complete | Are all Critical tasks done with no required behavior deferred under a different label? | Gate task map | Do not pass a partial gate |
 | Bounded review | Was there at most one terminal review, with only invalidated evidence rerun after a material repair? | Review record | Stop verification churn and use the decisive native proof |
 
-R5 and R9 add one non-delegable question: **Does the human participant still regard the claimed shift as consequential under the approved constraints, and can its Minerva contribution be reconstructed?** Model scoring, output counts, divergence measures, delight, and reviewer preference cannot answer it.
+R6.9 and R9 add one non-delegable question: **Does the human participant still regard the claimed shift as consequential under the approved constraints, and can its Minerva contribution be reconstructed?** R5 asks the same question and records the answer without gating on it. Model scoring, output counts, divergence measures, delight, and reviewer preference cannot answer it.
 
 ### Bounded closeout commands
 
@@ -631,17 +633,19 @@ generic gate counter or release probe in advance of a concrete need.
 
 ### Critical path
 
-R2A/R2B and R6/R6V are the only construction lanes intended to run concurrently. All later gates depend on their shared integration seam or on the product decision immediately before them. The estimated critical path through the frozen candidate is approximately **22 engineering days**, plus the bounded owner rehearsal and external-evaluation logistics. This is the long-form first-prototype sequence, not the hackathon clock. The event slice uses the T+120 checkpoint and optional T+120–480 refinement window in `HACKATHON.md`; neither duration changes gate status. This is a sequencing budget, not a calendar promise; a falsifier shortens the path by stopping work.
+R2A/R2B and R6/R6V are the only construction lanes intended to run concurrently. All later gates depend on their shared integration seam or on the product decision immediately before them. The estimated critical path through the frozen candidate is approximately **22 to 23 engineering days** (R6.9 adds one rehearsal), plus the bounded owner rehearsal and external-evaluation logistics. This is the long-form first-prototype sequence, not the hackathon clock. The event slice uses the T+120 checkpoint and optional T+120–480 refinement window in `HACKATHON.md`; neither duration changes gate status. This is a sequencing budget, not a calendar promise; a falsifier shortens the path by stopping work.
 
 No gate may start early by building against a guessed adapter. Paper analysis and disposable fixtures may prepare a gate, but production integration waits for the preceding exit decision.
 
-**Known sequencing tradeoff (recorded September 7, 2026).** D-008 evaluates
+**Known sequencing tradeoff (recorded September 7, 2026; updated the same day).** D-008 evaluates
 the thesis with Voice off, yet R8 depends on R7 and R9 depends on R8, so R6V
 and R7 (about five of the 22 days) sit on the critical path to the thesis
-test. A proposal to split R8 into a Voice-off evaluation candidate and a
-separate later Voice freeze is recorded as pending in `JOURNAL.md` entry
-`J-20260907-03`. It takes effect only through an explicit product-owner
-decision at R5 closeout; until then the approved order stands.
+test. `J-20260907-08`, accepted September 7, gates R7 on the R6.9 rehearsal,
+so Voice integration now waits for thinking-change evidence; it does not
+remove Voice from the critical path, because R8 still depends on R7. The
+proposal to split R8 into a Voice-off evaluation candidate and a separate
+later Voice freeze remains pending in `J-20260907-03` and takes effect only
+through an explicit product-owner decision.
 
 ### Open choices at their latest responsible point
 
@@ -684,8 +688,8 @@ The material falsifier in each construction gate is a pre-build estimate derived
 | R2B | **Derived from: estimated** | Whether closed provider work can be admitted, bounded, cancelled, and sanitized without workspace state |
 | R3 | **Derived from: estimated** | Whether the first durable Branch slice is directly useful and causally inspectable |
 | R4 | **Derived from: estimated** | Whether the complete Branch-based loop remains understandable, reversible, and lighter than context reconstruction |
-| R5 | **Derived from: measured** | Whether the owner can use the instrument and reconstruct a consequential shift or explicit none |
-| R6 | **Derived from: estimated** | Whether targeted divergence remains fixed, isolated, controllable, neutral, and truthful under partial execution |
+| R5 | **Derived from: measured** | Whether the owner can use the instrument with predictable context and acceptable burden; a Branch-only provisional shift or explicit none is recorded, not gating |
+| R6 | **Derived from: estimated; R6.9 measured** | Whether targeted divergence remains fixed, isolated, controllable, neutral, and truthful under partial execution; and, at R6.9, whether the Searchlight build produces a provisional consequential shift or an explicit none |
 | R6V | **Derived from: estimated** | Whether any real-browser Voice transport can satisfy media, credential, interruption, retention, and resource boundaries |
 | R7 | **Derived from: estimated** | Whether the selected Voice transport can satisfy exact-context, read-only, Quiet/Active, pinning, privacy, and Searchlight-concurrency boundaries |
 | R8 | **Derived from: estimated** | Whether one exact deployment supports every required first-prototype claim at E0–E6 |
@@ -750,7 +754,8 @@ preserved verbatim in
 [`docs/archive/roadmap-interview-findings-2026-09-06.md`](./docs/archive/roadmap-interview-findings-2026-09-06.md).
 That was the sole terminal plan review. Execution may revisit a gate only when
 its native evidence triggers that gate's named falsifier or invalidates a
-dependency.
+dependency. Finding 1's resolution, that `none` cannot pass R5, was
+superseded on September 7, 2026 by `J-20260907-08`; the archive is unchanged.
 
 ## 25. Approval and execution handoff
 
@@ -759,7 +764,10 @@ This roadmap is the canonical execution plan for the first Minerva prototype. It
 The September 6 approval changed the status from **Draft 0.1** to **Approved
 1.0** and authorized R0, which has since passed. Amendment **1.1** records the
 pre-clock experiment boundary and simplifies R0 evidence administration without
-changing a product requirement or closing another gate. `CURRENT_GATE.md` now
+changing a product requirement or closing another gate. Amendment **1.2**
+(September 7, 2026) splits the R5 pass condition, adds the R6.9 owner
+rehearsal as the consequential-discovery veto, and gates R7 on it
+(`J-20260907-08`, `J-20260907-11`). `CURRENT_GATE.md` now
 carries the subordinate operating state. Before each later long-form gate, the
 implementation session must:
 
