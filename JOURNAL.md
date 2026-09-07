@@ -247,6 +247,46 @@ rejects the proposal.
   no-Git-link boundary.
 - Revision and references: draft pull request 2; commit containing this entry
 
+### J-20260906-10 — Close public delivery on live evidence
+
+- Gate or slice: Repository readiness
+- Actors: Product owner (human), repository agent
+- Context: Close the public transition only after the authorized readiness
+  change reached `main`, its integrated check passed, and GitHub and Vercel
+  could be read back in their final roles.
+- Agent proposal: Publish the retained history; use one protected pull-request
+  lane, one required repository check, squash-only merges, read-only and
+  SHA-pinned GitHub-owned Actions, and native GitHub security services. Keep
+  CodeQL advisory and leave Vercel undeployed and unlinked. Do not add an
+  activity monitor or approval ceremony.
+- Human disposition and rationale: **Accepted through the modified direction
+  in `J-20260906-09`.** The owner chose retained Vercel identifiers, corrected
+  attribution, and the streamlined GitHub configuration, then authorized push
+  and merge. This entry records execution of that decision; it does not infer
+  approval from silence or from the agent completing work.
+- Evidence or result: Pull request 2 merged as `ccf2ed5`, and the exact
+  `main` push run `34083669179` passed `Verify repository`. GitHub readback
+  reports public visibility; Issues on; Projects, Wiki, and Discussions off;
+  squash-only merging with branch deletion; an active `main` ruleset requiring
+  pull requests, resolved threads, and `Verify repository` with zero required
+  approvals; read-only Actions restricted to full-SHA-pinned GitHub-owned
+  actions; and secret scanning, push protection, private vulnerability
+  reporting, and CodeQL default setup enabled. Vercel readback reports zero
+  deployments for `thalient/minerva`; the separate provider-link read reports
+  no Git connection.
+- Errors, friction, or cuts: The first merge command used an incorrectly
+  expanded short SHA, so GitHub's expected-head lease rejected it and no merge
+  occurred. Refreshing the exact head allowed the authorized squash merge.
+  CodeQL's initial analysis was still running at closeout and is intentionally
+  not a required status check. No custom activity monitor, project board,
+  deployment, or history rewrite was added.
+- Remaining uncertainty / reopen when: Reopen repository readiness if a secret
+  alert, CodeQL result, protection drift, Vercel deployment or Git link, or a
+  contributor-path failure materially changes the public boundary. Product
+  work still requires an explicit event-clock declaration.
+- Revision and references: pull request 2; `ccf2ed5`; GitHub Actions runs
+  `34083669179` and `34083863062`; commit containing this entry
+
 ## Clock-start entry template
 
 Copy this only when the product owner explicitly starts the event clock:
