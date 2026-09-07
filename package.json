@@ -15,7 +15,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --test",
-    "secrets:scan": "ignored_tracked=$(git ls-files --cached --ignored --exclude-standard); test -z \"$ignored_tracked\" || { printf '%s\\n' \"$ignored_tracked\" >&2; exit 1; }; gitleaks git --redact --no-banner --no-color",
+    "secrets:scan": "set -eu; ignored_tracked=$(git ls-files --cached --ignored --exclude-standard); test -z \"$ignored_tracked\" || { printf '%s\\n' \"$ignored_tracked\" >&2; exit 1; }; gitleaks git --redact --no-banner --no-color; scan_root=$(mktemp -d \"${TMPDIR:-/tmp}/minerva-secret-scan.XXXXXX\"); trap 'rm -rf \"$scan_root\"' EXIT HUP INT TERM; mkdir -p \"$scan_root/objects\" \"$scan_root/files\"; GIT_INDEX_FILE=\"$scan_root/index\" GIT_OBJECT_DIRECTORY=\"$scan_root/objects\" git read-tree --empty; git ls-files -z --cached --others --exclude-standard | GIT_INDEX_FILE=\"$scan_root/index\" GIT_OBJECT_DIRECTORY=\"$scan_root/objects\" git update-index --add --remove -z --stdin; GIT_INDEX_FILE=\"$scan_root/index\" GIT_OBJECT_DIRECTORY=\"$scan_root/objects\" git checkout-index --all --force --prefix=\"$scan_root/files/\"; gitleaks dir \"$scan_root/files\" --redact --no-banner --no-color",
     "roadmap:status": "node scripts/roadmap-status.mjs",
     "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run secrets:scan && npm run roadmap:status"
   },
