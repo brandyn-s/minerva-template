@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "gate": "R0",
+  "status": "accepted",
+  "sourceRevision": "4318a97801fbfd28cf561e660327e6e9ccebd2b2",
+  "dependencies": [
+    "ROADMAP Approved 1.0",
+    "authority commit a1a1ff90850303cfa490cc8a464de2fb63afc7e1"
+  ],
+  "externalProjects": {
+    "githubRepository": "brandyn-s/minerva",
+    "githubRemote": "https://github.com/brandyn-s/minerva.git",
+    "githubVisibility": "private",
+    "canonicalBranch": "main",
+    "vercelScope": "thalient",
+    "vercelProject": "minerva",
+    "vercelTeamId": "team_CPMDIZRXjSVqupCatDjsDq4Q",
+    "vercelProjectId": "prj_JqzTIJqpZZZomnXhqMVnEPSNNzFe",
+    "vercelFramework": "nextjs",
+    "vercelNodeVersion": "24.x",
+    "deployment": "none",
+    "productionAlias": "none"
+  },
+  "toolVersions": {
+    "git": "2.50.1",
+    "githubCli": "2.98.0",
+    "node": "24.20.0",
+    "npm": "12.0.2",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "reactDom": "19.2.8",
+    "typescript": "5.9.3",
+    "eslint": "9.39.5",
+    "vercelCli": "59.11.7",
+    "gitleaks": "8.30.1"
+  },
+  "namespaces": {
+    "browserDatabase": "minerva.workspace.prototype.v1",
+    "admission": {
+      "development": "minerva-development",
+      "preview": "minerva-preview",
+      "production": "minerva-production"
+    }
+  },
+  "providerRoutesEnabled": {
+    "development": false,
+    "preview": false,
+    "production": false
+  },
+  "commands": [
+    {
+      "command": "git diff --check",
+      "result": "pass",
+      "summary": "0 whitespace errors"
+    },
+    {
+      "command": "npm run lint",
+      "result": "pass",
+      "summary": "0 errors and 0 warnings"
+    },
+    {
+      "command": "npm run typecheck",
+      "result": "pass",
+      "summary": "0 TypeScript diagnostics"
+    },
+    {
+      "command": "npm test",
+      "result": "pass",
+      "summary": "1 test passed, 0 failed"
+    },
+    {
+      "command": "npm run build",
+      "result": "pass",
+      "summary": "Next.js 16.3.4 compiled and generated the static root shell"
+    },
+    {
+      "command": "npm run secrets:scan",
+      "result": "pass",
+      "summary": "gitleaks scanned the reviewable working tree; 0 leaks"
+    },
+    {
+      "command": "npm run roadmap:status",
+      "result": "pass",
+      "summary": "accepted_gates=0 before this receipt, as required"
+    },
+    {
+      "command": "local development HTTP smoke",
+      "result": "pass",
+      "summary": "HTTP 200 and 2 of 2 groundwork/no-capability assertions passed"
+    },
+    {
+      "command": "Vercel environment name inventory",
+      "result": "pass",
+      "summary": "6 of 6 required name/environment entries present; development pull had 2 of 2 required names"
+    },
+    {
+      "command": "provider route source inspection",
+      "result": "pass",
+      "summary": "0 route files"
+    },
+    {
+      "command": "Vercel deployment inventory",
+      "result": "pass",
+      "summary": "0 deployments"
+    },
+    {
+      "command": "npm audit --omit=dev",
+      "result": "pass",
+      "summary": "0 production dependency advisories"
+    }
+  ],
+  "observableOutcome": "A canonical isolated repository and minimal authority controls exist for later Minerva work.",
+  "demoResult": "Git history places approved authority before scaffold code; the private GitHub and linked Vercel identities and reserved namespaces are Minerva-specific.",
+  "smallestDecisiveEvidence": [
+    "Root authority commit contains exactly the six approved documents.",
+    "Implementation revision contains the minimal shell, locked dependencies, controls, and no provider route.",
+    "GitHub reports brandyn-s/minerva private with one origin.",
+    "Vercel project readback matches thalient/minerva and has zero deployments.",
+    "Fresh Node 24 check and linked local HTTP smoke passed."
+  ],
+  "evidenceLevel": "E0 infrastructure only",
+  "firstMaterialFalsifier": "Any predecessor repository state, deployment metadata, persistent data, secret, alias, analytics, or unstated product contract is imported.",
+  "falsifierOccurred": false,
+  "failures": [
+    "The initial unscoped gitleaks directory scan found 7 generated/local-only matches in ignored .next and .env.local paths; no values were printed."
+  ],
+  "partialResults": [
+    "No app was deployed and no alias was created; deployed-web evidence is intentionally not claimed."
+  ],
+  "unsupportedCases": [
+    "Product behavior, browser persistence, provider execution, AdmissionLedger, authentication, analytics, and managed data resources were not implemented or evaluated in R0."
+  ],
+  "materialRepairs": [
+    "The one allowed custom-verifier repair scoped gitleaks allowlisting to Git-ignored generated/local paths; the final reviewable-tree scan passed with 0 leaks.",
+    "The empty Vercel project defaulted to framework Other; it was corrected to Next.js before verification."
+  ],
+  "decision": "Accept R0 infrastructure only. R1 remains unauthorized pending explicit product-owner authorization.",
+  "productOwnerApproval": "ROADMAP Approved 1.0 records product-owner approval on September 6, 2026 and authorizes R0 alone."
+}
