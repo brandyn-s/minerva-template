@@ -14,7 +14,9 @@
 
 `MUST`, `SHOULD`, `MAY`, and **[OPEN]** retain the meanings defined in `SPEC.md`. An architecture choice cannot weaken a product requirement. If this file conflicts with the approved product documents, the product documents win and the architecture must change.
 
-This file does not authorize implementation. It establishes the design to be approved before `ROADMAP.md` sequences work.
+This file does not by itself authorize current work. It establishes the
+approved implementation boundaries that `ROADMAP.md` sequences;
+`CURRENT_GATE.md` records the product owner's current authorization.
 
 ## 2. Architecture decision A-001
 
@@ -669,4 +671,7 @@ Each spike exists to make one decision. It is discarded or reduced after that de
 
 ## 27. Architecture approval
 
-Architecture decisions `A-001` through `A-007` are approved. Every explicitly spike-gated item remains **[OPEN]** until its named experiment supplies decisive evidence. This approval authorizes work on `ROADMAP.md`, not implementation.
+Architecture decisions `A-001` through `A-007` are approved. Every explicitly
+spike-gated item remains **[OPEN]** until its named experiment supplies decisive
+evidence. This approval enabled the long-form `ROADMAP.md`; current work remains
+bounded by `CURRENT_GATE.md`.

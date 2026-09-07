@@ -4,18 +4,25 @@
 
 | Field | Value |
 |---|---|
-| Status | **Approved 1.0 — product-owner approved September 6, 2026; R0 alone authorized** |
+| Status | **Approved 1.1 — original long-form plan approved September 6, 2026; R0 passed; event slice prepared but inactive** |
 | Date | September 6, 2026 |
 | Effort | **XL** — execute as bounded gate plans, never as one undifferentiated build |
 | Product authority | [INTENT.md](./INTENT.md), then approved entries in [DECISIONS.md](./DECISIONS.md), then [SPEC.md](./SPEC.md) |
 | Architecture authority | [ARCHITECTURE.md](./ARCHITECTURE.md) |
-| Supporting pre-build critique | [JUDGMENT_AT_SPEED_FINDINGS.md](./JUDGMENT_AT_SPEED_FINDINGS.md); useful sequencing evidence, not product authority |
+| Current execution | [CURRENT_GATE.md](./CURRENT_GATE.md) is the subordinate operational record; it cannot itself grant authority or alter the authorities above or this long-form sequence |
+| Event slice | [HACKATHON.md](./HACKATHON.md), evaluated with [DEMO.md](./DEMO.md), is prepared but inactive until a product-owner clock-start declaration is recorded |
 | Scope | Greenfield first prototype through staged product evaluation and a terminal evidence-backed decision |
 | Historical boundary | Searchlight, Atlas, Gestures, their repositories, schemas, deployments, prompts, and secrets are evidence only |
 
 This file governs sequence, dependencies, stopping rules, and release gates. It cannot weaken an approved product or architecture contract. If a roadmap step conflicts with an authoritative document, the roadmap changes.
 
-This approval authorizes **R0 only**. Each later gate begins only after its dependencies produce the named decisive evidence. A failed gate triggers simplification or re-planning; it does not authorize bypassing the falsifier.
+The original R0 authorization was exercised and R0 was recorded passed. R1
+through R9 still require explicit product-owner authorization after their
+dependencies produce the named decisive evidence. `CURRENT_GATE.md` may record
+an explicitly labelled, disposable experiment that the product owner authorizes
+outside gate order; that experiment cannot close, satisfy, or silently replace a roadmap
+gate. A failed gate triggers
+simplification or re-planning; it does not authorize bypassing the falsifier.
 
 ## 2. Goal and terminal demonstrations
 
@@ -44,14 +51,19 @@ The first prototype is complete only when required capabilities are implemented 
 - Server persistence is limited to content-free admission and spend facts.
 - Provider work ends with the page lifecycle; reload never resumes paid work automatically.
 
-### Empirical starting point
+### R0 closeout baseline (historical)
 
-- The Minerva directory contains the four approved authorities and the pre-build findings document.
-- It is not yet a Git repository and contains no implementation code.
-- Git, Node.js, npm, npx, and GitHub CLI are available on the current host.
-- No global Vercel CLI is installed; the verified executable path is npx with Vercel CLI 59.11.7 at planning time. Execution must re-check the current version and current Vercel contract.
-- No prior Minerva roadmap was found in the local plan archive.
-- The currently approved architecture contains four named falsifying experiments: EXP-001 through EXP-004.
+- The canonical greenfield repository and minimal Next.js shell exist; approved
+  authority history precedes generated code and R0 has passed.
+- Node 24.20.0, npm 12.0.2, and Vercel CLI 59.11.7 are locked in the repository.
+- The isolated Vercel project is linked locally but undeployed.
+  Browser-storage and admission namespaces are reserved; no browser database,
+  provider route, credential, or product capability exists yet.
+- `HACKATHON.md` and `DEMO.md` prepare the event slice without implementing it.
+- The approved architecture contains four named falsifying experiments:
+  EXP-001 through EXP-004.
+- Volatile work authorization and the exact next transition live in
+  `CURRENT_GATE.md`, not in this snapshot.
 
 ### Human judgment boundary
 
@@ -92,7 +104,7 @@ This preserves the approved scope while applying the pre-build finding that voic
 
 | Action | Available path | Boundary |
 |---|---|---|
-| Local source and documentation work | apply_patch, shell, Git, Node.js, npm | No implementation before roadmap approval |
+| Local source and documentation work | apply_patch, shell, Git, Node.js, npm | Current work is bounded by `CURRENT_GATE.md` |
 | Independent adapter spikes | Scoped subagents in isolated worktrees | Shared ports freeze before parallel dispatch |
 | Browser-local and accessibility verification | Repository tests plus Playwright or equivalent real-browser automation | Native browser evidence outranks mocks |
 | Manual visual and audio verification | Real supported browser and actual audio hardware | Simulation cannot prove media concurrency or product feel |
@@ -104,7 +116,7 @@ This preserves the approved scope while applying the pre-build finding that voic
 
 Use the software-development chain phase by phase:
 
-1. Create a gate-specific implementation plan from this roadmap.
+1. Read `CURRENT_GATE.md`, then the relevant sections of the approved authorities and this roadmap.
 2. Use fresh, scoped subagents for independent file-level slices.
 3. Keep shared domain contracts and integration in one authoritative lane.
 4. Merge only after the gate's smallest decisive evidence passes.
@@ -151,7 +163,7 @@ When implementation discovers an in-scope material defect, fix it and return to 
 
 | Gate | Scope | Type and mode | Depends on | Outcome | Evidence target |
 |---|---|---|---|---|---|
-| R0 | Critical | WRITE/BUILD · LOCAL-FAST | Approved roadmap | Greenfield runway and build controls | E0 and isolation receipt |
+| R0 | Critical | WRITE/BUILD · LOCAL-FAST | Approved roadmap | Greenfield runway and build controls | E0 and isolation closeout |
 | R1 | Critical | BUILD/MEASURE · LOCAL-FAST | R0 | EXP-001 proves local truth | E2 plus focused E3 |
 | R2A | Critical | BUILD/MEASURE · LOCAL-FAST | R1 shared ports | EXP-002 selects renderer and structured projection seam | E2/E3 |
 | R2B | Critical | BUILD/MEASURE · LOCAL-FAST | R1 shared ports | EXP-003 selects provider, protocol, admission, and hard envelope | E2 plus narrow E5 |
@@ -174,6 +186,9 @@ R0 → R1 → [R2A | R2B] → R3 → R4 → R5 → [R6 | R6V] → R7 → R8 → 
 
 ### R0 — Greenfield runway
 
+**Status:** Passed September 6, 2026. This section remains as the historical
+contract; current authorization lives in `CURRENT_GATE.md`.
+
 **Outcome:** Establish a canonical, isolated repository and the smallest controls needed to keep later generated work aligned with the approved documents.
 
 **Budget:** At most one engineer-day. This is infrastructure and makes no product-capability claim.
@@ -184,16 +199,29 @@ R0 → R1 → [R2A | R2B] → R3 → R4 → R5 → [R6 | R6V] → R7 → R8 → 
 | R0.2 | Critical | Commit INTENT.md, DECISIONS.md, SPEC.md, ARCHITECTURE.md, ROADMAP.md, and the pre-build findings before scaffolded code; Git | R0.1 | A source commit proving intent preceded generated code |
 | R0.3 | Critical | Add a short AGENTS.md pointing to the authority order, a JOURNAL.md seeded with human approvals and corrections, a concise README, and a tracked evidence index; main lane | R0.2 | Session-readable controls without duplicating the specification |
 | R0.4 | Critical | Bootstrap one current Next.js App Router application only after reading the installed version's `node_modules/next/dist/docs` guidance; select and lock the supported Node/package-manager and Vercel CLI versions; Node/npm | R0.3 | Minimal application shell, dependency lockfile, and repository-native check commands |
-| R0.5 | Critical | Create and link a new Vercel project, new browser database namespace, separate Preview/Production configuration namespaces, and disabled-by-default provider routes; main lane using the repository-locked Vercel CLI | R0.4 | Isolation receipt naming the new project, remote, tool versions, and namespaces, with no production capability claim |
-| R0.6 | Critical | Add one bounded check entrypoint, a small gate-status receipt format, secret scanning, and explicit ignore rules for content-bearing evaluation artifacts; main lane | R0.4 | A short repeatable check and evidence convention |
+| R0.5 | Critical | Create and link a new Vercel project; reserve a browser-database namespace and separate Preview/Production admission namespaces; keep provider routes absent and disabled; main lane using the repository-locked Vercel CLI | R0.4 | Isolation closeout naming the new project, remote, tool versions, and reserved namespaces, with no production capability claim |
+| R0.6 | Critical | Add one bounded check entrypoint, an initial gate-status receipt format, secret scanning, and explicit ignore rules for content-bearing evaluation artifacts; main lane | R0.4 | The original repeatable check and evidence convention |
 
-Demo: Repository history shows the approved intent commit before generated code; the linked Vercel project, browser database namespace, and environment names are unique to Minerva. This is an infrastructure demo, not evidence that the product works.
+**Post-R0 simplification:** The 1.1 amendment replaces the generic receipt
+schema, validator, and gate counter with the subordinate `CURRENT_GATE.md`, the
+append-only `JOURNAL.md`, and native evidence. Git history preserves the
+original R0 machinery and closeout; the secret scanner, dependency audit, and
+ordinary check remain active.
+
+Demo: Repository history shows the approved intent commit before generated code;
+the linked Vercel project and reserved browser/admission namespace names are
+unique to Minerva. This is an infrastructure demo, not evidence that the
+product works or that a browser database exists.
 
 **Smallest decisive evidence:** Git history, remote/project identifiers, tracked control files, dependency lockfile, one passing baseline check, and a source inspection showing no predecessor linkage or client-exposed secret.
 
 **First material falsifier:** Any predecessor repository state, deployment metadata, persistent data, secret, alias, analytics, or unstated product contract is imported.
 
-**Exit decision:** Confirm the implementation boundary and authorize EXP-001. No renderer, provider, admission store, or Voice transport is selected here.
+**Exit decision:** Confirm the implementation boundary and make R1 eligible for
+a separate product-owner authorization. R0 does not itself authorize EXP-001.
+The hackathon slice, when active, has its own bounded authorization in
+`CURRENT_GATE.md`. No renderer, provider, admission store, or Voice transport
+is selected here.
 
 ## 9. Wave 1 — Prove truth before pixels
 
@@ -554,20 +582,18 @@ There is no implementation gate for a decision or acceptance scenario not listed
 
 Evidence is cumulative and claim-specific. A higher rung does not erase a lower-rung failure. A deployed page cannot prove provider behavior; a provider response cannot prove durable landing; neither can prove product value.
 
-### Gate receipt
+### Gate closeout
 
-Each gate produces one concise tracked receipt containing:
+`CURRENT_GATE.md` holds the active bounded contract. At closeout, append one
+`JOURNAL.md` entry naming the gate or slice, exact source revision, observed
+outcome, smallest native evidence, whether the first material falsifier
+occurred, known limits or cuts, and the human decision. Reference native
+runtime, platform, test, deployment, or review evidence directly; do not copy
+command output into a second machine-scored receipt system.
 
-- gate and status;
-- exact source revision, dependency receipts, environment, and configuration IDs;
-- observable outcome and Demo result;
-- smallest decisive evidence and evidence level actually earned;
-- first material falsifier and whether it occurred;
-- failures, partial results, unsupported cases, and material repairs;
-- decisions opened or closed; and
-- product-owner approval when the gate requires human judgment.
-
-Participant content and normalized evaluation packets are not committed to the product repository. The tracked receipt refers only to consented, access-controlled artifact locations and content-free identifiers.
+Participant content and normalized evaluation packets are not committed to the
+product repository. The journal may refer only to consented, access-controlled
+artifact locations and content-free identifiers.
 
 ### Pass/fail rubric
 
@@ -577,30 +603,20 @@ A gate passes only when every applicable row is **yes**. The rows are not averag
 |---|---|---|---|
 | Observable outcome | Can a user or operator perform the named Demo on the exact claimed build? | Native interaction or platform readback | Keep active or mark falsified; do not credit implementation volume |
 | Authority integrity | Does behavior preserve INTENT, approved DECISIONS, SPEC, and ARCHITECTURE without an implicit product change? | Traceability plus relevant source/runtime observation | Stop and obtain an explicit decision before continuing |
-| Correct evidence rung | Does the evidence directly support the claim being made? | Exact revision, environment, and native receipt | Narrow the claim or obtain the missing evidence |
+| Correct evidence rung | Does the evidence directly support the claim being made? | Exact revision, environment, and native evidence | Narrow the claim or obtain the missing evidence |
 | Unhappy-path truth | Does the named failure remain safe, visible, and recoverable only when recovery is real? | One decisive failure or race scenario | Repair once within scope or stop on recurrence |
 | Durable causality | Can acknowledged state, context, lineage, History, and authority be reconstructed where required? | Reload/restart and native records | Treat false acknowledgement or lost causality as a material falsifier |
 | Accessibility parity | Can keyboard and structured-view users reach the same semantic outcome without drag, color, touch, voice, or spatial sight? | Programmatic state plus real keyboard path | Gate cannot pass |
-| Negative evidence preserved | Are failures, partial results, unsupported environments, abandoned Paths, and disagreements retained? | Gate receipt and relevant UI/artifact | Restore evidence before deciding |
+| Negative evidence preserved | Are failures, partial results, unsupported environments, abandoned Paths, and disagreements retained? | Journal closeout and relevant UI/artifact | Restore evidence before deciding |
 | Falsifier respected | Did work stop or re-plan when the first material falsifier occurred? | Gate decision record | Invalidate downstream work that assumed a pass |
 | Scope complete | Are all Critical tasks done with no required behavior deferred under a different label? | Gate task map | Do not pass a partial gate |
 | Bounded review | Was there at most one terminal review, with only invalidated evidence rerun after a material repair? | Review record | Stop verification churn and use the decisive native proof |
 
 R5 and R9 add one non-delegable question: **Does the human participant still regard the claimed shift as consequential under the approved constraints, and can its Minerva contribution be reconstructed?** Model scoring, output counts, divergence measures, delight, and reviewer preference cannot answer it.
 
-### Administrative metric and bounded commands
+### Bounded closeout commands
 
-The roadmap status metric is administrative only. It indicates accepted gate receipts; it never proves product capability or value.
-
-~~~sh
-if [ -f package.json ]; then
-  npm run roadmap:status
-else
-  printf 'METRIC accepted_gates=0\n'
-fi
-~~~
-
-R0 defines `roadmap:status` as a simple receipt aggregator. The default local guard is intentionally short:
+The default local guard is intentionally short:
 
 ~~~sh
 git diff --check
@@ -609,23 +625,16 @@ if [ -f package.json ]; then
 fi
 ~~~
 
-The evaluation-candidate probe becomes available only after R8 creates its receipt:
-
-~~~sh
-if [ -f evidence/gates/R8.json ]; then
-  npm run probe:release -- --receipt evidence/gates/R8.json
-else
-  printf 'Evaluation candidate not yet available\n'
-fi
-~~~
-
-`probe:release` may aggregate native evidence identities; it must not pretend to reproduce human interaction, actual audio, provider execution, or D-008 judgment. Repair any custom probe at most once. On a second probe defect, discard or simplify it, narrow the claim, and use native evidence.
+Add a gate-specific helper only when native checks or readback cannot answer a
+material decision. Repair that helper at most once. On a second helper defect,
+remove or simplify it, narrow the claim, and use native evidence. Do not add a
+generic gate counter or release probe in advance of a concrete need.
 
 ## 20. Dependencies, open choices, and effort envelope
 
 ### Critical path
 
-R2A/R2B and R6/R6V are the only construction lanes intended to run concurrently. All later gates depend on their shared integration seam or on the product decision immediately before them. The estimated critical path through the frozen candidate is approximately **22 engineering days**, plus the bounded owner rehearsal and external-evaluation logistics. This is a sequencing budget, not a calendar promise; a falsifier shortens the path by stopping work.
+R2A/R2B and R6/R6V are the only construction lanes intended to run concurrently. All later gates depend on their shared integration seam or on the product decision immediately before them. The estimated critical path through the frozen candidate is approximately **22 engineering days**, plus the bounded owner rehearsal and external-evaluation logistics. This is the long-form first-prototype sequence, not the hackathon clock. The event slice uses the T+120 checkpoint and optional T+120–480 refinement window in `HACKATHON.md`; neither duration changes gate status. This is a sequencing budget, not a calendar promise; a falsifier shortens the path by stopping work.
 
 No gate may start early by building against a guessed adapter. Paper analysis and disposable fixtures may prepare a gate, but production integration waits for the preceding exit decision.
 
@@ -734,7 +743,7 @@ One bounded adversarial pass challenged the completed roadmap. The pass used eig
 
 | # | Specific challenge and what would break | Decisive verification | Resolution incorporated |
 |---|---|---|---|
-| 1 | **R5 accepted a complete packet containing `none`; what prevents that negative result from passing readiness?** R6/R6V could otherwise begin despite the approved requirement to simplify when the rehearsal produces no thinking change. | Separate packet completeness from gate success in the R5 receipt. | `None` remains valid negative evidence but cannot pass R5. Passing requires at least one provisional participant-authored thinking change with a reconstructable Minerva contribution; it is not called D-008-qualified. |
+| 1 | **R5 accepted a complete packet containing `none`; what prevents that negative result from passing readiness?** R6/R6V could otherwise begin despite the approved requirement to simplify when the rehearsal produces no thinking change. | Separate packet completeness from gate success in the R5 closeout. | `None` remains valid negative evidence but cannot pass R5. Passing requires at least one provisional participant-authored thinking change with a reconstructable Minerva contribution; it is not called D-008-qualified. |
 | 2 | **R4 claimed E1–E5, but what proves the integrated Compare/Recombine/Harvest loop rather than isolated provider stage smokes?** The owner rehearsal could otherwise become the first live integration test. | Run the exact R4 build locally and on protected Preview with real calls, durable landing/provenance/reload, and one normalized provider failure. | R4.8 and its decisive evidence now require that live integrated path. |
 | 3 | **R2B selects hard limits while R6 also closes Searchlight limits; which one owns the maximum?** R6 could otherwise exceed the allowance whose atomicity R2B proved. | Use one versioned maximum-policy ID for admission reservation and provider enforcement; reject or reopen any proposed excess. | R2B owns the immutable server maximum. R6 may select only lower product/session ceilings unless it reopens R2B evidence. |
 | 4 | **Can R2B pass by injecting a test capability without proving the real browser invitation exchange?** A safe ledger could conceal a replayable, cross-environment, or fail-open browser path. | In a clean browser, inspect one-use exchange, URL stripping, Secure/HttpOnly/SameSite state, kill switch, and anonymous/expired/replayed/exhausted/cross-environment zero-work denials. | R2B.5 and the R2B Demo/evidence now require the actual browser flow. |
@@ -753,9 +762,14 @@ This is the sole terminal plan review. Execution may revisit a gate only when it
 
 This roadmap is the canonical execution plan for the first Minerva prototype. It intentionally lives beside the approved product documents rather than in a second planning system.
 
-Approval changes the status from **Draft 0.1** to **Approved 1.0** and authorizes only R0. Before each later gate, the implementation session must:
+The September 6 approval changed the status from **Draft 0.1** to **Approved
+1.0** and authorized R0, which has since passed. Amendment **1.1** records the
+pre-clock experiment boundary and simplifies R0 evidence administration without
+changing a product requirement or closing another gate. `CURRENT_GATE.md` now
+carries the subordinate operating state. Before each later long-form gate, the
+implementation session must:
 
-1. read the current approved authority files and preceding gate receipt;
+1. read `CURRENT_GATE.md`, the relevant approved authority sections, and the latest journal closeout;
 2. confirm that the gate's dependencies and open-choice boundary still hold;
 3. create a bounded file-level implementation plan for that gate;
 4. name the observable outcome, smallest decisive evidence, first material falsifier, and budget before building; and
@@ -763,4 +777,7 @@ Approval changes the status from **Draft 0.1** to **Approved 1.0** and authorize
 
 Changes to product intent, approved decisions, acceptance criteria, architecture authority, participant contact, or later-horizon scope return to the product owner. Ordinary in-scope implementation decisions remain with the executing engineering lane and are recorded in JOURNAL.md.
 
-**Next action after approval:** execute R0 only—establish the isolated repository, commit the authorities before generated code, bootstrap the minimal application, and record the greenfield isolation receipt.
+**Next action:** keep the pre-clock baseline ready. When the product owner
+explicitly starts the event clock, record the transition and execute the slice
+in `HACKATHON.md` against `DEMO.md`. If the event slice is not active, R1 is the
+next long-form gate and remains unauthorized until a separate owner decision.

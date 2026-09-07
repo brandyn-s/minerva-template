@@ -1,6 +1,8 @@
 # Minerva — Product Intent
 
-> **Status:** Approved product intent as of September 6, 2026. Architecture and implementation choices remain deliberately open.
+> **Status:** Approved product intent as of September 6, 2026. Implementation
+> mechanisms are governed by `ARCHITECTURE.md`; current authorization is
+> recorded in `CURRENT_GATE.md`.
 
 ## Problem
 

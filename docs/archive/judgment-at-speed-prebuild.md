@@ -1,6 +1,17 @@
 # Minerva against *Judgment at Speed* — pre-build findings
 
-Prepared September 6, 2026 from `Documents/retro/minerva`. Two files were present: `INTENT.md` (128 lines, 1,616 words, last modified 17:10 today) and `DECISIONS.md` (334 lines, 6,250 words, last modified 18:00 today). There is no git repository, no code, and no `JOURNAL.md`, `PLAN.md`, `CLAUDE.md`/`AGENTS.md`, `evidence/`, transcript, or README.
+> **Historical snapshot — not current project guidance.** This review was
+> prepared on September 6, 2026 before the Git repository and its present
+> README, agent guide, journal, evidence policy, and scaffold existed. There is
+> no source revision for that pre-repository state. Statements below about
+> missing artifacts are preserved as historical evidence; use
+> [`CURRENT_GATE.md`](../../CURRENT_GATE.md) and
+> [`JOURNAL.md`](../../JOURNAL.md) for current status.
+
+Prepared September 6, 2026 from the pre-repository planning directory. Two
+files were present: `INTENT.md` (128 lines, 1,616 words) and `DECISIONS.md` (334
+lines, 6,250 words). There was no Git repository, code, `JOURNAL.md`, `PLAN.md`,
+`CLAUDE.md`/`AGENTS.md`, `evidence/`, transcript, or README.
 
 **How to read this.** The rubric in Part II of the guide scores a finished build from four evidence sources: transcript, repo history, demo, and Q&A. None of those exist yet, so this is the pre-reader pass the guide describes in Part III: evidence for and against each gate and dimension, cited to file and line, plus a list of what cannot be checked. The guide also says an AI pre-reader should cite and not score. The body of this memo follows that rule; §9 adds a clearly labelled provisional reading for you to accept or overrule, because you asked for an evaluation rather than a findings list.
 

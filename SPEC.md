@@ -7,12 +7,17 @@
 | Status | **Approved — September 6, 2026** |
 | Date | September 6, 2026 |
 | Product owner | Brandyn Schult |
-| Current phase | Greenfield product definition; no implementation architecture is selected |
-| Authority after approval | This file governs what the first Minerva prototype must do. `INTENT.md` governs the product problem and thesis. Approved entries in `DECISIONS.md` govern choices already made and cannot be changed here. `ARCHITECTURE.md` will govern implementation mechanisms; `ROADMAP.md` will govern sequence and release gates. |
+| Current phase | Stable first-prototype behavior contract; current execution status and product-owner authorization are recorded in [CURRENT_GATE.md](./CURRENT_GATE.md) |
+| Authority after approval | This file governs what the first Minerva prototype must do. `INTENT.md` governs the product problem and thesis. Approved entries in `DECISIONS.md` govern choices already made and cannot be changed here. `ARCHITECTURE.md` governs implementation mechanisms; `ROADMAP.md` governs the long-form sequence and release gates. `CURRENT_GATE.md` records current work but cannot itself grant authority or alter product requirements. |
 | Historical boundary | Searchlight, Atlas, Gestures, source code, deployments, prompts, and transcripts are evidence only. They create no requirement unless it appears in approved Minerva documents. |
 | Change rule | Removing or materially changing an approved requirement requires an explicit decision update, corresponding acceptance changes, and a traceability update. |
 
 `MUST` denotes a first-prototype obligation. `SHOULD` denotes a strong default that may be departed from only through a recorded rationale. `MAY` denotes permitted behavior. **[OPEN]** marks a value or implementation-dependent boundary that must be resolved before the affected capability is claimed complete; it is not permission to invent behavior silently.
+
+`CURRENT_GATE.md` may record a product-owner-authorized, explicitly labelled,
+time-boxed experimental subset. Omitted `MUST` requirements remain obligations
+of the first prototype; such a slice cannot claim prototype completion or
+close a `ROADMAP.md` gate.
 
 This specification defines observable product behavior. It deliberately does not select a canvas renderer, storage technology, AI model or provider, voice transport, orchestration framework, telemetry stack, or Vercel deployment topology.
 
@@ -738,9 +743,13 @@ The following are outside the first prototype:
 
 Roadmapped anonymous cloud workspaces, transcript ingestion, agentic expeditions, ambient exploration, and voice writes require new product and authority decisions before implementation. They are not latent first-prototype requirements.
 
-## 22. Open architecture and measurement decisions
+## 22. Implementation and measurement choices outside this specification
 
-The following choices remain deliberately unresolved and MUST be addressed by `ARCHITECTURE.md`, spikes, or measured support contracts without changing this product behavior:
+The following choices sit outside this specification's authority. Some are
+already constrained or selected by `ARCHITECTURE.md` or R0; remaining details
+MUST be resolved by the named roadmap spikes or measured support contracts
+without changing product behavior. This list is not a current-status tracker;
+`CURRENT_GATE.md` and `JOURNAL.md` carry that state.
 
 1. Canvas rendering, hit testing, scene organization, and nonvisual representation.
 2. Browser-local database, schema, transaction/commit model, migration, quota handling, and corruption recovery.
@@ -781,4 +790,7 @@ An architecture choice is invalid if it weakens visible context, durable acknowl
 
 The product owner approved this specification on September 6, 2026, including the explicit AI-assisted Compare/Recombine/Harvest interpretation in Section 1 and the one-current-workspace prototype boundary.
 
-This approval freezes the first-prototype behavior contract and permits work to proceed to `ARCHITECTURE.md`. It does not approve an implementation plan or authorize reuse of predecessor code.
+This approval froze the first-prototype behavior contract. `ARCHITECTURE.md`
+and `ROADMAP.md` have since been approved for mechanisms and long-form sequence;
+`CURRENT_GATE.md` carries current authorization. None of those documents
+authorizes reuse of predecessor code.

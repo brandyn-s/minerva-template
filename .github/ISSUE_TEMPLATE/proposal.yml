@@ -1,0 +1,32 @@
+name: Product or technical proposal
+description: Propose a scoped outcome, tradeoff, or change to the current contract.
+title: "proposal: "
+body:
+  - type: textarea
+    id: problem_outcome
+    attributes:
+      label: Problem and observable outcome
+      description: What real problem exists, who experiences it, and what should become observably possible?
+    validations:
+      required: true
+  - type: textarea
+    id: fit_scope
+    attributes:
+      label: Minerva fit and non-goals
+      description: How does this deepen the product thesis, and what must remain out of scope?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives_judgment
+    attributes:
+      label: Alternatives and owner decision
+      description: What alternatives, including doing nothing, exist, and which choice must remain human?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Decisive evidence and falsifier
+      description: What smallest observation would support the change, and what would make the claim false?
+    validations:
+      required: true

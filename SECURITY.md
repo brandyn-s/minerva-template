@@ -1,0 +1,47 @@
+# Security policy
+
+Minerva is pre-alpha software. It is not yet suitable for production data,
+sensitive source material, or unattended use.
+
+## Supported versions
+
+| Version | Supported |
+|---|---|
+| Current `main` | Yes |
+| Old commits, forks, and unreleased prototypes | No |
+
+## Report a vulnerability
+
+Do not disclose a vulnerability in a public issue, discussion, pull request, or
+commit.
+
+Once this repository is public, use
+[GitHub's private security-advisory form](https://github.com/brandyn-s/minerva/security/advisories/new).
+Enabling that form is a publication prerequisite. If it is unavailable, do not
+send vulnerability details through a public channel; wait for the maintainer to
+restore private reporting or publish a verified private contact method.
+
+Include only what is necessary to reproduce and assess the issue:
+
+- the affected revision and surface;
+- impact and required preconditions;
+- minimal reproduction steps or a proof of concept;
+- whether credentials, user content, or external services are involved; and
+- any known mitigation.
+
+Reports are handled on a best-effort basis. The maintainer will validate the
+finding, coordinate a fix and disclosure when appropriate, and credit reporters
+who want attribution. This project does not currently operate a bug bounty.
+
+## Security boundaries
+
+Especially relevant reports include:
+
+- credentials or private content reaching the browser, logs, Git, or evidence;
+- AI context containing material outside the user's explicit selection;
+- untrusted model output bypassing validation or durable-state boundaries;
+- admission, spend, cancellation, or retry controls failing open;
+- dependency, build, or GitHub Actions supply-chain compromise; and
+- a simulation or partial failure being represented as live, durable, or safe.
+
+The repository's checks reduce risk; they are not a security certification.
