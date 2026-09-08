@@ -81,6 +81,67 @@ test("a project with rootDirectory is refused with the configuration-precedence 
   assert.ok(f.calls.every((c) => c.init.method === "GET"));
 });
 
+test("env upserts one variable for explicit targets, reads it back, and never records the value", async (t) => {
+  const f = fixture(t);
+  f.opts.env = { VERCEL_TOKEN: "secret-token", MY_SOURCE: "s3cret-value" };
+  let posted = null;
+  f.opts.fetch = async (url, init) => {
+    const u = new URL(url);
+    assert.equal(u.searchParams.get("slug"), "example");
+    if (u.pathname === "/v9/projects/product") return Response.json(f.project);
+    if (u.pathname === "/v10/projects/prj_test/env" && init.method === "POST") {
+      assert.equal(u.searchParams.get("upsert"), "true");
+      posted = JSON.parse(init.body);
+      return Response.json({ created: { key: posted.key, target: posted.target }, failed: [] });
+    }
+    if (u.pathname === "/v10/projects/prj_test/env") {
+      return Response.json({ envs: [{ key: "MY_KEY", target: ["preview", "development"], type: "encrypted", value: "s3cret-value" }, { key: "OTHER", target: ["production"], type: "plain", value: "x" }] });
+    }
+    assert.fail(`Unexpected endpoint ${u.pathname}`);
+  };
+  const r = await execute(f.args("env", ["--key", "MY_KEY", "--target", "development,preview", "--value-env", "MY_SOURCE"]), f.opts);
+  assert.deepEqual(posted, { key: "MY_KEY", value: "s3cret-value", type: "encrypted", target: ["development", "preview"] });
+  assert.equal(r.status, "env-verified");
+  assert.deepEqual(r.variables, [{ key: "MY_KEY", target: ["development", "preview"], type: "encrypted" }, { key: "OTHER", target: ["production"], type: "plain" }]);
+  assert.deepEqual(r.warnings, []);
+  const saved = readFileSync(resolve(f.cwd, ".minerva/env-example-product.json"), "utf8");
+  assert.ok(!saved.includes("s3cret-value") && !saved.includes("secret-token"));
+  assert.ok(!JSON.stringify(r).includes("s3cret-value"));
+});
+
+test("env with a production target is allowed only explicitly and carries a warning; readback mismatch is unverified", async (t) => {
+  const f = fixture(t);
+  f.opts.env = { VERCEL_TOKEN: "secret-token", MY_SOURCE: "v" };
+  f.opts.fetch = async (url, init) => {
+    const u = new URL(url);
+    if (u.pathname === "/v9/projects/product") return Response.json(f.project);
+    if (init.method === "POST") return Response.json({ created: {}, failed: [] });
+    return Response.json({ envs: [{ key: "MY_KEY", target: ["preview"], type: "encrypted" }] });
+  };
+  const r = await execute(f.args("env", ["--key", "MY_KEY", "--target", "production", "--value-env", "MY_SOURCE"]), f.opts);
+  assert.equal(r.status, "env-unverified");
+  assert.ok(r.warnings[0].startsWith("production-target"));
+});
+
+for (const [name, extra, env] of [
+  ["missing permission", ["--key", "MY_KEY", "--target", "preview", "--value-env", "MY_SOURCE"], { VERCEL_TOKEN: "t", MY_SOURCE: "v" }],
+  ["invalid target", ["--key", "MY_KEY", "--target", "staging", "--value-env", "MY_SOURCE"], { VERCEL_TOKEN: "t", MY_SOURCE: "v" }],
+  ["lowercase key", ["--key", "my_key", "--target", "preview", "--value-env", "MY_SOURCE"], { VERCEL_TOKEN: "t", MY_SOURCE: "v" }],
+  ["unset source variable", ["--key", "MY_KEY", "--target", "preview", "--value-env", "MY_SOURCE"], { VERCEL_TOKEN: "t" }],
+  ["value in arguments", ["--key", "MY_KEY", "--target", "preview", "--value-env", "not-a-name"], { VERCEL_TOKEN: "t" }],
+]) {
+  test(`env refuses ${name} without POST`, async (t) => {
+    const f = fixture(t);
+    f.opts.env = env;
+    if (name === "missing permission") {
+      f.config.authorization.deploy = false;
+      writeFileSync(resolve(f.cwd, "launch.json"), JSON.stringify(f.config));
+    }
+    await assert.rejects(execute(f.args("env", extra), f.opts));
+    assert.ok(f.calls.every((c) => c.init.method === "GET"));
+  });
+}
+
 test("deploy persists identity, resumes without POST, and verifies anonymous immutable and stable HTTP", async (t) => {
   const f = fixture(t);
   let posts = 0;

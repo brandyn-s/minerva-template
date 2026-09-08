@@ -11,7 +11,16 @@ All API calls use the explicitly selected launch team slug; personal scope is un
 node scripts/deploy.mjs project --file .minerva/launch.json --project product-name --team team-slug
 node scripts/deploy.mjs deploy --file .minerva/launch.json --project product-name --team team-slug --sha FULL_40_HEX_SHA
 node scripts/deploy.mjs observe --file .minerva/launch.json --project product-name --team team-slug --deployment dpl_ID --path /workspace --expect-text EXPECTED_MARKER --stable-origin https://product-name.vercel.app
+MY_SOURCE=... node scripts/deploy.mjs env --file .minerva/launch.json --project product-name --team team-slug --key MY_KEY --target preview --value-env MY_SOURCE
 ```
+
+`env` upserts one variable through `POST /v10/projects/{id}/env?upsert=true` for an explicit `--target` list
+(`production`, `preview`, `development`), reads the project's variables back through `GET /v10/projects/{id}/env`,
+and writes `.minerva/env-TEAM-PROJECT.json` listing every key with its targets and type. Values are read from the
+environment variable named by `--value-env`, never from arguments, and never appear in output or receipts. It
+requires `authorization.deploy`. A `production` target is accepted only when named explicitly and adds a warning,
+because production deployments are publicly reachable unless deployment protection covers them. Exit 0 means the
+key was read back with every requested target; `env-unverified` exits 2.
 
 `deploy` also accepts the three runtime observation options. Without all three, READY is **incomplete**,
 not runtime success. Exit codes: 0 verified project/HTTP contract; 2 incomplete/build/access/runtime result;
