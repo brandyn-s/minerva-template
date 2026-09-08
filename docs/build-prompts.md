@@ -161,6 +161,14 @@ evidence, Fable findings and Astra's disposition, pending user acceptance, and
 the next unfinished outcome. A fresh session reads these and confirms relevant
 prerequisite behavior; a previous "done" statement is not evidence.
 Do not create separate status diaries for each model.
+Every implementation checkpoint also emits the
+[standard checkpoint output](./setup.md#standard-checkpoint-output) in the final
+response: exact candidate/branch and absolute checkout path, state and handoff
+location, next session's role, and ready-to-paste launch instructions plus the
+applicable bounded review/resume prompt. A document link alone is not the
+handoff. Supply context without granting new authority: distinguish a planned
+or requested review, confirmed fixes, and a next outcome awaiting owner direction.
+Do not create a review ceremony per increment or automatically launch Fable.
 
 Each fenced block is standalone for its named model in the same new project.
 It depends only on the stated product contracts, the authorized template

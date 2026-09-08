@@ -104,6 +104,17 @@ files. An incomplete package is a checkpoint; if a session ends mid-package,
 checkpoint coherently and finish that outcome in a fresh session before
 advancing.
 
+At every implementation checkpoint, include the operator handoff in the final
+response, not just a link to `docs/HANDOFF.md`. State the outcome/partial status,
+exact committed SHA and branch, worktree state, handoff path and next session's
+role. Supply ready-to-paste launch instructions and the applicable bounded
+Fable review or Astra resume prompt from
+[Standard checkpoint output](./docs/setup.md#standard-checkpoint-output).
+Put absolute checkout paths and the exact candidate inside the copied blocks.
+Label proposed, not-yet-authorized work explicitly. A handoff supplies context,
+not authorization; never substitute "continue M2" or another whole milestone
+for a bounded outcome. Do not invent an extra review gate per increment.
+
 ## Bound the next outcome
 
 Resume in the supplied absolute worktree path and verify its branch, checkpoint

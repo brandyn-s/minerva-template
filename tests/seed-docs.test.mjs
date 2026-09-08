@@ -83,6 +83,35 @@ async function markdownFiles(directory) {
   return files;
 }
 
+test("checkpoints emit bounded operator launch prompts, not just a handoff link", async () => {
+  const agents = await read("AGENTS.md");
+  const prompts = await read("docs/build-prompts.md");
+  const setup = await read("docs/setup.md");
+  assert.match(agents, /operator handoff in the final\s+response, not just a link/);
+  assert.match(prompts, /setup\.md#standard-checkpoint-output/);
+  assert.match(setup, /A handoff supplies context, not authorization/);
+  assert.match(setup, /not automatically after every\s+increment/);
+  assert.match(setup, /\*\*Not authorized yet\*\*/);
+  const review = setup.match(/### Fable review launch and prompt[\s\S]*?```text\n([\s\S]*?)\n```/)?.[1];
+  const resume = setup.match(/### Astra return or next-outcome prompt[\s\S]*?```text\n([\s\S]*?)\n```/)?.[1];
+  assert.ok(review);
+  assert.ok(resume);
+  assert.match(review, /Review checkout: <absolute-review-checkout-path>/);
+  assert.match(review, /Exact committed candidate: <candidate-sha>/);
+  assert.match(review, /read-only for application source/);
+  assert.match(review, /M5 preserve its published-interface-first/);
+  assert.match(review, /Do not implement fixes/);
+  assert.match(resume, /Worktree: <absolute-existing-build-worktree-path>/);
+  assert.match(resume, /Branch and expected checkpoint: <branch> at <commit-sha>/);
+  assert.match(resume, /Authorized task:/);
+  for (const block of [review, resume]) {
+    assert.match(block, /Exclusions:/);
+    assert.match(block, /docs\/HANDOFF\.md/);
+    assert.match(block, /CAPABILITIES\.md/);
+  }
+  assert.match(resume, /Do not launch Fable automatically or advance to another increment/);
+});
+
 test("repository documentation links resolve without external workspace paths", async () => {
   const files = ["AGENTS.md", "CLAUDE.md", "README.md", "SECURITY.md", ...await markdownFiles("docs")];
   for (const file of files) {
