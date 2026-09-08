@@ -48,6 +48,8 @@ and one principal contextual action. Full artifact text, provenance and
 diagnostics open on demand. Show all real parent paths at rest in Lineage;
 hover/focus emphasizes them rather than being their only discovery mechanism.
 Dense scenes aggregate explicitly and provide accessible relationship lists.
+These lists expose outgoing descendants and associations as well as incoming
+parents; showing sources only leaves part of the graph undiscoverable.
 
 Inspect in one activation; open/choose a contextual move in at most two;
 after selecting sources, Connect/Weave is directly available in one activation.
@@ -65,6 +67,28 @@ it is decorative, not inferred idea quality, and must not be copied from an old 
 Mouse, touch and keyboard expose equivalent actions. Preserve visible focus,
 readable contrast, sensible touch targets and narrow-screen access. User
 acceptance concerns the interactive experience, not a pixel-perfect copy.
+
+## Interaction transitions and overview
+
+Use the [interaction boundary scenarios](./SPEC.md#interaction-boundary-scenarios)
+IB01-IB06 during the original proof and after affected changes. Field gestures
+must not leave accidental text selection, but reading/editing surfaces support
+deliberate selection. Pinching must work over populated content. Ignore only
+unintended gesture-generated activation, not subsequent keyboard, assistive or
+deliberate pointer activation.
+
+Evaluate controls in screen-space after zoom and Fit, on narrow and short
+desktop viewports as well as a large display. When detailed controls would be
+too small, offer a readable, touch-usable focus target (aim for at least 44 by
+44 CSS pixels on touch) that deliberately returns to working detail. Explain
+how to reveal actions; do not make them appear to have been removed. An overview
+can aggregate content without pretending that tiny working controls are usable.
+
+Compare and inspect while retaining orientation to source material. The user
+should not have to rebuild the comparison set or remembered graph after closing
+a panel. Evaluate modal versus non-modal comparison through the actual journey,
+not a universal prohibition. Prepared moves demonstrate source-aware interaction
+only; their quality is not evidence of a live contextual planner.
 
 ## Liveliness with stable spatial memory
 
