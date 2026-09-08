@@ -7,24 +7,43 @@ shell and specifications, not the implemented product.
 
 Minerva is a private, single-owner, online-first studio for exploring an idea
 space with AI. A person can investigate alternatives spatially, understand
-their relationships and origins, and speak with a collaborator while work
-continues. The canvas, Wander, and concurrent voice are the core product
-together, not a chat application with optional visual decoration.
+their relationships and origins, develop and recombine branches, interpret the
+patterns of the explored space, pursue explicit goals, materialize selected
+directions, and speak with a collaborator while work continues. The complete
+product is the sixteen capabilities C01-C16 in [SPEC.md](./SPEC.md); a canvas
+with a few generation buttons and a chat panel is a different, smaller product.
 
 The hypothesis is that persistent alternatives, visible lineage, and concurrent
 spatial/conversational work help people develop useful directions. Neither
 model enthusiasm nor the number of generated cards establishes that benefit.
 
-## The first useful experience
+## The complete experience
 
 1. Create a workspace with a problem and explicit constraints.
-2. Add ideas and start a bounded Wander exploration.
-3. Inspect, move, edit and zoom while results arrive.
-4. Discuss a selected idea with the voice collaborator, including spoken replies.
-5. See what the explored space suggests, with evidence and uncertainty.
-6. Connect or recombine two distant ideas; inspect what each contributed.
-7. Keep, revise or set aside proposals without losing their origins.
-8. Interrupt voice, close the browser, return, and recover saved work/run status.
+2. Add ideas and start a bounded Wander exploration, or pursue an explicit goal
+   with Agent Drive.
+3. Inspect, move, edit and zoom while results arrive; trace exact parents,
+   descendants and semantic links on the canvas.
+4. Discuss a selected idea with the typed or voice collaborator, including
+   spoken replies and acknowledged scoped actions.
+5. See what the explored space suggests, with evidence and uncertainty, and
+   challenge a grouping.
+6. Compare two to four distant ideas, choose card-specific contextual moves,
+   Weave selected contributions and inspect what each contributed.
+7. Keep, revise or set aside proposals without losing their origins; revisit
+   history and replay a recipe.
+8. Switch between Lineage, Evolution and Constellation over the same ideas,
+   and use the creative instruments independently.
+9. Materialize a selected direction as a prototype, paired experiment,
+   coding handoff or reusable synthesis; reach the same operations through
+   REST and MCP.
+10. Interrupt voice, close the browser, return, and recover saved work and run
+    status.
+
+Delivery is staged through six milestones (see `../build-prompts.md`). The
+experience proof and working spine come first so the interaction can be judged
+early, and every later milestone adds required capability rather than optional
+polish.
 
 Use synthetic, editable example content and an obvious blank-start path. No
 particular example domain is part of the architecture or a mandatory answer.
@@ -62,16 +81,19 @@ novelty, feasibility or quality. Stagnation and partial failure are real outcome
 Use one Next.js/TypeScript modular monolith with server-owned Postgres state,
 immutable content revisions, explicit commands, and durable Vercel workflows.
 The browser owns transient interaction, not canonical product truth or job
-lifetime. Code is intended for a new public GitHub repository; application
-access and paid operations remain private. No data migration is required.
+lifetime. Code lives in a public GitHub repository generated from this template;
+application access, workspace data and paid operations remain private. No data migration is required.
 
-## First-release exclusions
+## Exclusions
 
-Do not add multi-user co-editing, offline-first synchronization, billing,
-microservices, a plugin marketplace, an agent framework, desktop process
-hosting, or a research platform. Additional views, instruments, execution
-outputs and REST/MCP are independent extensions after the integrated core.
-Reliability at the interaction boundary and bounded recovery are not deferred.
+Multi-user co-editing, offline-first synchronization, billing, microservices,
+a plugin marketplace, an agent framework, desktop process hosting and a
+research platform are outside this contract unless the owner requests them.
+Views, instruments, execution outputs, Agent Drive and REST/MCP are required
+capabilities, delivered in later milestones on the same records and
+operations. Responsive interaction is demonstrated in M1; persistent state,
+run recovery and voice recovery begin with the M2 working spine and expand with
+their owning capabilities. They are not postponed to final hardening.
 
 ## Definition of success and falsifiers
 

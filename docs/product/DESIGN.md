@@ -26,11 +26,45 @@ should keep plain domain names rather than spread metaphor through types.
 Paper `#e9dfc7`, cards `#f1e9d6`, ink `#273a35`, teal `#28686a`, coral
 `#a15442`, amber `#b18a58`, violet `#755584`. Use aged bronze sparingly for
 deliberate selection and details. Serif content and headings sit alongside
-quiet sans-serif controls; monospaced text is for technical metadata.
+compact instrument-like labels. A readable editorial serif and restrained
+monospaced controls are appropriate; font packages need suitable licenses.
 
 Avoid distressed parchment, ornamental columns, cartoon mascots, neon,
 permanent glowing, and mythological names for every tool. A night theme is
 optional, not a first-release obligation.
+
+## Composition and direct interaction
+
+This is an atlas, not an admin dashboard. One compact header contains identity,
+view/workspace context and exploration/conversation entry. Compact instruments
+sit at the field edges, zoom near a lower corner and details in a dismissible
+overlay that does not resize the canvas. At 1440x900 with panels closed, target
+at least 80% viewport height for the field. This is a composition target, not
+a provider or rendering speed claim.
+
+Cards at normal zoom are approximately 260-320px wide with an expressive
+concise serif title, restrained source/operation accent, a relationship cue
+and one principal contextual action. Full artifact text, provenance and
+diagnostics open on demand. Show all real parent paths at rest in Lineage;
+hover/focus emphasizes them rather than being their only discovery mechanism.
+Dense scenes aggregate explicitly and provide accessible relationship lists.
+
+Inspect in one activation; open/choose a contextual move in at most two;
+after selecting sources, Connect/Weave is directly available in one activation.
+Optional contribution editing is additional by choice. A generic menu is not
+card-specific AI planning. Preview affected sources and selected contributions
+where the person works, not behind a mandatory diagnostic dashboard.
+
+Author an original populated fixture with independent roots, a multi-parent
+child, semantic links, drafts and unknown evidence. At M1 its local interactions
+are explicitly fixtures; do not fake persistence, generated output or voice.
+The seed landing page and dotted background are identity examples, not the final
+workspace layout. An original subtle cartographic terrain may support the field;
+it is decorative, not inferred idea quality, and must not be copied from an old app.
+
+Mouse, touch and keyboard expose equivalent actions. Preserve visible focus,
+readable contrast, sensible touch targets and narrow-screen access. User
+acceptance concerns the interactive experience, not a pixel-perfect copy.
 
 ## Liveliness with stable spatial memory
 
