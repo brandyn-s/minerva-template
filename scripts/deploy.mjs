@@ -13,11 +13,11 @@ const PINS = {
 const fail = (message) => { throw new Error(message); };
 function parse(argv) {
   const [command, ...rest] = argv;
-  if (!["project", "deploy", "observe"].includes(command)) fail("Expected project, deploy, or observe.");
+  if (!["project", "deploy", "observe", "env"].includes(command)) fail("Expected project, deploy, observe, or env.");
   const v = {};
   for (let i = 0; i < rest.length; i += 2) {
     const key = rest[i].slice(2);
-    if (!rest[i].startsWith("--") || !["file", "project", "team", "sha", "deployment", "path", "expect-text", "stable-origin"].includes(key)
+    if (!rest[i].startsWith("--") || !["file", "project", "team", "sha", "deployment", "path", "expect-text", "stable-origin", "key", "target", "value-env", "type"].includes(key)
       || Object.hasOwn(v, key) || !rest[i + 1] || rest[i + 1].startsWith("--")) fail("Invalid arguments.");
     v[key] = rest[i + 1];
   }
@@ -143,6 +143,34 @@ export async function execute(argv, options = {}) {
     writeFileSync(projectReceipt, `${JSON.stringify(receipt, null, 2)}\n`, { mode: 0o600 });
     return receipt;
   }
+  if (command === "env") {
+    if (!config.authorization.deploy) fail("Deployment permission required for environment changes.");
+    const key = v.key ?? "";
+    if (!/^[A-Z_][A-Z0-9_]{0,127}$/.test(key)) fail("Environment variable key must be UPPER_SNAKE_CASE.");
+    const targets = [...new Set((v.target ?? "").split(",").map((t) => t.trim()).filter(Boolean))].sort();
+    if (!targets.length || targets.some((t) => !["development", "preview", "production"].includes(t))) fail("Explicit --target list required: production, preview, development.");
+    const type = v.type ?? "encrypted";
+    if (!["encrypted", "plain"].includes(type)) fail("Type must be encrypted or plain.");
+    if (!/^[A-Z_][A-Z0-9_]*$/.test(v["value-env"] ?? "")) fail("Provide --value-env NAME; the value is read from that environment variable, never from arguments.");
+    const value = (options.env ?? process.env)[v["value-env"]];
+    if (typeof value !== "string" || !value.length) fail(`Environment variable ${v["value-env"]} is empty or unset.`);
+    const written = await api(`/v10/projects/${p.id}/env?upsert=true`, { method: "POST", body: { key, value, type, target: targets } });
+    if (!written || (Array.isArray(written.failed) && written.failed.length)) fail("Environment write not confirmed; read the project's environment settings before retrying.");
+    const listed = await api(`/v10/projects/${p.id}/env`);
+    const variables = (Array.isArray(listed?.envs) ? listed.envs : Array.isArray(listed) ? listed : [])
+      .filter((e) => typeof e?.key === "string")
+      .map((e) => ({ key: e.key, target: Array.isArray(e.target) ? [...e.target].filter((t) => typeof t === "string").sort() : [], type: typeof e.type === "string" ? e.type : "unknown" }))
+      .sort((a, b) => a.key.localeCompare(b.key));
+    const confirmed = variables.some((row) => row.key === key && targets.every((t) => row.target.includes(t)));
+    const warnings = targets.includes("production")
+      ? ["production-target: values set for production are used by publicly reachable production deployments unless deployment protection covers them."] : [];
+    const receipt = { version: 1, status: confirmed ? "env-verified" : "env-unverified", repo: config.repo, team: v.team, projectId: p.id,
+      key, targets, type, variables, warnings, observedAt: new Date(now()).toISOString() };
+    const envReceipt = resolve(cwd, `.minerva/env-${v.team}-${v.project}.json`);
+    mkdirSync(dirname(envReceipt), { recursive: true });
+    writeFileSync(envReceipt, `${JSON.stringify(receipt, null, 2)}\n`, { mode: 0o600 });
+    return receipt;
+  }
   if (command === "deploy" && !config.authorization.deploy) fail("Deployment permission required.");
   if (v.sha && !/^[a-f0-9]{40}$/.test(v.sha)) fail("Exact Git SHA required.");
   if (command === "deploy" && !v.sha) fail("Exact Git SHA required.");
@@ -245,6 +273,6 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   execute(process.argv.slice(2)).then((receipt) => {
     console.log(JSON.stringify(receipt, null, 2));
     for (const warning of receipt.warnings ?? []) console.error(`warning: ${warning}`);
-    if (receipt.status !== "project-verified" && receipt.status !== "runtime-contract-verified") process.exitCode = 2;
+    if (!["project-verified", "runtime-contract-verified", "env-verified"].includes(receipt.status)) process.exitCode = 2;
   }).catch((error) => { console.error(error.message); process.exitCode = 1; });
 }
