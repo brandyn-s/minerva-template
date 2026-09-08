@@ -1,570 +1,132 @@
-# Minerva — Architecture
+# Minerva: architecture
 
-## 2. Architecture decision A-001
+Status: active modular-monolith architecture. The shell does not yet implement
+the services described here. [DECISIONS.md](./DECISIONS.md) records supersession
+of incompatible first-prototype decisions.
 
-### Decision
-
-| Field | Decision |
-|---|---|
-| Status | **Approved — September 6, 2026** |
-| Choice | **Option B — browser-local modular monolith** |
-| Semantic authority | A framework-independent TypeScript `WorkspaceKernel` |
-| Durable workspace authority | One transactional browser-local `WorkspaceRepository` |
-| Replaceable adapters | Canvas, browser storage, AI transport, Voice transport, clocks, identifiers, and diagnostics |
-| Server role | Bounded provider access, ephemeral Voice setup, content-free admission, and content-free operational diagnostics; never workspace authority |
-
-The three foundations considered were:
-
-| Option | Shape | Disposition |
-|---|---|---|
-| A. Renderer-led prototype | A canvas SDK owns document state, history, and persistence | Rejected because renderer semantics would redefine Focus, Moments, Paths, and durable acknowledgement |
-| **B. Browser-local modular monolith** | Minerva owns semantic truth; volatile technologies sit behind narrow ports | **Approved** |
-| C. Worker/event platform | A worker-owned event log communicates through a message protocol | Deferred because it adds concurrency and debugging cost before a measured need |
-
-### Why this boundary
-
-Minerva's irreducible complexity is not drawing cards. It is keeping context, causality, asynchronous effects, semantic Undo/Redo, and preserved futures truthful while the canvas and Voice remain responsive. Those rules need one product-owned authority.
-
-This choice gives the prototype one answer to each critical question:
-
-- What state is committed?
-- What did the user authorize?
-- Which Path may receive a late result?
-- What exact context did an operation see?
-- When may the interface say an action landed?
-- What survives reload?
-
-It also preserves a future cloud seam without building accounts, synchronization, CRDTs, cloud tables, or dual-write behavior now.
-
-### A-001 falsifier
-
-Revisit this foundation if implementation shows that the approved History and cancellation contracts cannot be represented without framework objects in the kernel, destructive rewriting of prior state, provider execution during Redo, or materially different semantics for a future repository.
-
-## 3. System shape
+## System shape
 
 ```text
-Human
-  | pointer, keyboard, speech, typed conversation
-  v
-Next.js application shell
-  |
-  +-- WorkspaceRuntime — one instance for the page session
-        |
-        +-- CanvasAdapter ----------------------- visual spatial projection
-        +-- StructuredWorkspaceView ------------ nonvisual/keyboard projection
-        +-- InteractionSessionStore ------------ ephemeral UI state
-        +-- VoiceSession ------------------------ ephemeral media/conversation
-        |
-        +-- WorkspaceFacade
-              |
-              +-- WorkspaceKernel -------------- sole semantic authority
-              |     +-- History/Path rules
-              |     +-- ContextCompiler
-              |     +-- operation authority
-              |
-              +-- WorkspaceRepository ---------- atomic IndexedDB adapter
-              |
-              +-- OperationCoordinator --------- page-scoped AI scheduling
-                        |
-                        v
-                bounded Vercel Route Handlers
-                   +-- admission reservation
-                   +-- one disclosed AI stage
-                   +-- ephemeral Voice setup
-                        |
-                        v
-                     provider
+Canvas / typed collaborator / voice / HTTP / MCP
+                    |
+           named application operations
+                    |
+       feature-owned domain rules and contracts
+                    |
+      Postgres       model adapter       Vercel Workflow
 ```
 
-The server has no route back into the workspace. A provider response returns to the browser as untrusted proposal data and may land only through the same kernel and repository path as any other mutation.
+One Next.js/React/TypeScript application is the deployment unit. Start with
+feature folders in one package, not empty packages or independently deployed
+services. Add dependencies when a working slice needs them.
 
-## 4. Module and dependency boundaries
+## Ownership and dependencies
 
-| Module | Sole responsibility | Must not own |
+| Area | Owns | Does not own |
 |---|---|---|
-| `domain/kernel` | Validate typed commands and produce complete commit plans | React, DOM, IndexedDB, network, media, provider SDKs |
-| `domain/history` | Moments, Paths, dependency rules, Undo/Redo, preserved futures | UI timeline state or provider execution |
-| `domain/context` | Deterministic Focus-plus-target projection and manifests | Token truncation, model prompts, geometry inference |
-| `application/facade` | Serialize commands, commit them, publish acknowledged projections | Independent semantic state |
-| `application/operations` | Launch and coordinate work only after durable authorization | Direct workspace mutation or hidden retry |
-| `application/voice` | Own one page-scoped media and conversation session | Durable transcript or workspace command authority |
-| `ports` | Define repository, inference, Voice, admission, IDs, clocks, and diagnostics seams | Implementations or framework types |
-| `adapters/browser` | IndexedDB, writer coordination, file intake, browser capabilities | Product semantics |
-| `adapters/server` | Versioned HTTP protocol and provider normalization | Workspace reads or writes |
-| `ui` | Render projections and translate interaction into intents | Persistence, context construction, provider calls |
-
-Dependency direction is inward: UI and adapters depend on application and domain contracts; the domain never imports outward. A port exists only at a proven volatility or trust boundary. Minerva MUST NOT grow a generic plugin system, service bus, agent framework, or internal microservice topology.
-
-## 5. State ownership
-
-| State | Canonical owner | Durability |
-|---|---|---|
-| Cards and versions, committed geometry, roles, structures, membership, relationships, Focus, lineage | `WorkspaceKernel` through `WorkspaceRepository` | Durable |
-| Revisions, Moments, Paths, active head, preserved futures, dependencies | `WorkspaceKernel` through `WorkspaceRepository` | Durable |
-| Canvas-generating operations, manifests, approaches, attempts, effects, failures, usage receipts | `WorkspaceKernel` through `WorkspaceRepository` | Durable |
-| Current selection, edit buffer, drag ghost, drop preview, hover, marquee, menus, expanded card | `InteractionSessionStore` | Ephemeral |
-| Camera, pointer capture, hit-test and culling caches, animation state | `CanvasAdapter` | Ephemeral in the first prototype |
-| Provider deltas and transport handles | `OperationCoordinator` | Ephemeral; terminal facts become durable commands |
-| Voice connection, mic, playback, captions, conversation, current response, highlights | `VoiceSession` | Ephemeral |
-| Pinned utterance | Ordinary card created by a user command | Durable |
-| Provider admission reservations and reconciled usage | Server `AdmissionLedger` | Durable but content-free |
-
-Tentative visual feedback is allowed. It MUST remain visibly distinguishable from committed state when the difference matters, MUST NOT enter AI context, and MUST disappear or revert if the durable transaction fails.
-
-## 6. Revision, Moment, and Path
-
-These are three different coordinates.
-
-| Coordinate | Meaning | Answers |
-|---|---|---|
-| `Revision` | Monotonic order of successful durable transactions | What actually committed, and when? |
-| `Moment` | One meaningful user-authorized action in user order | What does Undo or Redo act on? |
-| `Path` | One recoverable trajectory through Moments and an exact head | Which future is active, and which futures are preserved? |
-
-### Revision
-
-Every acknowledged semantic mutation advances `Revision`. A provider response, render, stream chunk, pointer frame, and Voice callback do not. An asynchronous AI effect may commit at a later Revision while remaining attached to its initiating Moment.
-
-### Moment
-
-A Moment is created for one completed edit, move or multi-card move, create/remove/restore, Focus or structural change, import, AI invocation, Searchlight invocation, explicit Retry, or pinned utterance. An AI invocation creates its Moment and authority record before provider work begins. Its later results, failures, and Harvest are child effects of that Moment rather than surprise top-level Undo targets.
-
-A Searchlight Retry is a new Moment linked to the original Searchlight Moment. It does not rewrite the earlier attempt, result, or Harvest.
-
-### Path
-
-A Path contains an ordered sequence of Moments plus an exact active head and Revision boundary. Undo and Redo move the active head without deleting canonical records. Redo reactivates the exact recorded versions and performs no provider work.
-
-New work after Undo, or **Continue from here**, creates a new Path from the selected boundary. The displaced future remains intact as an inactive Path. The fork records the source Path, selected Moment, exact source Revision/effect boundary, new Path identity, and new head. Effects arriving after that boundary on the former Path cannot appear retroactively in the new Path.
-
-Card lineage and History remain separate. Lineage connects exact content versions causally; History records meaningful workspace actions. They may cross-link but neither substitutes for the other.
-
-### Approved detailed model — A-002
-
-| Field | Decision |
-|---|---|
-| Status | **Approved — September 6, 2026** |
-| Choice | **Hybrid immutable-version journal plus rebuildable current projection** |
-
-Use immutable entity versions, an append-only factual journal of Revisions/Moments/operation effects, and a rebuildable materialized projection for the current Path head. This is a hybrid journal, not pure event sourcing: the product does not need to reconstruct all truth from a generalized event vocabulary, and it does not rewrite a whole workspace blob for every action.
-
-## 7. Canonical durable records
-
-All records use globally unique client-generated IDs and explicit schema versions. Durable records MUST contain only structured-cloneable data—not React objects, DOM nodes, browser `File` handles, open database handles, provider instances, or media objects.
-
-| Record | Purpose |
-|---|---|
-| `WorkspaceMeta` | Workspace ID, schema version, latest Revision, active Path/head, projection version |
-| `Card` and `CardVersion` | Stable identity plus immutable content and role versions |
-| `LayoutVersion` | Committed position and size; excluded from semantic AI payload |
-| `StructureVersion` and `MembershipVersion` | Named Groups/Regions and explicit direct membership |
-| `RelationshipVersion` | Reserved or free-form visible relationship |
-| `FocusVersion` | Explicit durable Focus membership |
-| `ImportedSource` | Text plus inert filename/type/source metadata; no retained file handle |
-| `ContextManifest` | Exact included versions, reasons, relationships, order, source Revision, payload hash |
-| `Operation` | Type, initiating Moment/Path, envelope, manifest, authority epoch, status |
-| `Approach` | One immutable Searchlight brief fixed before arm execution |
-| `Attempt` | One provider execution and its factual outcome/usage |
-| `OperationEffect` | Landed result, failure, Harvest, or discarded late response attributable to a Moment |
-| `LineageRecord` | Immutable child-version-to-parent-version causality plus inherited and changed material |
-| `ContributionRecord` | Immutable Recombine mapping from each exact parent version and selected contribution to the child version |
-| `RevisionFact` | Commit order and exact changed-record references |
-| `Moment` | One semantic user action plus dependencies and child effects |
-| `Path` | Fork boundary, ordered Moment references, active head, preserved future linkage |
-| `ProjectionCheckpoint` | Replaceable acceleration for one exact Path/head/Revision |
-| `WriterGeneration` | Current browser writer authority; operational, not product History |
-
-The architecture MUST retain exact historical card versions referenced by lineage, contributions, manifests, operations, or preserved Paths even when those versions are no longer active. `LineageRecord` and `ContributionRecord` are factual provenance and remain separate from editable visible relationships. Removing or relabeling a canvas link cannot rewrite them.
-
-## 8. Command and acknowledgement contract
-
-Every workspace mutation follows one path:
-
-```text
-interaction or async result
-  -> typed command
-  -> WorkspaceKernel validation
-  -> complete CommitPlan
-  -> one IndexedDB transaction
-  -> transaction completion
-  -> committed projection published
-  -> user-visible acknowledgement
-  -> external effect launched, if authorized
-```
-
-The command carries expected Revision, active Path, actor class, stable command ID, and command-specific input. The kernel returns either a rejection or a complete `CommitPlan` containing new versioned records, Revision fact, History change, projection change, and external effects that may launch only after commit.
-
-Representative user commands include:
-
-- `InitializeWorkspace`, `CreateCard`, `EditCard`, `MoveCards`, `RemoveCard`, `RestoreCard`
-- `CreateStructure`, `ChangeMembership`, `CreateRelationship`, `RemoveRelationship`
-- `ChangeFocus`, `ImportTextSource`
-- `InvokeBranch`, `InvokeCompare`, `InvokeRecombine`, `InvokeHarvest`
-- `StartSearchlight`, `PauseSearchlight`, `ResumeSearchlight`, `CancelSearchlight`
-- `RetryOperation`, `Undo`, `Redo`, `ContinueFromMoment`, `PinUtterance`
-
-Representative asynchronous result commands include:
-
-- `RecordApproaches`, `StartAttempt`
-- `LandOperationResult`, `LandSearchlightArm`, `LandSearchlightHarvest`
-- `FailAttempt`, `TimeOutAttempt`, `InterruptAttempt`, `RecordDiscardedLateResponse`
-
-Provider data never mutates state directly. Before an asynchronous result can commit, the kernel rechecks the attempt identity, active Path and owning Moment, authority epoch, cancellation state, frozen context identity, and structural schema. It does not impose a hidden usefulness, novelty, or quality judgment on a structurally valid result.
-
-The frozen source Revision is provenance, not a blanket requirement that the workspace remain unchanged. An add-only AI result MAY land after unrelated later edits when its owning Moment remains active, its exact parent versions remain resolvable, and its authority is current. The kernel plans that landing against the latest committed Revision without rewriting parent content. It rejects the result when the source Moment or Path is inactive, an authority epoch was revoked, or the operation's exact dependency contract no longer holds.
-
-No network, model, media, arbitrary timer, or renderer work may occur inside a persistence transaction.
-
-## 9. Browser-local persistence and writer ownership
-
-### Selected persistence class
-
-The first prototype uses IndexedDB. It provides asynchronous structured storage and transactional writes, while quota, eviction, and physical durability remain browser-controlled and must be described truthfully. [MDN IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
-
-The initial wrapper remains **[OPEN]** between the native API, [`idb`](https://github.com/jakearchibald/idb), and Dexie. The local-truth spike selects the smallest option that exposes transaction completion, schema migration, blocked/version-change behavior, and testable failure injection without becoming application state.
-
-### Candidate object stores
-
-| Store | Content |
-|---|---|
-| `meta` | One current `WorkspaceMeta` record |
-| `domainRecords` | Immutable card, layout, structure, membership, relationship, Focus, and import versions |
-| `revisions` | Append-only Revision facts, parent links, integrity manifests, and commit markers |
-| `moments` and `paths` | Semantic History, dependencies, heads, and fork boundaries |
-| `operations`, `attempts`, `effects` | AI/Searchlight records and factual outcomes |
-| `provenance` | Immutable lineage and contribution mappings |
-| `manifests` | Immutable durable canvas-operation manifests |
-| `projections` | Rebuildable materialized checkpoints |
-| `writer` | Current writer generation metadata |
-
-The exact split and indexes are **[OPEN]** until representative query and migration measurements. `localStorage`, one mutable whole-workspace JSON document, and one complete snapshot per action are rejected as canonical designs.
-
-### Atomic commit
-
-One in-page serial command queue produces commit plans. Each write transaction verifies persisted Revision and writer generation, writes every affected record and projection update, appends a `RevisionFact` containing its parent Revision, changed-record identities and integrity hashes, writes a terminal commit marker, updates `WorkspaceMeta` in the same transaction, and waits for transaction completion. An abort leaves the prior Revision authoritative, launches no external effect, and yields no success acknowledgement.
-
-`WorkspaceMeta` is a cached head pointer, not the only way to identify valid state. On hydration, Minerva validates the pointed Revision and its referenced records. If that pointer or Revision is malformed, it scans immutable commit markers backward to the newest internally complete Revision whose parent chain and required records validate. It opens that state in explicit recovery/read-only mode, identifies the unreadable later boundary, and never claims that lost data was recovered. If no complete Revision is readable, the workspace is unavailable; Minerva does not create an empty replacement.
-
-### Approved writer contract — A-003
-
-| Field | Decision |
-|---|---|
-| Status | **Approved — September 6, 2026** |
-| Choice | **One writable tab; secondary tabs are visibly read-only** |
-
-The selected product behavior is one visible writer and read-only secondary tabs. The leading mechanism is an exclusive origin-scoped Web Lock plus a transactionally persisted writer generation; BroadcastChannel announces new Revisions but never carries authority or canonical state. [Web Locks](https://developer.mozilla.org/en-US/docs/Web/API/Web_Locks_API), [BroadcastChannel](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API)
-
-Every write verifies the current generation. A stale resumed tab becomes read-only before mutation. When the writer closes or crashes, another tab may acquire a new generation. If the supported-browser spike falsifies Web Locks, use one transactional IndexedDB lease instead; do not ship two competing authority systems.
-
-### Hydration and migration
-
-Startup proceeds in this order:
-
-1. Open storage and inspect the stored schema version.
-2. Refuse silent downgrade when application code is older than the workspace.
-3. Acquire writer authority or enter explicit read-only secondary-tab mode.
-4. Run the selected atomic migration strategy.
-5. Validate the cached head against immutable Revision commit markers and record hashes.
-6. If needed, locate the newest complete internally valid Revision and enter explicit recovery/read-only mode.
-7. Load or rebuild its active projection from canonical records.
-8. Mark browser-owned `queued` or `running` work `interrupted`; never restart it.
-9. Render only after the last valid Revision is known.
-
-Migration remains **[OPEN]** between bounded in-place version-change transactions and side-by-side validated database replacement. Migration failure preserves the last readable state where possible and never initializes an empty replacement silently.
-
-The bundled example is immutable application data. Choosing it creates ordinary local records; editing those records cannot modify the bundled source.
-
-## 10. Context compiler
-
-`ContextCompiler` is a pure domain service over one committed Path/Revision and the explicitly supplied ephemeral selection.
-
-```text
-compile(committed state, source Revision, Focus version, targets, capability)
-  -> Ready(manifest, semantic payload, payload hash, inclusion reasons)
-   | TooLarge(measured boundary, contributing items)
-   | Invalid(reason)
-```
-
-It MUST:
-
-- include only selected targets, direct Focus cards, direct members of focused Groups/Regions, and relationship labels whose endpoints are already included;
-- deduplicate cards while retaining every visible inclusion reason;
-- use a stable documented order unrelated to geometry, viewport, size, color, or z-order;
-- keep `sourceRevision` separate from `semanticPayloadHash`, so a geometry-only Revision may leave the payload identical;
-- persist exact manifests for canvas-generating operations;
-- keep Voice receipts and manifests page-session ephemeral;
-- block overflow before provider execution instead of truncating or summarizing;
-- give each Searchlight arm the original manifest plus only its own fixed brief; and
-- give an eligible Searchlight Harvest only the original manifest, all three briefs, and current landed versions of contributing arms.
-
-Provider-specific token measurement is an adapter. It may report an unsupported boundary but cannot change semantic inclusion.
-
-## 11. Client island and interaction state
-
-The Next.js shell MAY server-render metadata, static layout, and loading/error boundaries. The workspace is one client island rooted at a single `WorkspaceRuntime`, created above the canvas subtree so renderer remounts cannot duplicate state listeners, persistence coordination, provider work, or media ownership.
-
-High-frequency interaction remains ephemeral:
-
-- Drag, resize, pan, zoom, and marquee feedback update at the renderer's animation-frame cadence.
-- Pointer-up or edit completion emits one semantic command.
-- Selection is application-owned ephemeral state shared by canvas and structured views.
-- Provider deltas are buffered; they do not create Revisions or one render per token.
-- Canonical context always reads the last committed projection, never a drag ghost or edit buffer.
-
-Pointer Events are the input seam for mouse, trackpad, pen, and possible future touch support. No touch-specific or multi-contact meaning exists in the first prototype.
-
-## 12. Canvas adapter and renderer gate
-
-`CanvasAdapter` renders scene projections, owns screen/world coordinate conversion, camera, hit testing, pointer capture, culling, and tentative direct-manipulation feedback, and emits device-neutral intents. It also supports programmatic reveal, selection mirroring, edit focus, orientation recovery, and clean disposal.
-
-It MUST NOT persist product state, construct AI context, decide Focus or membership from geometry, call providers, acknowledge mutations, or use native renderer history as Minerva History.
-
-### Renderer candidates
-
-| Candidate | Strength | Material risk |
-|---|---|---|
-| tldraw custom shapes | Mature infinite-canvas interaction, custom shapes, culling, and accessibility hooks | Its store/history can become a second authority; production requires an accepted license ([accessibility](https://tldraw.dev/sdk-features/accessibility), [license](https://tldraw.dev/sdk-features/license-key)) |
-| React Flow controlled nodes/edges | Atlas-aligned card/link model, controlled state, keyboard accessibility, MIT license | Can pull the experience toward the graph-editor presentation Minerva rejects ([accessibility](https://reactflow.dev/learn/advanced-use/accessibility), [license](https://github.com/xyflow/xyflow)) |
-| Custom DOM cards + SVG relationships/regions | Maximum control over editing, semantics, and accessibility | Minerva must build transforms, selection, hit testing, culling, navigation, and spatial indexing |
-
-The renderer remains **[OPEN]**. Paper constraints eliminate unsuitable candidates first; at most two disposable central-slice adapters are implemented. Selection requires:
-
-1. no renderer-owned product truth or History;
-2. card editing, Groups, Regions, links, Focus preview, selection, pan, zoom, and orientation recovery;
-3. complete keyboard and nonvisual semantic operation;
-4. acceptable production licensing;
-5. representative responsiveness while Voice and two Searchlight arms are active; and
-6. an owner judgment that the surface feels like a thinking environment rather than a graph editor.
-
-The first material falsifier is any requirement to keep a second semantic store synchronized with Minerva's kernel.
-
-## 13. Approved structured nonvisual projection — A-007
-
-| Field | Decision |
-|---|---|
-| Status | **Approved — September 6, 2026** |
-| Choice | **Require a sibling structured nonvisual projection driven by the same domain and commands** |
-
-Accessibility is a sibling projection of the same committed domain, not a hidden copy of canvas DOM or a geometry-derived reading order. It exposes cards and roles, Focus and inclusion reasons, structures and membership, relationships, lineage, operations and attempts, Searchlight states, Moments, Paths, available actions, and Voice state.
-
-Its actions dispatch the same commands as canvas actions. Keyboard users receive non-drag equivalents for every semantic outcome. Programmatic order is stable and unrelated to visual importance or AI serialization order. Canvas and structured views coordinate through stable entity IDs: selecting or revealing an entity in either view does not add it to Focus or create History.
-
-Live announcements are limited to meaningful durable outcomes, operation state changes, actionable failures, and Voice state. Pointer frames, pan/zoom, animation, and model token deltas MUST NOT flood assistive technology.
-
-Renderer accessibility features supplement this projection; they do not replace it.
-
-## 14. AI execution and Searchlight coordination
-
-### Approved coordination boundary — A-004
-
-| Field | Decision |
-|---|---|
-| Status | **Approved — September 6, 2026** |
-| Choice | **Page-scoped AI/Searchlight coordination; server workspace state absent** |
-
-`OperationCoordinator` runs in the browser because the operation's authority, History, and durable state are browser-local. It uses a small bounded scheduler, not a workflow framework.
-
-The page lifetime is deliberately the operation lifetime. Closing or reloading the page interrupts unfinished work; reopening records or exposes that interruption and never resumes provider execution automatically.
-
-For every canvas-generating operation:
-
-1. The kernel freezes the exact manifest and durably creates the Moment, operation, authority epoch, disclosed envelope, and attempt identity.
-2. After commit, the coordinator sends one typed stage request.
-3. The server admits and performs exactly that disclosed stage.
-4. The browser validates the returned terminal object.
-5. The kernel rechecks attempt, Path, authority epoch, cancellation, and manifest identity.
-6. Card, lineage, receipt, operation effect, History consequence, and new Revision commit atomically.
-7. Only then may the UI display `landed` or `complete`.
-
-Token-by-token output is not required for the first implementation. Stage-level factual progress and independently arriving complete cards satisfy the product contract with less transient state. Streaming MAY be introduced only if measured latency materially harms the central loop; streamed content remains ephemeral until one terminal object validates and commits.
-
-### Searchlight scheduler
-
-One Searchlight invocation performs:
-
-1. one approach-selection request;
-2. a durable commit of exactly three fixed briefs;
-3. exactly three isolated arm requests with at most two concurrent;
-4. independent result/failure commits; and
-5. one eligible Harvest request only after every approach's currently authorized attempt is terminal and at least two current results have landed.
-
-There is no hidden critique, ranking, coverage, repair, fallback, follow-up, or automatic semantic retry. Pause prevents queued arms and Harvest from starting. Resume uses the original manifest and briefs. Reload marks unfinished work interrupted.
-
-### Cancellation authority
-
-Cancellation correctness does not depend on transport cancellation:
-
-1. commit cancellation and revoke the local authority epoch;
-2. stop queued work;
-3. abort in-flight fetches where supported; and
-4. reject every later callback whose authority no longer matches.
-
-A provider may already have completed or charged for cancelled transport. Minerva records the distinction and never treats transport abort as proof of remote cancellation. Undo of an operation or departure to another Path uses the same revoke-before-abort order.
-
-## 15. Server and provider boundary
-
-Use one greenfield Next.js App Router application in an isolated Vercel project. The workspace client calls versioned Route Handlers because provider work requires explicit HTTP contracts, external API access, cancellation, admission, and independent testing. The default Node.js runtime is used unless a spike demonstrates a specific need for another runtime. [Next.js Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
-
-Before writing framework code, the implementation session MUST read the installed Next.js version's generated guidance under `node_modules/next/dist/docs/`; training-memory conventions are not implementation authority.
-
-Initial server surfaces:
-
-| Surface | Responsibility |
-|---|---|
-| `POST /api/ai/execute` | Admit and execute exactly one closed AI stage |
-| `POST /api/voice/session` | Admit and create one bounded ephemeral Voice session/bootstrap |
-| `AdmissionLedger` | Atomically reserve, reconcile, expire, and deduplicate provider allowance |
-
-The server MUST NOT store or reconstruct a workspace, maintain Focus/selection/Path/History, land a card, fetch a URL from a card, continue browser work after page close, accept arbitrary system prompts/tools/models, or treat client IDs as authorization.
-
-Each `POST /api/ai/execute` request uses a closed discriminated stage:
-
-- `branch`
-- `compare`
-- `recombine`
-- `harvest`
-- `searchlight.approach-selection`
-- `searchlight.arm`
-- `searchlight.harvest`
-
-The versioned request contains opaque request/operation/attempt IDs, the exact manifest and hash, the permitted stage input, and no arbitrary system instruction. The server recomputes the manifest hash, validates a strict schema and size, selects the server-approved provider configuration and limits, and rejects overflow without changing context.
-
-The response contains matching IDs and hash, one closed result object or normalized failure, a versioned provider-configuration ID, timestamps, stop reason, and available usage. Raw provider errors, secrets, and stack traces are never returned.
-
-First-prototype model calls expose no tools. Imported text, URLs, relationship labels, user text, and model output remain untrusted content and cannot change server policy or application authority.
-
-If Vercel AI SDK is selected, hidden SDK retries MUST be disabled and explicit abort/time limits supplied. The current SDK documents a default retry count greater than zero, so the prototype cannot rely on defaults. [AI SDK `streamText`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text)
-
-No Vercel Workflow, queue, cron, service worker, detached promise, or server callback continues work after the initiating page/request lifecycle. That would contradict the approved interruption contract.
-
-## 16. Prototype admission and spend authority
-
-### Approved persistence boundary — A-005
-
-| Field | Decision |
-|---|---|
-| Status | **Approved — September 6, 2026** |
-| Choice | **Only content-free durable server admission state is permitted** |
-
-The product has no account, but provider endpoints cannot be unrestricted anonymous spend surfaces. Provider-enabled owner rehearsal and participant evaluation use opaque, random, expiring evaluation capabilities. This is an operational provider-access boundary, not workspace identity or cloud persistence.
-
-The leading flow is:
-
-1. An invitation URL carries a one-use capability.
-2. The server exchanges it for a Secure, HttpOnly, SameSite session credential and removes the raw capability from the URL.
-3. Before each stage or Voice session, `AdmissionLedger` atomically reserves the server-defined worst-case allowance.
-4. Completion reconciles available actual usage. An ambiguous failure retains its reservation until reconciliation or expiry.
-5. Replaying a request ID cannot reserve or execute twice.
-6. Environment/provider hard ceilings and a kill switch remain defense in depth.
-
-The ledger contains only hashed capability, opaque request/attempt identity, operation/stage class, reservation and reconciled units, state, timestamps, expiry, and environment/deployment identity. It contains no workspace ID, card text, manifest, prompt, output, transcript, filename, URL content, or audio.
-
-The exact store, allowance values, capability lifetime, token/time/spend ceilings, and reconciliation behavior remain **[OPEN]** until the provider/admission spike. If an atomic hard bound cannot be demonstrated, provider routes remain disabled. Broader public anonymous provider access requires a later decision.
-
-## 17. Voice architecture
-
-One `VoiceSession` exists above the canvas subtree and owns browser permission, media tracks, transport, mic state, playback, interruption, connection/input/response state machines, Quiet/Active stance, temporary captions/conversation, resource ceilings, and cleanup.
-
-Canvas components never own media objects. Renderer remounts cannot restart or end Voice.
-
-`VoiceContextBinder` observes committed Revisions and current ephemeral selection locally without invoking a provider. At a spoken utterance boundary, typed submission, or eligible Active trigger, it freezes the latest exact context, source Revision, and necessary session conversation; creates the visible receipt; and binds that immutable snapshot to the turn. Later changes affect the next turn.
-
-Voice receives a context-query port and an ephemeral-highlight port. It receives no workspace command port and no model tools. Pinning an utterance is a separate visible user command through `WorkspaceFacade`.
-
-Raw audio, credentials, unpinned transcript, and conversation remain memory-only and are excluded from workspace persistence and application telemetry.
-
-The transport remains **[OPEN]** between a provider-native browser WebRTC session and Vercel AI Gateway Realtime. OpenAI's current browser guidance uses a server-minted short-lived credential and WebRTC; Vercel's current Realtime Gateway capability is beta. Both require a real-browser authority, concurrency, barge-in, retention, and spend spike before selection. [OpenAI Voice quickstart](https://openai.github.io/openai-agents-js/guides/voice-agents/quickstart/), [Vercel Realtime AI Gateway](https://vercel.com/blog/realtime-voice-agents-on-ai-gateway)
-
-A cascaded speech-to-text/model/text-to-speech path is a degradation candidate, not assumed equivalent to concurrent realtime conversation. A Vercel-hosted media relay would be a new architecture and is not an automatic fallback.
-
-## 18. Approved main-thread and worker boundary — A-006
-
-| Field | Decision |
-|---|---|
-| Status | **Approved — September 6, 2026** |
-| Choice | **Keep the main thread authoritative initially; extract only a measured coarse workload to a worker** |
-
-The first prototype keeps input, canvas coordination, text editing, focus/ARIA, kernel validation, commit promotion, network result handling, and media-element control on the main thread. It does not send pointer frames through worker RPC.
-
-An application Web Worker is deferred until profiling names one coarse deterministic workload that repeatedly breaches the supported budget. Eligible later workloads include manifest serialization, large bounded import validation, projection/checkpoint rebuilding, or measured layout computation. Each worker request carries source Revision and identity; stale output is discarded.
-
-AudioWorklet and OffscreenCanvas are introduced only for measured bottlenecks required by the chosen Voice or renderer adapter.
-
-## 19. Failure and recovery boundaries
-
-| Failure | Required containment |
-|---|---|
-| Kernel rejection | No transaction; prior state unchanged |
-| IndexedDB abort, quota, or migration failure | No acknowledgement; last readable state or truthful read-only/unavailable mode |
-| Stale or second writer | Reject before mutation; secondary tab remains read-only |
-| Renderer fault | Rebuild from committed projection; durable state remains intact |
-| Context overflow | Block before provider work; show exact reducible cause |
-| Admission denied/exhausted | Zero provider work; local canvas remains usable |
-| Provider unavailable/timeout | Only the affected attempt fails; siblings and existing work remain |
-| Invalid provider output | Failed attempt record; no result card |
-| Cancel, Undo, or Path departure | Revoke authority before abort; late result cannot land |
-| Page reload | Committed state survives; queued/running work becomes interrupted; no auto-spend |
-| Local commit failure after provider success | No landed acknowledgement; provider success remains subordinate to failed durability |
-| Voice permission/media/provider failure | Truthful Voice degradation; canvas and typed local work continue |
-| Admission ledger unavailable | Provider routes fail closed; local product continues |
-| Telemetry failure | Product continues; content is not queued as diagnostic fallback |
-
-## 20. Performance and capacity strategy
-
-Exact thresholds remain **[OPEN]** until measured against the `SPEC.md` representative corpus and supported browser matrix.
-
-Measure at least pointer and keyboard response, edit latency, long/dropped frames during concurrent Voice and Searchlight, durable commit time, load/reload restoration, context compilation at the input boundary, Voice start/first audio/barge-in, operation latency, and storage use/headroom.
-
-Respond to measured degradation in this order:
-
-1. eliminate unnecessary projection work and coalesce ephemeral updates;
-2. keep high-frequency interaction outside committed state;
-3. cull or simplify offscreen visual detail;
-4. move one measured coarse workload behind the existing worker seam; and
-5. replace the renderer if its gate fails.
-
-Performance MUST NOT be recovered by weakening durable acknowledgement, pruning preserved Paths, truncating context, hiding failures, reducing accessibility, or blocking local interaction during provider work.
-
-## 21. Security, privacy, and diagnostics
-
-- Long-lived provider and admission credentials remain server-only and never use a public client prefix.
-- Realtime credentials are narrow, short-lived, memory-only, and unable to authorize workspace mutation.
-- Preview and Production use distinct credentials, admission namespaces, and provider ceilings.
-- Server routes validate strict schemas, sizes, methods, origins, and content types; all responses are `no-store`.
-- User and model content renders as inert text by default. Markdown raw HTML, scripts, event handlers, unsafe URL schemes, and arbitrary embeds do not execute.
-- URLs remain references; the server never fetches them in the first prototype.
-- Provider prompts are fixed per versioned stage and delimit workspace material as untrusted data.
-- Diagnostics default to deployment/config version, opaque request/operation/attempt identity, stage, status, timing, cancellation, normalized error class, and resource counts.
-- Card text, manifests, prompts, filenames, URLs, outputs, transcripts, and audio are absent from application logs and diagnostics by default.
-- Provider exceptions and receipts are normalized before logging or returning them.
-- The provider, transmitted content class, retention boundary, and applicable policy version are disclosed before real content is sent.
-
-## 22. Environment and release isolation
-
-Before implementation, Minerva receives:
-
-- a new Git repository and canonical trunk;
-- a new Vercel project, aliases, and environment linkage;
-- a new browser database name and schema namespace;
-- separate development, Preview, and Production provider credentials;
-- separate admission and diagnostics namespaces;
-- no predecessor workspace, Vercel metadata, secrets, analytics, or production alias; and
-- an explicit source-to-deployment receipt.
-
-Every releasable deployment records its exact source revision, immutable deployment URL, protocol/schema versions, provider configuration IDs, and policy version. Alias promotion follows verification of that immutable deployment. Rollback MUST NOT allow older code to silently open or rewrite a newer local schema.
-
-## 25. Explicitly rejected or deferred
-
-- Reusing a predecessor application shell, state model, schema, deployment, or secret.
-- Renderer-owned product state, history, or persistence.
-- React state, provider callbacks, or Voice prompts as semantic authority.
-- Pure event sourcing, CRDTs, collaboration, sync, and offline merge.
-- Cloud workspace tables, accounts, capability links, migration UI, and dual writes.
-- Multiple local workspaces or a workspace library.
-- Durable server workflows, queues, cron, service workers, and closed-page AI.
-- A general agent runtime, tool platform, prompt endpoint, or model router in the domain.
-- Vector databases, embeddings, hidden context retrieval, novelty scoring, or automated quality ranking.
-- Per-pointer worker messaging, WebGL/OffscreenCanvas, or AudioWorklet without measured need.
-- Token streaming as an assumed requirement.
-- Public unrestricted anonymous provider access.
-- Automatic pruning of Moments, Paths, attempts, failures, or provenance.
+| Workspace/ideas | Brief, constraints, content revisions, relationships, ownership | DOM, camera, provider transport |
+| Exploration/review | Operation definitions, proposals, assessments, decisions | Canvas rendering or runtime model SDK types |
+| Searchlight/space analysis | Exploration policy, archive, recurrence and evidence-linked readings | A second execution engine or universal creativity score |
+| Runs | Admission, attempt identity, progress and recovery contracts | Browser lifecycle |
+| Investigator | Conversational intents and bounded context/attention contracts | A duplicate mutation path |
+| Canvas/UI | Viewport, selection, rendering and interaction | Canonical content or direct provider credentials |
+| Infrastructure | Database, model and workflow bindings | Independent business rules |
+
+Domain code does not import React, route handlers, `Request`/`Response`, or
+provider SDK objects. UI and transport adapters call the same application
+functions. Use narrow dependencies at real boundaries; no generic command bus,
+service framework, dependency-injection container, or universal agent engine.
+
+## Canonical records
+
+Postgres owns workspaces, brief/constraint revisions, ideas and immutable
+revisions, derivation edges, semantic links, proposals, reviews, decisions,
+command receipts, operation manifests, runs/steps and exploration observations.
+Use relational records for identities/relationships and bounded versioned JSON
+for feature payloads. Derivation is acyclic; semantic links may contain cycles.
+
+Layout/viewpoint state has its own revision path. Browser selection, active
+pointer gestures, temporary highlights and unfinished speech are ephemeral.
+Caching must not create a second authority. Restore/revisit creates a new
+revision referring to the source; it does not erase intervening history.
+
+## Four shared contracts
+
+**Exploration archive:** retain attempt/context references, parent/root lineage,
+full artifacts, compact mechanism descriptions, failed/repeated outcomes,
+repair reasons and usage. Search classifications do not replace human taste
+decisions. Independent roots exclude generated archive content; archive-aware
+requests list what they include.
+
+**Commands:** use named operations such as create/revise idea, connect ideas,
+set position, propose exploration, accept proposal and control run. Carry actor,
+workspace, stable command ID, payload identity, targets and expected revisions.
+Duplicate delivery returns the same receipt; conflicting ID reuse fails.
+Admission is not completion. Apply conflicts to dependencies actually read or
+written, not every change anywhere in the workspace.
+
+**Attention:** point/highlight references are sequenced and expire. They do not
+write content, steal selection or move the camera. An explicit navigation
+command may move it. Reconnection discards stale navigation/highlights.
+
+**Speech-to-proposal:** partial text is preview only. Finalized utterances have
+stable intent IDs and resolve to discussion, attention, proposal or a clearly
+requested bounded command. Preserve source revisions and distinguish user
+language from model additions. Do not duplicate actions after reconnect.
+
+## Context compilation
+
+Compile a deterministic operation manifest with exact source revisions,
+excerpts or full text, inclusion/order reasons, brief/constraints, operation
+and prompt version, model profile, and admitted reference/archive material.
+Preview and execution use that same frozen application-controlled context.
+No hidden memory injection afterward. Record execution-time retrieval as an
+additional input receipt without rewriting the original manifest.
+
+Provide explicit brief-only and source-directed modes. Archive-aware mode
+declares its extra inputs. Context selection is inspectable; incidental
+proximity is not an instruction. Geometry does not reorder content or
+invalidate content-only requests. Enforce size bounds without silent truncation.
+
+## Durable execution
+
+Persist run admission and dispatch intent before starting Workflow. Reconcile
+the database/startup gap. Execute provider/database I/O in durable steps and
+checkpoint independent results. Stable step IDs prevent duplicate application
+effects; they do not prove exactly-once provider billing.
+
+Poll persisted progress initially if sufficient. Normalize progress, input-needed,
+proposal-saved and terminal events for presentation. Event delivery is not a
+second state store. Reconnect from durable state rather than replaying UI actions.
+Stopping ends future admission; already-admitted work may finish or incur cost.
+
+Bound SDK retries, workflow retries, repair and replanning under one explicit
+attempt/time/spend policy. Transient failures, invalid output, revision conflict,
+repetition and quota denial have different responses. Preserve partial results
+and failed attempts. Never bypass a quota or invent successful fallback output.
+
+## Concurrent interaction
+
+Canvas, run execution and voice have independent lifecycles. No global busy flag.
+Incoming results merge by identity and preserve viewport, selection and deliberate
+positions. Source edits affect dependent work only. Keep expensive layout and
+analysis off the synchronous pointer path; add workers for observed need.
+
+Voice uses a maintained provider adapter with server-mediated ephemeral
+credentials, bounded sessions, interruption and context resync. Barge-in stops
+speech, not unrelated work or acknowledged commands. Typed fallback remains.
+
+## Provider and deployment boundaries
+
+Runtime model profiles state capability, supported settings, output schema,
+limits and attempt policy. Astra as the development agent does not force the
+runtime model. Model output is untrusted and assessments are not proofs.
+
+The target is a separate Vercel project with private application access and
+separate preview/production data. Provisionally use a cumulative $100 total
+application envelope, pending explicit scope/period confirmation before spend.
+Model, voice, hosting/workflow and database charges need separate accounting
+within that envelope. See [Vercel facts](../vercel-facts.md) for vendor limitations.
+
+No infrastructure is created by the template. It contains no paid credentials,
+configured budget, database, voice implementation or deployed application.

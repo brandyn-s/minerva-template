@@ -3,73 +3,83 @@
 [![CI](https://github.com/brandyn-s/minerva-template/actions/workflows/ci.yml/badge.svg)](https://github.com/brandyn-s/minerva-template/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-A product brief and runnable starter for a **spatial thinking environment**:
-choose what AI sees, explore alternatives, and preserve how each idea developed.
+A product contract and thin runnable starter for a private **spatial idea
+studio**: explore alternatives with Searchlight, manipulate their relationships
+on a canvas, and talk with a concurrent voice collaborator.
 
-**Implemented here:** a pinned Next.js shell and CI. **Not implemented:** the
-canvas, workspace persistence, AI operations, Voice, or a deployed product.
-This template stays content-free; build the product in a repository created
-from it. It assumes a greenfield Next.js app on Vercel, one implementer, and
-GPT-6 Astra in Codex as the builder.
+**Implemented:** a pinned Next.js shell and CI. **Not implemented:** workspace
+persistence, canvas, AI operations, voice, workflow execution or deployment.
+Keep this template content-free; build the application in a new repository.
 
-## What to build
+## Product direction
 
-For someone exploring an ambiguous problem, one accumulating conversation
-makes alternatives and their origins hard to manage. Minerva makes that work
-visible on a canvas rather than replacing it with another chat interface.
+The first useful release combines **canvas + Searchlight + voice**. People can
+edit, zoom and recombine distant ideas while exploration and conversation run.
+Ideas preserve exact source revisions and contributions. Space readings link
+evidence and uncertainty; repetitive generation is not presented as discovery.
 
-Cards hold editable problems, ideas, evidence, and constraints. Explicit
-**Focus** and selected targets determine what AI sees; visual proximity alone
-never changes context. **Branch** develops a direction while preserving its
-source. Compare alternatives, recombine named contributions, and harvest useful
-discoveries without erasing abandoned paths. Searchlight explores independent
-approaches from the same frozen context; Voice supports the canvas.
+Use one Next.js/TypeScript modular monolith. Postgres owns durable workspace
+state; Vercel Workflow owns longer runs. Browser interaction, layout, content,
+attention and speech have distinct responsibilities. UI and agents call the
+same bounded operations. Public GitHub source does not grant public access to
+workspaces, credentials or paid AI.
 
-The first interaction to make work: edit a card, choose context, Branch,
-change a constraint, then compare the new child with its source. A person
-should understand what the action will use and what remains unchanged.
+## Run the shell
 
-## Run
+Node and npm are exact pins:
 
 ```sh
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). No cloud account or provider key
-is needed. Node and npm versions are exact pins.
+Open [localhost:3000](http://localhost:3000). The placeholder page needs no
+cloud account or provider key. Database, auth, model and voice configuration
+arrive with their working application slices, not unused dependencies here.
 
-## What defines correct
+## Build in fresh Astra sessions
 
-Read the relevant section when implementing that behavior, not every document
-before starting.
+The [23 standalone build prompts](./docs/build-prompts.md) describe the product
+from scratch. Paste one complete task into a fresh GPT-6 Astra session in the
+new repository. Prompts 1-18 lead to the integrated first release and publishing;
+19-23 are optional feature sessions afterward.
 
-- [INTENT.md](./docs/product/INTENT.md): the thesis, the checkable definition
-  of success, and the falsifier.
-- [SPEC.md](./docs/product/SPEC.md): observable behavior, explicit context,
-  frozen inputs, lineage, and the capability contract.
-- [DECISIONS.md](./docs/product/DECISIONS.md): choices already made.
-- [ARCHITECTURE.md](./docs/product/ARCHITECTURE.md): durable acknowledgement,
-  recovery, and the implementation boundaries.
-- [docs/vercel-facts.md](./docs/vercel-facts.md): platform facts a build has
-  already paid to learn.
+Each task carries its own relevant context, scope and completion criteria.
+There is no requirement to read another application's code, consult prior
+conversations, or run one long repeatedly compacted session. Continue from
+this new repository's code and a short `docs/HANDOFF.md`.
 
-## Build it with Codex
+`.codex/config.toml` selects Astra with **medium** effort. Escalate for an
+observed difficult task, not by default. Runner permissions, approvals,
+network access and experimental features remain user-managed.
+[AGENTS.md](./AGENTS.md) is the working agreement; `CLAUDE.md` imports it.
 
-This template is tuned for GPT-6 Astra in Codex. In a repository created from
-it, trust the project, open Codex, and give it the first loop:
+## Product contracts
 
-```text
-Build the first loop in AGENTS.md end to end, verify it in the browser, and open a PR.
+Read the relevant section when implementing, not every document on every turn:
+
+- [INTENT](./docs/product/INTENT.md): purpose, first useful experience and falsifiers.
+- [SPEC](./docs/product/SPEC.md): observable behavior and acceptance scenarios.
+- [ARCHITECTURE](./docs/product/ARCHITECTURE.md): state ownership and module boundaries.
+- [DECISIONS](./docs/product/DECISIONS.md): active decisions and supersession.
+- [Setup](./docs/setup.md): new-repository identity, sessions and deployment boundaries.
+- [Vercel facts](./docs/vercel-facts.md): current vendor constraints and sources.
+
+The starter contains no database implementation, generic agent framework,
+plugin platform, workflow harness or research apparatus. Add the smallest
+implementation required for each end-to-end slice.
+
+## Check and contribute
+
+```sh
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
-[AGENTS.md](./AGENTS.md) is the whole working agreement: one page. Codex reads
-`.codex/config.toml`, which pins `gpt-6-astra` at low reasoning effort, turns
-approvals off, keeps the sandbox at workspace-write with network, and enables
-notes across context windows for long runs. Claude Code reads the same
-agreement through `CLAUDE.md`.
+`check` runs lint, typecheck, test and build. The empty shell has no product
+tests; green shell CI is not evidence that Minerva exists. Add relevant
+behavior coverage as features are implemented.
 
-## Contribute
-
-Branch, PR, auto-merge on green. `npm run check` is lint, typecheck, test,
-build. Report vulnerabilities privately under [SECURITY.md](./SECURITY.md).
+For this template, use a branch and PR, with auto-merge only after required CI.
+Generated repositories need their own repository settings and corrected
+package, badge and reporting URLs; follow [setup](./docs/setup.md).
+Report vulnerabilities privately under [SECURITY.md](./SECURITY.md).

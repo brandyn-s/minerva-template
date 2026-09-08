@@ -1,47 +1,55 @@
 # Minerva, built with GPT-6 Astra in Codex
 
-Minerva is a spatial thinking environment: editable cards on a canvas, an
-explicit **Focus** that decides what the AI sees, and Branch, Compare, and
-Recombine that keep every result's lineage. The thesis and its falsifier are in
-[docs/product/INTENT.md](./docs/product/INTENT.md). Observable behavior is in
-[docs/product/SPEC.md](./docs/product/SPEC.md); for the first loop read sections
-6 (central loop), 7 (canvas and cards), 8 (context and provenance), 10 (Branch),
-13 (History and Undo), and 15 (browser-local persistence). Decisions already
-made are in [docs/product/DECISIONS.md](./docs/product/DECISIONS.md); mechanisms
-are in [docs/product/ARCHITECTURE.md](./docs/product/ARCHITECTURE.md). Read the
-section you need, not the whole document.
+Minerva is a private, online-first spatial idea studio. Its first useful release
+combines a manipulable canvas, bounded Searchlight exploration, and a concurrent
+voice collaborator. Keep the Next.js/TypeScript modular monolith: Postgres owns
+durable product state; Vercel Workflow owns longer execution. The public source
+repository does not imply public access to workspaces or paid AI.
 
-This repository is the template. Build the product in a repository created
-from it; keep this one content-free.
+Read the relevant part of [INTENT](./docs/product/INTENT.md),
+[SPEC](./docs/product/SPEC.md), [ARCHITECTURE](./docs/product/ARCHITECTURE.md),
+and [DECISIONS](./docs/product/DECISIONS.md), not all documents every session.
+The [standalone build prompts](./docs/build-prompts.md) describe bounded sessions
+from an empty application. They need no other repository or conversation.
+
+When maintaining the template itself, keep it content-free. In an application
+repository generated from this starter, implement the product directly there;
+do not interpret inherited template wording as a request to create another repo.
 
 ## How to work here
 
-- A request is an instruction to do the work. Carry it through implementation
-  and browser verification in one run. Do not stop at a plan, an offer to
-  continue, or a request for approval on reversible work. When the spec leaves a
-  choice open, take the reading it supports best and say so in the PR.
-- Verify in the browser, not by reading the code. Run `npm run dev`, exercise
-  the loop end to end, fix what breaks, run it again. In the PR, say what you
-  exercised and what failed.
+- Implement the requested slice through working behavior. Make reversible local
+  decisions; state consequential assumptions. Do not stop at a plan when asked
+  to implement, or widen a bounded task into a framework.
+- For UI changes, exercise the actual browser journey. For other changes use
+  the smallest relevant checks. Say what ran, failed, or remains unverified.
+  Documentation-only work does not need simulated product coverage.
 - When the owner steers mid-run, fold the new instruction into the current work
   and keep going; do not restart.
-- Split independent work across subagents when it saves wall-clock time. Keep
-  messages between agents legible.
+- No subagent orchestration is required. Follow the active runner's restrictions;
+  never bypass them to obtain parallelism.
 - Write PRs and messages in plain prose. Use a list only when the items are
   parallel.
-- Ask the owner first about hosting or deployment, provider spend, contacting
-  participants, and publishing private content. Everything else, do.
+- Obtain authorization for provisioning, deployment, paid calls, publication,
+  destructive changes, and contacting others. Never publish credentials or
+  private content. A prompt that permits preparation does not authorize spend.
+- Domain rules do not import React, HTTP objects, or provider SDK types. UI,
+  voice, REST and MCP call the same named operations. Do not create a generic
+  command bus, agent framework, or second workflow engine.
 
 ## Build
 
-The first thing to make work, end to end in the browser: edit a card, choose
-Focus, Branch, change a constraint, compare the new child with its source, and
-reload with everything still there. Then Searchlight (independent approaches
-from the same frozen context), then Compare and Recombine, then Voice.
+Use one standalone prompt per fresh session. Inspect the code and
+`docs/HANDOFF.md` in the new application; verify its claims rather than importing
+chat history. Keep that handoff roughly one screen: implemented scope, relevant
+files, exact commands/results, blockers, and next unfinished outcome. Do not
+create transcripts, diaries, phase gates, or timing/measurement infrastructure.
 
-Done means INTENT.md's checkable definition of success holds on a real
-ambiguous problem. Plan and sequence the work yourself; this template has no
-roadmap, phase gates, lanes, journal, or clock on purpose.
+The first integration target is exploration while speaking, moving cards,
+zooming and recombining distant ideas. No global busy lock or automatic camera
+jump. An incomplete slice is a checkpoint, not a complete Minerva product.
+If a session ends mid-slice, checkpoint coherently and finish that outcome in
+a fresh session before advancing.
 
 ## Run and check
 
@@ -51,18 +59,20 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
-`dev` is the inner loop. `check` is lint, typecheck, test, build; run it before
-the PR. Work on a branch, open a PR, and enable auto-merge; it lands when CI is
-green. The PR body is what changed and how you know it works.
+`dev` is the inner loop. `check` is lint, typecheck, test, build. The empty shell
+has no product tests; add behavior coverage with implemented slices. Work on a
+branch and open a PR. For this template, enable auto-merge when required CI is
+green; never bypass checks. A generated repository needs its own settings.
+The PR body states the change and its evidence, including unrun checks.
 
 ## Effort
 
-`.codex/config.toml` starts every thread at `low`, which OpenAI's Codex team
-measured as stronger than GPT-5.6 Sol at `high`. Raise to `medium` in the thread
-after a failed attempt and to `high` for architecture or hard debugging, then
-step back down. Approvals are off and the sandbox is workspace-write with
-network, so nothing in this repository should make you pause except the four
-owner questions above.
+`.codex/config.toml` selects GPT-6 Astra at `medium` as the starting point.
+Increase effort for a demonstrated reasoning/debugging difficulty; do not use
+maximum effort by habit. The template does not override permissions, network
+access, approvals, or experimental context/delegation features. Configure those
+in the active runner. There is no requirement to complete the product in one
+long, repeatedly compacted conversation.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
