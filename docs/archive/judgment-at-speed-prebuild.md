@@ -6,7 +6,7 @@
 > no source revision for that pre-repository state. Statements below about
 > missing artifacts are preserved as historical evidence; use
 > [`CURRENT_GATE.md`](../../CURRENT_GATE.md) and
-> [`JOURNAL.md`](../../JOURNAL.md) for current status.
+> [`JOURNAL.md`](../product/JOURNAL.md) for current status.
 
 Prepared September 6, 2026 from the pre-repository planning directory. Two
 files were present: `INTENT.md` (128 lines, 1,616 words) and `DECISIONS.md` (334

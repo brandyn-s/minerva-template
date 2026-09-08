@@ -5,7 +5,7 @@ for source, repository commands and CI for deterministic checks, the running
 browser for interaction, and the deployment/provider for live behavior. Do not
 copy command output into a second machine-scored receipt system.
 
-Gate outcomes are summarized in [JOURNAL.md](../JOURNAL.md) with the exact
+Gate outcomes are summarized in [JOURNAL.md](../docs/product/JOURNAL.md) with the exact
 source revision, observable result, material failures, falsifier result, and
 decision. [CURRENT_GATE.md](../CURRENT_GATE.md) holds only the current operating
 state and must not become a second history.

@@ -49,9 +49,9 @@ is needed. Install dependencies once; Node/npm versions are exact pins.
 Read the relevant section when implementing that behavior, not every document
 before starting:
 
-- **Canvas and AI context:** [SPEC.md](./SPEC.md) defines observable behavior,
+- **Canvas and AI context:** [SPEC.md](./docs/product/SPEC.md) defines observable behavior,
   explicit context, frozen inputs, lineage, and the full capability contract.
-- **Saving and recovery:** [ARCHITECTURE.md](./ARCHITECTURE.md) defines durable
+- **Saving and recovery:** [ARCHITECTURE.md](./docs/product/ARCHITECTURE.md) defines durable
   acknowledgement and recovery. Do not report unsaved work as saved.
 - **Live AI:** permission, atomic admission, replay protection, and a proven
   hard spend bound are required. Simulations must be labelled.
@@ -60,7 +60,7 @@ before starting:
   team membership or a personal provider key. Software success is not human
   comprehension or evidence that the product thesis works.
 
-[INTENT.md](./INTENT.md) and approved [DECISIONS.md](./DECISIONS.md) govern the
+[INTENT.md](./docs/product/INTENT.md) and approved [DECISIONS.md](./docs/product/DECISIONS.md) govern the
 product; this brief does not replace their requirements.
 [CURRENT_GATE.md](./CURRENT_GATE.md) records what is authorized in this checkout.
 
@@ -85,8 +85,8 @@ Neither is a prerequisite to running or editing the shell.
 [docs/vercel-facts.md](./docs/vercel-facts.md) lists the platform facts a
 build has already paid to learn: Git auto-deploys production, config above the
 root directory is ignored, env vars are per target, Gateway budgets are soft.
-[ROADMAP.md](./ROADMAP.md) retains full-product release/evaluation criteria and
-the earlier sequencing plan. [HACKATHON.md](./HACKATHON.md) is an opt-in timed
-experiment, not the default workflow. [JOURNAL.md](./JOURNAL.md) preserves past
+[ROADMAP.md](./docs/product/ROADMAP.md) retains full-product release/evaluation criteria and
+the earlier sequencing plan. [HACKATHON.md](./docs/product/HACKATHON.md) is an opt-in timed
+experiment, not the default workflow. [JOURNAL.md](./docs/product/JOURNAL.md) preserves past
 decisions. No agent lanes, phase clock, separate planning document, or routine
 activity tracker is required to contribute.

@@ -3,7 +3,7 @@
 > **Historical snapshot.** This was Section 24 of `ROADMAP.md` at approval
 > and was moved here on September 7, 2026 without changing its text. It is
 > the sole terminal plan review; its resolutions are already incorporated in
-> the roadmap. Use [`ROADMAP.md`](../../ROADMAP.md) for the current plan.
+> the roadmap. Use [`ROADMAP.md`](../product/ROADMAP.md) for the current plan.
 
 ## Interview findings
 

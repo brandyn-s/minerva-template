@@ -17,4 +17,4 @@ remain separate. A bounded slice is not a completed prototype.
 
 The [README](./README.md) is the starting point. Product and safety requirements
 remain unchanged; this status file cannot override them. The timed
-[hackathon profile](./HACKATHON.md) applies only when explicitly selected.
+[hackathon profile](./docs/product/HACKATHON.md) applies only when explicitly selected.

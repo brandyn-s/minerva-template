@@ -1,7 +1,7 @@
 # Minerva — Roadmap
 
 > **Product-starter amendment, September 7, 2026:** Start with
-> [README.md](./README.md), not this plan. Construction order, lane assignments,
+> [README.md](../../README.md), not this plan. Construction order, lane assignments,
 > effort estimates, planning artifacts, and execution ceremonies below are
 > historical guidance, not prerequisites for approved implementation.
 > Genuine behavioral dependencies, full-product acceptance, live activation
@@ -19,7 +19,7 @@
 | Effort | **XL** — execute as bounded gate plans, never as one undifferentiated build |
 | Product authority | [INTENT.md](./INTENT.md), then approved entries in [DECISIONS.md](./DECISIONS.md), then [SPEC.md](./SPEC.md) |
 | Architecture authority | [ARCHITECTURE.md](./ARCHITECTURE.md) |
-| Current execution | [CURRENT_GATE.md](./CURRENT_GATE.md) is the subordinate operational record; it cannot itself grant authority or alter the authorities above or this long-form sequence |
+| Current execution | [CURRENT_GATE.md](../../CURRENT_GATE.md) is the subordinate operational record; it cannot itself grant authority or alter the authorities above or this long-form sequence |
 | Event slice | [HACKATHON.md](./HACKATHON.md), evaluated against its demo contract, is prepared but inactive until a product-owner clock-start declaration is recorded |
 | Scope | Greenfield first prototype through staged product evaluation and a terminal evidence-backed decision |
 | Historical boundary | Searchlight, Atlas, Gestures, their repositories, schemas, deployments, prompts, and secrets are evidence only |
@@ -121,7 +121,7 @@ complete. R3 closes only after R2A/R2B evidence; no early screen closes R1.
 Live Branch still requires its durable-landing, admission, and hard-bound
 proofs and explicit spend permission.
 
-Use [README.md](./README.md) as the product-starter entry point.
+Use [README.md](../../README.md) as the product-starter entry point.
 Worker protocols, event streams, and separate review
 agents are not required; the later simplification supersedes those process
 requirements in amendment 1.3 without changing product gates. Prefer the preflighted
@@ -806,7 +806,7 @@ The horizon order is not a release schedule. Bounded agentic expeditions precede
 One bounded adversarial pass challenged the completed roadmap on September 6,
 2026; its eight challenges, resolutions, and six preventive corrections are
 preserved verbatim in
-[`docs/archive/roadmap-interview-findings-2026-09-06.md`](./docs/archive/roadmap-interview-findings-2026-09-06.md).
+[`docs/archive/roadmap-interview-findings-2026-09-06.md`](../archive/roadmap-interview-findings-2026-09-06.md).
 That was the sole terminal plan review. Execution may revisit a gate only when
 its native evidence triggers that gate's named falsifier or invalidates a
 dependency. Finding 1's resolution, that `none` cannot pass R5, was
