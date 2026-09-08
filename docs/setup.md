@@ -88,7 +88,8 @@ Keep each handoff in the existing HANDOFF/capability record, with these fields:
 ```text
 Outcome and boundary: what should work; what this pass excludes.
 Candidate: exact commit, checkout, startup command and one representative journey.
-Evidence and gaps: observed behavior, known failures and what remains unverified.
+Evidence and gaps: written/integrated/local/live/reviewed/accepted/deployed facts,
+                  with mode, revision, known failures and unverified boundaries.
 Review question: the concrete behavior or decision that needs independent scrutiny.
 Next step: fix, review, owner decision or next bounded outcome; not automatic expansion.
 ```
@@ -98,6 +99,24 @@ builder's conclusions. M5 retains its external-client cold-start exception.
 A partial checkpoint is useful but never silently completes its package or
 milestone. Default to one review per planned boundary plus focused recheck; repeat only for remaining
 material failures or new evidence, not to chase agreement between models.
+
+## Integrate before expanding
+
+Choose a user action with starting state, expected observable result, explicit
+exclusions and its relevant failure boundary. Build the smallest connected path
+and exercise it before moving to the next increment. The collaborator sequence
+in packages 11-12 is the worked example: selected-card discussion, one typed
+action, bounded voice transport, continuity, the same action through speech,
+then recovery and the combined journey. Each checkpoint remains partial until
+the package's requirements are met; it does not add a review ceremony per step.
+
+Probe external authentication/transport/settings early when they could invalidate
+the design. Use a small explicitly authorized live case with appropriate
+credential handling, bounds and accounting, not an unprotected throwaway endpoint.
+Keep subsequent iterations fixture-backed where sufficient. Report a missing
+credential or access decision instead of building around an unverified assumption.
+Do not add a new measurement system, large delegation or architecture layer to
+manage an increment that should simply be split.
 
 ## Local configuration
 

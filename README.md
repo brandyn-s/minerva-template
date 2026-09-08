@@ -73,6 +73,13 @@ per planned boundary and a focused recheck of material fixes. Keep optional sugg
 from required defects; avoid speculative abstractions, repeated full reviews
 and measurement infrastructure that does not answer a consequential question.
 
+Make each implementation assignment a working user action, not an entire
+subsystem. Integrate the UI and current service path before expanding; packages
+11-12 include a concrete typed/voice increment sequence. Probe consequential
+external assumptions early within authorized bounds. Report written, integrated,
+local/live demonstration, review, acceptance and deployment separately; a
+large code return or merged PR is not a functioning or hosted capability.
+
 There is no requirement to read another application's code, consult prior
 conversations, or run one long repeatedly compacted session. Continue from
 this repository's code, `docs/product/CAPABILITIES.md` and a short

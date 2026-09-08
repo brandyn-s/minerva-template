@@ -41,6 +41,8 @@ context, immutable lineage, visible acknowledgement and retained history.
 | D-123 | Separate operator-initiated Codex/Astra and Claude/Fable sessions on distinct checkouts | Exact committed review candidate; no routine builder-launched critic or automated coordinator |
 | D-124 | One demonstrable outcome per task and a concise evidence-based handoff | Partial checkpoints stay partial; whole capability scope is not the next task's scope |
 | D-125 | One independent review per planned boundary plus focused recheck by default; proportionate measurement | Further cycles need material unresolved failures or new evidence, never a waiver of known defects |
+| D-126 | Working user-action increments integrate before feature expansion | Resolve external uncertainty with small authorized probes; returned subsystem code is not delivered behavior |
+| D-127 | Delivery evidence distinguishes written, integrated, local/live demonstration, review, acceptance and deployment | Record facts in existing capability/handoff fields; no new status engine or implied completion |
 
 ## Provisional deployment detail
 

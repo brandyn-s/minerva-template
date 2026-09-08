@@ -82,6 +82,12 @@ At each session start, state one visible outcome, explicit exclusions and the
 evidence that will close that outcome. Break an overlarge package into coherent
 checkpoints rather than assigning an entire subsystem to a long-running worker.
 Keep package and milestone status partial until their actual conditions are met.
+Choose a working user action, not a subsystem: starting state, user action,
+observable result and relevant failure boundary. Integrate the smallest path
+through UI and current services before expanding. Code returned by a worker
+without a working caller is written, not delivered. When an increment expands,
+name the dependency and checkpoint/split the remainder rather than silently
+growing the assignment.
 
 **Roles:** GPT-6 Astra in Codex owns implementation, commands, evidence,
 corrections and deployment. Fable 5.1 in Claude is the independent, read-only
@@ -177,6 +183,18 @@ measurement needs a consequential uncertainty and a decision it can change;
 do not add timing harnesses, benchmark campaigns, review coordinators or
 extensive telemetry for ordinary development. Do not rerun a broad review or
 full comparison when a focused check answers the question; required checks remain.
+Probe consequential provider authentication, transport and supported settings
+early, before extensive surrounding implementation. These probes still require
+authorization, bounds, server-side credentials and accounting. Missing live
+access remains a named gap; it does not block clearly independent fixture work
+or justify speculative abstractions.
+
+**Delivery evidence:** distinguish written, integrated, demonstrated locally,
+demonstrated live, reviewed, accepted and deployed. Record applicable facts,
+mode and revision in the existing matrix/handoff rather than another status
+system. A local fixture, completed code assignment, reviewer opinion or merged
+commit cannot stand in for the next boundary. These facts are not a new linear
+seven-stage process; a milestone can legitimately have live behavior unverified.
 
 **Documentation prose (Astra):** write `CONTRACT.md`, `CAPABILITIES.md`,
 `DESIGN.md`, `HANDOFF.md`, architecture decisions, commit messages and review
@@ -944,6 +962,14 @@ Build Minerva's typed collaborator with newly authored code. It discusses and
 develops an evolving creative space, not only recites card text or dispatches
 commands. Use the local product contract and shared application operations.
 
+Deliver this package as connected increments, not a whole collaborator subsystem.
+First select a saved card, send a typed message and display a context-grounded
+reply in the working UI; actions stay disabled for this increment. Label fixture
+versus live behavior. Then integrate shared attention and one explicit typed
+operation through the existing command/admission path, exposing its actual
+receipt. Do not start the next increment while these pieces have no working
+caller. These checkpoints do not waive the full package criteria below.
+
 Support explanation, assumption challenges, connections, alternative readings,
 contextual move suggestions and explicitly requested scoped actions. Resolve
 named cards, relationships, comparison slots and active-view attention. Fetch
@@ -988,6 +1014,25 @@ Fable session in a separate checkout; do not routinely launch your own critic.
 Implement Minerva's bidirectional voice collaborator in this new
 codebase. Use its typed collaborator, shared commands, attention and cost
 admission. Read current official provider/SDK contracts and the product scope.
+
+Use the following increments rather than one large "voice subsystem" assignment.
+Integrate and exercise each in the running workspace before expanding it.
+
+| Increment | Observable result |
+|---|---|
+| Provider uncertainty | A small authorized probe establishes authentication, bidirectional transport and supported settings, or records the exact blocker |
+| Basic voice | The user connects, speaks, hears a reply, interrupts and disconnects through the workspace UI; basic permission, cleanup and cost bounds are already enforced |
+| Continuity | The conversation remains grounded while the user moves cards and changes panels; late permission/setup cannot reopen a stopped session |
+| One spoken action | A clear spoken request invokes the already working typed operation and shows its acknowledged result without duplicate effects |
+| Recovery and combined journey | Reconnect, cancellation, denied allowance and uncertain outcomes behave explicitly during the full M2 canvas/generation/voice journey |
+
+These are implementation checkpoints within package 12, not extra milestone
+reviews or a reduced release. Keep any not-yet-delivered action path disabled
+and explicit. Use fixtures for repeated iterations and bounded authorized live
+cases at the transport boundary; no personal recordings are needed for synthetic
+browser exercises. If live access is unavailable, report that gap and proceed
+only with genuinely independent work. A component and endpoints that are not
+wired together do not complete an increment.
 
 Provide microphone input and spoken replies, interruption/barge-in, reconnect
 and disconnect. Use server-mediated ephemeral credentials and a maintained
@@ -1067,6 +1112,12 @@ Follow one real operation from source revision through admission, provider resul
 Recheck affected IB01-IB06 scenarios against the working state/update boundary,
 including gesture-to-keyboard activation and outgoing relationship inspection
 after a result is accepted. A fixture-only pass does not establish the new path.
+For each claimed increment, follow its actual UI caller through the application
+and service boundary to the visible result. Separate written components,
+integrated behavior, local fixture demonstration and real provider evidence.
+Do not accept an unconnected voice component or a reported code return as a
+working conversation. Review the planned boundary, not every increment as an
+additional full-review ceremony.
 
 Still-open scope at this boundary:
 Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth, outputs and external-client coverage remain explicitly open.
@@ -2366,6 +2417,10 @@ Sample IB01-IB06 on the final implementation and revisit cases adjacent to
 recent fixes. Verify the relationship list is bidirectional in coverage while
 preserving each edge's actual direction. Distinguish input simulation, physical
 device observation, technical defects and user experience preferences.
+Distinguish written, integrated, local/live demonstration, reviewed, accepted
+and deployed facts in the handoff. A merge or local server does not establish
+a hosted application; verify the actual serving candidate before confirming
+deployed outcome.
 Watch the central before/after journey without builder narration compensating
 for missing behavior. Confirm the user can see the challenge, proposed change,
 actual outcome and source evidence. Distinguish prepared, live, recorded and
