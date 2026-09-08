@@ -19,7 +19,7 @@ function fixture(t, change = {}) {
     source: { repo: "brandyn-s/minerva-template", revision: "a".repeat(40) },
     authorization: { basis: "owner-launch-instruction", scope: "full", firstImplementation: true, deploy: true, spendUsd: 0 },
     hosting: { provider: "vercel", team: "example", creationAuthorized: false },
-    ai: { provider: "vercel-ai-gateway", baseUrl: "https://ai-gateway.vercel.sh/v1", model: "openai/gpt-5.4-mini" },
+    ai: { provider: "vercel-ai-gateway", baseUrl: "https://ai-gateway.vercel.sh/v1", model: "openai/gpt-5.6-terra" },
     ...change,
   };
   writeFileSync(resolve(cwd, "launch.json"), JSON.stringify(config));

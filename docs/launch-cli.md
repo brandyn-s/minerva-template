@@ -40,7 +40,7 @@ instruction. It does not invent approval or claim live permissions. Local safe
 implementation can proceed while hosting, credentials, deployment, and spending
 remain gated. The receipt records `brandyn-s/minerva-template`, current Git HEAD,
 Vercel AI Gateway's OpenAI-compatible `/v1` path, and the fixed candidate
-`openai/gpt-5.4-mini`. Candidate configuration is not availability proof.
+`openai/gpt-5.6-terra`. Candidate configuration is not availability proof.
 Credentials and unknown configuration fields are rejected; never put secrets in
 the receipt. Receipts belong in ignored `.minerva/`; custom paths are the
 operator's responsibility.

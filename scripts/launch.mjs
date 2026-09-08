@@ -9,7 +9,7 @@ export const SOURCE = "brandyn-s/minerva-template";
 const DEFAULT_FILE = ".minerva/launch.json";
 const NODE = "24.20.0";
 const NPM = "12.0.2";
-const MODEL = "openai/gpt-5.4-mini";
+const MODEL = "openai/gpt-5.6-terra";
 const repoPattern = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})\/[A-Za-z0-9_.-]{1,100}$/;
 
 function validSpend(value) {

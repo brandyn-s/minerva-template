@@ -126,7 +126,7 @@ test("init defaults to private, local implementation only, and exclusively recor
     basis: "owner-launch-instruction", scope: "full", firstImplementation: true, deploy: false, spendUsd: 0,
   });
   assert.deepEqual(result.config.source, { repo: SOURCE, revision: SHA });
-  assert.equal(result.config.ai.model, "openai/gpt-5.4-mini");
+  assert.equal(result.config.ai.model, "openai/gpt-5.6-terra");
   assert.equal(result.config.hosting.creationAuthorized, false);
   assert.equal(result.config.hosting.gitDeploymentsAuthorized, false);
   const before = readFileSync(result.file, "utf8");
