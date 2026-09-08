@@ -57,6 +57,46 @@ Both Astra and Fable start at medium effort. Permissions, network access and opt
 runner features are configured by the user, not overridden by the template.
 Use relevant official framework documentation for the installed version.
 
+## Resuming an existing checkpoint
+
+Put the absolute worktree path inside the actual copyable resume prompt, not
+only in surrounding prose. Open the terminal there first. A branch/commit name
+does not locate an unpushed worktree on another machine.
+
+Replace every placeholder in this compact launch block:
+
+```text
+Worktree: <absolute-existing-worktree-path>
+Branch and expected checkpoint: <branch> at <commit-sha>
+Instruction source, only if reconciliation is requested: <repo/path> at <sha>
+
+Use the exact worktree above. Verify its identity and changes without resetting
+or recreating anything. If it is unavailable, report that specific mismatch;
+do not search the whole home directory for substitutes.
+Read docs/HANDOFF.md, the relevant capability rows and current local contracts.
+If instructed, reconcile the relevant process-file delta once from the pinned
+source, preserving application-specific requirements and evidence. Then leave
+unrelated documentation alone while implementing.
+
+Outcome: <one starting state, user action and observable result>
+Exclusions: <features and services outside this increment>
+Failure boundary: <the specific conflict or failure that must remain visible>
+
+Find the existing UI caller and backend entry point, then implement and exercise
+that connected path. Further discovery must answer a concrete unresolved
+question. Fix the latest observed failure and re-exercise the affected journey.
+Finish with a committed reviewable checkpoint and a short factual handoff.
+If blocked or partial, say exactly what remains; do not claim the package done.
+Do not launch Fable automatically or advance to another increment.
+```
+
+Read only the instruction delta needed for the requested reconciliation; do not
+repeatedly diff the whole seed while debugging. If a known file lookup fails,
+inspect that directory's actual filenames or use a scoped alternative tool.
+Missing glob results in a hidden worktree are not a reason to scan the home
+directory. The handoff's exact path and the repository's current tree are the
+starting evidence.
+
 ## Separate builder and critic
 
 Run Astra in Codex in the writable application checkout. At a review boundary,
@@ -87,7 +127,7 @@ Keep each handoff in the existing HANDOFF/capability record, with these fields:
 
 ```text
 Outcome and boundary: what should work; what this pass excludes.
-Candidate: exact commit, checkout, startup command and one representative journey.
+Candidate: exact commit, absolute checkout path, startup command and one representative journey.
 Evidence and gaps: written/integrated/local/live/reviewed/accepted/deployed facts,
                   with mode, revision, known failures and unverified boundaries.
 Review question: the concrete behavior or decision that needs independent scrutiny.
@@ -117,6 +157,12 @@ Keep subsequent iterations fixture-backed where sufficient. Report a missing
 credential or access decision instead of building around an unverified assumption.
 Do not add a new measurement system, large delegation or architecture layer to
 manage an increment that should simply be split.
+
+Close out against observed results: the relevant user journey, the named
+failure case and the existing checks. Inspect the failure output before another
+edit. A command starting or producing many lines is not its outcome. A rough
+timebox can prompt a partial checkpoint, but cannot justify dropping required
+behavior, claiming a pass or starting another measurement campaign.
 
 ## Local configuration
 

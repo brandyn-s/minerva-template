@@ -106,6 +106,20 @@ advancing.
 
 ## Bound the next outcome
 
+Resume in the supplied absolute worktree path and verify its branch, checkpoint
+and current changes before searching. Do not scan the home directory to
+rediscover a path already supplied. If the path/checkpoint is absent, report
+that exact mismatch; do not recreate the app or reset existing work.
+
+Reconcile explicitly requested instruction changes once, using the pinned
+source revision and relevant file delta, before implementation. Preserve
+application-specific requirements and evidence. Reopen that reconciliation
+only for a new instruction or a concrete conflict affecting the current work.
+After locating the caller, backend entry point and decisive journey, each
+further search/read should answer a named unresolved question. Batch known
+reads; recover a failed lookup within the known directory rather than widening
+to the whole machine.
+
 The full capability contract is the destination, not the scope of each task.
 State the current outcome, explicit exclusions and stopping evidence before
 implementing. Fix demonstrated failures in existing shared operations before
@@ -143,6 +157,13 @@ Use existing checks/logs to answer the current question, retain failed attempts
 and run required checks. Do not build timing harnesses, comparative benchmarks,
 review coordinators or extensive telemetry for routine development. Additional
 measurement needs a consequential uncertainty and a decision it can change.
+During debugging, name the failing assertion and observed behavior, make the
+smallest supported correction, and repeat the affected journey. A concrete
+fix and recheck is not itself a fix loop. Do not interleave unrelated document
+cleanup or broaden a stale-context/retry case into a general framework.
+Command launches, output line counts and a typecheck alone are not observed
+UI success. An elapsed-time budget may trigger an honest checkpoint; it
+cannot waive a failing outcome or establish completion.
 
 ## Run and check
 
