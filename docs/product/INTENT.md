@@ -1,129 +1,83 @@
-# Minerva — Product Intent
+# Minerva: product intent
 
-> **Status:** Approved product intent as of September 6, 2026. Implementation
-> mechanisms are governed by `ARCHITECTURE.md`.
+Status: active greenfield product contract. This template contains a runnable
+shell and specifications, not the implemented product.
 
-## Problem
+## Purpose
 
-Creative work with LLMs is constrained by a predominantly linear, single-channel interaction model. One accumulating conversation makes alternatives, abandoned paths, tensions, and relationships increasingly difficult to see and manipulate. As context builds, both people and language models can converge on familiar directions—similar phenomena produced by different mechanisms—and escaping that convergence often means restarting and losing useful work.
+Minerva is a private, single-owner, online-first studio for exploring an idea
+space with AI. A person can investigate alternatives spatially, understand
+their relationships and origins, and speak with a collaborator while work
+continues. The canvas, Searchlight, and concurrent voice are the core product
+together, not a chat application with optional visual decoration.
 
-The instrument itself restricts the creative space. Keyboard and voice are usually treated as alternative ways to operate the same linear conversation rather than concurrent ways to think. Working through that pipe makes it difficult to hold several possibilities in view, change the context deliberately, and understand how one direction emerged from another.
+The hypothesis is that persistent alternatives, visible lineage, and concurrent
+spatial/conversational work help people develop useful directions. Neither
+model enthusiasm nor the number of generated cards establishes that benefit.
 
-## Primary user
+## The first useful experience
 
-Minerva is for an individual creative or strategic practitioner working on an ambiguous problem across one or more sessions. It must be useful from the beginning of exploration, not only after the user recognizes that they are stuck.
+1. Create a workspace with a problem and explicit constraints.
+2. Add ideas and start a bounded Searchlight exploration.
+3. Inspect, move, edit and zoom while results arrive.
+4. Discuss a selected idea with the voice collaborator, including spoken replies.
+5. See what the explored space suggests, with evidence and uncertainty.
+6. Connect or recombine two distant ideas; inspect what each contributed.
+7. Keep, revise or set aside proposals without losing their origins.
+8. Interrupt voice, close the browser, return, and recover saved work/run status.
 
-## Why this matters
+Use synthetic, editable example content and an obvious blank-start path. No
+particular example domain is part of the architecture or a mandatory answer.
 
-Generating more material is not the same as expanding a possibility space. Without visible context, controlled difference, preserved alternatives, and causal lineage, additional output can reinforce the direction already attracting attention.
+## Human and AI roles
 
-The user needs agency over the trajectory of the work: the ability to see what remains active, open deliberately different directions, compare without prematurely selecting a winner, recombine exact contributions, preserve unsuccessful attempts, and carry useful discoveries forward.
+Searchlight can generate exploratory material and manipulate it within an
+explicit run scope. It cannot overwrite human-kept work or turn guesses into
+confirmed facts. The collaborator may point, discuss, suggest, create proposals
+and execute clearly requested bounded commands through the same application
+operations as the UI. Voice is not universally read-only.
 
-## Product thesis
+The person retains control of goals, explicit constraints, acceptance and
+deliberate spatial arrangement. Partial speech and incidental proximity do
+not authorize mutations. Generated conventions are not user requirements.
 
-Minerva is a **spatial thinking environment** that gives the user agency over the trajectory of AI-assisted thinking. Visible spatial structures determine what context remains active, what changes, and what can be carried forward, while alternatives and lineage remain available.
+## Experience and truth
 
-The canvas—not a transcript—is the primary surface. The user can type, speak, select, edit, and spatially manipulate the workspace concurrently. Conversation supports the canvas; it does not replace it.
+Keep title-first cards, warm paper and dark ink, restrained color, direct
+contextual actions, and details on demand. Discovery should feel tactile and
+curious, but essential functionality must not be hidden in nested menus.
+Pointer, keyboard and touch interactions remain useful while AI runs.
 
-Minerva should feel like a responsive thinking instrument, not a graph editor or dashboard. Play, curiosity, and visual beauty belong to the interaction itself. Every visual operation must produce a real, legible, and inspectable consequence for context, focus, relationship, or lineage.
+Display what an operation actually used, what changed, and what remains
+uncertain. Different words or labels do not establish different mechanisms.
+Provisional groups are not proven attractors; model review is not proof of
+novelty, feasibility or quality. Stagnation and partial failure are real outcomes.
 
-## First encounter
+## Foundation
 
-A new user may enter through an immediately editable working example or choose an equally visible **Start blank** path. The example must expose Minerva's central interaction directly; it is not a tour, static demonstration, or separate product mode.
+Use one Next.js/TypeScript modular monolith with server-owned Postgres state,
+immutable content revisions, explicit commands, and durable Vercel workflows.
+The browser owns transient interaction, not canonical product truth or job
+lifetime. Code is intended for a new public GitHub repository; application
+access and paid operations remain private. No data migration is required.
 
-A blank workspace remains permissive. A problem is the obvious starting point, and the user may add supporting material without first completing a setup ritual or learning an ontology.
+## First-release exclusions
 
-## Workspace and context
+Do not add multi-user co-editing, offline-first synchronization, billing,
+microservices, a plugin marketplace, an agent framework, desktop process
+hosting, or a research platform. Additional views, instruments, execution
+outputs and REST/MCP are independent extensions after the integrated core.
+Reliability at the interaction boundary and bounded recovery are not deferred.
 
-Cards are the common content substrate. Lightweight semantic roles—such as problem, idea, question, evidence, constraint, and tension—help interpretation without turning the workspace into a rigid schema.
+## Definition of success and falsifiers
 
-Space gains meaning only through visible, inspectable structures such as groups, regions, links, an explicit focus set, and lineage. Mere proximity never changes AI behavior invisibly. Moving content into or out of a meaningful structure must make the resulting context change apparent.
+The complete journey above works with actual configured capabilities, not
+only fixtures. Kept content and lineage survive reload. Voice, exploration,
+and canvas interaction do not block unrelated work. Failures leave recoverable
+state and specific explanations.
 
-The system reserves a small vocabulary for structural facts, initially including `derived from` and `member of`. Other relationships may use free-form user labels. These relationship labels are distinct from the operational record of an AI action.
-
-Branch, Compare, Recombine, Searchlight, and Voice all consume the same versioned, inspectable projection of the active workspace. The user can see what each capability saw. Material outside that projection cannot silently influence the result.
-
-Every AI operation preserves causal truth: the frozen input context, what was inherited, what changed, the intended move, the observed result, and any exact parent contributions. This record explains the operation without exposing or pretending to expose private chain-of-thought.
-
-## Central loop
-
-`seed → focus and arrange → branch or targeted sweep → compare → recombine → harvest → continue or rewind`
-
-1. **Seed:** Begin with a real problem and whatever supporting material matters.
-2. **Focus and arrange:** Organize the workspace and explicitly establish the context for the next action.
-3. **Branch or sweep:** Open one directed expansion or several deliberately different approaches.
-4. **Compare:** Inspect commonalities, differences, tensions, and tradeoffs without declaring a winner.
-5. **Recombine:** Create a durable child from named contributions, preserving exact parent lineage.
-6. **Harvest:** Capture the consequential directions, connections, tensions, bridges, dead ends, and open experiments exposed by the work.
-7. **Continue or rewind:** Pursue a promising frontier, return to an earlier state, or preserve the current path and fork another.
-
-## Branch and Searchlight
-
-**Branch** is a directed expansion from one selected card or explicit focus set. It is the immediate way to develop a line of thought. The user may supply a prompt or direction, but neither is mandatory.
-
-The first Searchlight capability is a **targeted divergence sweep**, not an autonomous or multi-generation expedition. Minerva automatically selects several context-appropriate, deliberately different approaches. Each approach starts independently from the same frozen context so that earlier results cannot anchor later ones.
-
-Results appear incrementally as ordinary, durable workspace cards. Each result identifies its approach and operational record. Successful results, partial results, and failures remain visible and inspectable; failed approaches may be retried. The canvas remains usable while a sweep runs, and the user may pause, resume, or cancel future work without silently erasing results that have already committed.
-
-A sweep concludes with a concise, specific harvest of what the exploration exposed. Multi-generation agentic expeditions—which may choose and pursue subsequent actions—and ambient exploration belong to the roadmap, not the first prototype.
-
-## Human and AI authority
-
-An explicit canvas action authorizes the action it names. Minerva does not interrupt exploration with repeated prompts or per-result permission requests. Valid generated results become ordinary durable cards immediately; undo and rewind provide the escape hatch.
-
-AI actions may add results and their structural provenance. They may not silently edit or delete existing user work. Suggested interpretive relationships do not become durable workspace meaning until the user explicitly creates or adopts them.
-
-The first voice agent is read-only. It remains context-aware, defaults to quiet, and may be invited into an active brainstorming stance for the current session. It can discuss the workspace, answer questions, surface patterns and tensions, challenge assumptions, and suggest next moves, but it cannot mutate the workspace.
-
-Voice remains available while the user manipulates the canvas, is interruptible, and exposes truthful listening, thinking, speaking, and failure states. It always refers to the latest committed workspace revision rather than a stale or hidden copy.
-
-Conversation is session-scoped. The workspace is the durable memory. The user may pin or drag any useful utterance onto the canvas, where it becomes an ordinary card.
-
-## Interaction and truth principles
-
-- **Direct manipulation:** Cards and structures are directly movable and inspectable. Actions live on the card, selection, or structure they affect.
-- **Visible context:** The user can inspect and predict the context used for every AI capability.
-- **Action is authorization:** Deliberate actions execute without confirmation ceremony and remain reversible.
-- **Durable truth:** Minerva acknowledges a workspace change only after it is durably committed and visible. Partial successes and failures remain inspectable and retryable.
-- **Neutral comparison:** Difference does not equal quality. Minerva exposes distinctions; human judgment determines value.
-- **Continuous control:** AI work never blocks spatial inspection. Progress appears as it happens, and bounded work can be paused, resumed, or cancelled.
-- **Provenance without interruption:** Lineage and operation records remain available without forcing the user through procedural forms.
-
-## First prototype boundary
-
-The first prototype is a single-user web application deployed through Vercel. It includes:
-
-- a persistent, directly manipulable spatial canvas;
-- an editable first-run example and a blank-start option;
-- flexible cards, visible structures, explicit focus, and lineage;
-- Branch, neutral Compare, contribution-level Recombine, harvest, and rewind;
-- a targeted one-layer Searchlight sweep; and
-- a concurrent, context-aware, read-only voice agent.
-
-It begins as a genuinely greenfield product. Searchlight, Gestures, and Atlas contribute evidence, decisions, and rejected patterns—not code, schemas, persistence, deployment linkage, or implied requirements.
-
-## Non-goals for the first prototype
-
-- Multi-user collaboration.
-- Touch- or multi-touch-dependent interaction.
-- Voice-authorized workspace mutations.
-- Multi-generation agentic expeditions or ambient exploration.
-- Automated ranking, winner selection, or creativity scoring.
-- A chat-first product, general whiteboard, document editor, or project-management system.
-- A fixed ontology of creative procedures or relationship types.
-- Mandatory prompts, mandatory procedure selection, or per-action confirmation dialogs.
-- Reuse of a predecessor's application shell, state model, persistence, workflow, or deployment boundary by default.
-
-## Checkable definition of success
-
-On a real ambiguous problem, the user can complete the central loop and identify a consequential direction, connection, or tension they likely would not have reached through linear chat. They can explain how Minerva's visible context, branching, comparison, recombination, or harvest helped expose it and can reconstruct the lineage of the result.
-
-The first useful loop is apparent from the primary canvas, not hidden in a guide, drawer, or secondary workflow. Generated work is usable as it arrives; acknowledged work survives reload; unsuccessful and partial work remains legible; and the user can continue exploring without surrendering control of the canvas.
-
-A later product-evaluation protocol should compare Minerva with linear chat using the same problem, source material, model and time budget. It must measure consequential discovery rather than output volume or lexical difference.
-
-## First material falsifier
-
-If Minerva produces more visible material but does not help users reach or articulate consequential alternatives, connections, tensions, or experiments more reliably than a matched linear conversation, the thesis is false.
-
-The thesis is also falsified if managing the canvas imposes a burden comparable to reconstructing context in chat, or if users cannot understand what the AI saw and why a result appeared. Additional agents, visual polish, or generated volume would not rescue either failure.
+The product hypothesis is weakened if exploration repeatedly proposes the
+same mechanism, space readings are not grounded in artifacts, conversation
+cannot make useful new links, or the person spends more effort controlling
+menus and context than developing ideas. Investigate those failures rather
+than counting more output as improvement.
