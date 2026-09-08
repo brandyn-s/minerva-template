@@ -1,0 +1,13 @@
+# Project-scoped Codex configuration. Codex loads it only after you trust this
+# project, and it cannot set provider, auth, notification, or telemetry keys;
+# keep those in ~/.codex/config.toml.
+
+# OpenAI's calibration for GPT-6 Astra: start at low or medium where earlier
+# models needed high. Raise it per thread only after a documented failure.
+model_reasoning_effort = "medium"
+
+# Notes across context windows with searchable history instead of repeated
+# summaries. Experimental, off by default, needs ChatGPT sign-in (Plus or Pro).
+# Uncomment for long unattended runs.
+# [features.context_management]
+# experimental_mode = true

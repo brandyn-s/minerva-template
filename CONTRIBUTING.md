@@ -6,8 +6,9 @@ product requirements relevant to the change. Approved work does not require
 another proposal, plan, or journal entry before implementation.
 
 Work on a branch and open a PR. Explain what changed, the evidence that it
-works, and important limits. Add tests for changed behavior; use targeted tests
-during repair and the README's full guard for the completed candidate.
+works, and important limits. Add tests where the change needs them, sized like
+the neighbouring tests; use targeted tests during repair and the README's full
+guard for the completed candidate.
 CI and branch protections remain required.
 
 `npm test` runs product tests only. The launch and deployment helpers have
