@@ -1,22 +1,5 @@
 # Minerva — Architecture
 
-## 1. Status, authority, and interpretation
-
-| Field | Value |
-|---|---|
-| Status | **Approved 1.0 — architecture decisions `A-001`–`A-007` approved; named spike selections remain open** |
-| Date | September 6, 2026 |
-| Approved foundation | `A-001` — browser-local modular monolith with a product-owned semantic kernel |
-| Approved detailed decisions | `A-002` — hybrid immutable-version journal plus rebuildable current projection; `A-003` — one writable tab with visibly read-only secondary tabs; `A-004` — page-scoped AI/Searchlight coordination with no server workspace state; `A-005` — content-free durable server admission state only; `A-006` — main-thread authority initially, with evidence-gated worker extraction; `A-007` — sibling structured nonvisual projection over the same domain and commands |
-| Product authority | [`INTENT.md`](./INTENT.md), then approved entries in [`DECISIONS.md`](./DECISIONS.md), then [`SPEC.md`](./SPEC.md) |
-| Purpose of this file | Define how the approved first-prototype behavior is implemented without changing it |
-| Historical boundary | Searchlight, Atlas, Gestures, their deployments, and their source are evidence only. Minerva is greenfield. |
-
-`MUST`, `SHOULD`, `MAY`, and **[OPEN]** retain the meanings defined in `SPEC.md`. An architecture choice cannot weaken a product requirement. If this file conflicts with the approved product documents, the product documents win and the architecture must change.
-
-This file does not by itself authorize current work. It establishes the
-approved implementation boundaries.
-
 ## 2. Architecture decision A-001
 
 ### Decision
@@ -55,7 +38,7 @@ It also preserves a future cloud seam without building accounts, synchronization
 
 ### A-001 falsifier
 
-Revisit this foundation if the interleaved-local-truth spike in Section 24 shows that the approved History and cancellation contracts cannot be represented without framework objects in the kernel, destructive rewriting of prior state, provider execution during Redo, or materially different semantics for a future repository.
+Revisit this foundation if implementation shows that the approved History and cancellation contracts cannot be represented without framework objects in the kernel, destructive rewriting of prior state, provider execution during Redo, or materially different semantics for a future repository.
 
 ## 3. System shape
 
@@ -570,68 +553,6 @@ Before implementation, Minerva receives:
 
 Every releasable deployment records its exact source revision, immutable deployment URL, protocol/schema versions, provider configuration IDs, and policy version. Alias promotion follows verification of that immutable deployment. Rollback MUST NOT allow older code to silently open or rewrite a newer local schema.
 
-## 23. Testability and evidence
-
-| Boundary | Smallest decisive evidence |
-|---|---|
-| Kernel and History | Pure command/property tests covering Moments, Paths, dependency order, exact Redo, and authority revocation |
-| Repository | Real-browser transaction, reload, quota/migration fault, and two-tab contract tests |
-| Context | Deterministic payload/hash fixtures invariant under geometry and exact under Focus/selection changes |
-| Canvas adapter | One central-loop browser journey plus keyboard/nonvisual parity |
-| AI protocol | One real call for each stage class plus malformed/oversized/adversarial cases |
-| Searchlight | Concurrency-two, pause/resume/cancel, partial, Retry, Harvest, and injected late-result scenario |
-| Voice | Real microphone/playback journey with canvas manipulation, barge-in, context update, and text degradation |
-| Deployment | Exact source revision, Vercel `READY`, live route, provider receipt, and browser journey |
-| Product thesis | The staged matched evaluation in D-008; implementation evidence cannot substitute for it |
-
-Use one bounded terminal review per release by default. Stop when the smallest decisive evidence passes; stop earlier on the first material falsifier. A custom verifier may be repaired once, then simplified or discarded in favor of native runtime evidence.
-
-Before generated implementation begins, create and commit the approved product documents, a short repository `AGENTS.md` that points to them, and a bounded check command. These are build controls, not product features.
-
-### Evaluation-only evidence capture
-
-D-008 evaluation runs use one clean browser profile or equivalent isolated origin/database namespace per participant. This provides a fresh one-current-workspace condition without adding product workspace management.
-
-An `EvaluationPacketAssembler` exists only in an evaluation build or harness. After explicit participant disclosure and a deliberate capture action, it serializes the exact final `WorkspaceBundle`, required manifests, lineage and contribution records, operation/attempt receipts, History/Paths, failures, configuration IDs, and measured resource metadata into a local evidence file. It does not upload silently and is absent from the ordinary prototype surface.
-
-The study process—not the workspace server—combines that file with the frozen task/source packet, pre-session inventory, participant response, 24-hour follow-up, reviewer record, and the matched linear-chat transcript. Evidence handling, access, retention, and deletion are defined before recruitment. This harness is not cloud workspace persistence, product export/import, or a second workspace library.
-
-## 24. Bounded architecture spikes
-
-Each spike exists to make one decision. It is discarded or reduced after that decision.
-
-### `EXP-001` — Interleaved local truth
-
-- **Outcome:** Prove or reject the Revision/Moment/Path model and browser transaction boundary.
-- **Smallest evidence:** A minimal text/debug surface runs create/edit/move/Focus, Searchlight authorization, an arriving arm, an unrelated edit, failure, Retry, Harvest, Undo/Redo, Continue from history, injected late response, reload, a second-tab write attempt, a partial write, and recoverable corruption of the cached head and latest records.
-- **First falsifier:** False acknowledgement, destroyed future, wrong Undo target, provider call during Redo, late cross-Path commit, silent second writer, inability to locate and truthfully expose the last internally valid Revision, or browser/framework objects required in the kernel.
-- **Budget:** Two engineer-days; simplify after the first architecture-level falsifier.
-- **Unlocks:** Journal shape, object stores, wrapper, writer mechanism, migration strategy.
-
-### `EXP-002` — Disposable renderer and structured view
-
-- **Outcome:** Select the smallest renderer that remains a projection and makes the central loop inviting.
-- **Smallest evidence:** Custom card, Group/Region, relationship, Focus drop preview, rich edit, multi-select, pointer and keyboard move, one semantic Undo/Redo, orientation recovery, and sibling structured operation under simulated Voice/Searchlight load.
-- **First falsifier:** Renderer state becomes semantic authority, structured operation depends on geometry, production licensing remains unresolved, or the owner experiences the surface as canvas management/graph editing rather than thinking.
-- **Budget:** Two engineer-days total across no more than two candidates.
-- **Unlocks:** Renderer, scene protocol, supported initial corpus, initial interaction threshold.
-
-### `EXP-003` — Bounded provider, admission, and cancellation
-
-- **Outcome:** Select one generation path and prove the exact Searchlight envelope cannot exceed its disclosed work or land after cancellation.
-- **Smallest evidence:** All closed stage types run against one real provider; malformed and oversized inputs fail before work; concurrent/replayed requests cannot exceed an atomic allowance; cancellation with two arms active suppresses a deliberately late result.
-- **First falsifier:** Hidden retry/repair, silent truncation, arbitrary tools/context, reservation race, cross-environment spend, late landing, or secrets in the browser.
-- **Budget:** Two engineer-days.
-- **Unlocks:** Provider/configuration, schema mechanism, request/token/time/spend limits, admission store, evaluation capability.
-
-### `EXP-004` — Real Voice concurrency
-
-- **Outcome:** Select or reject one browser Voice transport.
-- **Smallest evidence:** Real microphone and audible playback while moving/editing cards, spoken and typed interruption, Stop speaking, Mic off, permission denial, context change without hidden capture, exact receipt, text degradation, credential expiry, End, and reload.
-- **First falsifier:** Canvas/media contention, self-transcription, failed barge-in, stale or hidden context, excessive credential authority, unbounded spend, untruthful state, or durable unpinned conversation.
-- **Budget:** Two engineer-days and one supported real-browser/audio setup per candidate; test at most two candidates.
-- **Unlocks:** Voice provider/transport, browser/audio matrix, session ceilings, reconnect and retention contract.
-
 ## 25. Explicitly rejected or deferred
 
 - Reusing a predecessor application shell, state model, schema, deployment, or secret.
@@ -647,23 +568,3 @@ Each spike exists to make one decision. It is discarded or reduced after that de
 - Token streaming as an assumed requirement.
 - Public unrestricted anonymous provider access.
 - Automatic pruning of Moments, Paths, attempts, failures, or provenance.
-
-## 26. Spike-gated details
-
-Approved decisions A-001 through A-007 are listed in Section 1 and stated in
-full in their own sections; they are not repeated here.
-
-### Remain open until a named spike
-
-- IndexedDB wrapper, object-store split, migration strategy, writer primitive.
-- Canvas renderer and measured supported corpus.
-- AI provider, model/configuration, output mechanism, and hard envelopes.
-- Admission-store product and exact evaluator-capability exchange.
-- Voice provider, transport, credential mechanism, and browser/audio matrix.
-- Performance, capacity, intake, retention, diagnostics, and spend values marked **[OPEN]** in `SPEC.md`.
-
-## 27. Architecture approval
-
-Architecture decisions `A-001` through `A-007` are approved. Every explicitly
-spike-gated item remains **[OPEN]** until its named experiment supplies decisive
-evidence.
