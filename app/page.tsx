@@ -1,11 +1,11 @@
 export default function Home() {
   return (
     <main>
-      <p className="eyebrow">Minerva · R0</p>
-      <h1>R0 groundwork is complete.</h1>
+      <p className="eyebrow">Minerva</p>
+      <h1>Nothing here yet.</h1>
       <p>
-        This isolated shell establishes project plumbing only. It does not yet
-        provide a Minerva product capability.
+        This is the runnable shell. The canvas, cards, Focus, and Branch start
+        here; see AGENTS.md for the first loop to build.
       </p>
     </main>
   );

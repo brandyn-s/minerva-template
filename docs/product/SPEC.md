@@ -1,30 +1,9 @@
 # Minerva — Product Specification
 
-## 1. Status, authority, and requirement language
-
-| Field | Value |
-|---|---|
-| Status | **Approved — September 6, 2026** |
-| Date | September 6, 2026 |
-| Product owner | Brandyn Schult |
-| Current phase | Stable first-prototype behavior contract |
-| Authority after approval | This file governs what the first Minerva prototype must do. `INTENT.md` governs the product problem and thesis. Approved entries in `DECISIONS.md` govern choices already made and cannot be changed here. `ARCHITECTURE.md` governs implementation mechanisms. |
-| Historical boundary | Searchlight, Atlas, Gestures, source code, deployments, prompts, and transcripts are evidence only. They create no requirement unless it appears in approved Minerva documents. |
-| Change rule | Removing or materially changing an approved requirement requires an explicit decision update, corresponding acceptance changes, and a traceability update. |
-
-`MUST` denotes a first-prototype obligation. `SHOULD` denotes a strong default that may be departed from only through a recorded rationale. `MAY` denotes permitted behavior. **[OPEN]** marks a value or implementation-dependent boundary that must be resolved before the affected capability is claimed complete; it is not permission to invent behavior silently.
-
-The owner may authorize an explicitly labelled, time-boxed experimental
-subset. Omitted `MUST` requirements remain obligations of the first prototype;
-such a slice cannot claim prototype completion.
-
-This specification defines observable product behavior. It deliberately does not select a canvas renderer, storage technology, AI model or provider, voice transport, orchestration framework, telemetry stack, or Vercel deployment topology.
-
-There is no prescribed engineering sequence or execution ceremony (the former
-roadmap was retired on September 8, 2026). Product obligations, actual
-behavioral dependencies, and acceptance criteria are unchanged.
-
-**Approved interpretation:** Branch, Compare, Recombine, standalone Harvest, and Searchlight are user-invoked AI-assisted canvas operations that may create cards; Searchlight's eligible Harvest is an authorized AI substage. This follows the approved requirement that every named capability sees a frozen context projection. A user may always create or edit an ordinary card manually, but the named operations themselves use the common AI-operation contract below.
+`MUST` is a first-prototype obligation, `SHOULD` a strong default, `MAY` permitted
+behavior, and **[OPEN]** an unresolved boundary that is not permission to invent
+behavior silently. Section numbers are stable identifiers; gaps are sections that
+were retired.
 
 ## 2. Product contract
 
@@ -85,7 +64,6 @@ The first prototype MUST include:
 - Semantic Undo/Redo, read-only History previews, and preserved Paths.
 - One concurrent, context-aware, read-only voice companion.
 - User-visible context receipts, operation records, partial/failure states, and provider/spend boundaries.
-- The owner rehearsal and staged matched evaluation defined by D-008.
 
 ### Scope discipline
 
@@ -124,7 +102,7 @@ The first prototype MUST include:
 | Moment | One human-readable meaningful workspace-history action. |
 | Path | One durable trajectory through workspace Moments. A Path is distinct from card lineage and from the Branch creative operation. |
 | Conversation session | The visible page-scoped sequence of spoken and typed voice-companion turns. It is not durable workspace memory. |
-| Qualified consequential shift | A discovery satisfying D-008's novelty-to-participant, consequence, constraint, 24-hour, and causal-trace conditions. |
+| Qualified consequential shift | A discovery the user did not hold before the session, that changes a framing, decision, or next action, and whose lineage traces to the interaction that exposed it. |
 
 ## 5. Canonical state and acknowledgement contracts
 
@@ -638,37 +616,7 @@ The durable `PROV-*` requirements in this section apply to canvas-generating ope
 
 `PERF-003` Before a performance claim is accepted, measured thresholds for interaction latency, load/reload, durable commit, Searchlight envelope, voice latency, workspace size, and local storage headroom MUST be recorded against the supported browser matrix. Values are **[OPEN]** and MUST NOT be copied from predecessor projects without measurement.
 
-`PERF-004` Capacity or speed is not evidence of consequential discovery. Reliability metrics MUST distinguish durable commit, truthful terminal state, successful result landing, and D-008 product outcome.
-
-## 18. Product evaluation requirements
-
-The evaluation contract is stated once: the D-008 decision in `DECISIONS.md` and
-its operating protocol in `D-008-evaluation-protocol.md`, neither of which this
-specification can change. Each `EVAL-*` identifier below remains a
-first-prototype obligation with the force of `MUST`; its normative text is the
-cited D-008 clause. The table exists so acceptance scenarios and traceability
-can cite a stable identifier without duplicating the decision.
-
-| ID | Obligation | Normative source in D-008 |
-|---|---|---|
-| `EVAL-001` | Owner rehearsal runs as soon as one complete central loop works and before recruiting; it uses the canonical example and one genuine problem in separate clean evaluation states, which adds no multiple-workspace product feature | Stage 1; *Latest responsible point* |
-| `EVAL-002` | Owner rehearsal is a readiness falsifier, not comparative proof | Stage 1 |
-| `EVAL-003` | Three matched pairs, one Minerva and one capable linear-chat participant each | Stage 2, first bullet |
-| `EVAL-004` | Same frozen problem, source packet, constraints, model where controllable, and 30-minute period; resource use recorded, not equalized | Stage 2, second bullet |
-| `EVAL-005` | Mechanics-only practice on an unrelated problem; moderator coaching invalidates the session | Stage 2, third bullet |
-| `EVAL-006` | Capable ordinary linear chat as baseline; Voice off in both primary conditions and evaluated separately against D-007 | Stage 2, fourth bullet |
-| `EVAL-007` | Frozen pre-session inventory; at most three interface-neutral carry-forward discoveries or `none` | Stage 2, fifth bullet |
-| `EVAL-008` | A qualified consequential shift satisfies all five conditions | *Qualified consequential shift* |
-| `EVAL-009` | A Minerva-qualified shift traces to a Minerva-specific interaction, not merely a useful generated card | *Qualified consequential shift*, final paragraph |
-| `EVAL-010` | One normalized case packet per session with the listed contents | *Evidence and judgment* |
-| `EVAL-011` | Every Minerva session is reviewed against the countermetrics | *Countermetrics* |
-| `EVAL-012` | Independent reviewer checks the blinded packet first, then the trace; the participant owns the value judgment | *Evidence and judgment* |
-| `EVAL-013` | Initial gate: at least two of three pairs favor Minerva, no recurring material failure across two Minerva users, one reconstructable contribution | *Decision gate* |
-| `EVAL-014` | At most two additional pairs when evidence is genuinely mixed; after five valid pairs at least three must favor Minerva | *Decision gate* |
-| `EVAL-015` | Capability expansion stops early on the two named negative patterns | *Falsifier* row; *Decision gate* |
-| `EVAL-016` | Provider outage or material defect invalidates the affected condition; repeat once after repair | *Invalid sessions and immediate stops* |
-| `EVAL-017` | Trust defects stop evaluation until repaired; recurrence after one repair stops the approach | *Invalid sessions and immediate stops* |
-| `EVAL-018` | Counts, distance, automated scores, delight, and infrastructure are not proof of consequential discovery | *Intentionally not used as proof* |
+`PERF-004` Capacity or speed is not evidence of consequential discovery. Reliability metrics MUST distinguish durable commit, truthful terminal state, successful result landing, and consequential discovery for the user.
 
 ## 19. Observable acceptance scenarios
 
@@ -692,30 +640,6 @@ can cite a stable identifier without duplicating the decision.
 | `AC-016` | Voice session memory | Pin one finalized or interrupted utterance, reload, and inspect the resulting card and History. The card remains; the unpinned conversation and raw audio do not. | Transcript or audio persists silently, pinning captures unrelated conversation, or the card enters Focus automatically. |
 | `AC-017` | Accessible core loop | Complete the loop using keyboard and the nonvisual structure representation with voice and touch unavailable. | A semantic action requires drag, color, spatial sight, touch, or voice. |
 | `AC-018` | Complete product loop | On the owner-rehearsal problem, complete every central-loop step and reconstruct one claimed result from visible manifests, contributions, lineage, operation records, and History. Record separately whether the primary canvas felt like a responsive thinking instrument or like operating a graph-management interface. | The loop depends on a hidden guide/workflow, the result's cause cannot be reconstructed, or operating the interface displaces the thinking work. |
-| `AC-019` | Matched product evidence | Execute D-008 with preserved packets, 24-hour checks, reviewer records, countermetrics, and the declared decision gate. | Output volume or model scoring substitutes for participant-owned consequence, or conditions are materially unmatched. |
-
-## 20. Evidence required for completion claims
-
-Evidence is cumulative; a later level does not erase failures at an earlier level.
-
-| Level | Claim supported | Evidence |
-|---|---|---|
-| `E0 — Plan` | Intended behavior is specified | Approved intent, decisions, spec, and traceability |
-| `E1 — Source` | Behavior is implemented in source | Exact source revision and bounded review of the relevant path |
-| `E2 — Automated contract` | Deterministic semantics hold in a harness | Context, state, history, cancellation, import, and accessibility contract tests |
-| `E3 — Local browser` | Integrated behavior works in a real browser | Fresh browser interaction, reload/restart, fault injection, and console/network evidence |
-| `E4 — Deployed web` | The exact build is reachable through its isolated Vercel deployment | Deployment identity, immutable URL, readiness, route response, and interactive readback |
-| `E5 — Live provider` | Real generation or voice behavior works end to end | Disclosed provider/model, real request, actual audio where claimed, spend/latency receipt, and durable visible outcome |
-| `E6 — Supported environment` | Claims hold across the declared browser/input matrix | Repeated real-environment evidence at the selected support boundaries |
-| `E7 — Product outcome` | Minerva changes what a person can discover | D-008 owner rehearsal and matched evaluation evidence |
-
-`EVID-001` A build, unit test, source inspection, mocked callback, or deployment-ready status MUST NOT be presented as real-browser, real-provider, real-audio, or product-outcome proof.
-
-`EVID-002` Capability evidence MUST name the observable outcome, smallest decisive evidence, first material falsifier, exact build/revision, environment, and bounded time window.
-
-`EVID-003` Verification stops after decisive evidence passes or at the first material falsifier. Test volume and reviewer unanimity are not goals.
-
-`EVID-004` Operational evidence and product-value evidence MUST remain separate. Durable landing, high terminalization, or many outputs cannot satisfy D-008.
 
 ## 21. Explicit exclusions and roadmap boundaries
 
@@ -737,53 +661,3 @@ The following are outside the first prototype:
 - Compatibility with predecessor code, schemas, stored data, workflow state, deployments, or visual layouts.
 
 Roadmapped anonymous cloud workspaces, transcript ingestion, agentic expeditions, ambient exploration, and voice writes require new product and authority decisions before implementation. They are not latent first-prototype requirements.
-
-## 22. Implementation and measurement choices outside this specification
-
-The following choices sit outside this specification's authority. Some are
-already constrained or selected by `ARCHITECTURE.md` or R0; remaining details
-MUST be resolved by a spike or a measured support contract without changing
-product behavior. This list is not a current-status tracker.
-
-1. Canvas rendering, hit testing, scene organization, and nonvisual representation.
-2. Browser-local database, schema, transaction/commit model, migration, quota handling, and corruption recovery.
-3. Multiple-tab coordination or single-writer enforcement.
-4. Domain command/state ownership and projection strategy.
-5. Card content representation, source-unit presentation, and safe Markdown rendering.
-6. AI provider, model, gateway, prompt construction, structured-output validation, and provider-retention policy.
-7. Context serialization order that satisfies deterministic, geometry-invariant manifests.
-8. Searchlight scheduling, cancellation transport, timeout enforcement, resource accounting, and late-result suppression.
-9. Voice model, transport, media-session owner, transcription/playback path, echo control, reconnect behavior, and browser audio support.
-10. Provider credential boundary, anonymous abuse controls, request admission, and application diagnostics.
-11. Exact single-action, Searchlight, and Voice call/token/time/spend ceilings.
-12. Supported browsers, versions, viewports, keyboard conventions, accessibility conformance target, and performance/capacity thresholds.
-13. Isolated Vercel project, environment variables, preview/production boundary, observability, and rollback mechanics.
-
-An architecture choice is invalid if it weakens visible context, durable acknowledgement, reversibility, read-only voice authority, cancellation, failure truth, or any other approved invariant.
-
-## 23. Traceability
-
-| Source | Specification coverage |
-|---|---|
-| `INTENT.md` Problem, user, thesis | Sections 2–3; `INV-001`–`INV-012`; `SCOPE-001`–`SCOPE-004` |
-| `INTENT.md` Workspace and context | Sections 4, 7–8; `CARD-*`, `STR-*`, `REL-*`, `CTX-*`, `PROV-*` |
-| `INTENT.md` Central loop | Section 6 and `AC-018` |
-| `INTENT.md` Branch/Searchlight | Sections 10 and 12 |
-| `INTENT.md` Authority and voice | `AI-*`, Section 14, `PRIV-*`, `COST-*` |
-| `INTENT.md` Truth principles and success | `STATE-*`, Sections 15, 18–20 |
-| D-001 browser-local persistence | `WSP-*`, `PER-*`, `PRIV-003`, `AC-002`, `AC-014` |
-| D-002 canonical example | `ONB-*`, `EVAL-001`, `EVAL-004`, `AC-001` |
-| D-003 explicit spatial context | `CAN-*`, `STR-*`, `REL-*`, `CTX-*`, `AC-003`–`AC-004` |
-| D-004 bounded local intake | `INP-*`, `PRIV-005`, `AC-013` |
-| D-005 targeted Searchlight | `AI-*`, `HAR-004`–`HAR-005`, `SL-*`, `AC-008`–`AC-010` |
-| D-006 semantic history and Paths | `STATE-005`–`STATE-006`, `HIS-*`, `AC-011`–`AC-012` |
-| D-007 bounded voice companion | `VOI-*`, `AC-015`–`AC-016` |
-| D-008 staged matched evaluation | `EVAL-*`, `AC-018`–`AC-019`, `E7` |
-
-## 24. Approval record
-
-The product owner approved this specification on September 6, 2026, including the explicit AI-assisted Compare/Recombine/Harvest interpretation in Section 1 and the one-current-workspace prototype boundary.
-
-This approval froze the first-prototype behavior contract. `ARCHITECTURE.md`
-has since been approved for mechanisms. Neither document authorizes reuse of
-predecessor code.

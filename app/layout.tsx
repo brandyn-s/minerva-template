@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Minerva groundwork",
-  description: "Isolated groundwork for the greenfield Minerva prototype.",
+  title: "Minerva",
+  description: "A spatial thinking environment for directing AI with explicit context and durable lineage.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
