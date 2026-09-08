@@ -1,6 +1,6 @@
 # Minerva — Decision Register
 
-> **Status:** Active product decision record. `INTENT.md` was approved on September 6, 2026. D-001 through D-008 define the first prototype. D-012 through D-014, approved September 7, 2026, authorize disposable hackathon experiments outside that boundary. Decisions are added here only after explicit product-owner approval.
+> **Status:** Active product decision record. `INTENT.md` was approved on September 6, 2026. D-001 through D-008 define the first prototype. D-012 through D-014, approved September 7, 2026, authorize disposable hackathon experiments outside that boundary; they apply only when the `HACKATHON.md` profile is selected, and their decision-entry clauses do not gate ordinary implementation. Decisions are added here only after explicit product-owner approval.
 
 ## How this register works
 
