@@ -140,6 +140,104 @@ A partial checkpoint is useful but never silently completes its package or
 milestone. Default to one review per planned boundary plus focused recheck; repeat only for remaining
 material failures or new evidence, not to chase agreement between models.
 
+## Standard checkpoint output
+
+Every implementation checkpoint ends with a concise operator handoff in the
+final response, even if `docs/HANDOFF.md` already contains the evidence.
+Include the delivered outcome and partial/package state, exact committed SHA,
+branch, absolute build-worktree path, clean/dirty state, handoff location and
+runtime mode/startup instructions where applicable. State whether the candidate
+is local-only, published, reviewed or deployed without conflating those facts.
+Keep evidence/findings in the existing handoff and capability record; do not
+create another status file.
+
+Then identify the next session and provide its copyable launch command and
+bounded prompt. Use the relevant blocks below, filling every known value in
+the actual output; the placeholders belong only in this template. Machine-local
+paths belong in the operator response, not public template content. Missing
+inputs or ungranted authorization must be stated, not invented. If review is
+next, include the Fable block and explain that a later Astra session will handle
+confirmed findings or a separately authorized next outcome. Do not output an
+unconditional next-increment prompt before that direction exists.
+
+A handoff supplies context, not authorization. Opening a fresh session with
+`docs/HANDOFF.md` alone is not permission to advance. The operator starts the
+session and supplies the bounded instruction. Review is next at a planned
+review boundary or when explicitly requested, not automatically after every
+increment. If awaiting a decision, say so and label any proposed prompt
+**Not authorized yet**. Never use a bare "continue M2" or "finish the milestone".
+
+### Fable review launch and prompt
+
+Offer these commands for the operator to run; do not create the review checkout
+or launch Fable automatically. Use an unused absolute review path. If a review
+checkout already exists, verify its exact candidate instead of overwriting it.
+
+```sh
+git -C "<absolute-build-worktree-path>" worktree add --detach "<absolute-review-checkout-path>" <candidate-sha>
+cd "<absolute-review-checkout-path>"
+```
+
+The operator opens Fable 5.1 in Claude at medium effort in that separate
+checkout, then pastes:
+
+```text
+Review checkout: <absolute-review-checkout-path>
+Exact committed candidate: <candidate-sha>
+Review scope: <one outcome and affected capability IDs, or the planned milestone boundary>
+Review question: <specific behavior or failure boundary to scrutinize>
+Runtime/startup and synthetic data: <mode, exact command, separate port and isolated data instructions, or not applicable>
+Exclusions: <out-of-scope features; no paid calls unless explicitly authorized>
+
+This is an operator-started Fable review, read-only for application source.
+Verify the checkout and exact candidate; do not reset or recreate anything.
+Read AGENTS.md, docs/HANDOFF.md, relevant docs/product/CAPABILITIES.md rows
+and local contracts. Form your view from the contract and behavior before
+consuming the builder's conclusions. Use the applicable standard review prompt;
+for M5 preserve its published-interface-first cold-start requirement.
+Exercise the bounded journey and relevant failure case using existing checks.
+Do not alter the builder's server or working data. Report material findings
+with evidence, locations and affected revision; distinguish optional suggestions
+and unverified boundaries. Return findings to the operator in this session.
+Do not implement fixes, expand scope, claim user acceptance or start another agent.
+```
+
+### Astra return or next-outcome prompt
+
+After review, return to the existing writable build worktree, not the read-only
+review checkout. The operator chooses either named confirmed findings or one
+new authorized user-action outcome; the prompt must not leave both as automatic
+branches. Reference the actual findings returned by Fable, not an invented
+review-notes file. When no review was due, use the same bounded resume form.
+
+```sh
+cd "<absolute-existing-build-worktree-path>"
+```
+
+The operator starts a fresh Astra session at medium effort and pastes:
+
+```text
+Worktree: <absolute-existing-build-worktree-path>
+Branch and expected checkpoint: <branch> at <commit-sha>
+Authorized task: <fix named confirmed findings OR implement one explicitly authorized next outcome>
+Review findings, if applicable: <paste bounded findings with evidence and candidate SHA; otherwise none>
+Outcome: <starting state, user action and observable result>
+Exclusions: <features, services and later increments outside this task>
+Failure boundary and stopping evidence: <specific case and smallest decisive journey>
+Runtime/startup: <mode and exact command, or not applicable>
+
+Use this existing worktree. Verify identity and open changes without resetting,
+regenerating or replacing the app. Read AGENTS.md, docs/HANDOFF.md, relevant
+docs/product/CAPABILITIES.md rows and local contracts. Preserve requirements,
+evidence, open edits and selection where applicable.
+For fixes, reproduce and address the named confirmed findings; record dispositions.
+Implement only the authorized outcome through existing UI/backend operations.
+Exercise its relevant journey/failure case and existing required checks.
+Finish with a committed reviewable checkpoint and the standard operator handoff,
+including the next applicable copyable prompt. Keep partial milestones partial.
+Do not launch Fable automatically or advance to another increment.
+```
+
 ## Integrate before expanding
 
 Choose a user action with starting state, expected observable result, explicit
