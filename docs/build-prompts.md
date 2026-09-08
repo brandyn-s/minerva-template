@@ -97,6 +97,11 @@ finding with evidence and fixes confirmed problems; Fable rechecks affected
 cases against the new revision. Then record the milestone outcome. Fable
 agreement is not proof, and does not replace user experience acceptance.
 Do not automatically turn every suggestion into a requirement.
+Classify reproduced defects, missing contract behavior and subjective experience
+concerns separately. After a fix, exercise the original failure and adjacent
+input/lifecycle transitions; do not assume repairing one modality preserves
+another. Promote general lessons to seed requirements only through a reviewed
+seed change, not by copying application code or accepting every model suggestion.
 
 Use a fresh Claude review session at each milestone so Fable is not anchored
 by the implementation transcript. Rechecks can stay in that review session if
@@ -438,6 +443,13 @@ demonstration interactions, not fake persisted or AI-generated outcomes. Use an
 explicit fixture data boundary that the working spine can replace with the
 new server implementation; retain the newly authored presentation components.
 No database or live provider is a prerequisite for this experience proof.
+Exercise SPEC's interaction boundary scenarios IB01-IB06 locally: pan without
+accidental text selection; pinch starting over cards/actions; switch from a
+gesture to Enter/Space and supported assistive activation; Fit narrow and short
+desktop views with usable focus targets; inspect incoming and outgoing links;
+and return from comparison without losing source orientation. Include explicit
+unkept and unknown-evidence states rather than representing every fixture card
+as accepted or assessed. Label simulated device/assistive input honestly.
 Render desktop and narrow layouts and review the images for hierarchy and
 clutter before proceeding. Demonstrate what would become materially harder in
 linear chat: trace multiple parents and compare distant contributions while
@@ -453,7 +465,8 @@ Still open at this milestone: All production persistence, generation, voice and 
 Package complete when: the interactive fixture renders the populated atlas at
 desktop and narrow widths; the full M1 journey works locally on mouse, touch
 and keyboard; DESIGN.md is written as an enforceable contract; C16 evidence is
-recorded with the fixture boundary labeled; and the Fable M1 review packet
+recorded for IB01-IB06 with the fixture boundary and input method labeled;
+unkept state and unknown evidence are distinguishable; and the Fable M1 review packet
 (revision, contracts, startup and fixture instructions) is prepared.
 ```
 
@@ -484,6 +497,22 @@ interaction. If the same journey is equally clear as a linear chat transcript,
 report that the demonstration has not established the modality's value.
 Distinguish a weak example from missing behavior; do not automatically remove
 capabilities or recommend decorative motion to compensate.
+
+Exercise IB01-IB06 from SPEC instead of checking modalities only in isolation:
+pan across text, pinch over card controls, then use keyboard/assistive activation
+without touching again; inspect the actual overview targets after Fit; navigate
+both incoming and outgoing relationships. Inspect explicit unkept/unknown
+fixture states. Report simulated input as simulated, not a physical-device or
+screen-reader result. Recheck adjacent transitions after a correction.
+
+Does inspection/comparison help develop a thought while retaining source
+orientation, or force the user to reconstruct a diagram after every action?
+Treat this as a question for user experience acceptance unless there is a
+specific reproduced contract failure. Do not universally ban modals or infer
+that prepared suggestions establish live AI quality.
+Check the milestone's actual prerequisites: persistent recovery and live voice
+belong to M2, not M1. Surface conflicting instructions rather than demand a
+future capability or approve a fixture as its implementation.
 
 Still-open scope at this boundary:
 All production persistence, generation, voice and wider product capabilities remain open. Fixture interactions do not complete their capability rows.
@@ -605,6 +634,12 @@ thresholds and hysteresis. Never make selected cards or actions disappear at
 a zoom boundary. Provide keyboard and touch equivalents, not hover-only access.
 The details panel must not change canvas dimensions or reset its transform.
 
+Carry SPEC's IB01-IB04 and IB06 behaviors forward from the original fixture.
+Exercise touch-to-keyboard/assistive activation after gestures and when results
+arrive; preserve usable overview focus targets and intentional text selection.
+Do not replace the scenarios with a particular event-handler trick or assume
+that a fix to pinch is complete until subsequent activation also works.
+
 Exercise dragging while results arrive, resize/reload, find/focus, fit, arrange
 and layout undo/redo. Render a populated scene, not only an empty canvas.
 Update C02 and C16 evidence and the handoff. Missing behavior remains partial;
@@ -612,7 +647,8 @@ do not publish this slice as the complete application.
 Package complete when: the listed canvas interactions work on a populated
 scene with mouse, touch and keyboard; positions, sizes and camera survive
 reload; layout undo/redo has a documented scope; no navigation or view switch
-starts a model call; and C02/C16 evidence and the handoff are updated.
+starts a model call; IB01-IB04 and IB06 hold across the new persistence/update
+boundary; and C02/C16 evidence and the handoff are updated.
 ```
 
 ### Prompt 6: make the relationship graph visible and understandable
@@ -639,6 +675,10 @@ normal working zoom. Selection/hover/focus strengthens the relevant neighborhood
 and exposes direction, kind and contributions; it is not the only discoverability
 mechanism. Offer ancestry/descendant focus and an accessible relationship list.
 At dense zoom levels use explicit aggregation, not invisible low-opacity edges.
+The list exposes incoming sources, outgoing descendants and semantic associations
+with their kinds/directions and navigable endpoints. Exercise IB05 from either
+endpoint, including unkept work and unknown evidence. An incoming-only inspector
+is not a complete textual equivalent of the graph.
 
 Connect user-selected cards directly. Keep endpoints attached while cards move
 or resize. Unkept proposals and kept descendants remain connected to their
@@ -652,7 +692,8 @@ No JSON inspector or screenshot containing untraceable lines counts as C03.
 Record the observed behavior and any gap; do not weaken the graph contract.
 Package complete when: every path in the fixture is traceable at rest and by
 keyboard and touch; edges survive move, keep, filter and reload; dense scenes
-aggregate explicitly; and C03 evidence records observed behavior and any gap.
+aggregate explicitly; IB05 covers incoming and outgoing relationships with
+correct state distinctions; and C03 evidence records observed behavior and any gap.
 ```
 
 ### Prompt 7: compile exact operation context
@@ -941,6 +982,9 @@ Create a workspace and idea; generate alternatives; trace sources; inspect and k
 
 Review focus:
 Follow one real operation from source revision through admission, provider result, review, visible graph and acceptance/reload. Exercise bidirectional speech, interruption and pending-permission cancellation while the canvas moves. Check server ownership and independent lifecycles. Do not demand not-yet-built Wander or alternate views at this gate; record them as future scope. Do not approve real-path claims from fixtures.
+Recheck affected IB01-IB06 scenarios against the working state/update boundary,
+including gesture-to-keyboard activation and outgoing relationship inspection
+after a result is accepted. A fixture-only pass does not establish the new path.
 
 Still-open scope at this boundary:
 Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth, outputs and external-client coverage remain explicitly open.
@@ -1958,6 +2002,9 @@ Conflicting writes are target-scoped; layout changes do not stale content.
 Exercise representative small and dense scenes, mouse/touch/keyboard and
 reduced motion. Save concrete evidence for the capability matrix. Fix failures
 through their owning modules rather than another recovery framework.
+Include IB01-IB06 across supported input-mode transitions, not only one isolated
+journey per device. After repairing a gesture, repeat its next deliberate
+pointer/keyboard/assistive action and relevant voice/update transition.
 Do not publish or claim the complete product while a required journey fails.
 Package complete when: the integrated journey and every injected failure
 behave as specified on small and dense scenes with mouse, touch, keyboard and
@@ -1994,6 +2041,9 @@ Trace relationships without hunting through JSON or relying only on hover.
 Switch real views with one explicit action. Opening details must not resize
 the canvas or disconnect voice. Verify dense scenes and keyboard/touch
 equivalents, readable focus/contrast, reduced motion and non-color state.
+Use IB01-IB06 to judge actual screen-space overview targets, readable
+incoming/outgoing relationships and source orientation through comparison.
+Record subjective friction separately from a demonstrated functional failure.
 
 Optional tactile sound stays off by default, sparse, tied to acknowledged
 events and suppressed during voice. No autoplay or correctness celebrations.
@@ -2148,6 +2198,10 @@ Run the complete cross-view, voice, exploration, comparison, output and external
 
 Review focus:
 Audit all C01-C16 against running behavior and the exact candidate revision, not the builder's completion narrative. Reproduce representative concurrency/recovery, relationship and external-client journeys. Inspect architecture extension points and infrastructure evidence, plus populated desktop/mobile views. Distinguish ready-to-deploy from an actual deployed result. Verify the post-deploy evidence before closing the milestone; model agreement is not a substitute for user acceptance.
+Sample IB01-IB06 on the final implementation and revisit cases adjacent to
+recent fixes. Verify the relationship list is bidirectional in coverage while
+preserving each edge's actual direction. Distinguish input simulation, physical
+device observation, technical defects and user experience preferences.
 Watch the central before/after journey without builder narration compensating
 for missing behavior. Confirm the user can see the challenge, proposed change,
 actual outcome and source evidence. Distinguish prepared, live, recorded and

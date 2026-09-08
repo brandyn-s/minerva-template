@@ -55,6 +55,24 @@ test("working instructions preserve the milestone boundaries and seed ownership"
   assert.match(await read("CLAUDE.md"), /^@AGENTS\.md/m);
 });
 
+test("dry-run interaction scenarios reach implementation and independent review prompts", async () => {
+  const spec = await read("docs/product/SPEC.md");
+  const design = await read("docs/product/DESIGN.md");
+  const prompts = await read("docs/build-prompts.md");
+  const packages = packagesIn(prompts);
+  assert.deepEqual([...spec.matchAll(/^\| (IB\d{2}) \|/gm)].map((m) => m[1]),
+    ["IB01", "IB02", "IB03", "IB04", "IB05", "IB06"]);
+  assert.match(design, /SPEC\.md#interaction-boundary-scenarios/);
+  assert.match(packages[2][3], /IB01-IB06/);
+  assert.match(packages[4][3], /IB01-IB04 and IB06/);
+  assert.match(packages[5][3], /IB05/);
+  for (const milestone of [1, 2, 6]) {
+    const review = prompts.match(new RegExp(`### Fable review M${milestone}: [^\\n]+\\n\\n\`\`\`text\\n([\\s\\S]*?)\\n\`\`\``));
+    assert(review, `Missing Fable M${milestone} review`);
+    assert.match(review[1], /IB01-IB06/);
+  }
+});
+
 async function markdownFiles(directory) {
   const files = [];
   for (const entry of await readdir(resolve(root, directory), { withFileTypes: true })) {

@@ -43,6 +43,14 @@ model work. Detail overlays do not resize the canvas or reset its transform.
 Dense views use stable semantic-zoom thresholds and explicit aggregation while
 preserving access to selected objects.
 
+Exercise transitions between input modes, not only mouse, touch and keyboard
+in isolation. Panning must not accidentally select card text; intentional text
+selection in reading/editing surfaces remains available. Pinch works when
+contacts begin over cards as well as empty space. Gesture completion cannot
+trigger an unintended card action or suppress the next keyboard/assistive
+activation. Fit/overview must preserve a discoverable, usable path back to
+working detail rather than leaving miniature controls.
+
 ### C03: Visible relationships
 
 Distinguish brief/run context membership, exact-revision derivation,
@@ -53,7 +61,10 @@ roots share context, never invented parentage.
 Meaningful source/result connections are traceable at rest at normal working
 zoom. Hover, selection and focus strengthen a neighborhood; they are not the
 only discovery mechanism. Include ancestor/descendant focus and an accessible
-relationship list. Endpoints follow movement/resize. Keeping a draft and
+relationship list covering incoming sources and outgoing descendants and
+semantic associations, with direction, kind and navigable endpoints. Either
+endpoint can reveal an association without falsely treating it as parentage.
+Endpoints follow movement/resize. Keeping a draft and
 reloading preserves all real parents. Folding and filtering disclose omissions.
 Stored rows, parent counts or invisible SVG paths do not establish this capability.
 
@@ -253,6 +264,34 @@ Milestone evidence, review findings and user acceptance are recorded in
 readiness, experience acceptance and empirical creative efficacy are distinct.
 A roughly 90-second presentation may highlight one honest before/after loop,
 but does not replace full-product evidence or justify fake live behavior.
+
+### Interaction boundary scenarios
+
+These are reusable acceptance cases, not prescriptions for a particular
+pointer-event implementation. M1 exercises them on explicitly prepared data.
+M2 and later milestones repeat affected cases when persistence, incoming
+results, view changes or voice are introduced. A fixture pass is not evidence
+for those later service boundaries.
+
+| ID | Journey | Observable outcome |
+|---|---|---|
+| IB01 | Pan across card titles; then select text in an inspection/editing surface | No accidental field text selection; deliberate reading/editing selection still works |
+| IB02 | Begin a pinch over a card title/body and across an action control; release and tap | Zoom responds without accidental drag, selection or activation; the subsequent deliberate tap works |
+| IB03 | After a pinch or drag, activate Fit/Zoom and a card using Enter, Space and supported assistive activation | Actions work without requiring another pointer contact; no stale gesture suppresses or replays input |
+| IB04 | Fit a narrow and a short desktop viewport, then open a thought and its actions | Overview labels/focus targets remain usable; working controls are discoverable, not scaled into unreadable or untappable miniatures |
+| IB05 | Inspect a multi-parent child, each parent and either end of a semantic association; include an unkept draft and unknown evidence | Incoming/outgoing links are navigable with correct kinds/directions; draft acceptance and evidence certainty remain distinct states |
+| IB06 | Inspect a contribution, compare distant thoughts, dismiss comparison and consider a prepared move | Selection and deliberate viewpoint survive; the person can explain which sources the action concerns without reconstructing context from scratch |
+
+Record input device, viewport, revision and observed result for a failure.
+Simulated touch or assistive activation is labeled as such; do not claim a
+physical-device or screen-reader review that did not occur. Recheck the original
+failure and adjacent transitions after a fix, not just its happy path.
+Whether comparison/inspection feels like developing an idea rather than
+operating a diagram is a user experience judgment. A modal is not automatically
+wrong, nor is a non-modal layout automatically better; demonstrate the journey
+and separate reproduced failures from preferences.
+
+## Product exclusions
 
 Multi-human co-editing, billing, a plugin marketplace, microservices, desktop
 agent hosting, global scale and a large research harness remain outside scope.
