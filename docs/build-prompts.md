@@ -513,9 +513,13 @@ Newsreader and IBM Plex Mono are suitable licensed choices, not mandatory
 copied files. Author restrained contour/terrain artwork and an original owl mark.
 Terrain is decorative, never a map of inferred idea quality.
 
-Compose one compact top header with identity, real view navigation, brief/
-workspace context and exploration/conversation access. The atlas occupies the
-field beneath it. Put navigation instruments at the field's edges, zoom near
+Compose one compact top header with identity, the current fixture perspective
+and prepared question context. M1 offers only functioning local interactions:
+pan/zoom, source inspection, comparison and prepared contextual moves.
+Production view switching, live exploration and conversation arrive in their
+own later milestones; do not add dead tabs or fake voice/generation controls
+to imply they already exist. The atlas occupies the field beneath the header.
+Put navigation instruments at the field's edges, zoom near
 a lower corner, and details in a dismissible overlay. No stack of full-width
 toolbars, permanent diagnostics, or a sidebar that resizes the working canvas.
 At a 1440x900 desktop viewport with panels closed, target at least 80% height
@@ -1133,11 +1137,23 @@ required. The full product is a relationship-rich spatial creative studio with
 three views, contextual operations, comparison/Weave, Wander/Agent Drive,
 concurrent voice, outputs and REST/MCP. This milestone is not the entire release.
 
-Required demonstration:
-Create a workspace and idea; generate alternatives; trace sources; inspect and keep a result; reload; discuss a card by voice while moving another and receiving durable operation results; interrupt speech.
+Interim demonstration (after package 10):
+Create a workspace and idea; generate alternatives; trace sources; inspect and
+keep a result; reload and recover the saved graph/run state. Follow one operation
+from source revision through admission, provider result, assessment and acceptance.
+Collaboration and voice are open scope, not interim failures. Missing real
+provider evidence is still a named live gate; a fixture cannot substitute for it.
 
-Review focus:
-Follow one real operation from source revision through admission, provider result, review, visible graph and acceptance/reload. Exercise bidirectional speech, interruption and pending-permission cancellation while the canvas moves. Check server ownership and independent lifecycles. Do not demand not-yet-built Wander or alternate views at this gate; record them as future scope. Do not approve real-path claims from fixtures.
+Final demonstration (after package 12):
+Repeat the interim journey while discussing a card by voice, moving another,
+and receiving durable results. Exercise spoken replies, interruption, reconnect
+and pending-permission cancellation without losing the workspace context.
+An unconnected component or transcription-only path is not complete voice.
+
+Shared review focus:
+Apply only the demonstration matching the packet's review stage. Check server
+ownership and independent lifecycles. Wander and alternate views remain later
+scope. Never approve real-path claims from fixture evidence.
 Recheck affected IB01-IB06 scenarios against the working state/update boundary,
 including gesture-to-keyboard activation and outgoing relationship inspection
 after a result is accepted. A fixture-only pass does not establish the new path.
@@ -1164,8 +1180,10 @@ runtime access are missing, report what was actually reviewed and what was not;
 source-only inspection cannot approve visual or live-interaction claims.
 Use synthetic data and existing project commands. Preserve private access.
 
-Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY TO DEPLOY from DEPLOYED OUTCOME CONFIRMED.
+For the interim review, return READY FOR COLLABORATION INCREMENTS,
+CHANGES REQUIRED, or BLOCKED. Interim readiness does not complete M2 or
+permit advancing to M3. For the final review, return READY FOR NEXT MILESTONE,
+CHANGES REQUIRED, or BLOCKED.
 For each material finding give capability ID, expected versus observed behavior,
 reproduction/evidence, consequence, confidence and the smallest corrective
 outcome. Separate observed failures, hypotheses and optional suggestions.
