@@ -1,13 +1,24 @@
-# Project-scoped Codex configuration. Codex loads it only after you trust this
-# project, and it cannot set provider, auth, notification, or telemetry keys;
-# keep those in ~/.codex/config.toml.
+# Project-scoped Codex configuration for building Minerva with GPT-6 Astra.
+# Codex loads it after you trust this project. Provider, auth, and telemetry
+# keys stay in ~/.codex/config.toml.
 
-# OpenAI's calibration for GPT-6 Astra: start at low or medium where earlier
-# models needed high. Raise it per thread only after a documented failure.
-model_reasoning_effort = "medium"
+model = "gpt-6-astra"
 
-# Notes across context windows with searchable history instead of repeated
-# summaries. Experimental, off by default, needs ChatGPT sign-in (Plus or Pro).
-# Uncomment for long unattended runs.
-# [features.context_management]
-# experimental_mode = true
+# OpenAI's Codex lead, 2026-09-06: "GPT-6 Astra on low performs better than
+# GPT-5.6 Sol on high." Start low. Raise per thread (/effort medium) after a
+# failed attempt; use high for architecture or hard debugging; never max by habit.
+model_reasoning_effort = "low"
+
+# Astra's default is to pause and ask. This repository's answer is: do the work.
+# The owner-gated actions are listed in AGENTS.md and are not sandbox questions.
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = true   # npm ci, the dev server, and browser checks need it
+
+[features]
+multi_agent = true      # Astra delegates only when told it may; AGENTS.md says when
+
+[features.context_management]
+experimental_mode = true  # notes across context windows for long builds, with searchable history

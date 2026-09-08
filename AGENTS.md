@@ -1,16 +1,36 @@
-# Minerva
+# Minerva, built with GPT-6 Astra in Codex
 
 Minerva is a spatial thinking environment: editable cards on a canvas, an
 explicit **Focus** that decides what the AI sees, and Branch, Compare, and
 Recombine that keep every result's lineage. The thesis and its falsifier are in
 [docs/product/INTENT.md](./docs/product/INTENT.md). Observable behavior is in
-[docs/product/SPEC.md](./docs/product/SPEC.md). Decisions already made are in
-[docs/product/DECISIONS.md](./docs/product/DECISIONS.md); mechanisms are in
-[docs/product/ARCHITECTURE.md](./docs/product/ARCHITECTURE.md). Read the section
-you need, not the whole document.
+[docs/product/SPEC.md](./docs/product/SPEC.md); for the first loop read sections
+6 (central loop), 7 (canvas and cards), 8 (context and provenance), 10 (Branch),
+13 (History and Undo), and 15 (browser-local persistence). Decisions already
+made are in [docs/product/DECISIONS.md](./docs/product/DECISIONS.md); mechanisms
+are in [docs/product/ARCHITECTURE.md](./docs/product/ARCHITECTURE.md). Read the
+section you need, not the whole document.
 
 This repository is the template. Build the product in a repository created
 from it; keep this one content-free.
+
+## How to work here
+
+- A request is an instruction to do the work. Carry it through implementation
+  and browser verification in one run. Do not stop at a plan, an offer to
+  continue, or a request for approval on reversible work. When the spec leaves a
+  choice open, take the reading it supports best and say so in the PR.
+- Verify in the browser, not by reading the code. Run `npm run dev`, exercise
+  the loop end to end, fix what breaks, run it again. In the PR, say what you
+  exercised and what failed.
+- When the owner steers mid-run, fold the new instruction into the current work
+  and keep going; do not restart.
+- Split independent work across subagents when it saves wall-clock time. Keep
+  messages between agents legible.
+- Write PRs and messages in plain prose. Use a list only when the items are
+  parallel.
+- Ask the owner first about hosting or deployment, provider spend, contacting
+  participants, and publishing private content. Everything else, do.
 
 ## Build
 
@@ -31,23 +51,18 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
-`check` is lint, typecheck, test, build. Work on a branch, open a PR, merge when
-CI is green. The PR body is what changed and how you know it works.
+`dev` is the inner loop. `check` is lint, typecheck, test, build; run it before
+the PR. Work on a branch, open a PR, and enable auto-merge; it lands when CI is
+green. The PR body is what changed and how you know it works.
 
-## Ask the owner first; everything else, just do
+## Effort
 
-Hosting or deployment, provider spend, contacting participants, and publishing
-private content.
-
-## Codex
-
-- The user's instruction in the thread outranks this file; this file outranks
-  skills.
-- Carry a request through implementation and verification. Do not stop at a
-  plan or an offer to continue. Ask one focused question only when the answer
-  would change the result.
-- Reasoning effort starts at `medium` (`.codex/config.toml`). Use `low` for
-  routine edits and go higher only after medium has failed on the task.
+`.codex/config.toml` starts every thread at `low`, which OpenAI's Codex team
+measured as stronger than GPT-5.6 Sol at `high`. Raise to `medium` in the thread
+after a failed attempt and to `high` for architecture or hard debugging, then
+step back down. Approvals are off and the sandbox is workspace-write with
+network, so nothing in this repository should make you pause except the four
+owner questions above.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
