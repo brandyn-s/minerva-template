@@ -8,7 +8,7 @@ project history is needed.
 
 **Sequence:** prompts 1-18 deliver and publish the first integrated release.
 Prompts 19-23 are optional extensions, one session each, after the core works.
-The first useful release includes Searchlight, voice, and the canvas together;
+The first useful release includes Wander, voice, and the canvas together;
 the earlier slices are implementation checkpoints, not substitute products.
 
 **Session practice:** start with medium effort; increase it for a demonstrated
@@ -29,7 +29,7 @@ navigation aid, not an instruction to trust an unverified claim.
 ```text
 Build Minerva from scratch: a private, single-owner, online-first application
 where a person explores ideas on a spatial canvas, starts bounded AI exploration
-called Searchlight, and talks with a concurrent voice collaborator. The first
+called Wander, and talks with a concurrent voice collaborator. The first
 useful product must combine all three. This session builds only the foundation.
 
 Work in the new project directory supplied for this session; ask for that
@@ -46,6 +46,9 @@ docs/product/ARCHITECTURE.md; update these rather than duplicate their contracts
 The visual direction is warm paper, dark green ink, restrained teal/coral
 accents, serif content, and compact readable controls. Use original styling
 and system fonts.
+Identity: a living atlas of ideas, with a restrained original owl mark. Wander
+names exploration; Weave labels recombination; voice is Talk to Minerva. Keep
+clear action wording and distinguish the shell from unimplemented capabilities.
 Pin compatible dependencies and document local startup and genuine check commands.
 Add minimal CI; do not present an empty test run as product coverage.
 
@@ -62,7 +65,7 @@ and next unfinished work so another fresh session can continue without chat hist
 
 ```text
 You are building Minerva, a private spatial idea studio whose eventual core is
-canvas + Searchlight exploration + concurrent voice. Use the current new
+canvas + Wander exploration + concurrent voice. Use the current new
 repository only. Keep its Next.js/TypeScript modular monolith; inspect its code
 and docs/HANDOFF.md, and report a missing prerequisite instead of changing architecture.
 
@@ -182,7 +185,7 @@ and blockers. Do not make paid calls or introduce a context-service framework.
 
 ```text
 Build Minerva's durable execution slice in this new repository. Minerva combines
-a private spatial canvas, bounded Searchlight exploration, and concurrent voice.
+a private spatial canvas, bounded Wander exploration, and concurrent voice.
 Keep its Next.js/TypeScript modular monolith, Postgres authority, and Vercel
 Workflow. Inspect the context manifests and operations first; report missing
 prerequisites. Use official installed-version documentation, not another app.
@@ -301,12 +304,12 @@ partial failure. Use fixtures unless paid calls are authorized. Run relevant
 checks and update docs/HANDOFF.md. Do not publish or deploy.
 ```
 
-## Prompt 10: build Searchlight roots and the exploration archive
+## Prompt 10: build Wander roots and the exploration archive
 
 ```text
-Implement the first Searchlight in Minerva, a private spatial idea studio using
+Implement the first Wander in Minerva, a private spatial idea studio using
 a Next.js/TypeScript modular monolith, Postgres, and durable Vercel workflows.
-Searchlight explores a possibility space while the person edits the canvas and
+Wander explores a possibility space while the person edits the canvas and
 eventually talks to a voice collaborator. Work only in this repository; inspect
 the operation/run/context capabilities and report absent prerequisites.
 
@@ -332,10 +335,10 @@ completion, and reload mid-run. Use fixtures unless live spend is authorized.
 Run focused checks; update docs/HANDOFF.md with actual scope and blockers.
 ```
 
-## Prompt 11: make Searchlight adapt instead of repeat
+## Prompt 11: make Wander adapt instead of repeat
 
 ```text
-Minerva is a private spatial idea studio. Its Searchlight must explore different
+Minerva is a private spatial idea studio. Its Wander must explore different
 ways to satisfy a brief while the canvas remains usable. Work only in this
 repository's Next.js/TypeScript modular monolith with Postgres and durable runs. Inspect the
 root generator, archive and operations; report missing prerequisites.
@@ -366,7 +369,7 @@ checks and update docs/HANDOFF.md with files, results, and unresolved quality ri
 
 ```text
 Build Minerva's space analysis and "What this space suggests" surface. Minerva
-is a private canvas with Searchlight exploring ideas in durable runs. Keep this
+is a private canvas with Wander exploring ideas in durable runs. Keep this
 repository's Next.js/TypeScript modular monolith and Postgres authority. Inspect
 the archive and source revisions; report missing prerequisites.
 
@@ -395,7 +398,7 @@ docs/HANDOFF.md with implemented behavior and remaining uncertainty.
 ## Prompt 13: add a typed collaborator and shared attention
 
 ```text
-Minerva is a private spatial idea studio with concurrent Searchlight exploration.
+Minerva is a private spatial idea studio with concurrent Wander exploration.
 Build a typed collaborator that will also support voice. Use this repository's
 Next.js/TypeScript modular monolith, Postgres, revisioned commands and durable runs.
 Inspect those capabilities first; report missing prerequisites. Do not use other
@@ -417,7 +420,7 @@ with origin, sequence and expiration. Agent highlighting does not steal user
 selection, write content, launch paid work, or move the camera. Explicit
 navigation can move the camera; stale events are discarded on reconnect.
 
-Exercise discussion during Searchlight, duplicate commands, stale sources and
+Exercise discussion during Wander, duplicate commands, stale sources and
 out-of-order highlights. Use fixtures unless calls are authorized. Run relevant
 checks and update docs/HANDOFF.md with files, outcomes, and blockers.
 ```
@@ -426,7 +429,7 @@ checks and update docs/HANDOFF.md with files, outcomes, and blockers.
 
 ```text
 Minerva is a private spatial idea studio where a person speaks with an AI
-collaborator while Searchlight runs and the canvas remains editable. In this
+collaborator while Wander runs and the canvas remains editable. In this
 repository's Next.js/TypeScript modular monolith, inspect typed conversation,
 shared commands, attention, and spend admission. Report missing prerequisites.
 
@@ -457,7 +460,7 @@ speech, interruption, action and reconnect behavior in docs/HANDOFF.md.
 ## Prompt 15: make concurrent work recover visibly
 
 ```text
-Harden the core interaction of Minerva: a private idea canvas, durable Searchlight,
+Harden the core interaction of Minerva: a private idea canvas, durable Wander,
 and simultaneous typed/voice collaboration. Work only in this repository's
 Next.js/TypeScript modular monolith with Postgres and Vercel Workflow. Inspect
 the current implementations; report missing features rather than substituting
@@ -475,7 +478,7 @@ uncertain attempts. Do not weaken constraints, fabricate review, erase failures,
 or secretly switch providers. Stop prevents future admission without claiming
 in-flight calls cost nothing. Resume must not repeat accepted mutations.
 
-Exercise the integrated journey: run Searchlight, speak about one card, move
+Exercise the integrated journey: run Wander, speak about one card, move
 another, zoom elsewhere, recombine distant ideas, interrupt speech, receive
 results, close/reopen, and recover from an injected failure. Preserve viewport,
 selection, layout and history. No global busy lock.
@@ -488,7 +491,7 @@ docs/HANDOFF.md with scenarios/results, changed files and remaining blockers.
 ## Prompt 16: refine the experience for discovery
 
 ```text
-Refine Minerva's integrated canvas/Searchlight/voice UX in this repository.
+Refine Minerva's integrated canvas/Wander/voice UX in this repository.
 The product is a private spatial place to explore ideas, understand their
 relationships, and collaborate conversationally. Keep its Next.js/TypeScript
 modular monolith and existing product operations. Inspect the working journeys;
@@ -497,6 +500,8 @@ report missing core capabilities instead of disguising them with visual polish.
 Use warm paper #e9dfc7, card #f1e9d6, ink #273a35, teal #28686a, coral #a15442,
 amber #b18a58, violet #755584; serif reading text and compact labeled controls.
 Aim for tactile curiosity and clear discovery, not game points or hidden commands.
+Use a living-atlas identity and restrained owl mark. Name exploration Wander,
+recombination Weave, and voice Talk to Minerva; pair them with clear action labels.
 Expose Explore, Talk and run status. Cards lead with concise meaningful titles;
 selection reveals actions and an inspector for detail, lineage and contributions.
 Two-card selection reveals Connect/Recombine directly.
@@ -509,6 +514,15 @@ accessible. Never auto-fit on incoming results.
 Provide mouse, touch and keyboard equivalents, readable narrow-screen panels,
 focus management, reduced motion, and non-color status cues. Make errors and
 unavailable review understandable without a diagnostic dashboard.
+Motion follows attention and true state: unfold details, lift picked-up cards,
+preview contribution threads, and settle saved drafts. No wandering camera,
+permanent pulsing, or celebrations that imply an idea is correct.
+
+Add optional tactile sound with mute/volume control, off by default: restrained
+paper/pluck/click cues for deliberate actions and persisted outcomes. Coalesce
+arrival cues; no soundtrack, autoplay or per-token sound. Suppress decorative
+audio during voice listening/playback. Use original or licensed assets, retain
+visual equivalents, and keep the interface usable if audio cannot play.
 
 Exercise desktop/mobile core journeys during incoming updates. Fix observed
 interaction problems, run focused checks, and update docs/HANDOFF.md with files,
@@ -519,7 +533,7 @@ outcomes and remaining usability issues. Do not add unrelated features or deploy
 
 ```text
 Assess and improve Minerva's creative exploration behavior in this repository.
-Minerva is a private spatial canvas with durable Searchlight and concurrent voice,
+Minerva is a private spatial canvas with durable Wander and concurrent voice,
 built as a Next.js/TypeScript modular monolith. Inspect actual implementations,
 fixtures and docs/HANDOFF.md. Do not treat a polished narrative or model self-rating
 as proof of useful exploration.
@@ -530,7 +544,7 @@ independent reconvergence, contaminated roots, misleading summaries, and failed
 attempts. Check source/review fidelity, archive retention, bounded stagnation,
 and the distinction between observation and inference.
 
-Prepare a small comparison of Searchlight and ordinary independent generation
+Prepare a small comparison of Wander and ordinary independent generation
 on synthetic representative briefs. Specify model/settings, candidate/attempt
 counts, and a bounded equal spending opportunity before running. Retain failures,
 tokens, cost, and context exposure. A fixed candidate count alone is not cost parity.
@@ -550,7 +564,7 @@ Do not deploy or expand the product scope.
 
 ```text
 Prepare and, when authorized, publish Minerva: a private single-owner spatial
-idea studio with Searchlight exploration and concurrent voice, implemented here
+idea studio with Wander exploration and concurrent voice, implemented here
 as a Next.js/TypeScript modular monolith with Postgres and Vercel Workflow.
 Inspect this repository and its actual completed capabilities. No other source
 repository or conversation is required.
@@ -581,7 +595,7 @@ or product completion when required access or core behavior remains unavailable.
 ## Prompt 19: add alternate views of the same idea space
 
 ```text
-Optional extension for Minerva, a private spatial idea studio with Searchlight
+Optional extension for Minerva, a private spatial idea studio with Wander
 and voice. Work only in this repository's Next.js/TypeScript modular monolith.
 Inspect canonical ideas, lineage, revisions and view state; if the integrated
 core is incomplete, report that prerequisite rather than expanding the scope.
@@ -611,7 +625,7 @@ services, incur unauthorized spend, or deploy.
 
 ```text
 Optional extension for Minerva, a private canvas for exploring and recombining
-ideas with Searchlight and voice. Work in this repository's Next.js/TypeScript
+ideas with Wander and voice. Work in this repository's Next.js/TypeScript
 modular monolith; inspect context, operations, proposals and review before editing.
 Report missing core prerequisites. Do not introduce a plugin marketplace.
 
@@ -640,7 +654,7 @@ services, or add unrelated feature families.
 ## Prompt 21: add goal-directed Agent Drive
 
 ```text
-Optional extension for Minerva, a private spatial idea studio. Searchlight
+Optional extension for Minerva, a private spatial idea studio. Wander
 explores alternatives; Agent Drive should instead pursue a user's explicit
 bounded goal using the same workspace operations. Work only in this repository's
 Next.js/TypeScript modular monolith with Postgres and durable workflows. Inspect
@@ -648,7 +662,7 @@ run, context, archive and command contracts; report missing prerequisites.
 
 Let the person state a goal, permitted operation scope, stopping condition and
 attempt/spend allowance. The goal-directed policy can inspect, develop, compare
-and propose recombinations. Keep this policy separate from Searchlight's space
+and propose recombinations. Keep this policy separate from Wander's space
 coverage policy, while sharing generation, receipts and recovery machinery.
 
 Record why each action serves the goal and what observable result occurred.
@@ -701,7 +715,7 @@ Do not publish or spend on external services without explicit authorization.
 ## Prompt 23: expose the same capabilities through REST and MCP
 
 ```text
-Optional extension for Minerva, a private spatial idea studio with Searchlight,
+Optional extension for Minerva, a private spatial idea studio with Wander,
 voice, shared commands and durable provenance. Work only in this repository's
 Next.js/TypeScript modular monolith. Inspect its application operations and
 ownership model; report missing prerequisites rather than duplicating logic.

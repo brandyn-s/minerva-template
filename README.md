@@ -4,8 +4,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
 A product contract and thin runnable starter for a private **spatial idea
-studio**: explore alternatives with Searchlight, manipulate their relationships
+studio**: explore alternatives with Wander, manipulate their relationships
 on a canvas, and talk with a concurrent voice collaborator.
+
+**A living atlas of ideas.** The starter expresses the paper-and-ink identity
+with an original owl mark and native disclosure controls. It does not simulate
+the application. See [Design](./docs/product/DESIGN.md) for naming, interaction,
+truthful motion, and opt-in sound that gives voice priority.
 
 **Implemented:** a pinned Next.js shell and CI. **Not implemented:** workspace
 persistence, canvas, AI operations, voice, workflow execution or deployment.
@@ -13,7 +18,7 @@ Keep this template content-free; build the application in a new repository.
 
 ## Product direction
 
-The first useful release combines **canvas + Searchlight + voice**. People can
+The first useful release combines **canvas + Wander + voice**. People can
 edit, zoom and recombine distant ideas while exploration and conversation run.
 Ideas preserve exact source revisions and contributions. Space readings link
 evidence and uncertainty; repetitive generation is not presented as discovery.
@@ -62,6 +67,7 @@ Read the relevant section when implementing, not every document on every turn:
 - [SPEC](./docs/product/SPEC.md): observable behavior and acceptance scenarios.
 - [ARCHITECTURE](./docs/product/ARCHITECTURE.md): state ownership and module boundaries.
 - [DECISIONS](./docs/product/DECISIONS.md): active decisions and supersession.
+- [DESIGN](./docs/product/DESIGN.md): living-atlas identity, naming, motion and sound.
 - [Setup](./docs/setup.md): new-repository identity, sessions and deployment boundaries.
 - [Vercel facts](./docs/vercel-facts.md): current vendor constraints and sources.
 

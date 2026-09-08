@@ -22,6 +22,10 @@ a generated demo for the defined behavior.
 
 ## Canvas and discovery
 
+Use the living-atlas identity in [DESIGN.md](./DESIGN.md). The exploration
+experience is Wander, the thematic recombination label is Weave, and voice
+starts through Talk to Minerva. Plain action labels keep these understandable.
+
 Show a spatial field with title-first cards, direct selection, panning, zoom,
 dragging, and details on demand. Two selected cards expose Connect/Recombine
 without a nested menu. Show relationships when they help inspection, not as
@@ -37,6 +41,15 @@ selection, move originals or auto-fit the camera. Content and layout have
 separate writes. Pointer gestures and layout do not trigger model calls.
 Optional semantic zoom changes detail with stable thresholds while preserving
 access to selected cards and outstanding input requests.
+
+Motion responds to deliberate attention or actual state transitions: unfold
+detail, preview source contributions, lift a dragged card and settle persisted
+drafts. It never implies verified quality or hides stalled work.
+
+Sound is opt-in and off by default, with immediate mute/volume access and
+equivalent visible state. Use sparse tactile cues for acknowledged actions,
+coalesce draft arrivals, and suppress decorative audio throughout active voice
+listening/playback. No autoplay, ambient soundtrack or per-token/pan sound.
 
 ## Context and acknowledgement
 
@@ -85,9 +98,9 @@ clearly unreviewed decision, never an implied passing assessment.
 Stale dependencies offer regeneration or explicit keep-as-separate-branch with
 the original input provenance. Every independent result/failure is represented.
 
-## Searchlight
+## Wander
 
-Searchlight is a bounded exploration strategy, not a fixed three-arm sweep.
+Wander is a bounded exploration strategy, not a fixed three-arm sweep.
 Separate policy, generation and space analysis. A run may use independent roots,
 local development, distant recombination and assumption/mechanism challenges
 within its explicit allowance.
@@ -139,7 +152,7 @@ effects; reconnection cannot duplicate them.
 
 Attention is ephemeral, sequenced and expiring. Highlighting does not write
 content, start paid work, steal selection or move the camera; explicit navigation
-may move it. Barge-in stops playback, not unrelated Searchlight or saved actions.
+may move it. Barge-in stops playback, not unrelated Wander or saved actions.
 Expose microphone state, bounded sessions, reconnect/resync and typed fallback.
 
 ## Recovery and spending
@@ -166,7 +179,7 @@ guarantee. No real credentials or workspace data belong in public Git.
    see the correct conflict instead of a stale write.
 3. Generate, inspect, edit and keep a proposal, preserving exact source evidence.
 4. Recombine distant ideas and identify inherited versus new contributions.
-5. Start Searchlight, speak about one card, move another, zoom elsewhere and
+5. Start Wander, speak about one card, move another, zoom elsewhere and
    receive results without a lock, camera jump or lost selection.
 6. Interrupt/reconnect voice without duplicate actions; retain typed access.
 7. Close/reopen during exploration and recover actual results/run state.
@@ -175,6 +188,9 @@ guarantee. No real credentials or workspace data belong in public Git.
 9. Compare short exploration runs with an ordinary-generation baseline using
    declared settings and retained failures/cost. Leave creative efficacy
    unresolved without appropriate human evidence.
+10. With sound disabled, all state remains understandable. With cues enabled,
+    active voice suppresses them; reduced motion avoids decorative animation
+    without removing information or access.
 
 ## Extensions and exclusions
 

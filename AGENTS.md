@@ -1,7 +1,7 @@
 # Minerva, built with GPT-6 Astra in Codex
 
 Minerva is a private, online-first spatial idea studio. Its first useful release
-combines a manipulable canvas, bounded Searchlight exploration, and a concurrent
+combines a manipulable canvas, bounded Wander exploration, and a concurrent
 voice collaborator. Keep the Next.js/TypeScript modular monolith: Postgres owns
 durable product state; Vercel Workflow owns longer execution. The public source
 repository does not imply public access to workspaces or paid AI.
@@ -9,6 +9,9 @@ repository does not imply public access to workspaces or paid AI.
 Read the relevant part of [INTENT](./docs/product/INTENT.md),
 [SPEC](./docs/product/SPEC.md), [ARCHITECTURE](./docs/product/ARCHITECTURE.md),
 and [DECISIONS](./docs/product/DECISIONS.md), not all documents every session.
+Use [DESIGN](./docs/product/DESIGN.md) for the living-atlas identity, Wander
+naming, responsive motion and optional sound; do not infer capability from the
+starter's informational disclosure cards.
 The [standalone build prompts](./docs/build-prompts.md) describe bounded sessions
 from an empty application. They need no other repository or conversation.
 
