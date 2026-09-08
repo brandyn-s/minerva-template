@@ -9,7 +9,8 @@ choose what AI sees, explore alternatives, and preserve how each idea developed.
 **Implemented here:** a pinned Next.js shell and CI. **Not implemented:** the
 canvas, workspace persistence, AI operations, Voice, or a deployed product.
 This template stays content-free; build the product in a repository created
-from it. It assumes a greenfield Next.js app on Vercel with one implementer.
+from it. It assumes a greenfield Next.js app on Vercel, one implementer, and
+GPT-6 Astra in Codex as the builder.
 
 ## What to build
 
@@ -53,10 +54,22 @@ before starting.
 - [docs/vercel-facts.md](./docs/vercel-facts.md): platform facts a build has
   already paid to learn.
 
+## Build it with Codex
+
+This template is tuned for GPT-6 Astra in Codex. In a repository created from
+it, trust the project, open Codex, and give it the first loop:
+
+```text
+Build the first loop in AGENTS.md end to end, verify it in the browser, and open a PR.
+```
+
+[AGENTS.md](./AGENTS.md) is the whole working agreement: one page. Codex reads
+`.codex/config.toml`, which pins `gpt-6-astra` at low reasoning effort, turns
+approvals off, keeps the sandbox at workspace-write with network, and enables
+notes across context windows for long runs. Claude Code reads the same
+agreement through `CLAUDE.md`.
+
 ## Contribute
 
-Branch, PR, CI green, merge. `npm run check` is lint, typecheck, test, build.
-Coding agents read [AGENTS.md](./AGENTS.md) (Codex) or [CLAUDE.md](./CLAUDE.md)
-(Claude Code); each harness has its effort default in `.codex/config.toml` or
-`.claude/settings.json`. Report vulnerabilities privately under
-[SECURITY.md](./SECURITY.md).
+Branch, PR, auto-merge on green. `npm run check` is lint, typecheck, test,
+build. Report vulnerabilities privately under [SECURITY.md](./SECURITY.md).
