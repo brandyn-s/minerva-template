@@ -643,8 +643,9 @@ The durable `PROV-*` requirements in this section apply to canvas-generating ope
 
 ## 18. Product evaluation requirements
 
-The evaluation contract is stated once, in D-008 of `DECISIONS.md`, which this
-specification cannot change. Each `EVAL-*` identifier below remains a
+The evaluation contract is stated once: the D-008 decision in `DECISIONS.md` and
+its operating protocol in `D-008-evaluation-protocol.md`, neither of which this
+specification can change. Each `EVAL-*` identifier below remains a
 first-prototype obligation with the force of `MUST`; its normative text is the
 cited D-008 clause. The table exists so acceptance scenarios and traceability
 can cite a stable identifier without duplicating the decision.
