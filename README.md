@@ -61,6 +61,18 @@ complete when" condition. Related packages may share a session; a hard package
 may span several. Publication is the last package and follows the
 release-candidate review.
 
+Use separate terminals and checkouts: Astra in Codex builds; Fable 5.1 in Claude
+reviews the exact committed candidate without editing application source.
+The operator starts reviews; builder-launched reviewers are an explicit
+exception, not the default. [Setup](./docs/setup.md#separate-builder-and-critic)
+describes the small handoff and checkout arrangement.
+
+Choose one demonstrable outcome per task. A partial package can have a useful
+checkpoint without being called complete. Default to one independent review
+per planned boundary and a focused recheck of material fixes. Keep optional suggestions separate
+from required defects; avoid speculative abstractions, repeated full reviews
+and measurement infrastructure that does not answer a consequential question.
+
 There is no requirement to read another application's code, consult prior
 conversations, or run one long repeatedly compacted session. Continue from
 this repository's code, `docs/product/CAPABILITIES.md` and a short

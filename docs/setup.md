@@ -57,6 +57,48 @@ Both Astra and Fable start at medium effort. Permissions, network access and opt
 runner features are configured by the user, not overridden by the template.
 Use relevant official framework documentation for the installed version.
 
+## Separate builder and critic
+
+Run Astra in Codex in the writable application checkout. At a review boundary,
+commit the intended candidate and provide its exact SHA. The operator opens
+Fable 5.1 in a separate Claude terminal/client with a separate checkout of that
+SHA, used read-only for tracked application files. `CLAUDE.md` supplies the
+working agreement; it does not select or automatically launch the model.
+The builder does not invoke its own reviewer without an explicit request or
+specific agreed exception. No new orchestration tool is needed.
+Confirm all intended source files are in that commit; a runnable dirty tree
+with missing untracked files is not a reproducible candidate.
+
+An ordinary detached Git worktree is sufficient; for example, from the build
+checkout, substitute the actual candidate SHA and an unused review directory:
+
+```sh
+git worktree add --detach ../minerva-review <candidate-sha>
+```
+
+Two terminals using the same checkout do not isolate files. Review commands
+may create ignored build/test output, but must not change tracked app source.
+Use separate ports and isolated synthetic data when a reviewer runs the app;
+do not let review startup, migrations or teardown affect the builder's server
+or working data. Do not change the candidate during review. A correction is
+a new candidate revision for the targeted recheck.
+
+Keep each handoff in the existing HANDOFF/capability record, with these fields:
+
+```text
+Outcome and boundary: what should work; what this pass excludes.
+Candidate: exact commit, checkout, startup command and one representative journey.
+Evidence and gaps: observed behavior, known failures and what remains unverified.
+Review question: the concrete behavior or decision that needs independent scrutiny.
+Next step: fix, review, owner decision or next bounded outcome; not automatic expansion.
+```
+
+Fable reads the contract and exercises the candidate before consuming the
+builder's conclusions. M5 retains its external-client cold-start exception.
+A partial checkpoint is useful but never silently completes its package or
+milestone. Default to one review per planned boundary plus focused recheck; repeat only for remaining
+material failures or new evidence, not to chase agreement between models.
+
 ## Local configuration
 
 Add database/access/model dependencies only when their implementation slice
@@ -89,12 +131,16 @@ authorization. See [Vercel facts](./vercel-facts.md).
 
 ## Review and documentation ownership
 
-Use Fable 5.1 through the active Claude client on a stable candidate revision.
+Use the separately initiated Fable session described above on a stable candidate revision.
 Reviews do not edit application source; isolated synthetic journeys are allowed
 and paid calls need explicit allowance. Record findings and dispositions in
 the capability matrix, not a new diary per model. M2 includes an interim review;
 M5 begins with public interface instructions alone; M6 reviews before publication
 and confirms afterward. Neither model supplies the user's experience acceptance.
+If a fix loop stalls, name the unresolved assumption and return a bounded
+decision rather than reopening the entire architecture. Keep exploratory
+measurement proportional to the question; ordinary delivery does not need
+a timing harness or a new reporting system.
 
 The generated repository is authoritative for product docs and standard prompts.
 The seed remains independently maintained and content-free. Do not silently
