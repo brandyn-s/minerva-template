@@ -24,8 +24,29 @@ function parse(argv) {
   return { command, v };
 }
 function pins(value) {
-  if (Object.entries(PINS).some(([k, v]) => value[k] !== v)
-    || value.rootDirectory || value.outputDirectory) fail("Next.js project pins mismatch.");
+  if (value.rootDirectory) {
+    const shown = String(value.rootDirectory).replace(/[^A-Za-z0-9._/-]/g, "").slice(0, 80);
+    fail(`Project rootDirectory is set (${shown}). This helper deploys a flat repository whose root vercel.json is the effective configuration; Vercel ignores configuration above a rootDirectory. Move the application to the repository root or deploy it separately.`);
+  }
+  if (Object.entries(PINS).some(([k, v]) => value[k] !== v) || value.outputDirectory) fail("Next.js project pins mismatch.");
+}
+function hostingReadback(p, config) {
+  const text = (value) => (typeof value === "string" && value.length <= 80 ? value : null);
+  const hosting = {
+    rootDirectory: text(p.rootDirectory),
+    productionBranch: text(p.link?.productionBranch),
+    gitCreateDeployments: text(p.gitProviderOptions?.createDeployments) ?? "unset",
+    ssoProtection: text(p.ssoProtection?.deploymentType) ?? "none",
+    passwordProtection: Boolean(p.passwordProtection),
+  };
+  const warnings = [];
+  if (hosting.gitCreateDeployments !== "disabled" && config.hosting.gitDeploymentsAuthorized !== true) {
+    warnings.push("git-deployments-not-disabled-without-recorded-permission: pushes to the production branch can create publicly reachable production deployments; record --allow-git-deploys at init or disable Git deployments in the project's Git settings.");
+  }
+  if (hosting.ssoProtection !== "all") {
+    warnings.push(`deployment-protection-${hosting.ssoProtection}: Vercel Authentication does not cover every deployment of this project; treat the production alias as publicly reachable.`);
+  }
+  return { hosting, warnings };
 }
 function projectIdentity(p, v, config) {
   if (!/^prj_[A-Za-z0-9]+$/.test(p.id) || !/^team_[A-Za-z0-9]+$/.test(p.accountId)
@@ -116,7 +137,8 @@ export async function execute(argv, options = {}) {
   }
   const p = projectIdentity(project ?? {}, v, config);
   if (command === "project") {
-    const receipt = { version: 1, status: "project-verified", repo: config.repo, team: v.team, projectId: p.id, observedAt: new Date(now()).toISOString() };
+    const { hosting, warnings } = hostingReadback(p, config);
+    const receipt = { version: 1, status: "project-verified", repo: config.repo, team: v.team, projectId: p.id, hosting, warnings, observedAt: new Date(now()).toISOString() };
     mkdirSync(dirname(projectReceipt), { recursive: true });
     writeFileSync(projectReceipt, `${JSON.stringify(receipt, null, 2)}\n`, { mode: 0o600 });
     return receipt;
@@ -222,6 +244,7 @@ export async function execute(argv, options = {}) {
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   execute(process.argv.slice(2)).then((receipt) => {
     console.log(JSON.stringify(receipt, null, 2));
+    for (const warning of receipt.warnings ?? []) console.error(`warning: ${warning}`);
     if (receipt.status !== "project-verified" && receipt.status !== "runtime-contract-verified") process.exitCode = 2;
   }).catch((error) => { console.error(error.message); process.exitCode = 1; });
 }

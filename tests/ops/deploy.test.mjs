@@ -51,6 +51,36 @@ test("project resumes exact compatible existing project without mutation", async
   assert.equal(new URL(f.calls[0].url).searchParams.get("slug"), "example");
 });
 
+test("project receipt reads back hosting posture and warns when Git deployments and protection are not recorded", async (t) => {
+  const f = fixture(t);
+  Object.assign(f.project, { link: { ...f.project.link, productionBranch: "main" }, gitProviderOptions: { createDeployments: "enabled" }, ssoProtection: { deploymentType: "preview" } });
+  const r = await execute(f.args("project"), f.opts);
+  assert.deepEqual(r.hosting, { rootDirectory: null, productionBranch: "main", gitCreateDeployments: "enabled", ssoProtection: "preview", passwordProtection: false });
+  assert.ok(r.warnings.some((w) => w.startsWith("git-deployments-not-disabled")));
+  assert.ok(r.warnings.some((w) => w.startsWith("deployment-protection-preview")));
+  const saved = JSON.parse(readFileSync(resolve(f.cwd, ".minerva/project-example-product.json"), "utf8"));
+  assert.deepEqual(saved.hosting, r.hosting);
+  assert.deepEqual(saved.warnings, r.warnings);
+  assert.ok(f.calls.every((c) => c.init.method === "GET"));
+});
+
+test("recorded Git-deploy permission and full protection clear the hosting warnings", async (t) => {
+  const f = fixture(t);
+  Object.assign(f.project, { gitProviderOptions: { createDeployments: "enabled" }, ssoProtection: { deploymentType: "all" } });
+  f.config.hosting.gitDeploymentsAuthorized = true;
+  writeFileSync(resolve(f.cwd, "launch.json"), JSON.stringify(f.config));
+  const r = await execute(f.args("project"), f.opts);
+  assert.deepEqual(r.warnings, []);
+  assert.equal(r.hosting.ssoProtection, "all");
+});
+
+test("a project with rootDirectory is refused with the configuration-precedence explanation and no POST", async (t) => {
+  const f = fixture(t);
+  f.project.rootDirectory = "apps/product";
+  await assert.rejects(execute(f.args("project"), f.opts), /rootDirectory is set \(apps\/product\)[^]*ignores configuration above/);
+  assert.ok(f.calls.every((c) => c.init.method === "GET"));
+});
+
 test("deploy persists identity, resumes without POST, and verifies anonymous immutable and stable HTTP", async (t) => {
   const f = fixture(t);
   let posts = 0;

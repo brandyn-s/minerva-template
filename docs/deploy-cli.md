@@ -21,6 +21,13 @@ clock, sleep, attempts and timeout for synthetic tests.
 ## Gates and resumability
 
 - Refuses template destinations, missing/mismatched team, unrelated projects, GitHub links or Next.js pins.
+- Refuses a project whose `rootDirectory` is set, and says why: Vercel ignores configuration above the root
+  directory, so a repository-root `vercel.json` would be inert. This helper deploys a flat single-app repository.
+- The `project` receipt reads back `hosting` (`rootDirectory`, `link.productionBranch`,
+  `gitProviderOptions.createDeployments`, `ssoProtection.deploymentType`, `passwordProtection`). These are raw
+  platform fields, not a protection guarantee. It warns when Git deployments are not disabled without a recorded
+  `--allow-git-deploys`, and when Vercel Authentication does not cover every deployment, because the production
+  alias is then publicly reachable.
 - Existing compatible projects are read-only reuses. Only a confirmed 404 permits authorized project
   creation. A successful create must be read back; 403 is never interpreted as absence.
 - Creation links exactly the configured GitHub repository. **Vercel's Git integration automatically
