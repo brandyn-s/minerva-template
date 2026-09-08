@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { randomUUID } from "node:crypto";
-import { main, parseArgs, checkPins, SOURCE } from "../scripts/launch.mjs";
+import { main, parseArgs, checkPins, SOURCE } from "../../scripts/launch.mjs";
 
 const SHA = "a".repeat(40);
 const REPO = "demo-owner/launch-sample";
