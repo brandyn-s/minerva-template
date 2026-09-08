@@ -768,3 +768,29 @@ rejects the proposal.
   durability, privacy, and atomic admission/hard spend requirements are intact.
 - Limit: This reduces mandatory process, not a demonstrated delivery-time
   improvement. No new timing harness or product implementation is authorized.
+
+### J-20260908-01 - Close the gaps a real build exposed, without new machinery
+
+- Scope: Template maintenance after the minerva_v2 build (2026-09-07, built
+  from a fresh scaffold, not from this template) and its review.
+- Human disposition: The owner asked for the lightest scaffolding that covers
+  the friction that build recorded, explicitly not an over-harnessed system,
+  and approved the resulting recommendations for implementation.
+- Decision: `npm test` runs product tests only; helper self-tests live in
+  `tests/ops/` behind `npm run test:ops`, which CI runs separately. The audit
+  gate fails at high, with the `overrides` pattern documented for exact
+  transitive pins. `deploy.mjs project` reads back hosting posture (root
+  directory, production branch, Git deployments, protection scope) and warns
+  when the production alias would be public; `deploy.mjs env` provisions
+  variables per explicit target through the REST API with readback and never
+  records values. `docs/vercel-facts.md` holds the platform facts that build
+  paid to learn. The chat self-baseline is optional; D-012 to D-014 are
+  stated to apply only inside the hackathon profile.
+- Evidence: Of 78 friction items in that build's log, one was prevented by an
+  enforced template mechanism, thirteen were covered by prose only, sixteen
+  were not addressed, and thirty-five were agent or vendor behaviour outside a
+  template's reach; the largest time sinks were delegated-agent latency, which
+  this template does not attempt to govern. Local guard and CI stayed green
+  for every change.
+- Limit: No gate is passed. This reduces mandatory process and adds readbacks;
+  it does not demonstrate a faster product build.

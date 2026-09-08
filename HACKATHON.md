@@ -413,15 +413,13 @@ only when distinct and safe, zero or one reliability improvement. An agent may
 propose the options; it may not choose them or quietly turn every option into
 scope.
 
-**Chat self-baseline (T+120–150).** Immediately after the demo, open a plain
-capable chat on the same problem and spend at most five minutes reconstructing
-the same context the Focus field held: paste or retype the focused cards and
-ask for the same Branch. Record wall time and the count of actions for both
-paths (Focus: add, remove, arrange, invoke; chat: paste, type, send). This is
-one owner on one problem and is readiness evidence only; it does not count
-toward D-008 and is never reported as a matched result. Its purpose is to make
-the third checkpoint question answerable with a number instead of an
-impression.
+**Chat self-baseline (optional).** If the owner wants a number for the third
+checkpoint question, open a plain capable chat on the same problem and spend at
+most five minutes reconstructing the context the Focus field held, then record
+wall time and action counts for both paths. This is one owner on one problem;
+it is readiness evidence only, does not count toward D-008, and is never
+reported as a matched result. Skipping it records the question as not
+evaluated, which is an acceptable answer.
 
 If the T+120 floor passed, default priority for a leverage improvement is:
 
@@ -451,7 +449,7 @@ context, lineage, actions, or state easier to understand.
 
 | Time | Decision and outcome | Cut line |
 |---|---|---|
-| T+120–150 | Run the exact demo on a real problem, inspect failure/reload behavior, run the five-minute chat self-baseline below, answer the three checkpoint questions, and record the stop/continue choice, selected primary improvement, and any distinct reliability improvement. | If the floor is not reliable, choose repair as the primary improvement; do not expand scope. |
+| T+120–150 | Run the exact demo on a real problem, inspect failure/reload behavior, answer the three checkpoint questions (the chat self-baseline is optional), and record the stop/continue choice, selected primary improvement, and any distinct reliability improvement. | If the floor is not reliable, choose repair as the primary improvement; do not expand scope. |
 | T+150–300 | Implement the selected primary improvement: repair the floor or deepen one source of leverage through the existing product-owned seams. | No new platform, generalized framework, accounts, ingestion, or History system. Voice is permitted only as the explicitly selected D-012 spike. |
 | T+300–390 | If separately chosen and still safe, resolve one distinct reliability/accessibility weakness and exercise its unhappy path; otherwise rehearse and simplify the primary loop. | If the primary work destabilizes a passing T+120 loop, revert or isolate it rather than repairing indefinitely. |
 | T+390–435 | Repeat the real-problem rehearsal; make only evidence-driven interaction or explanation fixes. | No checklist-driven features and no redesign detached from observed friction. |
