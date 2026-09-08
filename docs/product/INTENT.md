@@ -8,7 +8,7 @@ shell and specifications, not the implemented product.
 Minerva is a private, single-owner, online-first studio for exploring an idea
 space with AI. A person can investigate alternatives spatially, understand
 their relationships and origins, and speak with a collaborator while work
-continues. The canvas, Searchlight, and concurrent voice are the core product
+continues. The canvas, Wander, and concurrent voice are the core product
 together, not a chat application with optional visual decoration.
 
 The hypothesis is that persistent alternatives, visible lineage, and concurrent
@@ -18,7 +18,7 @@ model enthusiasm nor the number of generated cards establishes that benefit.
 ## The first useful experience
 
 1. Create a workspace with a problem and explicit constraints.
-2. Add ideas and start a bounded Searchlight exploration.
+2. Add ideas and start a bounded Wander exploration.
 3. Inspect, move, edit and zoom while results arrive.
 4. Discuss a selected idea with the voice collaborator, including spoken replies.
 5. See what the explored space suggests, with evidence and uncertainty.
@@ -31,7 +31,7 @@ particular example domain is part of the architecture or a mandatory answer.
 
 ## Human and AI roles
 
-Searchlight can generate exploratory material and manipulate it within an
+Wander can generate exploratory material and manipulate it within an
 explicit run scope. It cannot overwrite human-kept work or turn guesses into
 confirmed facts. The collaborator may point, discuss, suggest, create proposals
 and execute clearly requested bounded commands through the same application
@@ -42,6 +42,10 @@ deliberate spatial arrangement. Partial speech and incidental proximity do
 not authorize mutations. Generated conventions are not user requirements.
 
 ## Experience and truth
+
+The identity is **a living atlas of ideas**. Wander names exploration, Weave
+is the thematic label for recombination, and the collaborator is reached through
+Talk to Minerva. Keep plain action labels alongside metaphor.
 
 Keep title-first cards, warm paper and dark ink, restrained color, direct
 contextual actions, and details on demand. Discovery should feel tactile and

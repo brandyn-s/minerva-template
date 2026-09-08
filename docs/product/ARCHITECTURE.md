@@ -26,7 +26,7 @@ services. Add dependencies when a working slice needs them.
 |---|---|---|
 | Workspace/ideas | Brief, constraints, content revisions, relationships, ownership | DOM, camera, provider transport |
 | Exploration/review | Operation definitions, proposals, assessments, decisions | Canvas rendering or runtime model SDK types |
-| Searchlight/space analysis | Exploration policy, archive, recurrence and evidence-linked readings | A second execution engine or universal creativity score |
+| Wander/space analysis | Exploration policy, archive, recurrence and evidence-linked readings | A second execution engine or universal creativity score |
 | Runs | Admission, attempt identity, progress and recovery contracts | Browser lifecycle |
 | Investigator | Conversational intents and bounded context/attention contracts | A duplicate mutation path |
 | Canvas/UI | Viewport, selection, rendering and interaction | Canonical content or direct provider credentials |
