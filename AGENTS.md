@@ -113,6 +113,24 @@ adding a reusable abstraction. Add infrastructure only when the current
 required capability needs it; defer speculative hardening without weakening
 revision integrity, authorization, cost admission or required recovery.
 
+The unit of work is a working user action, not a whole subsystem or necessarily
+one numbered prompt. Connect the smallest path through the UI and its current
+backend/provider boundary before expanding the feature. Do not accumulate
+unintegrated services, adapters and components and count their return as
+delivery. If an increment expands, checkpoint the working path, name the
+specific dependency and split the remaining work without dropping requirements.
+
+Resolve consequential external uncertainty early with a small authorized probe
+of authentication, transport and supported settings before building extensive
+surrounding code. Keep credentials server-side and cost admission intact.
+Use fixtures for the normal fast loop; missing live access stays a named gap,
+not an invitation to fabricate success or build speculative infrastructure.
+
+Report written, integrated, demonstrated locally, demonstrated live, reviewed,
+accepted and deployed as distinct facts. Identify revision, runtime mode and
+remaining gaps in the existing evidence record. Written code is not integration;
+a merged PR is not deployment; model review is not user acceptance.
+
 Default to one independent review per planned review boundary and a focused
 recheck of material corrections,
 not repeated full-product reviews. Recurrent findings without new evidence

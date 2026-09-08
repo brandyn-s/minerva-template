@@ -4,6 +4,20 @@ Requirements live in [SPEC.md](./SPEC.md); this file records implementation
 evidence, not another specification. Status values are `not started`, `partial`,
 `implemented`, `exercised`, and `accepted`. A seed shell is not product evidence.
 
+Use the existing evidence column and handoff to distinguish delivery facts;
+do not introduce a second tracking system or treat these as seven mandatory
+sequential gates. Written code may still be unintegrated. Implemented behavior
+has a connected path through the applicable UI/application/persistence/provider
+layers. Exercised behavior states whether it was demonstrated locally with
+fixtures or against live services. Reviewed identifies the candidate and
+review disposition; accepted identifies the user's decision and its scope.
+Deployed identifies the actual serving revision/URL, not merely a merged commit.
+
+For example: "Typed reply integrated and demonstrated locally in fixture mode;
+live transport unverified; review pending; not deployed." M1's live-service facts
+are not applicable to its prepared proof, not evidence that those services work.
+Keep a whole capability partial when only one increment is complete.
+
 | ID | Capability | Status | Evidence / owning surface |
 |---|---|---|---|
 | C01 | Workspaces and durable state | not started | No application implementation |
