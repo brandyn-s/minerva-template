@@ -89,6 +89,18 @@ without a working caller is written, not delivered. When an increment expands,
 name the dependency and checkpoint/split the remainder rather than silently
 growing the assignment.
 
+**Resumption:** the copyable launch instruction must include the absolute
+existing worktree path, branch and expected checkpoint. Use that exact path;
+verify state without resets or a home-directory search. If unavailable, report
+the specific mismatch. Reconcile explicitly requested instruction changes once
+from a pinned source and relevant file delta, preserving application evidence,
+then implement the bounded outcome. See [the resume block](./setup.md#resuming-an-existing-checkpoint).
+After the UI caller, backend entry point and decisive journey are located,
+further discovery must resolve a named question. A failed lookup should use
+actual filenames or another scoped tool within that known directory, not a
+machine-wide search. Reopen document reconciliation only when new instructions
+or a concrete blocking conflict justify it.
+
 **Roles:** GPT-6 Astra in Codex owns implementation, commands, evidence,
 corrections and deployment. Fable 5.1 in Claude is the independent, read-only
 reviewer and outside adviser. Select those models in their respective clients;
@@ -195,6 +207,15 @@ mode and revision in the existing matrix/handoff rather than another status
 system. A local fixture, completed code assignment, reviewer opinion or merged
 commit cannot stand in for the next boundary. These facts are not a new linear
 seven-stage process; a milestone can legitimately have live behavior unverified.
+
+**Failure-to-checkpoint loop:** state the latest failing assertion and observed
+behavior, make the smallest supported correction, then re-exercise the affected
+journey and required checks. A fix and focused recheck are not themselves a
+runaway loop. Keep stale-context and lost-acknowledgment cases bounded rather
+than building a general retry framework. Avoid unrelated documentation edits
+mid-debugging. Report actual outcomes, not command launches or output counts.
+A rough timebox may trigger an explicitly partial checkpoint; it cannot make
+a failing result pass or justify a completion claim.
 
 **Documentation prose (Astra):** write `CONTRACT.md`, `CAPABILITIES.md`,
 `DESIGN.md`, `HANDOFF.md`, architecture decisions, commit messages and review
