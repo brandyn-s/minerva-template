@@ -670,9 +670,10 @@ floor pass. Preserve the last safe deployed experience where one exists.
 
 ### T+120 checkpoint record
 
-Fill this in against the exact demo commit. The three question rows are the
-minimum the demo must answer; an honest *not evaluable* is a valid answer and
-is preferred to narration.
+Fill this in against the exact demo commit and tag that commit `checkpoint-2h`
+so the record and its deployment can be re-resolved later. The three question
+rows are the minimum the demo must answer; an honest *not evaluable* is a valid
+answer and is preferred to narration.
 
 | Field | Observation |
 |---|---|
@@ -691,13 +692,14 @@ is preferred to narration.
 | Q1 — Could the user predict exactly what the AI saw? | Not evaluated — cite the receipt and the unrelated-card move |
 | Q2 — Did the spatial interaction expose a consequential direction or tension? | Not evaluated — state live or simulated; if simulated, record *not evaluable* |
 | Q3 — Did operating the canvas cost less than reconstructing context in chat? | Not evaluated — record both self-baseline times and action counts |
+| Material model proposals modified or rejected | Not evaluated |
 | Material failures or cuts | Not evaluated |
 | Delivery or interaction blockers | Not evaluated |
 
 ### Optional T+480 delta record
 
-Do not overwrite the T+120 record. Re-run the same four-minute narrative, then
-record only the consequential delta:
+Do not overwrite the T+120 record. Tag the final commit `submission-8h`, re-run
+the same four-minute narrative, then record only the consequential delta:
 
 | Field | Observation |
 |---|---|
