@@ -75,6 +75,10 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run secrets:scan
 ```
 
 [CONTRIBUTING.md](./CONTRIBUTING.md) covers contribution requirements.
+Coding agents read [AGENTS.md](./AGENTS.md) (Codex) or [CLAUDE.md](./CLAUDE.md)
+(Claude Code): one shared agreement, kept identical by `npm test`, plus a short
+section for each harness. Each harness also gets its own effort default, in
+`.codex/config.toml` and `.claude/settings.json`; change them there, not in prose.
 Report vulnerabilities privately under [SECURITY.md](./SECURITY.md).
 
 ## Optional references
