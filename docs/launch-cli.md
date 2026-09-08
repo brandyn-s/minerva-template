@@ -206,5 +206,5 @@ Live observations are separate and non-atomic. Failures can leave resources
 behind; unknown ownership intentionally requires manual reconciliation rather
 than automatic adoption.
 
-Validation: `node --test tests/launch.test.mjs tests/deploy.test.mjs` uses isolated local fixtures and
+Validation: `npm run test:ops` (`node --test tests/ops/*.test.mjs`) uses isolated local fixtures and
 an injected fake command runner, without network or external mutations.

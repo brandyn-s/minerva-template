@@ -61,5 +61,8 @@ jobs:
       - name: Check source
         run: npm run check
 
+      - name: Check operational helpers
+        run: npm run test:ops
+
       - name: Scan Git history and current contents
         run: npm run secrets:scan

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync, readFileSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
-import { execute } from "../scripts/deploy.mjs";
+import { execute } from "../../scripts/deploy.mjs";
 
 const sha = "b".repeat(40);
 const pins = {

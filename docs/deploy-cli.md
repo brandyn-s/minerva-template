@@ -70,4 +70,4 @@ See [authentication](https://vercel.com/docs/rest-api/reference/welcome#authenti
 and [deployment protection](https://vercel.com/docs/deployment-protection).
 Bearer authorization is team/project constrained; the operation schema does not declare separate scope strings.
 
-Synthetic validation: `node --test tests/deploy.test.mjs`. No live API calls are needed.
+Synthetic validation: `npm run test:ops`. No live API calls are needed.
