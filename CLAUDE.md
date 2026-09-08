@@ -1,42 +1,47 @@
-# Working agreement
+# Minerva
 
-Start with [README.md](./README.md) and [CURRENT_GATE.md](./CURRENT_GATE.md).
-Read only the requirements relevant to the change. Product authority remains
-`docs/product/INTENT.md` -> approved `docs/product/DECISIONS.md` -> `docs/product/SPEC.md` -> `docs/product/ARCHITECTURE.md`.
+Minerva is a spatial thinking environment: editable cards on a canvas, an
+explicit **Focus** that decides what the AI sees, and Branch, Compare, and
+Recombine that keep every result's lineage. The thesis and its falsifier are in
+[docs/product/INTENT.md](./docs/product/INTENT.md). Observable behavior is in
+[docs/product/SPEC.md](./docs/product/SPEC.md). Decisions already made are in
+[docs/product/DECISIONS.md](./docs/product/DECISIONS.md); mechanisms are in
+[docs/product/ARCHITECTURE.md](./docs/product/ARCHITECTURE.md). Read the section
+you need, not the whole document.
 
-Claude Code reads this file. Codex reads `AGENTS.md`. The block between the
-`shared-agreement` markers is identical in both and `npm test` keeps it so;
-everything after the block is specific to the harness that reads it.
+This repository is the template. Build the product in a repository created
+from it; keep this one content-free.
 
-<!-- BEGIN:shared-agreement -->
-- Keep this template content-free; product code belongs in an authorized clone.
-- Preserve existing work, explicit context, durable acknowledgement, lineage,
-  privacy, and hard spend bounds.
-- Approval gates: hosting, deployment, provider spend, participant contact,
-  and edits to approved authority documents need the owner's explicit decision.
-  Everything else that `CURRENT_GATE.md` authorizes is yours to finish without
-  asking: local implementation, tests, branches, draft PRs, read-only checks.
-- Do the requested change completely and nothing beside it. Report pre-existing
-  bugs and nearby improvements as follow-ups in the PR instead of fixing them in
-  the same change. Prefer a targeted edit to a whole-file rewrite.
-- Verify in proportion to the change: run the existing guard, add tests only
-  where the task or the repository's convention asks for them, sized like the
-  neighbouring tests, and re-run only when something changed or failed. Do not
-  add planning rituals, agent lanes, timing protocols, or speculative abstractions.
-- Use a branch and PR. Keep secrets and private content out of source. Write
-  the PR in plain prose: what changed, how it was verified, what is unverified.
-  No stock phrases and no closing summary.
-- If an instruction here or in a skill makes you pause, ask for permission, or
-  change course, name the file and quote the line.
-<!-- END:shared-agreement -->
+## Build
+
+The first thing to make work, end to end in the browser: edit a card, choose
+Focus, Branch, change a constraint, compare the new child with its source, and
+reload with everything still there. Then Searchlight (independent approaches
+from the same frozen context), then Compare and Recombine, then Voice.
+
+Done means INTENT.md's checkable definition of success holds on a real
+ambiguous problem. Plan and sequence the work yourself; this template has no
+roadmap, phase gates, lanes, journal, or clock on purpose.
+
+## Run and check
+
+```sh
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
+npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
+```
+
+`check` is lint, typecheck, test, build. Work on a branch, open a PR, merge when
+CI is green. The PR body is what changed and how you know it works.
+
+## Ask the owner first; everything else, just do
+
+Hosting or deployment, provider spend, contacting participants, and publishing
+private content.
 
 ## Claude Code
 
-- Effort starts at `medium` (`.claude/settings.json`). Anthropic's default for
-  Claude Fable 5.1 is `high`; medium roughly matches the previous model at lower
-  cost. Use `/effort high` for hard debugging or architecture work in the
-  session, and step back down afterwards. Do not run at max by habit.
+- Effort starts at `medium` (`.claude/settings.json`). Use `/effort high` for
+  hard debugging or architecture work, then step back down.
 - Say in a line what you are about to do, give brief updates during long tool
   runs, and close with a recap that stands on its own.
-- Use lists and headers where the content is multifaceted. There is no
-  anti-formatting rule in this repository to obey.
