@@ -50,6 +50,13 @@ Open [localhost:3000](http://localhost:3000). The placeholder page needs no
 cloud account or provider key. Database, auth, model and voice configuration
 arrive with their working application slices, not unused dependencies here.
 
+The linter uses ESLint 9.39.5 because the current Next.js 16.3.4 React,
+accessibility and import plugins declare peers only through ESLint 9. This is
+a temporary compatibility hold: ESLint 9 is deprecated upstream, not a
+long-term supported tooling choice. Upgrade the linter and plugins together
+when their declared ranges support ESLint 10; do not suppress peer errors or
+remove lint rules to force that upgrade. Application runtime pins are unchanged.
+
 ## Build in Astra sessions, review in Claude
 
 [docs/build-prompts.md](./docs/build-prompts.md) holds the milestone plan: 34

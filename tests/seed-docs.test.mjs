@@ -25,6 +25,12 @@ test("the standard edition retains all packages, milestones and independent revi
   assert.match(packages[10][3], /working Lineage view during a durable operation/);
   assert.doesNotMatch(packages[10][3], /scenarios pass in all three views/);
   assert.match(prompts, /complete Astra packages 31-33, run the Fable M6 review/);
+  assert.match(packages[2][3], /M1 offers only functioning local interactions/);
+  assert.doesNotMatch(packages[2][3], /real view navigation|exploration\/conversation access/);
+  const spineReview = prompts.match(/### Fable review M2: [^\n]+\n\n```text\n([\s\S]*?)\n```/)?.[1];
+  assert.ok(spineReview);
+  assert.match(spineReview, /^Interim demonstration \(after package 10\):/m);
+  assert.match(spineReview, /^Final demonstration \(after package 12\):/m);
 });
 
 test("SPEC owns the full scope and the evidence matrix covers the same capabilities", async () => {
