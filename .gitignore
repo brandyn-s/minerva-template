@@ -21,4 +21,3 @@ coverage/
 
 # Content-bearing evaluation evidence is never tracked
 evaluation-artifacts/
-evidence/private/

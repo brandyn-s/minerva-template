@@ -15,8 +15,7 @@
 `MUST`, `SHOULD`, `MAY`, and **[OPEN]** retain the meanings defined in `SPEC.md`. An architecture choice cannot weaken a product requirement. If this file conflicts with the approved product documents, the product documents win and the architecture must change.
 
 This file does not by itself authorize current work. It establishes the
-approved implementation boundaries that `ROADMAP.md` sequences;
-`CURRENT_GATE.md` records the product owner's current authorization.
+approved implementation boundaries.
 
 ## 2. Architecture decision A-001
 
@@ -587,7 +586,7 @@ Every releasable deployment records its exact source revision, immutable deploym
 
 Use one bounded terminal review per release by default. Stop when the smallest decisive evidence passes; stop earlier on the first material falsifier. A custom verifier may be repaired once, then simplified or discarded in favor of native runtime evidence.
 
-Before generated implementation begins, create and commit the approved product documents, a short repository `AGENTS.md` that points to them, a `JOURNAL.md` that identifies human decisions and corrections, a bounded check command, and an evidence location. These are build controls, not product features.
+Before generated implementation begins, create and commit the approved product documents, a short repository `AGENTS.md` that points to them, and a bounded check command. These are build controls, not product features.
 
 ### Evaluation-only evidence capture
 
@@ -667,5 +666,4 @@ full in their own sections; they are not repeated here.
 
 Architecture decisions `A-001` through `A-007` are approved. Every explicitly
 spike-gated item remains **[OPEN]** until its named experiment supplies decisive
-evidence. This approval enabled the long-form `ROADMAP.md`; current work remains
-bounded by `CURRENT_GATE.md`.
+evidence.

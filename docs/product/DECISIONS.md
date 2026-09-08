@@ -1,6 +1,6 @@
 # Minerva — Decision Register
 
-> **Status:** Active product decision record. `INTENT.md` was approved on September 6, 2026. D-001 through D-008 define the first prototype. D-012 through D-014, approved September 7, 2026, authorize disposable hackathon experiments outside that boundary; they apply only when the `HACKATHON.md` profile is selected, and their decision-entry clauses do not gate ordinary implementation. Decisions are added here only after explicit product-owner approval.
+> **Status:** Active product decision record. `INTENT.md` was approved on September 6, 2026. D-001 through D-008 define the first prototype. D-012 through D-014, approved September 7, 2026, authorize disposable hackathon experiments outside that boundary; they apply only when the owner selects a timed hackathon slice, and their decision-entry clauses do not gate ordinary implementation. Decisions are added here only after explicit product-owner approval.
 
 ## How this register works
 
@@ -259,10 +259,11 @@ obligations cite its sections by name.
 ## Hackathon experiments outside the first-prototype boundary
 
 The three decisions below authorize time-boxed, disposable experiments for the
-T+120–480 refinement window defined in `HACKATHON.md`. They do not change the
+T+120–480 refinement window of the retired hackathon profile (see Git history
+before September 8, 2026). They do not change the
 first-prototype contract: `INTENT.md` non-goals, `SPEC.md` Section 21
 exclusions, D-005, and D-007 stand unchanged. An experiment built under them
-is evidence for a `ROADMAP.md` Section 23 horizon or for a later product
+is evidence for a later-horizon capability or for a later product
 decision; it cannot close a gate, claim conformance to the requirement it
 departs from, or enter the product without a further decision. Each is
 eligible only as the product owner's single T+120 primary-improvement choice
@@ -303,7 +304,7 @@ for the drafts held pending on the proposal branch (`J-20260907-02`).
 |---|---|
 | Status | **Approved — September 7, 2026** |
 | Scope | Hackathon T+120–480 window only |
-| Decision | A **bounded Expedition** action and **descriptive terrain** (density, basins, attractors, and a minimap) are **eligible** as the T+120 primary improvement. Both are disposable experiments producing evidence for the `ROADMAP.md` Section 23 horizons; neither enters the first prototype. |
+| Decision | A **bounded Expedition** action and **descriptive terrain** (density, basins, attractors, and a minimap) are **eligible** as the T+120 primary improvement. Both are disposable experiments producing evidence for later horizons; neither enters the first prototype. |
 | Why | The owner wants the event to probe multi-step exploration and spatial orientation earlier than the roadmap orders them. `INTENT.md` names multi-generation expeditions a first-prototype non-goal and `SPEC.md` Section 21 excludes basin and attractor scoring; this decision authorizes an experiment outside that boundary, not a change to it. |
 | Expedition contract | One explicit action; fixed depth and call/token/time/spend ceilings written into the T+120 decision entry before any work begins; every generated card carries `derived from` lineage to its parent; the user can pause and cancel; no autonomous follow-up beyond the disclosed depth; no ambient or closed-page continuation. |
 | Terrain contract | Descriptive navigation only. Terrain, density, basins, and attractors never rank, score, select a winner, or imply quality; they never change AI context (`INV-002`), Focus, membership, or History; they are presentation over committed state and can be hidden. The minimap follows `CAN-004`. |
