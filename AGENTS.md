@@ -35,9 +35,10 @@ inherited template wording is never a request to create another repository.
   only when a decision changes product scope, data ownership, paid
   infrastructure or a destructive action, or when a required input is missing.
 - Each work package in `docs/build-prompts.md` ends with a "Package complete
-  when" condition. Keep working until that condition is met or a specific
-  blocker prevents it; stop neither after the first passing check nor after
-  drafting a plan when implementation was requested.
+  when" condition. Work toward that condition, but choose one demonstrable
+  outcome for the current session. A large package may end at an explicitly
+  partial checkpoint with its next outcome named; never call that package
+  complete. Do not accumulate whole subsystems before a useful handoff.
 - Make reversible local decisions and state consequential assumptions. Deliver
   the slice through working behavior. Keep the requested scope: report
   unrelated bugs as follow-ups, fix tightly coupled defects, and size tests
@@ -75,6 +76,13 @@ disposition for every material finding and fixes confirmed defects; Fable
 rechecks the affected cases; then the milestone outcome is recorded. Fable's
 agreement is not proof and does not replace the user's experience acceptance.
 
+Default to separate terminals and separate checkouts: Astra in Codex has the
+writable build checkout; Fable 5.1 in Claude reviews an exact committed candidate
+in a separate checkout used read-only for application source. Two terminals
+sharing a mutable tree are not isolation. The operator starts the review;
+the builder does not launch Fable or a review subagent unless explicitly
+requested or covered by a specific agreed exception. No coordinator is required.
+
 Use a fresh Fable review context per milestone; select Fable 5.1 at medium
 effort in the active Claude client. The import in CLAUDE.md is a working
 agreement, not a model selector. In M2, review the persistence/generation/
@@ -95,6 +103,28 @@ unfinished outcome. Do not create transcripts, diaries or per-model status
 files. An incomplete package is a checkpoint; if a session ends mid-package,
 checkpoint coherently and finish that outcome in a fresh session before
 advancing.
+
+## Bound the next outcome
+
+The full capability contract is the destination, not the scope of each task.
+State the current outcome, explicit exclusions and stopping evidence before
+implementing. Fix demonstrated failures in existing shared operations before
+adding a reusable abstraction. Add infrastructure only when the current
+required capability needs it; defer speculative hardening without weakening
+revision integrity, authorization, cost admission or required recovery.
+
+Default to one independent review per planned review boundary and a focused
+recheck of material corrections,
+not repeated full-product reviews. Recurrent findings without new evidence
+require a concrete unresolved assumption and an owner decision or bounded
+falsifying experiment. This is not a hard cap that waives a known defect.
+New reviewer suggestions are not automatically requirements; separate contract
+defects, missing required behavior and optional enhancements.
+
+Use existing checks/logs to answer the current question, retain failed attempts
+and run required checks. Do not build timing harnesses, comparative benchmarks,
+review coordinators or extensive telemetry for routine development. Additional
+measurement needs a consequential uncertainty and a decision it can change.
 
 ## Run and check
 

@@ -78,14 +78,22 @@ past a broken prerequisite. Closely related packages may share a session when
 they form one coherent outcome; a difficult package may span several fresh
 sessions. Do not split concurrent writers over the same code. Prioritize the
 next demonstrable user journey over completing disconnected layers.
+At each session start, state one visible outcome, explicit exclusions and the
+evidence that will close that outcome. Break an overlarge package into coherent
+checkpoints rather than assigning an entire subsystem to a long-running worker.
+Keep package and milestone status partial until their actual conditions are met.
 
 **Roles:** GPT-6 Astra in Codex owns implementation, commands, evidence,
 corrections and deployment. Fable 5.1 in Claude is the independent, read-only
 reviewer and outside adviser. Select those models in their respective clients;
-no special CLI flags or shared conversation are assumed. Fable runs in Claude
-Code opened in a read-only checkout of the review revision, or in Claude Cowork
-with that checkout folder connected; in either client it edits nothing under
-the application tree and writes review notes only where the packet says. Fable does not silently
+no special CLI flags or shared conversation are assumed. Use separate terminals
+and separate checkouts: Astra owns the writable build tree; the operator starts
+Fable in Claude against the exact committed candidate, read-only for tracked
+application source. Two terminals on one mutable tree are not isolation.
+The builder does not launch Fable/review subagents unless explicitly requested
+or covered by a specific agreed exception. No coordinator is required.
+Existing checks may write ignored build artifacts; use separate runtime ports
+and isolated synthetic data, not the builder's working database. Fable does not silently
 edit the app, authorize scope cuts, raise spending limits or approve deployment.
 Read-only refers to application code: existing checks and isolated synthetic
 review journeys are allowed. Live paid calls require an explicit review allowance;
@@ -97,6 +105,12 @@ finding with evidence and fixes confirmed problems; Fable rechecks affected
 cases against the new revision. Then record the milestone outcome. Fable
 agreement is not proof, and does not replace user experience acceptance.
 Do not automatically turn every suggestion into a requirement.
+Default to one independent review per planned review boundary followed by a focused recheck of material
+corrections. Additional cycles need remaining material failures or new evidence,
+not a desire for model agreement. If progress stalls, identify the concrete
+unresolved assumption and request an owner decision or propose a small
+falsifying experiment. This is not a hard round limit that hides known defects
+or waives required gates.
 Classify reproduced defects, missing contract behavior and subjective experience
 concerns separately. After a fix, exercise the original failure and adjacent
 input/lifecycle transitions; do not assume repairing one modality preserves
@@ -114,6 +128,9 @@ instructions, synthetic fixture/journey and available runtime access. Let Fable
 form an initial view from the contract and app before reading Astra's success
 narrative. Use the same stable revision or a read-only checkout; do not edit
 under the reviewer. Never include secrets or private user workspace data.
+Keep the handoff small: current outcome and exclusions; candidate and startup/
+journey; observed evidence and gaps; specific review question; next bounded step.
+Use the existing handoff/matrix rather than a new per-model tracking system.
 M5 has one exception to the initial source-first packet: Fable first attempts
 the external-client journey using only the published interface documentation,
 task, endpoint and authorized access. Give implementation details afterward
@@ -142,6 +159,24 @@ complete when" condition. Continue working until that condition is met or a
 named blocker prevents it; do not stop after the first passing check, and do
 not report the condition met without the evidence it names. Readiness of a
 package is separate from milestone review and from user acceptance.
+A session may deliver an explicitly partial checkpoint toward that condition;
+give the next unfinished outcome rather than keeping an oversized task running
+indefinitely or claiming the whole package is complete.
+
+**Delivery discipline:** fix the concrete demonstrated problem in shared
+operations before adding abstractions. Use maintained SDK/library behavior
+where it satisfies the requirement. Add infrastructure only when the current
+capability needs it; defer speculative hardening without weakening authorization,
+revision integrity, cost admission or required recovery. New reviewer ideas are
+optional proposals unless they address the existing contract or the owner
+approves expanded scope.
+
+Use existing checks and logs, with fixtures for the fast loop and small
+authorized live cases for provider compatibility. Retain failures. Additional
+measurement needs a consequential uncertainty and a decision it can change;
+do not add timing harnesses, benchmark campaigns, review coordinators or
+extensive telemetry for ordinary development. Do not rerun a broad review or
+full comparison when a focused check answers the question; required checks remain.
 
 **Documentation prose (Astra):** write `CONTRACT.md`, `CAPABILITIES.md`,
 `DESIGN.md`, `HANDOFF.md`, architecture decisions, commit messages and review
@@ -165,6 +200,9 @@ claims require their own evidence and may honestly remain unresolved.
 You are Fable 5.1 in Claude, acting as an independent external adviser for a new
 Minerva implementation. GPT-6 Astra in Codex owns implementation. This is a
 read-only consultation, not permission to rewrite code or restart the project.
+This session is independently started by the operator in Claude, not routinely
+launched by the builder. Keep advice bounded to the stated question; do not
+turn an impasse into a new framework or an expanded feature assignment.
 
 Use the new repository path, current revision, product/design contracts and
 specific question supplied for this consultation. The product is a complete
@@ -205,6 +243,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M1: Experience proo
 Required prerequisites: The target new-project directory and product goal; this package creates the contract.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Build a new Minerva: a private, single-owner, online-first spatial human-AI
 creative studio. It must support exploring an idea space, seeing relationships
@@ -344,6 +385,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M1: Experience proo
 Required prerequisites: The full product contract; no persistence or model service is required yet.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Create Minerva's runnable foundation in the new project directory. It is a full
 spatial creative studio with relationship-rich cards, three views, contextual
@@ -405,6 +449,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M1: Experience proo
 Required prerequisites: The product contract and runnable UI foundation; use local synthetic data only.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Create Minerva's original visual system and composed application shell in this
 new repository. It is a spatial creative instrument, not an admin dashboard.
@@ -475,6 +522,10 @@ unkept state and unknown evidence are distinguishable; and the Fable M1 review p
 ```text
 You are Fable 5.1 in Claude, independently reviewing M1: Experience proof
 for a newly authored Minerva application. GPT-6 Astra in Codex implements.
+The operator starts this independent Claude review on a separate checkout of
+the exact committed candidate; this is not a routine builder-launched subagent.
+Keep one bounded review, then recheck material corrections rather than restart
+a broad audit. New suggestions do not automatically expand implementation scope.
 Review only: do not change application files, commit or deploy. Run existing
 checks and isolated synthetic journeys, never mutate working user data.
 Live paid calls require an explicit review allowance; without it, inspect
@@ -569,6 +620,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: The product contract, runnable foundation and original experience proof.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's workspace lifecycle in this new Next.js/TypeScript modular
 monolith. Postgres is authoritative; the browser owns transient interaction.
@@ -612,6 +666,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Working workspace/revision operations and the original fixture presentation.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's spatial canvas in this new repository, using its original
 design system and server-owned workspace operations. All custom code must be
@@ -658,6 +715,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Canonical revision identity and working canvas interaction; rerun fixture proposal transitions against real decisions before M2 closes.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's visible relationship graph in this new modular monolith.
 Use newly authored implementation in this project. Inspect canonical revisions,
@@ -703,6 +763,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Exact brief/source revisions and relationship identity; rich part-selection UI follows in M3.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's operation-context compiler in this new modular monolith.
 Use newly authored code and current repository contracts only.
@@ -745,6 +808,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Frozen context, named application operations and stable command identity.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's shared durable run machinery in this new codebase.
 Keep the Next.js/TypeScript modular monolith, Postgres authority and Vercel
@@ -785,6 +851,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Durable run/cost admission and frozen inputs; authorized provider access for live evidence.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Deliver live creative generation in Minerva using newly authored implementation.
 Use this repository's operation context, durable runs and spend admission.
@@ -826,6 +895,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Generated proposals, immutable source revisions and a visible graph.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's independent review and transactional decisions in this new
 codebase. Use shared revisions, generation and lineage. Read the product
@@ -864,6 +936,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: The working Lineage canvas, shared command receipts and creative-operation admission.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Build Minerva's typed collaborator with newly authored code. It discusses and
 develops an evolving creative space, not only recites card text or dispatches
@@ -906,6 +981,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Typed collaboration, shared attention, command identity and cost admission.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's bidirectional voice collaborator in this new
 codebase. Use its typed collaborator, shared commands, attention and cost
@@ -960,6 +1038,10 @@ Fable M2 review packet is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M2: Working spine
 for a newly authored Minerva application. GPT-6 Astra in Codex implements.
+The operator starts this independent Claude review on a separate checkout of
+the exact committed candidate; this is not a routine builder-launched subagent.
+Keep one bounded review, then recheck material corrections rather than restart
+a broad audit. New suggestions do not automatically expand implementation scope.
 The packet states whether this is the interim review after package 10 (spine
 without collaboration: persistence, visible graph, frozen context, durable
 execution, one live creative operation and assessment/acceptance) or the final
@@ -1032,6 +1114,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M3: Creative worksp
 Required prerequisites: Persistent revisions, graph relationships, proposal assessments and the working spine.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Build Minerva's history and inheritance inspection using newly authored
 code in this repository. Keep the modular monolith and immutable revisions.
@@ -1071,6 +1156,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M3: Creative worksp
 Required prerequisites: Source/history inspection and the already working shared generation/review path; wire real behavior now.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement branch-development intent for Minerva in this new repository.
 New custom implementation only. Use the product contract,
@@ -1108,6 +1196,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M3: Creative worksp
 Required prerequisites: Canonical cards/revisions and multi-selection; build the complete comparison workbench.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Build Minerva's generation-independent comparison workflow in the new project.
 Use newly written code and this project's canonical idea/revision model.
@@ -1145,6 +1236,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M3: Creative worksp
 Required prerequisites: Visible lineage and recorded history; preserve the working voice lifecycle.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's Evolution view as required product behavior in this new
 repository. Newly authored implementation only. Use the same canonical ideas,
@@ -1181,6 +1275,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M3: Creative worksp
 Required prerequisites: Canonical graph and view-state separation; compute initial groups, with M4 interpretation tracked separately.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's required Constellation view with newly authored
 code in this repository. Use canonical records and the complete product contract.
@@ -1219,6 +1316,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M3: Creative worksp
 Required prerequisites: Shared context, generation, review and the creative workspace; no static-menu substitute.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Build Minerva's contextual move experience with newly authored implementation.
 Use this repository's frozen context, shared generation/review and durable runs.
@@ -1260,6 +1360,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M3: Creative worksp
 Required prerequisites: Comparison slots, selected-part context and shared generation/review.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Complete Minerva's Weave workflow in this new codebase. Use canonical
 revisions, the comparison set, context compiler and shared generation/review.
@@ -1305,6 +1408,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M3: Creative worksp
 Required prerequisites: Working voice, three views, comparison, contextual moves and Weave.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Complete Minerva's collaborative actions with newly authored code.
 Use the same live workspace, typed/voice channels, context compiler and
@@ -1355,6 +1461,10 @@ updated; and the Fable M3 review packet is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M3: Creative workspace
 for a newly authored Minerva application. GPT-6 Astra in Codex implements.
+The operator starts this independent Claude review on a separate checkout of
+the exact committed candidate; this is not a routine builder-launched subagent.
+Keep one bounded review, then recheck material corrections rather than restart
+a broad audit. New suggestions do not automatically expand implementation scope.
 Review only: do not change application files, commit or deploy. Run existing
 checks and isolated synthetic journeys, never mutate working user data.
 Live paid calls require an explicit review allowance; without it, inspect
@@ -1419,6 +1529,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration int
 Required prerequisites: Shared creative operations, durable execution and an independently testable context compiler.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's durable Wander foundation with newly authored code.
 It explores a possibility space while a person works on the canvas and speaks.
@@ -1457,6 +1570,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration int
 Required prerequisites: Wander roots, frontier, archive and recorded outcomes.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's adaptive exploration policy with newly authored
 code. Use shared durable execution, archive and operation services; read the
@@ -1506,6 +1622,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration int
 Required prerequisites: Actual artifacts, ancestry/context exposure, archive and computed Constellation view.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Build Minerva's evidence-linked map and What this space suggests experience in
 this new codebase. Use canonical artifacts, ancestry, context exposure
@@ -1554,6 +1673,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration int
 Required prerequisites: Shared operations, durable execution, cost admission and recoverable state.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's required Agent Drive using newly authored code in this
 repository. It pursues an explicit goal; Wander explores possibilities.
@@ -1592,6 +1714,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration int
 Required prerequisites: Actual exploration policy, manifests/artifacts and the interactive analysis loop.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Assess and improve Minerva's exploration implementation using newly authored code.
 Read actual artifacts, manifests and the complete product contract. A successful
@@ -1636,6 +1761,10 @@ updated; and the Fable M4 review packet is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M4: Exploration intelligence
 for a newly authored Minerva application. GPT-6 Astra in Codex implements.
+The operator starts this independent Claude review on a separate checkout of
+the exact committed candidate; this is not a routine builder-launched subagent.
+Keep one bounded review, then recheck material corrections rather than restart
+a broad audit. New suggestions do not automatically expand implementation scope.
 Review only: do not change application files, commit or deploy. Run existing
 checks and isolated synthetic journeys, never mutate working user data.
 Live paid calls require an explicit review allowance; without it, inspect
@@ -1709,6 +1838,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining produ
 Required prerequisites: Shared generation/review, comparison and branch refinement; extend rather than duplicate them.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's required creative instruments using newly authored code and
 the existing shared operation pipeline. Read the product contract. These are
@@ -1746,6 +1878,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining produ
 Required prerequisites: Selected revisions, shared generation/admission and artifact provenance.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's required prototype outputs with newly authored
 code. Use selected exact revisions, execution contracts, shared generation,
@@ -1782,6 +1917,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining produ
 Required prerequisites: Prototype/output contracts, comparison and source-linked evidence.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Complete Minerva's output-to-next-work loop with newly authored code. Use the
 existing execution/artifact contracts and exact source revisions.
@@ -1816,6 +1954,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining produ
 Required prerequisites: The complete application operations and a workable protected-access model.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's REST surface with newly authored code. Read the
 product contract and application operations. External access is required,
@@ -1853,6 +1994,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining produ
 Required prerequisites: Shared application operations, REST contracts and authorized machine access.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Implement Minerva's MCP adapter with newly authored code and maintained
 protocol libraries. Use current official documentation and the complete product
@@ -1900,6 +2044,10 @@ is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M5: Remaining product capabilities
 for a newly authored Minerva application. GPT-6 Astra in Codex implements.
+The operator starts this independent Claude review on a separate checkout of
+the exact committed candidate; this is not a routine builder-launched subagent.
+Keep one bounded review, then recheck material corrections rather than restart
+a broad audit. New suggestions do not automatically expand implementation scope.
 Review only: do not change application files, commit or deploy. Run existing
 checks and isolated synthetic journeys, never mutate working user data.
 Live paid calls require an explicit review allowance; without it, inspect
@@ -1979,6 +2127,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated rele
 Required prerequisites: All required capability paths implemented or explicitly listed as blockers.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Qualify and fix Minerva's integrated behavior in this new codebase.
 Use its complete capability contract; do not reduce scope to make checks pass.
@@ -2019,6 +2170,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated rele
 Required prerequisites: A populated working product and original design contract, not a static shell.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Review and correct Minerva against this new repository's complete product and
 original design contracts. Use newly authored custom code/assets. This is a
@@ -2067,6 +2221,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated rele
 Required prerequisites: The full capability matrix and representative functional/visual/runtime evidence.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Audit this newly authored Minerva implementation against every required
 capability C01-C16 and the backend architecture contract. No old application source
@@ -2116,6 +2273,9 @@ You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated rele
 Required prerequisites: Fable's M6 pre-deployment review of the exact candidate, material findings resolved, user acceptance and deployment authorization.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
+Choose one demonstrable outcome for this session; label partial checkpoints
+with their next unfinished outcome. Prepare the handoff for an operator-started
+Fable session in a separate checkout; do not routinely launch your own critic.
 
 Publish Minerva from this newly authored codebase only when authorized.
 It is the complete spatial creative studio: relationship-rich cards and
@@ -2181,6 +2341,10 @@ behavior; and the post-deployment Fable confirmation packet is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M6: Integrated release
 for a newly authored Minerva application. GPT-6 Astra in Codex implements.
+The operator starts this independent Claude review on a separate checkout of
+the exact committed candidate; this is not a routine builder-launched subagent.
+Keep one bounded review, then recheck material corrections rather than restart
+a broad audit. New suggestions do not automatically expand implementation scope.
 Review only: do not change application files, commit or deploy. Run existing
 checks and isolated synthetic journeys, never mutate working user data.
 Live paid calls require an explicit review allowance; without it, inspect

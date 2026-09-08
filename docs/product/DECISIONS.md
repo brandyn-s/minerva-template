@@ -38,6 +38,9 @@ context, immutable lineage, visible acknowledgement and retained history.
 | D-120 | SPEC owns scope; CAPABILITIES owns evidence; CONTRACT is an index | Standard prompts live in Git; HTML and Downloads are exports, not parallel sources |
 | D-121 | Central loop: explore, observe, challenge, intervene, inspect | A narrow demonstration highlights the complete product; recurrence/escape claims need evidence |
 | D-122 | Cold-start external-client review and pre/post-deployment release review | Fable gets published API/MCP instructions before source coaching in M5 |
+| D-123 | Separate operator-initiated Codex/Astra and Claude/Fable sessions on distinct checkouts | Exact committed review candidate; no routine builder-launched critic or automated coordinator |
+| D-124 | One demonstrable outcome per task and a concise evidence-based handoff | Partial checkpoints stay partial; whole capability scope is not the next task's scope |
+| D-125 | One independent review per planned boundary plus focused recheck by default; proportionate measurement | Further cycles need material unresolved failures or new evidence, never a waiver of known defects |
 
 ## Provisional deployment detail
 
