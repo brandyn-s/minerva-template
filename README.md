@@ -9,7 +9,11 @@ choose what AI sees, explore alternatives, and preserve how each idea developed.
 **Implemented here:** a pinned Next.js shell and CI. **Not implemented:** the
 canvas, workspace persistence, AI operations, Voice, or a deployed product.
 This public template stays content-free; build the product in a separate,
-explicitly authorized repository, private by default.
+explicitly authorized repository, private by default. It is for a greenfield
+Next.js app on Vercel with one implementer. On a private free-plan repository
+the ruleset and secret scanning do not apply, so the PR lane is a habit, not a
+control. If your product is an existing app, start from it and copy
+`.github/`, the toolchain pins, and the helpers instead.
 
 ## What to build
 
@@ -78,6 +82,9 @@ Report vulnerabilities privately under [SECURITY.md](./SECURITY.md).
 Use the [launch helper](./docs/launch-cli.md) for resumable provisioning and
 the [deployment helper](./docs/deploy-cli.md) for authorized Next.js delivery.
 Neither is a prerequisite to running or editing the shell.
+[docs/vercel-facts.md](./docs/vercel-facts.md) lists the platform facts a
+build has already paid to learn: Git auto-deploys production, config above the
+root directory is ignored, env vars are per target, Gateway budgets are soft.
 [ROADMAP.md](./ROADMAP.md) retains full-product release/evaluation criteria and
 the earlier sequencing plan. [HACKATHON.md](./HACKATHON.md) is an opt-in timed
 experiment, not the default workflow. [JOURNAL.md](./JOURNAL.md) preserves past
