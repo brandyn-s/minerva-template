@@ -23,7 +23,7 @@ dependency across major versions.
 
 Changes to approved product intent, scope, architecture, or safety boundaries
 require owner approval and corresponding requirement/acceptance updates.
-Record consequential product decisions in [JOURNAL.md](./JOURNAL.md), not
+Record consequential product decisions in [JOURNAL.md](./docs/product/JOURNAL.md), not
 routine activity. A local or simulated slice must not claim full-prototype,
 live-provider, deployed, or human acceptance.
 

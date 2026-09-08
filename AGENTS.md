@@ -2,7 +2,7 @@
 
 Start with [README.md](./README.md) and [CURRENT_GATE.md](./CURRENT_GATE.md).
 Read only requirements relevant to the change. Product authority remains
-`INTENT.md` -> approved `DECISIONS.md` -> `SPEC.md` -> `ARCHITECTURE.md`.
+`docs/product/INTENT.md` -> approved `docs/product/DECISIONS.md` -> `docs/product/SPEC.md` -> `docs/product/ARCHITECTURE.md`.
 
 - Keep this template content-free; product code belongs in an authorized clone.
 - Preserve existing work, explicit context, durable acknowledgement, lineage,

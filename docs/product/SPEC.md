@@ -7,7 +7,7 @@
 | Status | **Approved — September 6, 2026** |
 | Date | September 6, 2026 |
 | Product owner | Brandyn Schult |
-| Current phase | Stable first-prototype behavior contract; current execution status and product-owner authorization are recorded in [CURRENT_GATE.md](./CURRENT_GATE.md) |
+| Current phase | Stable first-prototype behavior contract; current execution status and product-owner authorization are recorded in [CURRENT_GATE.md](../../CURRENT_GATE.md) |
 | Authority after approval | This file governs what the first Minerva prototype must do. `INTENT.md` governs the product problem and thesis. Approved entries in `DECISIONS.md` govern choices already made and cannot be changed here. `ARCHITECTURE.md` governs implementation mechanisms; `ROADMAP.md` governs the long-form sequence and release gates. `CURRENT_GATE.md` records current work but cannot itself grant authority or alter product requirements. |
 | Historical boundary | Searchlight, Atlas, Gestures, source code, deployments, prompts, and transcripts are evidence only. They create no requirement unless it appears in approved Minerva documents. |
 | Change rule | Removing or materially changing an approved requirement requires an explicit decision update, corresponding acceptance changes, and a traceability update. |

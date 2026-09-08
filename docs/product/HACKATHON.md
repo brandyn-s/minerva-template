@@ -3,7 +3,7 @@
 > **Optional experiment profile, not the default build workflow.**
 > Its clock, checkpoints, prepared scene, and evidence packet apply only when
 > the owner explicitly selects this experiment. For ordinary implementation,
-> start with [README.md](./README.md). The reusable shell remains content-free.
+> start with [README.md](../../README.md). The reusable shell remains content-free.
 
 Status: **pre-clock launch packet**. This document makes the repository ready
 to reach a working checkpoint in two hours and, when useful, refine it for up
@@ -243,7 +243,7 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 ```
 
-The [launch CLI](./docs/launch-cli.md) waits for a populated default-branch ref
+The [launch CLI](../launch-cli.md) waits for a populated default-branch ref
 before cloning and reads back privacy and supported controls. Template
 generation copies files, not settings. An unavailable private ruleset or
 security entitlement is a named limitation, never a reason to make a private
@@ -294,7 +294,7 @@ improvement, each with its rationale.
 ## Execution
 
 One implementer owns the first complete creative loop and its delivery.
-Use [the starter](./README.md). Separate agents, lane
+Use [the starter](../../README.md). Separate agents, lane
 issues, worker protocols, integration PRs, and structured telemetry are not
 required. Add parallel work only when its benefit exceeds the handoff cost.
 
@@ -328,7 +328,7 @@ routes disabled or bounded. Establish a content-free shell deployment early to e
 and access failures; it is not a passing product or submission. Repeat on the
 exact frozen checkpoint revision:
 
-Prefer [the Next.js REST operations helper](./docs/deploy-cli.md) for bounded
+Prefer [the Next.js REST operations helper](../deploy-cli.md) for bounded
 readbacks and sanitized receipts. It preserves explicit permissions and
 distinguishes build failure, propagation delay, authentication redirects, and
 runtime/access evidence. The manual CLI path remains a fallback, not a second
