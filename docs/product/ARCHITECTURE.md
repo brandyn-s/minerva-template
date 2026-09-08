@@ -27,7 +27,10 @@ services. Add dependencies when a working slice needs them.
 | Workspace/ideas | Brief, constraints, content revisions, relationships, ownership | DOM, camera, provider transport |
 | Exploration/review | Operation definitions, proposals, assessments, decisions | Canvas rendering or runtime model SDK types |
 | Wander/space analysis | Exploration policy, archive, recurrence and evidence-linked readings | A second execution engine or universal creativity score |
-| Runs | Admission, attempt identity, progress and recovery contracts | Browser lifecycle |
+| Runs | Admission, attempt identity, progress and recovery contracts | Browser lifecycle or policy-specific creative choices |
+| Agent Drive | Explicit goal pursuit and stopping policy on shared operations | A separate execution engine |
+| Comparison/development | Comparison slots, selected parts, versioned recipes and inheritance evidence | Provider transport or user camera |
+| Outputs | Branch-linked prototypes, experiments, handoffs and reusable synthesis | Executing arbitrary generated server code |
 | Investigator | Conversational intents and bounded context/attention contracts | A duplicate mutation path |
 | Canvas/UI | Viewport, selection, rendering and interaction | Canonical content or direct provider credentials |
 | Infrastructure | Database, model and workflow bindings | Independent business rules |
@@ -44,6 +47,17 @@ revisions, derivation edges, semantic links, proposals, reviews, decisions,
 command receipts, operation manifests, runs/steps and exploration observations.
 Use relational records for identities/relationships and bounded versioned JSON
 for feature payloads. Derivation is acyclic; semantic links may contain cycles.
+
+Add comparison state, selected functional parts, transformation recipes,
+inheritance evidence, execution artifacts and reusable synthesis as their
+owning slices arrive. Lineage, Evolution and Constellation share canonical
+IDs/revisions and have independent presentation state. Model classifications,
+user decisions and recorded relationships are distinct.
+
+The graph read model returns usable typed relationships and source references,
+including brief-context membership and all recombination parents. It exposes
+omissions and ancestor expansion rather than silently dropping endpoints at
+pagination boundaries. Keeping a proposal does not sever its original sources.
 
 Layout/viewpoint state has its own revision path. Browser selection, active
 pointer gestures, temporary highlights and unfinished speech are ephemeral.
@@ -122,6 +136,15 @@ Runtime model profiles state capability, supported settings, output schema,
 limits and attempt policy. Astra as the development agent does not force the
 runtime model. Model output is untrusted and assessments are not proofs.
 
+Models interpret, suggest, generate and explain. Conventional application code
+owns identity, revision consistency, graph-reference integrity, permissions,
+spend admission and state transitions. Deterministic code still requires
+correctness evidence; valid parent IDs do not certify meaningful inheritance.
+
+Use platform-authenticated browser entry without a second owner-password
+screen. An environment flag is not proof of platform identity/protection.
+Verify each preview/production/custom address and scoped machine access.
+
 The target is a separate Vercel project with private application access and
 separate preview/production data. Provisionally use a cumulative $100 total
 application envelope, pending explicit scope/period confirmation before spend.
@@ -130,3 +153,18 @@ within that envelope. See [Vercel facts](../vercel-facts.md) for vendor limitati
 
 No infrastructure is created by the template. It contains no paid credentials,
 configured budget, database, voice implementation or deployed application.
+
+## Infrastructure and extension evidence
+
+The application implements environment-separated data/configuration, explicit
+migration execution, pooler-compatible database connections, durable dispatch
+reconciliation, correlated run/request diagnostics, and documented backup/
+restore and reproducible deployment paths. Test recovery on isolated data.
+An expiring preview is not durable release storage. These are responsibilities
+to implement during the application milestones, not unused seed dependencies.
+
+An ordinary new operation should extend its feature contract/definition,
+generation or analysis logic, registration and focused tests without editing
+canvas pointer mechanics, voice connection lifecycle or unrelated workspace
+serialization. New data concepts may legitimately need migrations. Evaluate
+ownership boundaries, not arbitrary file counts or dependency minimization.

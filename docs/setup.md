@@ -6,6 +6,14 @@ content out of this template.
 
 ## Repository identity
 
+Generate the public repository `brandyn-s/minerva` from `brandyn-s/minerva-template`
+only when authorized. Confirm the target does not already exist under that exact
+identity; an old-name redirect is not the requested repository. Never rename,
+overwrite or delete an existing repository as a side effect of setup.
+Record the actual seed revision and template URL in the generated application's
+handoff. A template copy may not retain its parent's commit history; do not
+invent lineage from the generated repo's first commit.
+
 After creating the repository, replace the template's identity:
 
 1. Set the package name and its `repository.url`, `bugs.url` and `homepage`.
@@ -22,10 +30,10 @@ After creating the repository, replace the template's identity:
 Use the package manager to update metadata; replace the example values first:
 
 ```sh
-npm pkg set name=your-project \
-  repository.url=git+https://github.com/YOUR-OWNER/YOUR-REPO.git \
-  bugs.url=https://github.com/YOUR-OWNER/YOUR-REPO/issues \
-  homepage=https://github.com/YOUR-OWNER/YOUR-REPO#readme
+npm pkg set name=minerva \
+  repository.url=git+https://github.com/brandyn-s/minerva.git \
+  bugs.url=https://github.com/brandyn-s/minerva/issues \
+  homepage=https://github.com/brandyn-s/minerva#readme
 ```
 
 Use the pinned Node/npm commands from the README and keep the lockfile's root
@@ -34,9 +42,10 @@ credentials into commands destined for an issue, handoff or commit.
 
 ## Fresh development sessions
 
-Choose one complete block from [build-prompts.md](./build-prompts.md). Start
-GPT-6 Astra in the new application's directory. The prompt supplies product
-context; read only relevant current code and the short `docs/HANDOFF.md`.
+Follow the six milestone prerequisites in [build-prompts.md](./build-prompts.md).
+The 34 blocks are work packages, not 34 mandatory sessions. Start GPT-6 Astra
+in Codex in the new application's directory; read relevant current code, the
+contract index, capability evidence and the short `docs/HANDOFF.md`.
 No source application, prior conversation or external repository is needed.
 
 Keep existing working code. If a prerequisite is missing, complete or report
@@ -44,13 +53,13 @@ that prerequisite rather than introducing a second architecture. Finish one
 outcome before advancing, or checkpoint it for a fresh session. Do not require
 a long multi-compaction conversation.
 
-The model defaults to medium effort. Permissions, network access and optional
+Both Astra and Fable start at medium effort. Permissions, network access and optional
 runner features are configured by the user, not overridden by the template.
 Use relevant official framework documentation for the installed version.
 
 ## Local configuration
 
-Add database/session/model dependencies only when their implementation slice
+Add database/access/model dependencies only when their implementation slice
 needs them. Document each variable in `.env.example` without a live value.
 Use a local Postgres path or explicitly authorized managed service; lack of
 configuration must not silently substitute browser-only persistence.
@@ -65,8 +74,11 @@ Create a separate project only with authorization. Keep the application root
 unambiguous, and configure development/preview/production environments explicitly.
 Preview data must not silently mutate production workspaces.
 
-Public code does not mean public application access. Configure the app's private
-session boundary; deployment protection availability depends on the plan.
+Public code does not mean public application access. Use platform authentication
+without a second application owner-password screen. Deployment protection
+availability depends on the plan and address: a flag or private repo is not
+authentication. Verify preview, production/custom-domain and machine-client
+access separately. Keep unsupported deployment targets disabled.
 Check a real authenticated journey, not merely a successful build status.
 
 Before enabling paid work, confirm the budget period, included charges, text/
@@ -74,3 +86,19 @@ voice credentials, database plan and hosting/workflow cost. The provisional
 $100 allowance is cumulative for the application, not a new allowance for
 every API key. Do not change shared-team budgets or purchase credits without
 authorization. See [Vercel facts](./vercel-facts.md).
+
+## Review and documentation ownership
+
+Use Fable 5.1 through the active Claude client on a stable candidate revision.
+Reviews do not edit application source; isolated synthetic journeys are allowed
+and paid calls need explicit allowance. Record findings and dispositions in
+the capability matrix, not a new diary per model. M2 includes an interim review;
+M5 begins with public interface instructions alone; M6 reviews before publication
+and confirms afterward. Neither model supplies the user's experience acceptance.
+
+The generated repository is authoritative for product docs and standard prompts.
+The seed remains independently maintained and content-free. Do not silently
+sync application features or user evidence back into it. CONTRACT is an index,
+SPEC requirements, CAPABILITIES evidence, and HANDOFF navigation. Exported
+HTML/Downloads snapshots must name their source revision and are never edited
+as competing specifications.

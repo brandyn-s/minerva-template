@@ -13,6 +13,9 @@ next-env.d.ts
 # Local platform and environment state
 .vercel/
 .minerva/
+.local/
+test-results/
+playwright-report/
 .env*
 !.env.example
 
