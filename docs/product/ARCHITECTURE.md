@@ -217,6 +217,22 @@ ownership boundaries, not arbitrary file counts or dependency minimization.
 
 ## Open implementation choices
 
+Resolve lifecycle policy in its owning milestone before implementing the
+affected behavior. Later policies do not block independent earlier work. Record
+the selected behavior here and its observed evidence in CAPABILITIES; use the
+existing handoff rather than another decision system.
+
+| Owning milestone/package | Policy to define with the affected feature |
+|---|---|
+| M2 / 4 | Workspace deletion, retained history, export and backup/restore interactions |
+| M2 / 8 | Pause/stop versus admitted work, restart reconciliation and conflicting run effects |
+| M2 / 11-12 | Transcript retention/deletion before typed-conversation storage; raw-audio retention and reconnect behavior with voice |
+| M4 / 21-24 | Concurrent Wander/Agent Drive scope and goal-specific completion evidence, including human judgment for subjective outcomes |
+
+Model-reported confidence or progress cannot settle human judgments of idea
+feasibility or usefulness. Preserve the already specified revision, authority,
+cost and recovery boundaries while resolving these details.
+
 Choose compatible dependency versions, the Postgres driver/configuration,
 runtime text/voice profiles, exploration policy and analysis thresholds within
 the selected React Flow, Drizzle and polling foundations. Reconsider a foundation

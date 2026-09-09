@@ -28,12 +28,27 @@ for bounded launch instructions and a concise evidence-based handoff.
 
 ## Shared demonstration and review
 
-Use one original representative brief and graph, plus counterexamples and dense
-scenes. Demonstrate explore -> observe -> challenge -> intervene -> inspect:
+Use the shipped mall demo in [SPEC](./product/SPEC.md#shipped-demo-and-human-judgment),
+plus counterexamples and dense scenes. Extend its editable data and demonstration
+of each tool as the owning capability arrives; verify all tools at release.
+Show tools expanding the seed problem alone, developing a selected starting
+proposal and working across selected proposals, following SPEC's demo inputs.
+Build semantic examples around those tool operations and resulting branches.
+Demonstrate explore -> observe -> challenge -> intervene -> inspect:
 discuss possible recurrence while manipulating ideas, inspect supporting evidence,
 request a change, recombine a distant contribution and inspect both parents and
 the actual result before keeping it. Include an inconclusive or failed intervention.
 Prepared data is not live AI; a separate chat beside decorative cards is insufficient.
+
+Humans judge idea feasibility and creative usefulness. The owner drives examples
+and iteration within milestone chunks. Build feasibility is settled; do not add
+feasibility studies, estimation gates or a research platform. Define lifecycle
+policies when their owning milestone arrives, following
+[ARCHITECTURE](./product/ARCHITECTURE.md#open-implementation-choices).
+
+Use the lightweight reference setup in SPEC for the demo and one denser scene.
+Record actual input, viewport and graph size; measure reproduced friction when
+needed rather than establishing a performance framework or arbitrary time gate.
 
 Review the exact candidate against its milestone journey before reading the
 builder's conclusions. Report each material finding with capability, expected
@@ -48,6 +63,25 @@ M1's experience acceptance precedes dependent work. M2 reviews after packages
 required review, behavior or acceptance remains a blocker; only authorized
 independent work may continue. Lack of optional hosting is not a local-release
 blocker, and creative-efficacy claims remain unresolved without human evidence.
+
+### Small task comparisons within milestone chunks
+
+Use brief owner-led comparisons to guide iteration, with the mall brief and the
+same source material where possible. A text/list presentation of saved artifacts
+is enough as a reference; do not build another interface or evaluation service.
+
+| When | Small task | Human observation to record |
+|---|---|---|
+| M1 / 3 | Inspect the same prepared parent/child material as text and in the atlas; identify each contribution and select a next direction | Source comprehension, orientation and interaction friction |
+| M2 / 10 | Inspect saved results from the first live operation as text and in the workspace; explain their origins and choose what to develop | Useful differences, evidence clarity and effort to choose a next step |
+| M2 / 12 | Discuss a branch while moving another and receiving results | Whether spoken collaboration helps or interrupts the person's work |
+
+Record the task, candidate, prepared/live inputs, observed friction and the
+owner's judgment in CAPABILITIES. Reuse saved results; any fresh comparison
+calls remain within explicit spend authorization. These comparisons are part
+of existing demonstrations, not extra review gates, numeric efficacy scores or
+claims of general superiority. Repeat when the owner steers a change or new
+evidence warrants it. M4 retains its compact exploration comparison.
 
 ## Fable consultation: an independent view at a decision or impasse
 
@@ -91,8 +125,9 @@ its inventory. Confirm the single-user, browser-only, no-sign-in local default,
 internal backend, Postgres and durable workflows. Preserve the working code and
 current requirements. Missing configuration stays explicit.
 
-Record the actual seed revision and an original representative brief for the
-explore/observe/challenge/intervene/inspect journey. Keep examples synthetic.
+Record the actual seed revision and use the mall seed prompt specified in SPEC
+for the explore/observe/challenge/intervene/inspect journey. Author synthetic
+demo records and label any additional site assumptions explicitly.
 The experience includes an unsuccessful intervention, exact source contributions
 and uncertainty; a narrow demonstration does not remove required capabilities.
 
@@ -208,7 +243,7 @@ one principal contextual action. Rich artifact text and evidence open on demand.
 Do not reproduce every action on every card. Preserve readable keyboard/touch
 controls; color and motion cannot be the only information channels.
 
-Build an original synthetic visual fixture with branches, a multi-parent child,
+Build the original synthetic mall fixture with branches, a multi-parent child,
 an unkept draft and a semantic link. Label fixture-only behavior honestly.
 Make the fixture interactive: pan/zoom, move a card with attached edges, inspect
 its parents, select a pair and open a contextual chooser. These are local
@@ -229,6 +264,8 @@ linear chat: trace multiple parents and compare distant contributions while
 retaining spatial context. Do not substitute texture or animation for this.
 Write DESIGN.md as the enforceable visual contract,
 not generic adjectives. Update C15 evidence; this shell is not a finished app.
+Run the M1 small task comparison with the owner and record the observation;
+use its findings to guide this experience proof within the existing review.
 Milestone closeout: demonstrate this complete M1 journey:
 Pan and zoom; trace both parents of a recombination; move a card with its edges attached; inspect inherited material; select a pair; open a local contextual chooser on desktop and touch.
 Prepare the exact-candidate packet for this milestone's Fable review.
@@ -298,8 +335,8 @@ spine without collaboration: persistence, visible graph, frozen context, durable
 execution, one live creative operation and assessment/acceptance. Resolve
 material findings before starting packages 11 and 12. After package 12, run
 the same review as the **final M2 review** with the full demonstration,
-including voice during canvas work. Expect the final review to take at least
-one recheck round; that is normal for this milestone, not a scope problem.
+including voice during canvas work. Recheck material corrections when failures
+or new evidence warrant it; there is no required number of recheck rounds.
 
 ### Prompt 4: implement workspaces, persistence and no-sign-in local access
 
@@ -317,6 +354,9 @@ confirmation, plus saved brief and explicit constraints. Duplicate creates
 independent identities and preserves meaningful internal references; deletion
 must account for active runs and referenced history rather than orphaning it.
 Keep old-system import/migration out of scope.
+Resolve the M2/4 lifecycle policies listed in ARCHITECTURE before implementing
+deletion and retained-data behavior; later voice/run policies remain with their
+owning packages.
 
 Use immutable content/brief revisions, independent layout versions, explicit
 migrations and named application operations. Use Drizzle (drizzle-orm)
@@ -491,6 +531,7 @@ Implement Minerva's shared durable run machinery in this new codebase.
 Keep the Next.js/TypeScript modular monolith, Postgres authority and Vercel
 Workflow. Inspect frozen context and application operations; report missing
 prerequisites rather than building a competing engine.
+Define the M2/8 run lifecycle policies in ARCHITECTURE with this implementation.
 
 Persist admission and dispatch intent, start workflows, checkpoint individual
 steps, expose progress and partial results, and support pause/resume/stop and
@@ -513,13 +554,16 @@ Retain failed/uncertain attempts. No automatic top-up or silent provider switch.
 Vendor metering and app reservations are not an exact hard billing ceiling.
 
 Exercise dispatch failure, duplicate completion, browser close, stopped admission,
-partial siblings and exhausted allowance using explicit fixtures. Keep every
-canvas view responsive. Update C10/C12 and architecture evidence; do not deploy.
+partial siblings and exhausted allowance using explicit fixtures. Keep the
+working Lineage view responsive. Repeat affected cases across Evolution and
+Constellation when those views arrive in M3. Update C10/C12 and architecture
+evidence; do not deploy.
 Package complete when: admission, dispatch, checkpointing, progress, pause,
 resume, stop, reconnect and reconciliation work against fixtures; command
 receipts are idempotent; the shared envelope and component allocations are
-configured; the listed failure cases pass with every canvas view responsive;
-and C10/C12 and architecture evidence are updated.
+configured; the listed failure cases pass with the working Lineage view
+responsive; and C10/C12 and architecture evidence record the M3 cross-view
+obligation.
 ```
 
 ### Prompt 9: generate live alternatives with capability-aware models
@@ -592,6 +636,8 @@ Exercise duplicate acceptance, changed parents, unavailable review, edited
 annotations, multi-parent keep and dependent undo. Verify graph visibility
 before/after keep and after reload. Update C03/C04/C05 evidence and the handoff.
 Use live calls only within existing authorization; no extra review engine.
+Run the M2/10 small task comparison using the saved live-operation results;
+record the owner's observations with the interim review evidence.
 Package complete when: assessment states, inspect/edit/keep/set-aside
 decisions, atomic acceptance with lineage, invalidation on edit and dependent
 undo work; the listed cases pass; graph visibility holds before and after keep
@@ -609,6 +655,8 @@ Read AGENTS.md and the relevant product contracts; implement one connected outco
 Build Minerva's typed collaborator with newly authored code. It discusses and
 develops an evolving creative space, not only recites card text or dispatches
 commands. Use the local product contract and shared application operations.
+Define transcript retention and deletion before persisting conversation, using
+the M2/11-12 lifecycle policies in ARCHITECTURE. Raw-audio policy belongs to voice.
 
 Deliver this package as connected increments, not a whole collaborator subsystem.
 First select a saved card, send a typed message and display a context-grounded
@@ -658,6 +706,8 @@ Read AGENTS.md and the relevant product contracts; implement one connected outco
 Implement Minerva's bidirectional voice collaborator in this new
 codebase. Use its typed collaborator, shared commands, attention and cost
 admission. Read current official provider/SDK contracts and the product scope.
+Resolve conversation and audio retention with the owner before implementing
+storage, following the M2/11-12 lifecycle policies in ARCHITECTURE.
 
 Use the following increments rather than one large "voice subsystem" assignment.
 Integrate and exercise each in the running workspace before expanding it.
@@ -706,6 +756,8 @@ behavior instead of assuming token expiry is a hard billing cutoff. No silent
 provider switch or top-up. Exercise fixtures and an authorized real spoken
 exchange including interruption and reconnect. Record live versus simulated
 evidence for C13; do not describe transcription alone as voice collaboration.
+Run the M2/12 small task comparison during this combined journey and record
+the owner's judgment; the comparison adds no separate review gate.
 Milestone closeout: demonstrate this complete M2 journey:
 Create a workspace and idea; generate alternatives; trace sources; inspect and keep a result; reload; discuss a card by voice while moving another and receiving durable operation results; interrupt speech.
 Prepare the exact-candidate packet for this milestone's Fable review.
@@ -835,10 +887,10 @@ attempts and their reasons. A recipe can later be replayed against an explicitly
 chosen source revision, with fresh validation and separate result identity.
 Do not overwrite the source, silently rerun a recipe or imply its result works.
 
-This slice implements the intent, domain operations and fixture-backed UI.
-Use the shared live generation/review path when it exists; otherwise label that
-part incomplete rather than creating a second engine or fake live output.
-The eventual workflow must deliver generated alternatives, not just save forms.
+Use fixtures for focused iteration, then integrate through the already working
+shared live generation/review path. If that prerequisite is unavailable, keep
+the package incomplete and report the specific gap. Completion requires
+generated alternatives through that path, not only saved forms or fixture UI.
 
 Exercise preserve/avoid conflicts, stale source selection, recipe replay,
 rejected previews and acceptance with downstream history. Update C05 with
@@ -981,10 +1033,15 @@ choice already made. Pan/zoom does not restart planning. Source/constraint edits
 do require revalidation. A static generic fallback must be labeled as such and
 cannot stand in for the required contextual-planning capability.
 
+Implement C08's distinction between the local chooser, bounded planning and
+creative artifact generation. Define the planning trigger, revision-scoped
+freshness and admission with this package while preserving the direct journey.
+
 Do not prescribe a radial implementation, but preserve its useful behavior:
 local to the card, immediate, small, specific, no nested menu path. From a visible
 card, opening and choosing a move should need at most two activations, excluding
-optional editing. Navigation and opening a chooser must not launch generation.
+optional editing. Navigation cannot launch model work; opening the chooser must
+not generate creative artifacts or create new spending authority.
 
 Exercise suggestions for genuinely different source cards, proposed partner
 preview, choosing during planning, stale sources, planner failure and keyboard/
@@ -1267,6 +1324,9 @@ Let the person set a goal, permitted action scope, observable stopping condition
 and attempt/spend allowance. The policy can inspect, develop, compare and
 propose recombinations through normal application operations. Record why each
 action serves the goal and what result actually occurred.
+Resolve the M4 lifecycle policies in ARCHITECTURE here: overlapping run scope
+and the evidence appropriate to each stopping condition. Human judgments of
+feasibility and creative usefulness remain with the person.
 
 Distinguish model-estimated progress from an observed satisfied condition.
 Stop on completion, user stop, allowance exhaustion or bounded stagnation.
@@ -1665,6 +1725,14 @@ inheritance, three real views, contextual moves, comparison/Weave, instruments,
 Wander and space analysis, Agent Drive, concurrent voice and outputs.
 Read the capability matrix, design acceptance and architecture/infrastructure
 evidence.
+
+Ship the editable mall demo described in SPEC alongside every fully functional
+tool. Demonstrate each tool on that seed prompt, preserve the resulting source
+relationships and outputs, and let the person continue exploring through normal
+workspace operations. Verify the blank-start path as well. Record each demo
+example in the owning capability's evidence; prepared records never replace
+missing live functionality, and demonstration records cannot claim fabricated
+historical provider receipts.
 
 Do not present further scope cuts as completed Minerva. All required behaviors must
 have evidence; unresolved subjective acceptance stays explicit.
