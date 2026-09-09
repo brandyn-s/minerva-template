@@ -1,5 +1,2 @@
-# Model defaults for new Minerva development sessions.
-# Credentials, permissions, and optional runner features remain user-managed.
-
 model = "gpt-6-astra"
 model_reasoning_effort = "medium"

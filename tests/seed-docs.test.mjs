@@ -6,13 +6,11 @@ import { test } from "node:test";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const read = (path) => readFile(resolve(root, path), "utf8");
-const capabilityIds = Array.from({ length: 16 }, (_, i) => `C${String(i + 1).padStart(2, "0")}`)
-  .filter((id) => id !== "C15");
-const packageIds = Array.from({ length: 34 }, (_, i) => i + 1)
-  .filter((id) => id !== 29 && id !== 30);
+const capabilityIds = Array.from({ length: 15 }, (_, i) => `C${String(i + 1).padStart(2, "0")}`);
+const packageIds = Array.from({ length: 32 }, (_, i) => i + 1);
 const packagesIn = (source) => [...source.matchAll(/^### Prompt (\d+): ([^\n]+)\n\n```text\n([\s\S]*?)\n```/gm)];
 
-test("the prototype retires only external API packages and retains milestone reviews", async () => {
+test("the prototype has consecutive packages and complete milestone reviews", async () => {
   const prompts = await read("docs/build-prompts.md");
   const packages = packagesIn(prompts);
   assert.deepEqual(packages.map((p) => Number(p[1])), packageIds);
@@ -22,12 +20,13 @@ test("the prototype retires only external API packages and retains milestone rev
   for (const [, number, , body] of packages) {
     assert.match(body, /^Required prerequisites: .+/m, `Prompt ${number}`);
     assert.equal([...body.matchAll(/^Package complete when:/gm)].length, 1, `Prompt ${number}`);
+    assert.match(body, /Read AGENTS\.md/, `Prompt ${number} must load the shared working rules`);
     assert.doesNotMatch(body, /\/Users\/|minerva[-_]v[23]\b/, `Prompt ${number} depends on old material`);
   }
   assert.match(packages[11][2], /bidirectional voice/);
   assert.match(packages[10][3], /working Lineage view during a durable operation/);
   assert.doesNotMatch(packages[10][3], /scenarios pass in all three views/);
-  assert.match(prompts, /complete Astra packages 31-33, run the Fable M6 review/);
+  assert.match(prompts, /complete Astra packages 29-31, run the Fable M6 review/);
   assert.match(packages[2][3], /M1 offers only functioning local interactions/);
   assert.doesNotMatch(packages[2][3], /real view navigation|exploration\/conversation access/);
   const spineReview = prompts.match(/### Fable review M2: [^\n]+\n\n```text\n([\s\S]*?)\n```/)?.[1];
@@ -39,28 +38,26 @@ test("the prototype retires only external API packages and retains milestone rev
 test("SPEC owns the full scope and the evidence matrix covers the same capabilities", async () => {
   const spec = await read("docs/product/SPEC.md");
   const matrix = await read("docs/product/CAPABILITIES.md");
-  const contract = await read("docs/product/CONTRACT.md");
+  const index = await read("README.md");
   const prompts = packagesIn(await read("docs/build-prompts.md"));
   assert.deepEqual([...spec.matchAll(/^### (C\d{2}):/gm)].map((m) => m[1]), capabilityIds);
   assert.deepEqual([...matrix.matchAll(/^\| (C\d{2}) \|/gm)].map((m) => m[1]), capabilityIds);
-  assert.deepEqual([...prompts[0][3].matchAll(/^(C\d{2}) /gm)].map((m) => m[1]), capabilityIds);
-  assert.match(contract, /index, not a duplicate specification/);
-  assert.match(prompts[0][3], /If the active contract is already correct, leave it intact/);
-  assert.match(prompts[0][3], /active inherited contract is verified\s+current or reconciled/);
+  assert.match(index, /## Documentation/);
+  assert.match(index, /SPEC owns behavior/);
+  assert.match(prompts[0][3], /SPEC\.md owns all fifteen required capabilities/);
+  assert.doesNotMatch(prompts[0][3], /^C\d{2} /m);
   assert.match(spec, /loopback-only local access with no sign-in/);
-  assert.match(await read("docs/product/INTENT.md"), /C01-C14 and C16 in \[SPEC\.md\]\(\.\/SPEC\.md\)/);
+  assert.match(await read("docs/product/INTENT.md"), /C01-C15 in \[SPEC\.md\]\(\.\/SPEC\.md\)/);
   assert.match(await read("docs/product/INTENT.md"), /recovery begin with the M2 working spine/);
 });
 
 test("working instructions preserve the milestone boundaries and seed ownership", async () => {
   const agents = await read("AGENTS.md");
-  const decisions = await read("docs/product/DECISIONS.md");
   assert.match(agents, /SPEC owns requirements/);
   assert.match(agents, /Fable 5\.1/);
   assert.match(agents, /seed has\s+documentation-consistency tests, not product coverage/);
   assert.doesNotMatch(agents, /Do not\s+create transcripts, diaries, phase gates/);
-  assert.match(decisions, /D-104 \(superseded by D-115\)/);
-  assert.match(decisions, /D-111 \(superseded by D-116\)/);
+  assert.match(agents, /Read the selected package and relevant contracts/);
   assert.match(await read("CLAUDE.md"), /^@AGENTS\.md/m);
 });
 
@@ -83,19 +80,25 @@ test("dry-run interaction scenarios reach implementation and independent review 
 });
 
 test("selected foundations reach the relevant implementation packages", async () => {
-  const decisions = await read("docs/product/DECISIONS.md");
   const architecture = await read("docs/product/ARCHITECTURE.md");
+  const setup = await read("docs/setup.md");
   const packages = packagesIn(await read("docs/build-prompts.md"));
-  for (const id of ["D-129", "D-130", "D-131"]) {
-    assert.match(decisions, new RegExp(`^\\| ${id} \\|`, "m"));
-  }
   assert.match(architecture, /@xyflow\/react/);
   assert.match(architecture, /drizzle-orm/);
   assert.match(architecture, /drizzle-kit/);
-  assert.match(packages.find((p) => p[1] === "2")[3], /@xyflow\/react, D-129/);
-  assert.match(packages.find((p) => p[1] === "4")[3], /drizzle-orm, D-130/);
-  assert.match(packages.find((p) => p[1] === "8")[3], /persisted progress initially \(D-131\)/);
-  assert.doesNotMatch(decisions.split("## Deliberately open")[1], /Canvas renderer/);
+  assert.match(packages.find((p) => p[1] === "2")[3], /@xyflow\/react/);
+  assert.match(packages.find((p) => p[1] === "4")[3], /drizzle-orm/);
+  assert.match(packages.find((p) => p[1] === "8")[3], /persisted progress initially/);
+  assert.match(architecture, /mutation and its command receipt in the same database transaction/);
+  assert.match(architecture, /Canceling a poll does not stop the\s+run/);
+  assert.match(architecture, /Do not replace migrations with schema push/);
+  assert.match(architecture, /Typed and voice collaboration share context compilation/);
+  assert.match(setup, /React Flow with custom cards\/application layouts, Drizzle with explicit SQL/);
+  const manifest = JSON.parse(await read("package.json"));
+  for (const dependency of ["@xyflow/react", "drizzle-orm", "drizzle-kit"]) {
+    assert.equal(manifest.dependencies[dependency], undefined);
+    assert.equal(manifest.devDependencies[dependency], undefined);
+  }
 });
 
 async function markdownFiles(directory) {
@@ -169,7 +172,7 @@ test("M5 ends with browser outputs and M6 permits local completion without hosti
   const m5 = source.match(/### Fable review M5: [^\n]+\n\n```text\n([\s\S]*?)\n```/)[1];
   assert.doesNotMatch(m5, /actual MCP client|published API|cold-start/);
   assert.match(m5, /instruments in the browser/);
-  const release = packages.find((p) => p[1] === "34")[3];
+  const release = packages.find((p) => p[1] === "32")[3];
   assert.match(release, /Hosting is not required to complete this package/);
   assert.match(release, /integrated local journey/);
   assert.match(release, /existing\s+suitable private boundary/);
@@ -177,6 +180,23 @@ test("M5 ends with browser outputs and M6 permits local completion without hosti
   const m6 = source.match(/### Fable review M6: [^\n]+\n\n```text\n([\s\S]*?)\n```/)[1];
   assert.match(m6, /LOCAL OPERATION CONFIRMED/);
   assert.match(m6, /Hosted operation is not required/);
+});
+
+test("current documents have valid capability references and no obsolete scaffolding", async () => {
+  for (const file of ["docs/product/CONTRACT.md", "docs/product/DECISIONS.md",
+    "docs/vercel-facts.md", "vercel.json"]) {
+    await assert.rejects(access(resolve(root, file)), { code: "ENOENT" });
+  }
+  for (const file of ["AGENTS.md", "README.md", ...await markdownFiles("docs")]) {
+    const source = await read(file);
+    assert.doesNotMatch(source, /CONTRACT\.md|DECISIONS\.md|vercel-facts\.md|D-\d{3}/, file);
+    assert.doesNotMatch(source, /superseded|retired|23-prompt|scope amendment/i, file);
+    for (const [id] of source.matchAll(/\bC\d{2}\b/g)) {
+      assert(capabilityIds.includes(id), `${file}: unknown capability ${id}`);
+    }
+    const authored = source.replace(/<!-- BEGIN:nextjs-agent-rules -->[\s\S]*?<!-- END:nextjs-agent-rules -->/, "");
+    assert.doesNotMatch(authored, /<!--/, `${file}: commented-out documentation`);
+  }
 });
 
 test("repository documentation links resolve without external workspace paths", async () => {

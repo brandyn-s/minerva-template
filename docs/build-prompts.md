@@ -1,286 +1,66 @@
-# Minerva: milestone-based Astra build and Fable review
+# Minerva: Astra build packages and Fable reviews
 
-This repository's standard edition is authoritative. Exported HTML and Downloads
-copies are reading aids, not independently edited sources. Use this edition for
-the whole build. [CONTRACT.md](./product/CONTRACT.md) indexes the contracts:
-[SPEC.md](./product/SPEC.md) owns C01-C14 and C16 requirements, while
-[CAPABILITIES.md](./product/CAPABILITIES.md) owns implementation evidence.
-Keep those responsibilities distinct rather than maintaining competing specs.
+Build the single-user, browser-only prototype defined by
+[SPEC](./product/SPEC.md), with no sign-in and loopback-only local access.
+Keep the internal backend, Postgres and durable workflows. Hosting is optional
+only behind an existing suitable private boundary; external APIs are excluded.
 
-**Corrected contract, September 8, 2026:** build the complete spatial creative
-studio described below, with better architecture and implementation. This is not
-a smaller MVP, a generic canvas, or a reskin. Engineering may be staged; the
-required product capabilities may not be silently staged out of delivery.
+Read [AGENTS](../AGENTS.md) for shared working/review rules and
+[README](../README.md#documentation) for document ownership. Each copyable package
+contains its specific task and acceptance conditions; it depends on the current
+repository, not a separate conversation. Read only the relevant contracts.
 
-**Prototype scope amendment, September 8, 2026:** this is a single-user,
-browser-only prototype with no sign-in. C15 and external REST/MCP/API packages
-29-30 are removed; all remaining capability and package IDs stay stable.
-Default to loopback-only local access. Internal browser/voice endpoints,
-server-held provider credentials, Postgres and durable runs remain.
-Hosting is optional only behind an existing suitable private boundary that
-preserves no-sign-in use and denies outside access. Otherwise remain local;
-do not create accounts, access infrastructure or an anonymous public paid service.
+Use one connected user outcome per assignment. These are 32 work packages, not
+32 mandatory sessions. Preserve prerequisites and keep partial work labeled.
+The six milestones demonstrate progress toward all fifteen required capabilities.
+Astra builds; the operator starts Fable on a separate exact-candidate checkout.
+Both start at medium effort. Follow [setup](./setup.md#standard-checkpoint-output)
+for bounded launch instructions and a concise evidence-based handoff.
 
-**New implementation:** author the custom application code, styling, runtime
-prompts, tests and custom assets from scratch. Do not copy, port, translate,
-wrap or cherry-pick an earlier Minerva application. The owner's content-free
-template (below) is the one authorized starting point. Standard frameworks,
-SDKs, canvas libraries, fonts and generic scaffolding are allowed with
-appropriate licenses. Continue and reuse work
-created within this new build across sessions; do not rewrite it each time.
-
-**Equivalent product, not an exact replica:** deliver the specified functionality,
-capabilities, interactiveness, responsiveness and living-atlas theme. Layouts,
-components, artwork, schemas, endpoints and interaction implementations may
-differ. Improve them where useful, but do not use that freedom to remove a
-workflow, make relationships unreadable, add interaction friction or replace
-contextual intelligence with generic controls. No old source or screenshots
-are required to execute these prompts.
-
-**Repository and starting point (owner decision, September 8):** the new
-`minerva` repository is a **public** GitHub repository created from the
-owner's template, https://github.com/brandyn-s/minerva-template. The
-application defaults to local access with no sign-in; public source never
-grants access to workspaces, credentials or paid operations, so the repository
-must never contain secrets, user workspace data or unlicensed third-party
-assets, and its MIT license carries forward. The template's pinned Next.js
-shell, CI workflow, `.codex/config.toml`, `AGENTS.md` working agreement,
-original owl mark and DESIGN identity are the authorized scaffold and count as
-generic starting material, not as the prohibited reuse of an earlier Minerva
-application. Earlier template revisions used a superseded 23-prompt sequence,
-first-release scope statements and a "no phase gates" rule. Prompt 1 inspects
-the generated repository's active contract and reconciles outdated instructions
-only where needed. Clearly superseded historical decisions can remain. Do not
-infer that a template update is published from the existence of a proposed
-patch or branch name; inspect the actual generated files.
-
-**Delivery model:** six milestones, 32 Astra work packages, not 32 mandatory
-sessions. IDs 29-30 are retired. C01-C14 and C16 remain required. Demonstrations are
-checkpoints of that complete product, not reduced MVP definitions.
-
-**Central feedback loop:** explore -> observe -> challenge -> intervene ->
-inspect the result. Demonstrate a person discussing a space while manipulating
-it: identify two potentially recurring mechanisms, inspect whether that
-interpretation is supported, propose a concrete change, combine a useful
-contribution with a distant branch, and inspect both parents and the changed
-interaction before keeping the result. Show an inconclusive or unsuccessful
-intervention honestly too. Focus the demonstration, not the product scope.
-
-Use one newly authored representative brief and graph throughout the milestones,
-plus counterexamples and dense-scene cases. Prepared records are labeled;
-an early fixture is not claimed as live AI. Spatial and voice interaction must
-remove real friction: tracing inheritance and speaking while the hands manipulate
-other work. A separate chat box beside decorative cards does not meet this goal.
-
-| Milestone | Astra work packages | Demonstrated outcome |
+| Milestone | Packages | Demonstrated outcome |
 |---|---|---|
-| M1: Experience proof | 1-3 | An original, populated, interactive atlas that makes relationships and contextual actions understandable before extensive backend work. |
-| M2: Working spine | 4-12 | One real end-to-end path through persistence, visible graph, a creative operation, assessment, acceptance and concurrent spoken collaboration. |
-| M3: Creative workspace | 13-20 | Rich inheritance, reusable branch development, specific contextual suggestions, direct comparison/Weave and three real views over one workspace. |
-| M4: Exploration intelligence | 21-25 | Wander explores and responds to recurrence; map/readings are challengeable; Agent Drive pursues explicit goals without a separate engine. |
-| M5: Remaining product capabilities | 26-28 | Complete instrument coverage and usable browser output artifacts, without duplicating engines or creating alternative state stores. |
-| M6: Integrated release | 31-34 | A complete, independently reviewed prototype operating locally with durable state and accepted experience; private hosting is optional. |
+| M1: Experience proof | 1-3 | A populated interactive atlas with understandable relationships and contextual actions, using prepared local data. |
+| M2: Working spine | 4-12 | Persistence, visible graph, real creative generation, assessment/acceptance and concurrent spoken collaboration. |
+| M3: Creative workspace | 13-20 | Inheritance, reusable development, contextual moves, comparison/Weave and three views. |
+| M4: Exploration intelligence | 21-25 | Wander, challengeable recurrence/readings and goal-directed Agent Drive on shared operations. |
+| M5: Remaining product capabilities | 26-28 | Browser instruments, runnable output artifacts, experiments and reusable results. |
+| M6: Integrated release | 29-32 | Independently reviewed local operation, durable state, accepted experience and honest operating limits. |
 
-**Scheduling:** follow the milestone dependencies and each package's stated
-prerequisites. Numbering gives a recommended route, not permission to continue
-past a broken prerequisite. Closely related packages may share a session when
-they form one coherent outcome; a difficult package may span several fresh
-sessions. Do not split concurrent writers over the same code. Prioritize the
-next demonstrable user journey over completing disconnected layers.
-At each session start, state one visible outcome, explicit exclusions and the
-evidence that will close that outcome. Break an overlarge package into coherent
-checkpoints rather than assigning an entire subsystem to a long-running worker.
-Keep package and milestone status partial until their actual conditions are met.
-Choose a working user action, not a subsystem: starting state, user action,
-observable result and relevant failure boundary. Integrate the smallest path
-through UI and current services before expanding. Code returned by a worker
-without a working caller is written, not delivered. When an increment expands,
-name the dependency and checkpoint/split the remainder rather than silently
-growing the assignment.
+## Shared demonstration and review
 
-**Resumption:** the copyable launch instruction must include the absolute
-existing worktree path, branch and expected checkpoint. Use that exact path;
-verify state without resets or a home-directory search. If unavailable, report
-the specific mismatch. Reconcile explicitly requested instruction changes once
-from a pinned source and relevant file delta, preserving application evidence,
-then implement the bounded outcome. See [the resume block](./setup.md#resuming-an-existing-checkpoint).
-After the UI caller, backend entry point and decisive journey are located,
-further discovery must resolve a named question. A failed lookup should use
-actual filenames or another scoped tool within that known directory, not a
-machine-wide search. Reopen document reconciliation only when new instructions
-or a concrete blocking conflict justify it.
+Use one original representative brief and graph, plus counterexamples and dense
+scenes. Demonstrate explore -> observe -> challenge -> intervene -> inspect:
+discuss possible recurrence while manipulating ideas, inspect supporting evidence,
+request a change, recombine a distant contribution and inspect both parents and
+the actual result before keeping it. Include an inconclusive or failed intervention.
+Prepared data is not live AI; a separate chat beside decorative cards is insufficient.
 
-**Roles:** GPT-6 Astra in Codex owns implementation, commands, evidence,
-corrections and deployment. Fable 5.1 in Claude is the independent, read-only
-reviewer and outside adviser. Select those models in their respective clients;
-no special CLI flags or shared conversation are assumed. Use separate terminals
-and separate checkouts: Astra owns the writable build tree; the operator starts
-Fable in Claude against the exact committed candidate, read-only for tracked
-application source. Two terminals on one mutable tree are not isolation.
-The builder does not launch Fable/review subagents unless explicitly requested
-or covered by a specific agreed exception. No coordinator is required.
-Existing checks may write ignored build artifacts; use separate runtime ports
-and isolated synthetic data, not the builder's working database. Fable does not silently
-edit the app, authorize scope cuts, raise spending limits or approve deployment.
-Read-only refers to application code: existing checks and isolated synthetic
-review journeys are allowed. Live paid calls require an explicit review allowance;
-otherwise inspect available evidence and mark live verification incomplete.
+Review the exact candidate against its milestone journey before reading the
+builder's conclusions. Report each material finding with capability, expected
+and observed behavior, reproduction/evidence, consequence, confidence and the
+smallest correction. Distinguish missing behavior, hypotheses and preferences.
+Return READY FOR NEXT MILESTONE, CHANGES REQUIRED or BLOCKED; M2's interim and
+M6's release verdicts are specified below. Name access/evidence gaps and pending
+user acceptance. Model agreement does not prove quality or grant acceptance.
 
-**Milestone loop:** Astra builds the demonstrable outcome; Fable independently
-exercises and critiques it; Astra accepts, rejects or clarifies each material
-finding with evidence and fixes confirmed problems; Fable rechecks affected
-cases against the new revision. Then record the milestone outcome. Fable
-agreement is not proof, and does not replace user experience acceptance.
-Do not automatically turn every suggestion into a requirement.
-Default to one independent review per planned review boundary followed by a focused recheck of material
-corrections. Additional cycles need remaining material failures or new evidence,
-not a desire for model agreement. If progress stalls, identify the concrete
-unresolved assumption and request an owner decision or propose a small
-falsifying experiment. This is not a hard round limit that hides known defects
-or waives required gates.
-Classify reproduced defects, missing contract behavior and subjective experience
-concerns separately. After a fix, exercise the original failure and adjacent
-input/lifecycle transitions; do not assume repairing one modality preserves
-another. Promote general lessons to seed requirements only through a reviewed
-seed change, not by copying application code or accepting every model suggestion.
-
-Use a fresh Claude review session at each milestone so Fable is not anchored
-by the implementation transcript. Rechecks can stay in that review session if
-the scope remains bounded. For cross-cutting decisions or a concrete impasse,
-use the outside-consultation prompt below rather than restarting the whole plan.
-
-**Review packet:** provide the new repository path and exact revision/diff,
-the product/design contracts, milestone and affected capability IDs, startup
-instructions, synthetic fixture/journey and available runtime access. Let Fable
-form an initial view from the contract and app before reading Astra's success
-narrative. Use the same stable revision or a read-only checkout; do not edit
-under the reviewer. Never include secrets or private user workspace data.
-Keep the handoff small: current outcome and exclusions; candidate and startup/
-journey; observed evidence and gaps; specific review question; next bounded step.
-Use the existing handoff/matrix rather than a new per-model tracking system.
-M5 reviews the browser instrument/output journey; no external-client review
-or machine-access setup is required.
-
-**Continuity:** keep one capability matrix in docs/product/CAPABILITIES.md and
-a short docs/HANDOFF.md. The template's `AGENTS.md` remains the working
-agreement once Prompt 1 has reconciled it with the milestone contract. Record current milestone, package state, actual
-evidence, Fable findings and Astra's disposition, pending user acceptance, and
-the next unfinished outcome. A fresh session reads these and confirms relevant
-prerequisite behavior; a previous "done" statement is not evidence.
-Do not create separate status diaries for each model.
-Every implementation checkpoint also emits the
-[standard checkpoint output](./setup.md#standard-checkpoint-output) in the final
-response: exact candidate/branch and absolute checkout path, state and handoff
-location, next session's role, and ready-to-paste launch instructions plus the
-applicable bounded review/resume prompt. A document link alone is not the
-handoff. Supply context without granting new authority: distinguish a planned
-or requested review, confirmed fixes, and a next outcome awaiting owner direction.
-Do not create a review ceremony per increment or automatically launch Fable.
-
-Each fenced block is standalone for its named model in the same new project.
-It depends only on the stated product contracts, the authorized template
-scaffold and code created in that project, not another application's source,
-old screenshots or chat history.
-
-**Effort (owner decision):** use medium reasoning effort for both Astra and
-Fable. Raise it only for a demonstrated difficulty inside one package or
-review, then return to medium. Do not carry a raised setting into the next
-session by habit.
-
-**Package completion:** every Astra package ends with an explicit "Package
-complete when" condition. Continue working until that condition is met or a
-named blocker prevents it; do not stop after the first passing check, and do
-not report the condition met without the evidence it names. Readiness of a
-package is separate from milestone review and from user acceptance.
-A session may deliver an explicitly partial checkpoint toward that condition;
-give the next unfinished outcome rather than keeping an oversized task running
-indefinitely or claiming the whole package is complete.
-
-**Delivery discipline:** fix the concrete demonstrated problem in shared
-operations before adding abstractions. Use maintained SDK/library behavior
-where it satisfies the requirement. Add infrastructure only when the current
-capability needs it; defer speculative hardening without weakening authorization,
-revision integrity, cost admission or required recovery. New reviewer ideas are
-optional proposals unless they address the existing contract or the owner
-approves expanded scope.
-
-Use existing checks and logs, with fixtures for the fast loop and small
-authorized live cases for provider compatibility. Retain failures. Additional
-measurement needs a consequential uncertainty and a decision it can change;
-do not add timing harnesses, benchmark campaigns, review coordinators or
-extensive telemetry for ordinary development. Do not rerun a broad review or
-full comparison when a focused check answers the question; required checks remain.
-Probe consequential provider authentication, transport and supported settings
-early, before extensive surrounding implementation. These probes still require
-authorization, bounds, server-side credentials and accounting. Missing live
-access remains a named gap; it does not block clearly independent fixture work
-or justify speculative abstractions.
-
-**Delivery evidence:** distinguish written, integrated, demonstrated locally,
-demonstrated live, reviewed, accepted and deployed. Record applicable facts,
-mode and revision in the existing matrix/handoff rather than another status
-system. A local fixture, completed code assignment, reviewer opinion or merged
-commit cannot stand in for the next boundary. These facts are not a new linear
-seven-stage process; a milestone can legitimately have live behavior unverified.
-
-**Failure-to-checkpoint loop:** state the latest failing assertion and observed
-behavior, make the smallest supported correction, then re-exercise the affected
-journey and required checks. A fix and focused recheck are not themselves a
-runaway loop. Keep stale-context and lost-acknowledgment cases bounded rather
-than building a general retry framework. Avoid unrelated documentation edits
-mid-debugging. Report actual outcomes, not command launches or output counts.
-A rough timebox may trigger an explicitly partial checkpoint; it cannot make
-a failing result pass or justify a completion claim.
-
-**Documentation prose (Astra):** write `CONTRACT.md`, `CAPABILITIES.md`,
-`DESIGN.md`, `HANDOFF.md`, architecture decisions, commit messages and review
-packets in plain prose paragraphs. Use a table only for the capability matrix
-and comparable tabular data, and a list only for parallel items. Avoid
-recurring stock phrases; these documents are read by every later session and
-by the reviewer, so clarity matters more than formatting.
-
-**Review and release gates:** pause fidelity-sensitive work when the experience
-proof needs correction. If review, user acceptance, credentials or infrastructure
-are unavailable, mark that gate pending/blocked. Only explicitly authorized
-nondependent work may continue; do not manufacture an approval or waive the gap.
-M6 has a release-candidate review and a local-operation confirmation. A hosted
-confirmation applies only when optional private hosting is authorized; lack of
-hosting does not block local release. Required functionality and overall user
-experience acceptance
-cannot be deferred by calling a partial build complete. Empirical creativity
-claims require their own evidence and may honestly remain unresolved.
+M1's experience acceptance precedes dependent work. M2 reviews after packages
+10 and 12. M6 reviews the candidate before local-release confirmation. Missing
+required review, behavior or acceptance remains a blocker; only authorized
+independent work may continue. Lack of optional hosting is not a local-release
+blocker, and creative-efficacy claims remain unresolved without human evidence.
 
 ## Fable consultation: an independent view at a decision or impasse
 
 ```text
-You are Fable 5.1 in Claude, acting as an independent external adviser for a new
-Minerva implementation. GPT-6 Astra in Codex owns implementation. This is a
-read-only consultation, not permission to rewrite code or restart the project.
-This session is independently started by the operator in Claude, not routinely
-launched by the builder. Keep advice bounded to the stated question; do not
-turn an impasse into a new framework or an expanded feature assignment.
-
-Use the new repository path, current revision, product/design contracts and
-specific question supplied for this consultation. The product is a complete
-spatial creative studio with visible relationships, three views, contextual
-operations, comparison/Weave, Wander/Agent Drive, concurrent voice and outputs.
-It is browser-only with no sign-in and local access by default; external
-REST/MCP APIs are excluded. Custom implementation is new; no old application is needed.
-
-Complete the consultation in one pass without pausing for permission; the
-read-only steps here are already authorized and the user is not watching.
-Examine the actual relevant code or running behavior before accepting the
-builder's explanation. Challenge the concrete assumption, architecture choice,
-interaction or failure diagnosis. Distinguish a contract requirement from an
-implementation preference. Offer alternatives only where a real choice exists.
-Preserve the modular-monolith direction and full capability scope.
-
-Return the recommended next bounded action, supporting evidence, important
-tradeoffs, what remains unknown and what observation would change your view.
-If useful, give a small falsifying experiment rather than another framework.
-Do not treat model agreement, aesthetics alone or a passing check as proof.
-Do not change files, deploy, spend, disclose credentials or consult prior app code.
-Astra will adjudicate your advice against the contract and working evidence.
+You are Fable 5.1 in Claude. Read AGENTS.md and the relevant current contracts.
+Use the supplied checkout, candidate and specific question. This is read-only
+advice, not permission to edit, deploy, spend or restart the project.
+Inspect the relevant code or behavior before accepting the builder's explanation.
+Challenge the concrete assumption and distinguish requirements from preferences.
+Return the next bounded action, evidence, tradeoffs, unknowns and an observation
+that would change your recommendation. Preserve the product scope and modular
+monolith; suggest a small falsifying experiment only when it resolves uncertainty.
+Report missing inputs explicitly. Astra records the disposition of your advice.
 ```
 
 ## Milestone 1: Experience proof
@@ -293,151 +73,38 @@ Astra will adjudicate your advice against the contract and working evidence.
 
 **Still open:** All production persistence, generation, voice and wider product capabilities remain open. Fixture interactions do not complete their capability rows.
 
-### Prompt 1: establish the complete standalone product contract
+### Prompt 1: establish the application identity and starting outcome
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M1: Experience proof.
-Required prerequisites: The target new-project directory and product goal; this package creates the contract.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Required prerequisites: The target project directory and authorization to create the application repository.
+Read AGENTS.md, README.md and the relevant product contracts in this repository.
 
-Build a new Minerva: a single-user, browser-only spatial human-AI creative
-prototype with no sign-in and local access by default. It must support exploring
-an idea space, seeing relationships
-and inheritance, developing and recombining branches, interpreting patterns,
-and talking to a collaborator while working. Better architecture must preserve
-this product, not reduce it to a canvas, a few generation buttons and a chat panel.
+Use the owner's content-free minerva-template to create the public minerva
+repository only when authorized. Inspect the target first; never overwrite an
+existing repository. Follow docs/setup.md to set identity and repository settings.
+Keep the MIT license, pinned shell and original identity assets. Author custom
+application code for this build; licensed standard frameworks and libraries are allowed.
 
-Work in the new project directory supplied for this session. The target is the
-public GitHub repository named minerva, created from the owner's template
-(https://github.com/brandyn-s/minerva-template): a pinned Next.js shell, CI,
-MIT license, .codex/config.toml, AGENTS.md, an original owl mark and
-docs/product/DESIGN.md. Keep that scaffold. Do not clone, copy, port, translate
-or wrap any earlier Minerva application, its styles, tests, prompts or assets.
-Standard frameworks, SDKs, canvas libraries, fonts and generic scaffolding may
-be used with appropriate licenses. Work created in this new project carries
-forward between sessions. Build from the specification below, not an unseen
-reference. It is not a one-for-one replica: implementation and composition may
-improve while preserving the complete capabilities, direct interaction and
-atlas theme.
+SPEC.md owns all fifteen required capabilities. Read it rather than duplicating
+its inventory. Confirm the single-user, browser-only, no-sign-in local default,
+internal backend, Postgres and durable workflows. Preserve the working code and
+current requirements. Missing configuration stays explicit.
 
-First inspect the active contract in docs/build-prompts.md,
-docs/product/INTENT.md, docs/product/SPEC.md, docs/product/DECISIONS.md,
-README.md and AGENTS.md. If active instructions still require C15/external APIs,
-sign-in or mandatory hosted deployment, prescribe the old 23-prompt sequence,
-make other required capabilities optional, or forbid milestone gates,
-reconcile only those outdated instructions with this
-contract. Record an actual supersession in docs/product/DECISIONS.md and retain
-the working agreement's bias-to-action and authorization boundaries.
-Historical decisions such as D-104/D-111 may remain when clearly superseded;
-their mere presence is not a reason to rewrite history.
-If the active contract is already correct, leave it intact. Record the template
-revision when known, otherwise mark it unknown; inspect the actual files rather
-than infer correctness from a branch name or invent a revision. Do not create
-a new supersession or timestamp-only change just to complete this package.
-Follow docs/setup.md to set the repository identity. Never commit secrets,
-user workspace data or unlicensed assets to this public repo.
+Record the actual seed revision and an original representative brief for the
+explore/observe/challenge/intervene/inspect journey. Keep examples synthetic.
+The experience includes an unsuccessful intervention, exact source contributions
+and uncertainty; a narrow demonstration does not remove required capabilities.
 
-Define a representative complete loop in the product contract: a person explores
-alternatives while manipulating the canvas, says that two ideas may share a
-mechanism, examines evidence, requests a specific intervention, combines a useful
-contribution with a distant branch, and inspects the resulting change and both
-parents before deciding what to keep. Preserve uncertainty and a failed-change
-case. This is the demonstration spine, not a reduction of product scope.
+Initialize docs/product/CAPABILITIES.md without erasing existing evidence.
+Create a short docs/HANDOFF.md with current scope, relevant files, actual commands
+and outcomes, blockers and the next connected task. Do not create extra indexes,
+decision registers or historical notes.
 
-Verify docs/product/CONTRACT.md indexes the authoritative product documents
-without duplicating their prose. Reconcile docs/product/SPEC.md with the
-following required capability descriptions only if it is incomplete or outdated.
-Initialize or update docs/product/CAPABILITIES.md as an evidence matrix without
-erasing existing work. These are the REQUIRED IDs:
-C01 Workspaces: create, open, rename, duplicate, deliberately delete, recover
-    saved work, and export content, history, relationships and run evidence.
-C02 Spatial canvas: title-first cards; pan/zoom, find/focus/fit, selection,
-    multi-selection, edit, resize, move, explicit arrange/reset, undo/redo of
-    deliberate layout changes, and saved viewpoints without automatic takeover.
-C03 Relationship graph: visible typed source/result connections, multi-parent
-    lineage, ancestry/descendants, semantic relationships and contributions.
-    Independent roots share brief context, not fabricated parentage.
-C04 History and genome: exact source revisions, functional parts/traits,
-    inherited/changed/new material, reasons and enabled moves, original
-    artifacts, model input/provenance, reviews, decisions and revisiting.
-C05 Branch development: continue any branch, vary/refine one axis, preserve or
-    avoid chosen traits, preview before acceptance, retain rejected attempts,
-    replay a versioned recipe and save a reusable synthesis.
-C06 Comparison and Weave: a two-to-four-card comparison set, readable side-by-side
-    artifacts and differences, independently callable comparison, selectable
-    contributions and multi-parent recombination with emergent interaction.
-C07 Views: Lineage, Evolution and Constellation are real views over the same
-    IDs and revisions, with appropriate relationships, selection and saved layout.
-C08 Contextual moves: card-specific AI suggestions for divergence, combination,
-    recombination, split, tension and mechanism escape; direct choice, affected
-    sources previewed, no mandatory long prompt or generic menu-only substitute.
-C09 Creative instruments: independent perspective generation, Constraint Deck,
-    Assumption Fork, Distance Panel and Refinery with distinct useful semantics.
-C10 Wander: bounded durable exploration, independent roots, multiple paths,
-    archive-aware development, distant recombination, recurrence detection,
-    targeted intervention, partial results, pause/resume/stop and recovery.
-C11 Space interpretation: explorable map/groups, representatives, unusual
-    candidates, recurrence, provisional basins/attractors, evidenced escape
-    attempts and What this space suggests, with source-linked challenges.
-C12 Agent Drive: bounded explicit goal pursuit, distinct from Wander's space
-    exploration policy, with observable stop conditions and shared operations.
-C13 Collaboration: typed and bidirectional voice discussion, idea/link
-    suggestions and acknowledged scoped actions across the live workspace;
-    speech interruption/reconnect without blocking canvas or exploration.
-C14 Outputs: branch-linked structured browser prototype, runnable isolated
-    HTML prototype, controlled paired experiment, coding-session handoff and
-    reusable synthesis with evidence and provenance.
-C16 Experience: a living atlas, cartographic paper/ink, concise expressive
-    titles, legible relationships, compact contextual controls, direct touch/
-    keyboard access and concurrent interaction without a dashboard of buttons.
-
-These are release requirements, not a backlog of optional extensions. Keep
-multi-user editing, billing, marketplace plugins, global scale and a large
-research harness outside this contract unless explicitly requested. C15 is
-retired; external REST/MCP APIs, accounts and sign-in are excluded.
-Do not reproduce opaque lockouts, broken controls or misleading creativity claims.
-
-Use a Next.js/React/TypeScript modular monolith, server-owned Postgres and durable
-Vercel workflows. The target is the public GitHub repository created from the
-owner's template with a requested cumulative $100 application envelope.
-Default to loopback-only local access with no sign-in. Internal browser/voice
-server endpoints remain; this is not browser-only storage or execution.
-Hosting is optional only behind an existing suitable private boundary that
-preserves no-sign-in use and denies outside access; otherwise stay local.
-Do not build an access platform. GPT-6 Astra is the coding agent; runtime model
-profiles are an independent choice.
-
-Record six delivery milestones in the product contract:
-M1 Experience proof: original populated interactive fixture, no live services.
-M2 Working spine: persistence, visible graph, one real creative operation,
-   assessment/acceptance and bidirectional voice during canvas work.
-M3 Creative workspace: inheritance/recipes, comparison, contextual planning,
-   Weave and three views with voice continuity.
-M4 Exploration intelligence: Wander, recurrence, map/readings and Agent Drive.
-M5 Remaining capabilities: complete browser instruments and outputs.
-M6 Integrated release: full journeys, independent release review, infrastructure
-   readiness, user experience acceptance and verified local operation.
-   Hosted operation is conditional on separate authorization and a suitable boundary.
-These are milestones, not six reduced products. Astra implements; Fable 5.1
-in Claude independently reviews each milestone and provides outside advice.
-Keep current milestone, package state, findings/dispositions and open capability
-scope in the existing matrix and handoff, not separate model status diaries.
-
-Write observable acceptance journeys for every capability and record unknowns.
-Distinguish required outcomes from flexible implementation choices. Do not
-invent a scope reduction. This session produces the complete product contract
-and a short handoff, not an application-completion claim.
-Package complete when: docs/product/CONTRACT.md indexes the authoritative
-documents, SPEC.md contains all fifteen required capabilities and observable
-acceptance journeys, CAPABILITIES.md records their honest implementation state,
-and the six milestones and unknowns are recorded; the active inherited contract is verified
-current or reconciled where outdated, with any actual supersession recorded
-and clearly superseded history retained; repository identity is set; and
-docs/HANDOFF.md names Prompt 2 as the next unfinished outcome.
+Package complete when: repository identity and settings are configured as
+authorized; the seed revision and representative brief are recorded; SPEC remains
+the single capability contract; capability evidence is accurate; and the handoff
+names the next unfinished foundation outcome.
 ```
 
 ### Prompt 2: create the runnable architecture without shrinking the product
@@ -445,11 +112,7 @@ docs/HANDOFF.md names Prompt 2 as the next unfinished outcome.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M1: Experience proof.
 Required prerequisites: The full product contract; no persistence or model service is required yet.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Create Minerva's runnable foundation in the new project directory. It is a full
 spatial creative studio with relationship-rich cards, three views, contextual
@@ -459,8 +122,7 @@ Read this repository's product contract; if absent, report that prerequisite.
 Author custom implementation within this new project. The template already
 provides a pinned Next.js shell, CI and exact Node/npm pins; extend it rather
 than re-scaffolding, and add dependencies only when a slice needs them. Use
-maintained, appropriately licensed dependencies; never import an earlier
-Minerva application's code.
+maintained, appropriately licensed dependencies.
 
 Organize the shell as a Next.js/React/TypeScript modular monolith. Separate presentation,
 client interaction, application use cases, domain contracts, persistence,
@@ -489,8 +151,8 @@ Do not fill the UI with buttons
 for unimplemented capabilities or label a scaffold as the product. Do not
 manufacture empty modules.
 
-Write concise architecture decisions explaining ownership and extension points.
-Use the selected React Flow renderer (@xyflow/react, D-129) with custom cards
+Keep ownership and extension points in ARCHITECTURE.md.
+Use the selected React Flow renderer (@xyflow/react) with custom cards
 and application-owned layouts for the first interactive fixture. Keep canonical
 graph records and domain types independent of the renderer store and types.
 Preserve the living-atlas composition, not the library's demo appearance.
@@ -498,14 +160,11 @@ Pin a compatible licensed version when adding it; exercise IB01-IB06 rather
 than assuming the library proves interaction quality. Reopen the choice only
 for a demonstrated requirement failure or compatibility constraint.
 
-Add short repository instructions: preserve every required capability, implement
-each slice end to end, do not copy earlier applications, keep source revisions
-and cost admission intact, and never equate passing checks with product parity.
 Run the foundation, exercise its actual routes, and update the capability matrix
 and handoff. Do not provision, spend, publish or claim product completion.
 Package complete when: the shell runs locally with pinned dependencies and
 lint, typecheck, test and build pass; module ownership, extension points and
-infrastructure interfaces are recorded in concise architecture decisions;
+infrastructure interfaces are recorded in ARCHITECTURE.md;
 AGENTS.md reflects the milestone contract; the startup path is documented; and
 the capability matrix shows every row at not started or partial with honest
 evidence and no unimplemented buttons in the UI.
@@ -516,17 +175,11 @@ evidence and no unimplemented buttons in the UI.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M1: Experience proof.
 Required prerequisites: The product contract and runnable UI foundation; use local synthetic data only.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Create Minerva's original visual system and composed application shell in this
 new repository. It is a spatial creative instrument, not an admin dashboard.
-Read the product contract; use newly authored custom code and art.
-Do not copy CSS, images, SVG paths, screenshots, icons or components
-from a pre-existing application. Standard fonts/libraries need appropriate licenses.
+Read DESIGN.md; use original custom code/art and appropriately licensed fonts/libraries.
 
 Specify and implement paper #e9dfc7, card #f1e9d6, ink #273a35, deep teal #213f3e,
 teal #28686a, amber #b18a58, coral #a15442 and violet #755584 as shared tokens.
@@ -575,16 +228,14 @@ clutter before proceeding. Demonstrate what would become materially harder in
 linear chat: trace multiple parents and compare distant contributions while
 retaining spatial context. Do not substitute texture or animation for this.
 Write DESIGN.md as the enforceable visual contract,
-not generic adjectives. Update C16 evidence; this shell is not a finished app.
+not generic adjectives. Update C15 evidence; this shell is not a finished app.
 Milestone closeout: demonstrate this complete M1 journey:
 Pan and zoom; trace both parents of a recombination; move a card with its edges attached; inspect inherited material; select a pair; open a local contextual chooser on desktop and touch.
-Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
-this milestone's independent review prompt. Record and resolve material findings;
-Fable's opinion does not replace user acceptance or observed behavior.
+Prepare the exact-candidate packet for this milestone's Fable review.
 Still open at this milestone: All production persistence, generation, voice and wider product capabilities remain open. Fixture interactions do not complete their capability rows.
 Package complete when: the interactive fixture renders the populated atlas at
 desktop and narrow widths; the full M1 journey works locally on mouse, touch
-and keyboard; DESIGN.md is written as an enforceable contract; C16 evidence is
+and keyboard; DESIGN.md is written as an enforceable contract; C15 evidence is
 recorded for IB01-IB06 with the fixture boundary and input method labeled;
 unkept state and unknown evidence are distinguishable; and the Fable M1 review packet
 (revision, contracts, startup and fixture instructions) is prepared.
@@ -594,23 +245,10 @@ unkept state and unknown evidence are distinguishable; and the Fable M1 review p
 
 ```text
 You are Fable 5.1 in Claude, independently reviewing M1: Experience proof
-for a newly authored Minerva application. GPT-6 Astra in Codex implements.
-The operator starts this independent Claude review on a separate checkout of
-the exact committed candidate; this is not a routine builder-launched subagent.
-Keep one bounded review, then recheck material corrections rather than restart
-a broad audit. New suggestions do not automatically expand implementation scope.
-Review only: do not change application files, commit or deploy. Run existing
-checks and isolated synthetic journeys, never mutate working user data.
-Live paid calls require an explicit review allowance; without it, inspect
-available evidence and mark the unexercised live behavior as incomplete.
-
-Use the supplied new-project path, exact candidate revision/diff, local product
-and design contracts, capability matrix and startup/fixture instructions.
-No earlier application source, template, external screenshot or conversation is
-required. The full product is a relationship-rich spatial creative studio with
-three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice and outputs. The browser-only prototype has no sign-in and
-defaults to local access. This milestone is not the entire release.
+Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
+Use the supplied exact
+candidate, isolated checkout/data and startup instructions. Review only; no edits
+to application source or paid calls without explicit allowance.
 
 Required demonstration:
 Pan and zoom; trace both parents of a recombination; move a card with its edges attached; inspect inherited material; select a pair; open a local contextual chooser on desktop and touch.
@@ -642,31 +280,6 @@ future capability or approve a fixture as its implementation.
 Still-open scope at this boundary:
 All production persistence, generation, voice and wider product capabilities remain open. Fixture interactions do not complete their capability rows.
 
-Complete the whole review in one pass; the user is not watching while you work
-and has already authorized every read-only step in this prompt, so do not pause
-to ask permission for inspection, running existing checks or exercising the
-fixture. Ask a question only when a required input from the packet is missing,
-and otherwise report. Work in Claude Code opened in a read-only checkout of the
-review revision, or in Claude Cowork with that checkout connected.
-
-Independently inspect relevant code and exercise the app where possible.
-Do not accept the builder's narrative as evidence. If tools, credentials or
-runtime access are missing, report what was actually reviewed and what was not;
-source-only inspection cannot approve visual or live-interaction claims.
-Use synthetic data and existing project commands. Preserve private access.
-
-Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
-Report hosted outcomes separately only when hosting was authorized.
-For each material finding give capability ID, expected versus observed behavior,
-reproduction/evidence, consequence, confidence and the smallest corrective
-outcome. Separate observed failures, hypotheses and optional suggestions.
-Include open scope and pending user acceptance; do not invent a likeness or
-creativity score. User acceptance is not yours to grant.
-
-Astra must record a disposition for each material finding and fix confirmed
-defects. On recheck, inspect the new revision and affected cases, not just a
-claim that the problem was fixed. This review never authorizes reduced scope.
 ```
 
 ## Milestone 2: Working spine
@@ -693,16 +306,11 @@ one recheck round; that is normal for this milestone, not a scope problem.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: The product contract, runnable foundation and original experience proof.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's workspace lifecycle in this new Next.js/TypeScript modular
 monolith. Postgres is authoritative; the browser owns transient interaction.
-Read the local product contract. Newly authored custom implementation only;
-do not import any earlier application's data or schema implementation.
+Read the local product contract.
 
 Deliver create/open/list/rename/duplicate and deliberate deletion with clear
 confirmation, plus saved brief and explicit constraints. Duplicate creates
@@ -711,7 +319,7 @@ must account for active runs and referenced history rather than orphaning it.
 Keep old-system import/migration out of scope.
 
 Use immutable content/brief revisions, independent layout versions, explicit
-migrations and named application operations. Use Drizzle (drizzle-orm, D-130)
+migrations and named application operations. Use Drizzle (drizzle-orm)
 inside feature-owned Postgres adapters; keep ORM types out of domain contracts.
 Generate versioned SQL migrations with drizzle-kit, inspect and commit them,
 then apply them explicitly to the intended database. No schema push, request-time
@@ -747,11 +355,7 @@ and C01 evidence and the handoff are updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Working workspace/revision operations and the original fixture presentation.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's spatial canvas in this new repository, using its original
 design system and server-owned workspace operations. All custom code must be
@@ -782,13 +386,13 @@ that a fix to pinch is complete until subsequent activation also works.
 
 Exercise dragging while results arrive, resize/reload, find/focus, fit, arrange
 and layout undo/redo. Render a populated scene, not only an empty canvas.
-Update C02 and C16 evidence and the handoff. Missing behavior remains partial;
+Update C02 and C15 evidence and the handoff. Missing behavior remains partial;
 do not publish this slice as the complete application.
 Package complete when: the listed canvas interactions work on a populated
 scene with mouse, touch and keyboard; positions, sizes and camera survive
 reload; layout undo/redo has a documented scope; no navigation or view switch
 starts a model call; IB01-IB04 and IB06 hold across the new persistence/update
-boundary; and C02/C16 evidence and the handoff are updated.
+boundary; and C02/C15 evidence and the handoff are updated.
 ```
 
 ### Prompt 6: make the relationship graph visible and understandable
@@ -796,11 +400,7 @@ boundary; and C02/C16 evidence and the handoff are updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Canonical revision identity and working canvas interaction; rerun fixture proposal transitions against real decisions before M2 closes.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's visible relationship graph in this new modular monolith.
 Use newly authored implementation in this project. Inspect canonical revisions,
@@ -844,11 +444,7 @@ correct state distinctions; and C03 evidence records observed behavior and any g
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Exact brief/source revisions and relationship identity; rich part-selection UI follows in M3.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's operation-context compiler in this new modular monolith.
 Use newly authored code and current repository contracts only.
@@ -889,11 +485,7 @@ partial; and C04/C08 evidence and the handoff are updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Frozen context, named application operations and stable command identity.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's shared durable run machinery in this new codebase.
 Keep the Next.js/TypeScript modular monolith, Postgres authority and Vercel
@@ -905,7 +497,7 @@ steps, expose progress and partial results, and support pause/resume/stop and
 reconnection. Reconcile the gap between database commit and workflow startup.
 The browser does not own run lifetime. Durable replay does not guarantee
 exactly-once external provider execution.
-Use bounded polling of persisted progress initially (D-131); reconnect from
+Use bounded polling of persisted progress initially; reconnect from
 durable state and stop polling on unmount or terminal status without stopping
 the run. Do not add a realtime service unless an observed requirement warrants it.
 
@@ -935,11 +527,7 @@ and C10/C12 and architecture evidence are updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Durable run/cost admission and frozen inputs; authorized provider access for live evidence.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Deliver live creative generation in Minerva using newly authored implementation.
 Use this repository's operation context, durable runs and spend admission.
@@ -979,11 +567,7 @@ C05/C08/C09 rows state what remains partial.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Generated proposals, immutable source revisions and a visible graph.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's independent review and transactional decisions in this new
 codebase. Use shared revisions, generation and lineage. Read the product
@@ -1020,11 +604,7 @@ interim Fable M2 review packet for packages 4-10 is prepared.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: The working Lineage canvas, shared command receipts and creative-operation admission.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Build Minerva's typed collaborator with newly authored code. It discusses and
 develops an evolving creative space, not only recites card text or dispatches
@@ -1073,11 +653,7 @@ coverage for M3, and repetition during Wander for M4 as pending obligations.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Typed collaboration, shared attention, command identity and cost admission.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's bidirectional voice collaborator in this new
 codebase. Use its typed collaborator, shared commands, attention and cost
@@ -1132,9 +708,7 @@ exchange including interruption and reconnect. Record live versus simulated
 evidence for C13; do not describe transcription alone as voice collaboration.
 Milestone closeout: demonstrate this complete M2 journey:
 Create a workspace and idea; generate alternatives; trace sources; inspect and keep a result; reload; discuss a card by voice while moving another and receiving durable operation results; interrupt speech.
-Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
-this milestone's independent review prompt. Record and resolve material findings;
-Fable's opinion does not replace user acceptance or observed behavior.
+Prepare the exact-candidate packet for this milestone's Fable review.
 Still open at this milestone: Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth and outputs remain explicitly open.
 Package complete when: microphone input, spoken replies, barge-in, disconnect
 and reconnect work with a stable connection across panel, selection, drag and
@@ -1150,28 +724,10 @@ Fable M2 review packet is prepared.
 
 ```text
 You are Fable 5.1 in Claude, independently reviewing M2: Working spine
-for a newly authored Minerva application. GPT-6 Astra in Codex implements.
-The operator starts this independent Claude review on a separate checkout of
-the exact committed candidate; this is not a routine builder-launched subagent.
-Keep one bounded review, then recheck material corrections rather than restart
-a broad audit. New suggestions do not automatically expand implementation scope.
-The packet states whether this is the interim review after package 10 (spine
-without collaboration: persistence, visible graph, frozen context, durable
-execution, one live creative operation and assessment/acceptance) or the final
-review after package 12 (full demonstration including voice during canvas
-work). For the interim review, treat collaboration scope as open, not failed.
-Review only: do not change application files, commit or deploy. Run existing
-checks and isolated synthetic journeys, never mutate working user data.
-Live paid calls require an explicit review allowance; without it, inspect
-available evidence and mark the unexercised live behavior as incomplete.
-
-Use the supplied new-project path, exact candidate revision/diff, local product
-and design contracts, capability matrix and startup/fixture instructions.
-No earlier application source, template, external screenshot or conversation is
-required. The full product is a relationship-rich spatial creative studio with
-three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice and outputs. The browser-only prototype has no sign-in and
-defaults to local access. This milestone is not the entire release.
+Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
+Use the supplied exact
+candidate, isolated checkout/data and startup instructions. Review only; no edits
+to application source or paid calls without explicit allowance.
 
 Interim demonstration (after package 10):
 Create a workspace and idea; generate alternatives; trace sources; inspect and
@@ -1203,32 +759,10 @@ additional full-review ceremony.
 Still-open scope at this boundary:
 Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth and outputs remain explicitly open.
 
-Complete the whole review in one pass; the user is not watching while you work
-and has already authorized every read-only step in this prompt, so do not pause
-to ask permission for inspection, running existing checks or exercising the
-fixture. Ask a question only when a required input from the packet is missing,
-and otherwise report. Work in Claude Code opened in a read-only checkout of the
-review revision, or in Claude Cowork with that checkout connected.
-
-Independently inspect relevant code and exercise the app where possible.
-Do not accept the builder's narrative as evidence. If tools, credentials or
-runtime access are missing, report what was actually reviewed and what was not;
-source-only inspection cannot approve visual or live-interaction claims.
-Use synthetic data and existing project commands. Preserve private access.
-
 For the interim review, return READY FOR COLLABORATION INCREMENTS,
 CHANGES REQUIRED, or BLOCKED. Interim readiness does not complete M2 or
 permit advancing to M3. For the final review, return READY FOR NEXT MILESTONE,
 CHANGES REQUIRED, or BLOCKED.
-For each material finding give capability ID, expected versus observed behavior,
-reproduction/evidence, consequence, confidence and the smallest corrective
-outcome. Separate observed failures, hypotheses and optional suggestions.
-Include open scope and pending user acceptance; do not invent a likeness or
-creativity score. User acceptance is not yours to grant.
-
-Astra must record a disposition for each material finding and fix confirmed
-defects. On recheck, inspect the new revision and affected cases, not just a
-claim that the problem was fixed. This review never authorizes reduced scope.
 ```
 
 ## Milestone 3: Creative workspace
@@ -1246,11 +780,7 @@ claim that the problem was fixed. This review never authorizes reduced scope.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Persistent revisions, graph relationships, proposal assessments and the working spine.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Build Minerva's history and inheritance inspection using newly authored
 code in this repository. Keep the modular monolith and immutable revisions.
@@ -1288,11 +818,7 @@ listed cases match records and export; and C04 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Source/history inspection and the already working shared generation/review path; wire real behavior now.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement branch-development intent for Minerva in this new repository.
 New custom implementation only. Use the product contract,
@@ -1328,11 +854,7 @@ evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Canonical cards/revisions and multi-selection; build the complete comparison workbench.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Build Minerva's generation-independent comparison workflow in the new project.
 Use newly written code and this project's canonical idea/revision model.
@@ -1368,11 +890,7 @@ C06/C09 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Visible lineage and recorded history; preserve the working voice lifecycle.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's Evolution view as required product behavior in this new
 repository. Newly authored implementation only. Use the same canonical ideas,
@@ -1407,11 +925,7 @@ evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Canonical graph and view-state separation; compute initial groups, with M4 interpretation tracked separately.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's required Constellation view with newly authored
 code in this repository. Use canonical records and the complete product contract.
@@ -1448,11 +962,7 @@ evidence records the M4 interpretation dependency.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Shared context, generation, review and the creative workspace; no static-menu substitute.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Build Minerva's contextual move experience with newly authored implementation.
 Use this repository's frozen context, shared generation/review and durable runs.
@@ -1479,12 +989,12 @@ optional editing. Navigation and opening a chooser must not launch generation.
 Exercise suggestions for genuinely different source cards, proposed partner
 preview, choosing during planning, stale sources, planner failure and keyboard/
 touch use. Confirm every admitted alternative or failure appears in the graph.
-Update C08/C16 evidence; do not call a generic menu equivalent to this workflow.
+Update C08/C15 evidence; do not call a generic menu equivalent to this workflow.
 Package complete when: a card-local one-level chooser yields specific AI
 suggestions with source previews within two activations on mouse, touch and
 keyboard; a choice survives late planning results; stale sources and planner
 failure are handled; every admitted result or failure appears in the graph;
-and C08/C16 evidence is updated.
+and C08/C15 evidence is updated.
 ```
 
 ### Prompt 19: complete distant recombination and contribution selection
@@ -1492,15 +1002,10 @@ and C08/C16 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Comparison slots, selected-part context and shared generation/review.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Complete Minerva's Weave workflow in this new codebase. Use canonical
 revisions, the comparison set, context compiler and shared generation/review.
-All implementation is newly authored; no earlier application is a dependency.
 
 Two to four distant cards can be compared and recombined without moving them.
 Let the person choose whole ideas or exact functional parts/excerpts, identify
@@ -1540,11 +1045,7 @@ and C03/C06/C08 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Working voice, three views, comparison, contextual moves and Weave.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Complete Minerva's collaborative actions with newly authored code.
 Use the same live workspace, typed/voice channels, context compiler and
@@ -1579,9 +1080,7 @@ once that policy exists. Verify no
 unrequested acceptance, no duplicate effects and no canvas lock. Update C13/C08.
 Milestone closeout: demonstrate this complete M3 journey:
 Inspect a multi-parent genome; preserve selected parts; compare distant cards; choose a card-specific suggested move; Weave and keep a child; revisit history; switch all three views while speaking and while a durable operation finishes.
-Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
-this milestone's independent review prompt. Record and resolve material findings;
-Fable's opinion does not replace user acceptance or observed behavior.
+Prepare the exact-candidate packet for this milestone's Fable review.
 Still open at this milestone: Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth and output artifacts belong to M5; they are not optional.
 Package complete when: a real or clearly labeled fixture conversation
 performs the listed discussion-and-action journey during a durable creative
@@ -1594,23 +1093,10 @@ updated; and the Fable M3 review packet is prepared.
 
 ```text
 You are Fable 5.1 in Claude, independently reviewing M3: Creative workspace
-for a newly authored Minerva application. GPT-6 Astra in Codex implements.
-The operator starts this independent Claude review on a separate checkout of
-the exact committed candidate; this is not a routine builder-launched subagent.
-Keep one bounded review, then recheck material corrections rather than restart
-a broad audit. New suggestions do not automatically expand implementation scope.
-Review only: do not change application files, commit or deploy. Run existing
-checks and isolated synthetic journeys, never mutate working user data.
-Live paid calls require an explicit review allowance; without it, inspect
-available evidence and mark the unexercised live behavior as incomplete.
-
-Use the supplied new-project path, exact candidate revision/diff, local product
-and design contracts, capability matrix and startup/fixture instructions.
-No earlier application source, template, external screenshot or conversation is
-required. The full product is a relationship-rich spatial creative studio with
-three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice and outputs. The browser-only prototype has no sign-in and
-defaults to local access. This milestone is not the entire release.
+Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
+Use the supplied exact
+candidate, isolated checkout/data and startup instructions. Review only; no edits
+to application source or paid calls without explicit allowance.
 
 Required demonstration:
 Inspect a multi-parent genome; preserve selected parts; compare distant cards; choose a card-specific suggested move; Weave and keep a child; revisit history; switch all three views while speaking and while a durable operation finishes.
@@ -1621,31 +1107,6 @@ Test inheritance evidence and multi-parent visibility, rejected recipes and revi
 Still-open scope at this boundary:
 Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth and output artifacts belong to M5; they are not optional.
 
-Complete the whole review in one pass; the user is not watching while you work
-and has already authorized every read-only step in this prompt, so do not pause
-to ask permission for inspection, running existing checks or exercising the
-fixture. Ask a question only when a required input from the packet is missing,
-and otherwise report. Work in Claude Code opened in a read-only checkout of the
-review revision, or in Claude Cowork with that checkout connected.
-
-Independently inspect relevant code and exercise the app where possible.
-Do not accept the builder's narrative as evidence. If tools, credentials or
-runtime access are missing, report what was actually reviewed and what was not;
-source-only inspection cannot approve visual or live-interaction claims.
-Use synthetic data and existing project commands. Preserve private access.
-
-Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
-Report hosted outcomes separately only when hosting was authorized.
-For each material finding give capability ID, expected versus observed behavior,
-reproduction/evidence, consequence, confidence and the smallest corrective
-outcome. Separate observed failures, hypotheses and optional suggestions.
-Include open scope and pending user acceptance; do not invent a likeness or
-creativity score. User acceptance is not yours to grant.
-
-Astra must record a disposition for each material finding and fix confirmed
-defects. On recheck, inspect the new revision and affected cases, not just a
-claim that the problem was fixed. This review never authorizes reduced scope.
 ```
 
 ## Milestone 4: Exploration intelligence
@@ -1663,11 +1124,7 @@ claim that the problem was fixed. This review never authorizes reduced scope.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Shared creative operations, durable execution and an independently testable context compiler.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's durable Wander foundation with newly authored code.
 It explores a possibility space while a person works on the canvas and speaks.
@@ -1704,11 +1161,7 @@ the listed cases pass; and C10 evidence is updated without efficacy claims.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Wander roots, frontier, archive and recorded outcomes.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's adaptive exploration policy with newly authored
 code. Use shared durable execution, archive and operation services; read the
@@ -1756,11 +1209,7 @@ recorded.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Actual artifacts, ancestry/context exposure, archive and computed Constellation view.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Build Minerva's evidence-linked map and What this space suggests experience in
 this new codebase. Use canonical artifacts, ancestry, context exposure
@@ -1807,11 +1256,7 @@ updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Shared operations, durable execution, cost admission and recoverable state.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's required Agent Drive using newly authored code in this
 repository. It pursues an explicit goal; Wander explores possibilities.
@@ -1848,11 +1293,7 @@ updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Actual exploration policy, manifests/artifacts and the interactive analysis loop.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Assess and improve Minerva's exploration implementation using newly authored code.
 Read actual artifacts, manifests and the complete product contract. A successful
@@ -1881,9 +1322,7 @@ completion. Keep evaluation compact rather than building a research platform
 or cutting product scope.
 Milestone closeout: demonstrate this complete M4 journey:
 Explore independent roots and multiple paths; expose a repeated mechanism; attempt a targeted change and an honest stagnation case; navigate a reading to source evidence; challenge a grouping; pursue an achievable and impossible goal. Speak, move and switch views during these runs.
-Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
-this milestone's independent review prompt. Record and resolve material findings;
-Fable's opinion does not replace user acceptance or observed behavior.
+Prepare the exact-candidate packet for this milestone's Fable review.
 Still open at this milestone: Instrument breadth and materialized outputs still need M5. Final full-product and infrastructure qualification belongs to M6.
 Package complete when: the compact case set runs repeatably; context
 isolation and truthful relationships are verified; the blinded comparison is
@@ -1896,23 +1335,10 @@ updated; and the Fable M4 review packet is prepared.
 
 ```text
 You are Fable 5.1 in Claude, independently reviewing M4: Exploration intelligence
-for a newly authored Minerva application. GPT-6 Astra in Codex implements.
-The operator starts this independent Claude review on a separate checkout of
-the exact committed candidate; this is not a routine builder-launched subagent.
-Keep one bounded review, then recheck material corrections rather than restart
-a broad audit. New suggestions do not automatically expand implementation scope.
-Review only: do not change application files, commit or deploy. Run existing
-checks and isolated synthetic journeys, never mutate working user data.
-Live paid calls require an explicit review allowance; without it, inspect
-available evidence and mark the unexercised live behavior as incomplete.
-
-Use the supplied new-project path, exact candidate revision/diff, local product
-and design contracts, capability matrix and startup/fixture instructions.
-No earlier application source, template, external screenshot or conversation is
-required. The full product is a relationship-rich spatial creative studio with
-three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice and outputs. The browser-only prototype has no sign-in and
-defaults to local access. This milestone is not the entire release.
+Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
+Use the supplied exact
+candidate, isolated checkout/data and startup instructions. Review only; no edits
+to application source or paid calls without explicit allowance.
 
 Required demonstration:
 Explore independent roots and multiple paths; expose a repeated mechanism; attempt a targeted change and an honest stagnation case; navigate a reading to source evidence; challenge a grouping; pursue an achievable and impossible goal. Speak, move and switch views during these runs.
@@ -1927,31 +1353,6 @@ establish that the claimed creative transformation occurred.
 Still-open scope at this boundary:
 Instrument breadth and materialized outputs still need M5. Final full-product and infrastructure qualification belongs to M6.
 
-Complete the whole review in one pass; the user is not watching while you work
-and has already authorized every read-only step in this prompt, so do not pause
-to ask permission for inspection, running existing checks or exercising the
-fixture. Ask a question only when a required input from the packet is missing,
-and otherwise report. Work in Claude Code opened in a read-only checkout of the
-review revision, or in Claude Cowork with that checkout connected.
-
-Independently inspect relevant code and exercise the app where possible.
-Do not accept the builder's narrative as evidence. If tools, credentials or
-runtime access are missing, report what was actually reviewed and what was not;
-source-only inspection cannot approve visual or live-interaction claims.
-Use synthetic data and existing project commands. Preserve private access.
-
-Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
-Report hosted outcomes separately only when hosting was authorized.
-For each material finding give capability ID, expected versus observed behavior,
-reproduction/evidence, consequence, confidence and the smallest corrective
-outcome. Separate observed failures, hypotheses and optional suggestions.
-Include open scope and pending user acceptance; do not invent a likeness or
-creativity score. User acceptance is not yours to grant.
-
-Astra must record a disposition for each material finding and fix confirmed
-defects. On recheck, inspect the new revision and affected cases, not just a
-claim that the problem was fixed. This review never authorizes reduced scope.
 ```
 
 ## Milestone 5: Remaining product capabilities
@@ -1962,18 +1363,14 @@ claim that the problem was fixed. This review never authorizes reduced scope.
 
 **Exit and review:** Every required capability has an implemented path. Fable verifies browser instruments, outputs and shared admission. A code block alone is not a working output; unresolved paths remain blockers for M6 completion.
 
-**Still open:** All C01-C14 and C16 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
+**Still open:** All C01-C15 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
 
 ### Prompt 26: implement the complete creative instrument family
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining product capabilities.
 Required prerequisites: Shared generation/review, comparison and branch refinement; extend rather than duplicate them.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's required creative instruments using newly authored code and
 the existing shared operation pipeline. Read the product contract. These are
@@ -2009,11 +1406,7 @@ authorized live cases; and C09 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining product capabilities.
 Required prerequisites: Selected revisions, shared generation/admission and artifact provenance.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Implement Minerva's required prototype outputs with newly authored
 code. Use selected exact revisions, execution contracts, shared generation,
@@ -2048,11 +1441,7 @@ and C14 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining product capabilities.
 Required prerequisites: Prototype/output contracts, comparison and source-linked evidence.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Complete Minerva's output-to-next-work loop with newly authored code. Use the
 existing execution/artifact contracts and exact source revisions.
@@ -2090,23 +1479,10 @@ and the Fable M5 review packet is prepared.
 
 ```text
 You are Fable 5.1 in Claude, independently reviewing M5: Remaining product capabilities
-for a newly authored Minerva application. GPT-6 Astra in Codex implements.
-The operator starts this independent Claude review on a separate checkout of
-the exact committed candidate; this is not a routine builder-launched subagent.
-Keep one bounded review, then recheck material corrections rather than restart
-a broad audit. New suggestions do not automatically expand implementation scope.
-Review only: do not change application files, commit or deploy. Run existing
-checks and isolated synthetic journeys, never mutate working user data.
-Live paid calls require an explicit review allowance; without it, inspect
-available evidence and mark the unexercised live behavior as incomplete.
-
-Use the supplied new-project path, exact candidate revision/diff, local product
-and design contracts, capability matrix and startup/fixture instructions.
-No earlier application source, template, external screenshot or conversation is
-required. The full product is a relationship-rich spatial creative studio with
-three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice and outputs. The browser-only prototype has no sign-in and
-defaults to local access. This milestone is not the entire release.
+Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
+Use the supplied exact
+candidate, isolated checkout/data and startup instructions. Review only; no edits
+to application source or paid calls without explicit allowance.
 
 Required demonstration:
 Invoke each instrument in the browser; produce a structured prototype and isolated runnable HTML; compare a controlled pair; save/download a synthesis and coding handoff.
@@ -2121,38 +1497,13 @@ Missing paid-call allowance is a stated limit, not permission to spend or
 substitute a fabricated response.
 
 Still-open scope at this boundary:
-All C01-C14 and C16 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
+All C01-C15 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
 
-Complete the whole review in one pass; the user is not watching while you work
-and has already authorized every read-only step in this prompt, so do not pause
-to ask permission for inspection, running existing checks or exercising the
-fixture. Ask a question only when a required input from the packet is missing,
-and otherwise report. Work in Claude Code opened in a read-only checkout of the
-review revision, or in Claude Cowork with that checkout connected.
-
-Independently inspect relevant code and exercise the app where possible.
-Do not accept the builder's narrative as evidence. If tools, credentials or
-runtime access are missing, report what was actually reviewed and what was not;
-source-only inspection cannot approve visual or live-interaction claims.
-Use synthetic data and existing project commands. Preserve private access.
-
-Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
-Report hosted outcomes separately only when hosting was authorized.
-For each material finding give capability ID, expected versus observed behavior,
-reproduction/evidence, consequence, confidence and the smallest corrective
-outcome. Separate observed failures, hypotheses and optional suggestions.
-Include open scope and pending user acceptance; do not invent a likeness or
-creativity score. User acceptance is not yours to grant.
-
-Astra must record a disposition for each material finding and fix confirmed
-defects. On recheck, inspect the new revision and affected cases, not just a
-claim that the problem was fixed. This review never authorizes reduced scope.
 ```
 
 ## Milestone 6: Integrated release
 
-**Entry:** Implemented C01-C14 and C16 paths and evidence/findings from all previous milestones; no unacknowledged scope cuts.
+**Entry:** Implemented C01-C15 paths and evidence/findings from all previous milestones; no unacknowledged scope cuts.
 
 **Working demonstration:** Run the complete cross-view, voice, exploration, comparison and output journey locally with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify local service/data ownership and restore instructions.
 
@@ -2165,18 +1516,14 @@ short demonstration highlights the complete product; it does not reduce scope.
 
 **Still open:** Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
 
-**Review order:** complete Astra packages 31-33, run the Fable M6 review below against the release candidate, resolve material findings, then run Astra package 34. Return to Fable for local-operation confirmation. Confirm optional hosting only if separately authorized; do not wait until after publication for the first release review.
+**Review order:** complete Astra packages 29-31, run the Fable M6 review below against the release candidate, resolve material findings, then run Astra package 32. Return to Fable for local-operation confirmation. Confirm optional hosting only if separately authorized; do not wait until after publication for the first release review.
 
-### Prompt 31: qualify concurrency and bounded recovery across the product
+### Prompt 29: qualify concurrency and bounded recovery across the product
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
 Required prerequisites: All required capability paths implemented or explicitly listed as blockers.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Qualify and fix Minerva's integrated behavior in this new codebase.
 Use its complete capability contract; do not reduce scope to make checks pass.
@@ -2210,16 +1557,12 @@ reduced motion; fixes land in owning modules; and concrete evidence is saved to
 the capability matrix.
 ```
 
-### Prompt 32: qualify the look, feel and interaction economy
+### Prompt 30: qualify the look, feel and interaction economy
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
 Required prerequisites: A populated working product and original design contract, not a static shell.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Review and correct Minerva against this new repository's complete product and
 original design contracts. Use newly authored custom code/assets. This is a
@@ -2252,29 +1595,24 @@ Use original custom assets and appropriately licensed standard resources.
 
 Record annotated visual and journey evidence. Human look/feel acceptance is a
 separate status; if unavailable, say pending rather than inventing a likeness
-score. Fewer buttons achieved by removing capabilities is a failure. Update C16.
-Judge equivalent capability, responsiveness and visual character, not exact
-pixels, component structure or an earlier application's implementation choices.
+score. Fewer buttons achieved by removing capabilities is a failure. Update C15.
+Judge capability, responsiveness and visual character against the product contract.
 Package complete when: populated desktop, narrow, normal-zoom and overview
 renderings meet the composition, activation-count, relationship-legibility,
 accessibility and sound rules; annotated visual and journey evidence is
-recorded; and C16 names human acceptance as recorded or pending.
+recorded; and C15 names human acceptance as recorded or pending.
 ```
 
-### Prompt 33: prove completeness and architectural improvement
+### Prompt 31: prove completeness and architectural improvement
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
 Required prerequisites: The full capability matrix and representative functional/visual/runtime evidence.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Audit this newly authored Minerva implementation against every required
-capability C01-C14 and C16 and the backend architecture contract. No old application source
-or prior conversation is needed. Do not substitute "core works" for completeness.
+capability C01-C15 and the backend architecture contract.
+Do not substitute "core works" for completeness.
 
 For each capability, trace a visible user workflow through application logic,
 persistence/provider execution and back to the browser. Record evidence and gaps.
@@ -2296,17 +1634,16 @@ backup/restore instructions and reproducible local startup. Distinguish closing
 the browser from stopping local services; reconcile interrupted work on restart.
 Optional hosted data must not depend on a temporary preview expiry. Exercise the recovery path
 without touching working data; no multi-region or enterprise platform is required.
-Confirm custom code/assets were authored for this project rather than imported
-from an earlier application. Standard dependencies are not custom application reuse.
+Confirm custom code/assets belong to this build and dependencies have suitable licenses.
 
 Run the appropriate existing checks and representative live/visual journeys.
 Separate functional, visual, architecture, infrastructure, runtime and efficacy
 statuses. Any required missing capability blocks a completion claim; only an
-explicit user-approved scope amendment can change the contract.
+explicit user-approved scope change can change the contract.
 Missing user experience acceptance also blocks an overall completed-product
 claim, even if automated functional checks pass.
 Update the matrix and a concise handoff, including all remaining blockers.
-Package complete when: every C01-C14 and C16 journey is traced with evidence or a
+Package complete when: every C01-C15 journey is traced with evidence or a
 named gap; the representative change and dependency rules are verified;
 infrastructure and provenance checks are recorded; functional, visual,
 architecture, infrastructure, runtime and efficacy statuses are separated; the
@@ -2314,16 +1651,12 @@ matrix and handoff list all blockers; and the Fable release-candidate packet is
 prepared.
 ```
 
-### Prompt 34: release the local browser prototype honestly
+### Prompt 32: release the local browser prototype honestly
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
 Required prerequisites: Fable's M6 release-candidate review, material findings resolved, user acceptance and authorized configured services for local operation.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
+Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
 Deliver Minerva as a single-user, browser-only local prototype with no sign-in.
 Publication or optional private hosting requires separate authorization.
@@ -2331,7 +1664,7 @@ It is the complete spatial creative studio: relationship-rich cards and
 inheritance, three real views, contextual moves, comparison/Weave, instruments,
 Wander and space analysis, Agent Drive, concurrent voice and outputs.
 Read the capability matrix, design acceptance and architecture/infrastructure
-evidence. No previous application repository or conversation is required.
+evidence.
 
 Do not present further scope cuts as completed Minerva. All required behaviors must
 have evidence; unresolved subjective acceptance stays explicit.
@@ -2352,7 +1685,7 @@ on every serving address. Otherwise remain local without adding access
 infrastructure. Public source is not public hosting: confirm no secret, user data
 or unlicensed asset has been committed.
 Do not silently change visibility. Never accept marketplace/legal terms for
-the person or copy a pre-existing application's custom code/assets.
+the person.
 
 Use the public repository name minerva, without a version suffix. Prepare a
 short demonstration of the central loop: inspect potentially recurring ideas,
@@ -2380,9 +1713,7 @@ Update the handoff. Functional completion is not empirical proof of creativity;
 never disguise missing functionality as later optional extensions.
 Milestone closeout: demonstrate this complete M6 journey:
 Run the complete cross-view, voice, exploration, comparison and output journey locally with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify local service/data ownership and restore instructions.
-Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
-this milestone's independent review prompt. Record and resolve material findings;
-Fable's opinion does not replace user acceptance or observed behavior.
+Prepare the exact-candidate packet for this milestone's Fable review.
 Still open at this milestone: Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
 Package complete when: the complete prototype operates locally with no sign-in,
 loopback binding and internal request protections; the integrated local journey
@@ -2400,29 +1731,19 @@ with local completion.
 
 ```text
 You are Fable 5.1 in Claude, independently reviewing M6: Integrated release
-for a newly authored Minerva application. GPT-6 Astra in Codex implements.
-The operator starts this independent Claude review on a separate checkout of
-the exact committed candidate; this is not a routine builder-launched subagent.
-Keep one bounded review, then recheck material corrections rather than restart
-a broad audit. New suggestions do not automatically expand implementation scope.
-Review only: do not change application files, commit or deploy. Run existing
-checks and isolated synthetic journeys, never mutate working user data.
-Live paid calls require an explicit review allowance; without it, inspect
-available evidence and mark the unexercised live behavior as incomplete.
-
-Use the supplied new-project path, exact candidate revision/diff, local product
-and design contracts, capability matrix and startup/fixture instructions.
-No earlier application source, template, external screenshot or conversation is
-required. The full product is a relationship-rich spatial creative studio with
-three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice and outputs. The browser-only prototype has no sign-in and
-defaults to local access. This milestone is not the entire release.
+Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
+Use the supplied exact
+candidate, isolated checkout/data and startup instructions. Review only; no edits
+to application source or paid calls without explicit allowance.
 
 Required demonstration:
 Run the complete cross-view, voice, exploration, comparison and output journey locally with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify local service/data ownership and restore instructions.
 
 Review focus:
-Audit C01-C14 and C16 against running behavior and the exact candidate revision,
+Return READY FOR LOCAL RELEASE, CHANGES REQUIRED or BLOCKED for the candidate;
+return LOCAL OPERATION CONFIRMED only after exercising the serving result.
+Report hosted outcomes separately only when hosting was authorized.
+Audit C01-C15 against running behavior and the exact candidate revision,
 not the builder's completion narrative. Reproduce representative concurrency,
 recovery, relationship and browser output journeys. Inspect architecture and
 local infrastructure evidence, plus populated desktop/mobile views. Confirm
@@ -2447,29 +1768,4 @@ capabilities, failed transformations or unusable browser outputs.
 Still-open scope at this boundary:
 Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
 
-Complete the whole review in one pass; the user is not watching while you work
-and has already authorized every read-only step in this prompt, so do not pause
-to ask permission for inspection, running existing checks or exercising the
-fixture. Ask a question only when a required input from the packet is missing,
-and otherwise report. Work in Claude Code opened in a read-only checkout of the
-review revision, or in Claude Cowork with that checkout connected.
-
-Independently inspect relevant code and exercise the app where possible.
-Do not accept the builder's narrative as evidence. If tools, credentials or
-runtime access are missing, report what was actually reviewed and what was not;
-source-only inspection cannot approve visual or live-interaction claims.
-Use synthetic data and existing project commands. Preserve private access.
-
-Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
-Report hosted outcomes separately only when hosting was authorized.
-For each material finding give capability ID, expected versus observed behavior,
-reproduction/evidence, consequence, confidence and the smallest corrective
-outcome. Separate observed failures, hypotheses and optional suggestions.
-Include open scope and pending user acceptance; do not invent a likeness or
-creativity score. User acceptance is not yours to grant.
-
-Astra must record a disposition for each material finding and fix confirmed
-defects. On recheck, inspect the new revision and affected cases, not just a
-claim that the problem was fixed. This review never authorizes reduced scope.
 ```

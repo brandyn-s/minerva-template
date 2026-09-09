@@ -1,7 +1,7 @@
 # Minerva: observable product specification
 
 This is the authoritative required scope. The seed implements a shell, not
-these application capabilities. C01-C14 and C16 are required before prototype
+these application capabilities. C01-C15 are required before prototype
 completion; milestones are demonstrations of progress, not smaller products.
 Implementation and composition may improve without a pixel-for-pixel replica.
 
@@ -225,7 +225,7 @@ Paired experiments declare comparable conditions and preserve contradictory
 outcomes; model scores are not human observations. Save observed effect,
 evidence, rationale and reusable synthesis linked to source records.
 
-### C16: Living-atlas experience
+### C15: Living-atlas experience
 
 Follow [DESIGN.md](./DESIGN.md): original cartographic paper/ink, expressive
 titles, legible source threads and compact contextual controls. The field
@@ -291,8 +291,7 @@ and separate reproduced failures from preferences.
 
 ## Product exclusions
 
-C15 (external REST/MCP access) is retired by the prototype scope decision.
-Keep the remaining IDs stable. External API buildout, machine-client credentials,
+External API buildout, machine-client credentials,
 accounts/sign-in and new hosting-access infrastructure are excluded. Internal
 browser/voice server endpoints are not an external API product and remain required.
 Multi-human co-editing, billing, a plugin marketplace, microservices, desktop

@@ -1,118 +1,80 @@
 # Minerva: Astra builds, Fable reviews
 
-Minerva is a single-user, browser-only spatial creative prototype with no sign-in,
-built in a public repository. C01-C14 and C16 remain required; C15 is retired.
-Use the Next.js/TypeScript
-modular monolith: Postgres owns durable state; Vercel Workflow owns longer
-execution; UI and voice share named application operations.
-Public source does not grant access to workspaces, credentials or paid AI.
+Minerva is a single-user, browser-only spatial creative prototype with no sign-in.
+C01-C15 are required. Use the Next.js/TypeScript monolith: Postgres owns durable
+state; Vercel Workflow owns longer execution; UI and voice share named operations.
 Default to loopback-only local access. Hosting is optional only behind an existing
 suitable private boundary that preserves no-sign-in use and denies outside access.
-Do not build accounts, sign-in, external REST/MCP APIs or new access infrastructure.
-Internal server endpoints and server-held credentials remain necessary.
+Do not build accounts, external APIs or access infrastructure.
 
-This template stays content-free. In a generated application, implement directly
-in that repository; inherited seed wording is not a request to create another
-repo or reuse an earlier Minerva application's implementation.
+## Sources and scope
 
-## Read the relevant contract
+[README](./README.md#documentation) indexes the documents. SPEC owns requirements;
+CAPABILITIES owns evidence. Read the selected package and relevant contracts,
+not the whole catalog. Keep template docs current-only: no commented-out
+alternatives, decision history or duplicate specifications.
 
-[CONTRACT](./docs/product/CONTRACT.md) is an index, not another specification.
-SPEC owns requirements; [CAPABILITIES](./docs/product/CAPABILITIES.md) owns
-implementation evidence. [INTENT](./docs/product/INTENT.md),
-[DESIGN](./docs/product/DESIGN.md), [ARCHITECTURE](./docs/product/ARCHITECTURE.md)
-and [DECISIONS](./docs/product/DECISIONS.md) own their named concerns.
-[Build prompts](./docs/build-prompts.md) contain the standard work packages.
-Read the selected package and relevant contracts, not the whole catalog each
-session. Repository sources are authoritative; Downloads/HTML are exports.
-
-Treat this agreement within the active runner's instruction and authorization
-boundaries. Surface concrete conflicts instead of changing scope or bypassing
-safeguards. A previous session's "done" is a claim to verify, not evidence.
+Keep this seed content-free. Generate the application from it, then implement
+in that repository. Author custom application code and assets for this build;
+reuse its existing work and appropriately licensed frameworks, libraries and
+assets. Do not port another application's implementation.
 
 ## Execute one connected outcome
 
-- Respect advice/review requests as read-only. For authorized implementation,
-  deliver one working user action with a starting state, exclusions and stopping
-  evidence. Integrate the smallest UI/service path before expanding. A package
-  may span sessions; label partial checkpoints rather than accumulating an
-  unintegrated subsystem or claiming the package complete.
-- Resume at the supplied absolute path; verify branch, checkpoint and changes
-  without resets. If unavailable, report that mismatch rather than searching
-  the home directory. Reconcile requested process changes once from the pinned
-  relevant delta, preserving application evidence. Further discovery must
-  answer a named unresolved question; batch known reads and keep lookup
-  recovery within the known directory.
-- Fix the latest demonstrated failure and tightly coupled defects before
-  adding abstractions. Keep unrelated cleanup and optional reviewer suggestions
-  outside the task. A user instruction steering the current outcome does not
-  require restarting the whole plan.
-- Domain rules do not import React, HTTP, database clients or provider SDK
-  types. Add dependencies/infrastructure when the current capability needs
-  them, not speculatively. Avoid generic command buses, extra agent engines,
-  timing harnesses and review coordinators.
-- Use existing checks/logs and retain failures. Exercise actual UI journeys;
-  a typecheck or command launch is not user-visible success. Recheck the
-  failure and adjacent transitions after a fix; broaden only for a concrete
-  unresolved concern. A timebox can prompt a partial checkpoint, not waive
-  required behavior. Extra measurement needs a decision it can change.
-- Resolve consequential provider uncertainty early with a small authorized,
-  bounded probe, then use fixtures for the fast loop. Preserve source/revision
-  integrity, authorization, cost admission and required recovery. Missing
-  live evidence remains explicit, never fabricated.
+- Respect advice/review requests as read-only. For implementation, state the user
+  action, exclusions and stopping evidence. Integrate the smallest UI/service path
+  before expanding; partial checkpoints do not complete a package.
+- Resume at the supplied absolute worktree, branch and revision. Preserve changes;
+  never reset or regenerate to hide a mismatch. Inspect the relevant caller and
+  backend entry point; further discovery must answer a concrete question.
+- Fix observed failures and tightly coupled defects before adding abstractions.
+  Keep optional suggestions outside the task. Owner steering modifies the current
+  outcome without restarting the whole plan.
+- Domain rules do not import React, HTTP, database clients or provider SDK types.
+  Add dependencies when needed; no generic command bus, extra agent engine,
+  review coordinator or measurement infrastructure without a consequential need.
+- Exercise actual UI journeys and affected failure transitions using existing
+  checks. Keep fixtures distinct from live providers. Probe consequential provider
+  uncertainty with small authorized cases; retain failures and state evidence gaps.
 - Provisioning, publication, deployment, paid calls, destructive actions and
-  contacting others require authorization. Never commit secrets, private
-  workspace data or unlicensed assets. Follow runner restrictions; no
-  subagent orchestration is required or permission bypass allowed.
+  contacting others require authorization. Preserve source revisions, request
+  protections, cost admission and bounded recovery. Never commit secrets, private
+  workspace data or unlicensed assets. Follow the active runner's restrictions.
 
-## Milestones and independent review
+## Milestones and review
 
-The 32 packages form six milestones; IDs 29-30 are retired, not renumbered. M1 is an
-interactive local fixture; M2 introduces persistent recovery and live services.
-The [setup guide](./docs/setup.md) owns procedural launch/review instructions.
+The 32 packages form six milestones. M1 uses prepared local data; M2 integrates
+persistence, generation and voice. M2 reviews after package 10 and after package
+12; M5 reviews browser instruments/outputs. M6 reviews the candidate and confirms
+local operation. Hosting confirmation applies only when hosting is authorized.
 
-Astra in Codex owns the writable build checkout. The operator starts Fable 5.1
-in Claude on a separate checkout of the exact committed candidate, read-only
-for application source. Two terminals sharing mutable files are not isolation.
-Do not launch the critic automatically unless explicitly requested or covered
-by a specific agreed exception. `CLAUDE.md` imports this agreement; it does
-not select a model. Both models start at medium effort; raise it for a concrete
-difficulty and return to medium. Permissions remain user-managed.
+Astra owns the writable checkout. The operator starts Fable 5.1 in Claude on a
+separate checkout of the exact committed candidate, read-only for application
+source. Do not launch the critic unless explicitly requested. Existing checks
+may write ignored artifacts; use separate ports, isolated synthetic data and
+explicit paid-call allowance. Start both models at medium effort; escalate only
+for demonstrated difficulty, then return to medium.
 
-Use one independent review per planned boundary, then focused material-fix
-rechecks. Record dispositions and evidence; model agreement is not proof.
-Repeated findings without new evidence require a specific unresolved assumption
-and an owner decision or bounded experiment, not another broad review.
-This does not waive known defects. Fable's review and user experience acceptance
-are distinct. Missing access or review remains a stated gap.
+Fable forms its view from the contract and app before the builder's conclusions.
+Use one review per planned boundary and focused rechecks of material corrections.
+Distinguish reproduced defects, missing requirements and subjective suggestions.
+Record evidence-based dispositions; fix confirmed defects. Additional cycles
+need unresolved failures or new evidence, not a desire for model agreement.
+If blocked, name the missing input or unresolved assumption. Do not invent
+approval or waive required behavior. User experience acceptance is separate.
 
-M2 reviews after package 10 without collaboration and after package 12 with
-voice. M5 reviews browser-based instruments and outputs.
-M6 reviews the release candidate and confirms local operation afterward; hosted
-confirmation applies only to separately authorized hosting.
-Review checks may create ignored artifacts; use isolated data/ports and
-explicit paid-call allowance, never the builder's working data or server.
+## Handoff
 
-## Checkpoint and operator handoff
+Use CAPABILITIES and a short application `docs/HANDOFF.md` for scope, findings,
+dispositions, evidence and the next outcome. Distinguish written, integrated,
+locally/live demonstrated, reviewed, accepted and hosted facts by revision.
+Do not add diaries, status engines or parallel per-model records.
 
-Keep evidence, findings and dispositions in CAPABILITIES and a short
-`docs/HANDOFF.md`; no transcripts, per-model diaries or extra status system.
-Distinguish written, integrated, locally/live demonstrated, reviewed, accepted
-and deployed facts with revision and runtime mode. A merge is not deployment.
-
-At each implementation checkpoint, include the operator handoff in the final
-response, not just a link. State outcome/partial status, exact committed SHA,
-branch, absolute worktree path and state, handoff path and next session role.
-Supply the applicable copyable bounded review/resume instructions from
-[Standard checkpoint output](./docs/setup.md#standard-checkpoint-output).
-Fill actual paths and candidate values inside the copied blocks. A handoff
-supplies context, not authorization; label proposed work **Not authorized yet**.
-Do not substitute a whole milestone for the next outcome or add review gates
-after every increment.
-
-Write durable docs, commits and handoffs in plain prose. Use tables for
-comparable data and lists for parallel items. Preserve the selected package's
-completion condition without repeating every operating rule in each report.
+Emit the operator handoff in the final response, not just a link: outcome/state,
+candidate SHA, branch, absolute worktree, startup mode, handoff path and next
+role. Supply the applicable bounded launch instructions from
+[setup](./docs/setup.md#standard-checkpoint-output). A handoff is context, not
+authorization. Do not automatically advance or create a review gate per increment.
 
 ## Run and contribute
 
@@ -122,12 +84,10 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
-`check` runs lint, typecheck, tests and build. The seed has
-documentation-consistency tests, not product coverage. Add relevant behavior
-coverage in application slices. Work on a branch and PR; never bypass required
-checks. For this template, use auto-merge only after required CI is green.
-Generated repositories need their own settings. Report meaningful results,
-failures and unverified boundaries.
+The seed has documentation-consistency tests, not product coverage. Add relevant
+behavior coverage in application slices. Use a branch and PR; merge only after
+required CI. Generated repositories need their own settings. Report meaningful
+results, failures and unverified boundaries.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

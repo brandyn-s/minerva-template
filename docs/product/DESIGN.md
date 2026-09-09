@@ -62,7 +62,7 @@ child, semantic links, drafts and unknown evidence. At M1 its local interactions
 are explicitly fixtures; do not fake persistence, generated output or voice.
 The seed landing page and dotted background are identity examples, not the final
 workspace layout. An original subtle cartographic terrain may support the field;
-it is decorative, not inferred idea quality, and must not be copied from an old app.
+it is decorative, not inferred idea quality. Use original artwork.
 
 Mouse, touch and keyboard expose equivalent actions. Preserve visible focus,
 readable contrast, sensible touch targets and narrow-screen access. User

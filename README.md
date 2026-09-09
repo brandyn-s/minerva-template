@@ -3,125 +3,61 @@
 [![CI](https://github.com/brandyn-s/minerva-template/actions/workflows/ci.yml/badge.svg)](https://github.com/brandyn-s/minerva-template/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-A product contract and thin runnable starter for a single-user, browser-only
-**spatial creative prototype** with no sign-in: a living atlas of ideas with
-visible relationships and inheritance, three views, contextual creative
-operations, comparison and Weave, bounded
-Wander exploration, goal-directed Agent Drive, a concurrent typed and spoken
-collaborator and materialized outputs.
+A thin runnable starter and product contract for a single-user, browser-only
+**spatial creative prototype** with no sign-in. Minerva is a living atlas of
+ideas: visible inheritance, three views, contextual creative moves, Weave,
+Wander, Agent Drive, concurrent voice and usable outputs.
 
-**A living atlas of ideas.** The starter expresses the paper-and-ink identity
-with an original owl mark and native disclosure controls. It does not simulate
-the application. See [Design](./docs/product/DESIGN.md) for naming, interaction,
-truthful motion, and opt-in sound that gives voice priority.
+**Implemented:** the Next.js shell, original identity and CI/document checks.
+**To build:** the fifteen capabilities in [SPEC](./docs/product/SPEC.md).
+Keep this template content-free; implement the application in its generated
+repository.
 
-**Implemented:** a pinned Next.js shell, CI and seed-document consistency checks.
-**Not implemented:** workspace
-persistence, canvas, AI operations, voice, workflow execution or deployment.
-Keep this template content-free; build the application in a new repository.
-
-## Product direction
-
-The prototype is defined by fifteen required capabilities, C01-C14 and C16, in
-[SPEC](./docs/product/SPEC.md). All of them are release
-requirements; none is an optional extension. People edit, zoom, trace
-relationships and recombine distant ideas while exploration and conversation
-run. Ideas preserve exact source revisions and contributions. Space readings
-link evidence and uncertainty; repetitive generation is not presented as
-discovery. Delivery is staged through six demonstrable milestones, each
-independently reviewed, and a milestone is a checkpoint of the whole product
-rather than a smaller product.
-
-Use one Next.js/TypeScript modular monolith. Postgres owns durable workspace
-state; Vercel Workflow owns longer runs. Browser interaction, layout, content,
-attention and speech have distinct responsibilities. UI and agents call the
-same bounded operations. Public GitHub source does not grant public access to
-workspaces, credentials or paid AI.
-
-Open localhost and work without accounts, passwords or a sign-in screen.
-The browser is the only client, not the only runtime: internal server endpoints,
-server-held provider credentials, Postgres and durable runs remain. External
-REST/MCP APIs are excluded. Hosting is optional, only when an existing suitable
-private boundary preserves no-sign-in use and denies outside access; otherwise
-stay local. Do not build an access platform or expose an anonymous paid service.
-
-## Run the shell
-
-Node and npm are exact pins:
+## Run locally
 
 ```sh
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm ci
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). The placeholder page needs no
-cloud account or provider key. Database, model and voice configuration
-arrive with their working application slices, not unused dependencies here.
+Open [localhost:3000](http://localhost:3000). Dev/start bind to loopback; the
+shell needs no cloud account, provider key or sign-in. Add database, model and
+voice configuration when implementing those capabilities.
 
-The linter uses ESLint 9.39.5 because the current Next.js 16.3.4 React,
-accessibility and import plugins declare peers only through ESLint 9. This is
-a temporary compatibility hold: ESLint 9 is deprecated upstream, not a
-long-term supported tooling choice. Upgrade the linter and plugins together
-when their declared ranges support ESLint 10; do not suppress peer errors or
-remove lint rules to force that upgrade. Application runtime pins are unchanged.
+The browser is the only client, not the only runtime. Keep the Next.js/TypeScript
+monolith, internal server endpoints, server-held credentials, Postgres and
+durable Vercel workflows. External REST/MCP APIs and accounts are excluded.
+Hosting is optional only behind an existing suitable private boundary that
+preserves no-sign-in use and denies outside access; otherwise stay local.
 
-## Build in Astra sessions, review in Claude
+## Build and review
 
-[docs/build-prompts.md](./docs/build-prompts.md) holds the milestone plan: 32
-GPT-6 Astra work packages grouped into six milestones, one Fable 5.1 review
-prompt per milestone and one consultation prompt for decisions or impasses.
-Paste one complete package into a fresh Astra session in the new repository.
-Each package states its prerequisites and ends with an explicit "Package
-complete when" condition. Related packages may share a session; a hard package
-may span several. Original package IDs are retained; 29-30 are retired.
-Local release is the last package and follows the release-candidate review.
-Publication and optional private hosting require separate authorization.
+[Build prompts](./docs/build-prompts.md) contain 32 work packages across six
+milestones, a Fable review for each milestone and an outside-consultation prompt.
+Use one connected user outcome per assignment. Related packages may share a
+session; a difficult package may span sessions. All capabilities remain required.
 
-Use separate terminals and checkouts: Astra in Codex builds; Fable 5.1 in Claude
-reviews the exact committed candidate without editing application source.
-The operator starts reviews; builder-launched reviewers are an explicit
-exception, not the default. [Setup](./docs/setup.md#separate-builder-and-critic)
-describes the small handoff and checkout arrangement.
+Astra in Codex builds; the operator starts Fable 5.1 in Claude on a separate
+checkout of the exact candidate. Both start at medium effort. Use the existing
+handoff and capability record, not extra process machinery. See
+[AGENTS.md](./AGENTS.md) for working rules and [setup](./docs/setup.md) for
+copyable launch instructions. Publication and hosting need separate authorization.
 
-Choose one demonstrable outcome per task. A partial package can have a useful
-checkpoint without being called complete. Default to one independent review
-per planned boundary and a focused recheck of material fixes. Keep optional suggestions separate
-from required defects; avoid speculative abstractions, repeated full reviews
-and measurement infrastructure that does not answer a consequential question.
+## Documentation
 
-Make each implementation assignment a working user action, not an entire
-subsystem. Integrate the UI and current service path before expanding; packages
-11-12 include a concrete typed/voice increment sequence. Probe consequential
-external assumptions early within authorized bounds. Report written, integrated,
-local/live demonstration, review, acceptance and deployment separately; a
-large code return or merged PR is not a functioning or hosted capability.
+| Concern | Source |
+|---|---|
+| Purpose, complete experience and falsifiers | [INTENT](./docs/product/INTENT.md) |
+| Required capabilities C01-C15 and acceptance scenarios | [SPEC](./docs/product/SPEC.md) |
+| State ownership, boundaries and open implementation choices | [ARCHITECTURE](./docs/product/ARCHITECTURE.md) |
+| Living-atlas identity and interaction | [DESIGN](./docs/product/DESIGN.md) |
+| Implementation evidence | [CAPABILITIES](./docs/product/CAPABILITIES.md) |
+| Work packages and milestone reviews | [Build prompts](./docs/build-prompts.md) |
+| Repository identity, sessions and local operation | [Setup](./docs/setup.md) |
 
-There is no requirement to read another application's code, consult prior
-conversations, or run one long repeatedly compacted session. Continue from
-this repository's code, `docs/product/CAPABILITIES.md` and a short
-`docs/HANDOFF.md`.
-
-`.codex/config.toml` selects Astra with **medium** effort; the Fable reviewer
-also runs at medium. Escalate for an observed difficult task, then return to
-medium. Runner permissions, approvals, network access and experimental
-features remain user-managed. [AGENTS.md](./AGENTS.md) is the working
-agreement; `CLAUDE.md` imports it.
-
-## Product contracts
-
-Read the relevant section when implementing, not every document on every turn:
-
-- [INTENT](./docs/product/INTENT.md): purpose, the complete experience and falsifiers.
-- [SPEC](./docs/product/SPEC.md): observable behavior, required capabilities and acceptance scenarios.
-- [ARCHITECTURE](./docs/product/ARCHITECTURE.md): state ownership and module boundaries.
-- [DECISIONS](./docs/product/DECISIONS.md): active decisions and supersession.
-- [DESIGN](./docs/product/DESIGN.md): living-atlas identity, naming, motion and sound.
-- [Setup](./docs/setup.md): new-repository identity, sessions and deployment boundaries.
-- [Vercel facts](./docs/vercel-facts.md): current vendor constraints and sources.
-
-The starter contains no database implementation, generic agent framework,
-plugin platform, workflow harness or research apparatus. Add the smallest
-implementation required for each end-to-end slice.
+Read the relevant source, not every document each session. SPEC owns behavior;
+CAPABILITIES records evidence; the application's short `docs/HANDOFF.md` names
+the current outcome and next step.
 
 ## Check and contribute
 
@@ -129,25 +65,11 @@ implementation required for each end-to-end slice.
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
-`check` runs lint, typecheck, test and build. The seed tests protect documentation
-structure and internal links, not product behavior. Green shell CI is not
-evidence that Minerva exists. Add relevant
-behavior coverage as features are implemented.
+`check` runs lint, typecheck, tests and build. Seed tests cover scaffold/document
+consistency, not product behavior. Add behavior coverage as capabilities arrive.
+ESLint 9 matches the installed Next.js plugin peer ranges; upgrade them together
+when compatible, without suppressing peer errors or removing lint rules.
 
-For this template, use a branch and PR, with auto-merge only after required CI.
-Generated repositories need their own repository settings and corrected
-package, badge and reporting URLs; follow [setup](./docs/setup.md).
+Use a branch and PR; merge only after required CI. Generated repositories need
+their own settings and corrected identity URLs; follow [setup](./docs/setup.md).
 Report vulnerabilities privately under [SECURITY.md](./SECURITY.md).
-
-## Seed versus application
-
-Use this template to generate the public `minerva` repository after the seed
-update is merged. Record the seed revision and update identity/settings through
-[setup](./docs/setup.md). The hosted application remains private.
-
-Start with [CONTRACT](./docs/product/CONTRACT.md), the documentation index.
-SPEC owns required behavior; [CAPABILITIES](./docs/product/CAPABILITIES.md) owns
-implementation evidence. Use the standard prompts in this repository; HTML and
-Downloads are exports. The starter landing page is identity material, not the
-final atlas or an approved M1 proof. Keep database, canvas, voice, AI and live
-deployment implementation in the generated application.

@@ -34,11 +34,7 @@ Keep a whole capability partial when only one increment is complete.
 | C12 | Agent Drive | not started | No application implementation |
 | C13 | Typed and spoken collaboration | not started | No application implementation |
 | C14 | Outputs and reusable results | not started | No application implementation |
-| C16 | Living-atlas experience | not started | Seed identity is not an interactive atlas |
-
-C15 is retired from prototype scope; the remaining IDs stay stable. External
-REST/MCP APIs and sign-in are not pending work. Internal browser/voice endpoints,
-local access protections and paid-work admission remain part of the owning capabilities.
+| C15 | Living-atlas experience | not started | Seed identity is not an interactive atlas |
 
 ## Current milestone
 
@@ -57,5 +53,5 @@ no hosted deployment is required for prototype completion.
 
 ## Next outcome
 
-Generate the public `minerva` repository from the corrected seed, set identity
+Generate the public `minerva` repository from this seed, set identity
 using [setup](../setup.md), and build M1's original populated interactive proof.
