@@ -47,6 +47,14 @@ service framework, dependency-injection container, or universal agent engine.
 
 ## Canonical records
 
+Use Drizzle (`drizzle-orm`) inside feature-owned Postgres adapters, not in domain
+contracts or UI code. Keep relational constraints and transaction boundaries
+explicit. Generate versioned SQL migrations with `drizzle-kit`, inspect and
+commit them, and apply them through an explicit command against the intended
+database. Do not replace migrations with schema push or mutate schema during
+requests or ordinary server startup. Add these dependencies with M2 persistence,
+not to the content-free seed or an unused M1 persistence skeleton.
+
 Postgres owns workspaces, brief/constraint revisions, ideas and immutable
 revisions, derivation edges, semantic links, proposals, reviews, decisions,
 command receipts, operation manifests, runs/steps and exploration observations.
@@ -84,6 +92,10 @@ Duplicate delivery returns the same receipt; conflicting ID reuse fails.
 Admission is not completion. Apply conflicts to dependencies actually read or
 written, not every change anywhere in the workspace.
 
+Commit a mutation and its command receipt in the same database transaction;
+include dispatch intent when admitting durable work. A lost response must not
+leave a committed mutation without the receipt needed for safe replay.
+
 **Attention:** point/highlight references are sequenced and expire. They do not
 write content, steal selection or move the camera. An explicit navigation
 command may move it. Reconnection discards stale navigation/highlights.
@@ -114,7 +126,11 @@ the database/startup gap. Execute provider/database I/O in durable steps and
 checkpoint independent results. Stable step IDs prevent duplicate application
 effects; they do not prove exactly-once provider billing.
 
-Poll persisted progress initially if sufficient. Normalize progress, input-needed,
+Poll persisted progress initially, with bounded intervals and cancellation when
+the consumer unmounts or the run is terminal. Canceling a poll does not stop the
+run. Reconnect by reading durable state. Add a different delivery transport only
+for an observed requirement that polling cannot satisfy; do not add a realtime
+service preemptively. Normalize progress, input-needed,
 proposal-saved and terminal events for presentation. Event delivery is not a
 second state store. Reconnect from durable state rather than replaying UI actions.
 Stopping ends future admission; already-admitted work may finish or incur cost.
@@ -126,6 +142,15 @@ and failed attempts. Never bypass a quota or invent successful fallback output.
 
 ## Concurrent interaction
 
+Use React Flow (`@xyflow/react`) for viewport, nodes, edges and pointer mechanics,
+with custom React cards and application-owned layout functions. Map canonical
+IDs and typed relationships into renderer data at the presentation boundary;
+do not persist the renderer store or export its types from domain contracts.
+Keep the living-atlas composition in DESIGN, not the library's demo appearance.
+Add the renderer with the first M1 interactive fixture and retain that
+presentation when M2 replaces fixture data. Exercise IB01-IB06 and representative
+graph sizes; library selection alone establishes neither accessibility nor speed.
+
 Canvas, run execution and voice have independent lifecycles. No global busy flag.
 Incoming results merge by identity and preserve viewport, selection and deliberate
 positions. Source edits affect dependent work only. Keep expensive layout and
@@ -134,6 +159,8 @@ analysis off the synchronous pointer path; add workers for observed need.
 Voice uses a maintained provider adapter with server-mediated ephemeral
 credentials, bounded sessions, interruption and context resync. Barge-in stops
 speech, not unrelated work or acknowledged commands. Typed fallback remains.
+Typed and voice collaboration share context compilation and named application
+operations; neither introduces a conversation-specific mutation path.
 
 ## Provider and deployment boundaries
 

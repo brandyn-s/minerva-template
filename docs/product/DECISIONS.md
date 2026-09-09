@@ -25,7 +25,7 @@ context, immutable lineage, visible acknowledgement and retained history.
 | D-107 | Shared commands, ephemeral attention and speech-to-proposal contracts | UI/voice/agents share target-scoped operations, stable IDs and acknowledgements |
 | D-108 | Human-kept work, proposals, model review and search classifications remain distinct | No silent overwrite, fake review, or model score presented as proof |
 | D-109 | Nonblocking canvas/run/voice lifecycles and bounded recovery | No global busy lock; partial work survives and failures have specific outcomes |
-| D-110 | Title-first paper/ink canvas with direct actions and details on demand | No requirement to reproduce a radial fan, hidden menus or specific renderer |
+| D-110 | Title-first paper/ink canvas with direct actions and details on demand | No requirement to reproduce the old radial fan, hidden menus or renderer |
 | D-111 (superseded by D-116) | One bounded task per fresh Astra session | Historical scheduling default; session count does not define delivery |
 | D-112 | Medium development effort baseline; runner permissions remain user-managed | No template-wide approval bypass, experimental context mode or delegation requirement |
 | D-113 | Living-atlas identity: Wander, Weave, Talk to Minerva | Plain action labels accompany thematic names; attention animates, user layout stays stable |
@@ -44,6 +44,9 @@ context, immutable lineage, visible acknowledgement and retained history.
 | D-126 | Working user-action increments integrate before feature expansion | Resolve external uncertainty with small authorized probes; returned subsystem code is not delivered behavior |
 | D-127 | Delivery evidence distinguishes written, integrated, local/live demonstration, review, acceptance and deployment | Record facts in existing capability/handoff fields; no new status engine or implied completion |
 | D-128 | Single-user, browser-only prototype with no sign-in; local access by default | Retire C15 and packages 29-30. Keep internal endpoints, Postgres, durable runs and the other capabilities. Hosting is optional only behind an existing suitable private boundary; do not build one or expose anonymous paid work |
+| D-129 | React Flow (`@xyflow/react`) with custom cards and application-owned layouts | Reuse viewport/pointer infrastructure; map canonical graph records into renderer data without persisting its store or leaking its types into domain contracts |
+| D-130 | Drizzle (`drizzle-orm`) behind feature-owned Postgres adapters; `drizzle-kit` generates reviewed SQL migrations | Keep domain rules ORM-independent; apply committed migrations explicitly to the intended database, never through request-time or implicit startup schema changes |
+| D-131 | Poll persisted run progress initially; retain Postgres admission/dispatch intent and Vercel Workflow execution | No additional realtime service or event-owned state; reconsider transport only for an observed requirement that polling cannot satisfy |
 
 The owner's September 8 prototype scope decision explicitly removes external
 REST/MCP/API buildout and sign-in. Browser-only means the sole client is a browser,
@@ -51,6 +54,15 @@ not browser-only storage or execution. Preserve all other capability/package IDs
 so existing checkpoints retain their meaning. Public GitHub source remains
 separate from application access. A missing hosting boundary is not a local-release
 blocker; no login, client-integration or hosted-release gate may reintroduce it.
+
+These foundation choices are implementation direction, not evidence that their
+integration works. D-105/D-107/D-109 already settle frozen context, shared
+operations and independent state/lifecycles; D-110 settles composition. Implement
+those contracts rather than reopening them at each milestone. Reconsider a
+choice only for a demonstrated requirement failure or compatibility constraint,
+recording the evidence and the narrow replacement decision. M1 establishes
+renderer interaction fit; M2 establishes persistence, recovery and collaboration.
+Do not preinstall these application dependencies in the content-free template.
 
 ## Provisional deployment detail
 
@@ -69,7 +81,8 @@ headroom; do not claim an exact hard cap.
 - Local Postgres configuration.
 - If optional hosting is requested, its authorized project/database and existing
   suitable private boundary for all serving addresses; no machine-client buildout.
-- Canvas renderer and application-level implementation details.
+- Compatible dependency versions, database driver/configuration and
+  feature-level implementation details within D-129/D-130.
 - Runtime text and voice model profiles; Astra is the development model.
 - Exact exploration mixture, evaluation thresholds and layout algorithms.
 - Comparative creative-efficacy judgments; no automatic claim of improvement.

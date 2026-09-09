@@ -490,9 +490,13 @@ for unimplemented capabilities or label a scaffold as the product. Do not
 manufacture empty modules.
 
 Write concise architecture decisions explaining ownership and extension points.
-Use libraries based on the complete interaction requirements, not the smallest
-possible demo. A purpose-fit, license-compatible canvas renderer is allowed;
-a hand-written minimal renderer is not an architectural achievement.
+Use the selected React Flow renderer (@xyflow/react, D-129) with custom cards
+and application-owned layouts for the first interactive fixture. Keep canonical
+graph records and domain types independent of the renderer store and types.
+Preserve the living-atlas composition, not the library's demo appearance.
+Pin a compatible licensed version when adding it; exercise IB01-IB06 rather
+than assuming the library proves interaction quality. Reopen the choice only
+for a demonstrated requirement failure or compatibility constraint.
 
 Add short repository instructions: preserve every required capability, implement
 each slice end to end, do not copy earlier applications, keep source revisions
@@ -707,7 +711,13 @@ must account for active runs and referenced history rather than orphaning it.
 Keep old-system import/migration out of scope.
 
 Use immutable content/brief revisions, independent layout versions, explicit
-migrations and named application operations. Create an export contract for
+migrations and named application operations. Use Drizzle (drizzle-orm, D-130)
+inside feature-owned Postgres adapters; keep ORM types out of domain contracts.
+Generate versioned SQL migrations with drizzle-kit, inspect and commit them,
+then apply them explicitly to the intended database. No schema push, request-time
+or implicit startup schema mutation. Commit each mutation and its command receipt
+atomically; replay after a lost acknowledgement must return the same receipt.
+Create an export contract for
 content, revision history, relationships, proposals, decisions, runs and
 provenance; extend it with later product records. An export is not an import.
 Never save the whole workspace for a card drag.
@@ -895,6 +905,9 @@ steps, expose progress and partial results, and support pause/resume/stop and
 reconnection. Reconcile the gap between database commit and workflow startup.
 The browser does not own run lifetime. Durable replay does not guarantee
 exactly-once external provider execution.
+Use bounded polling of persisted progress initially (D-131); reconnect from
+durable state and stop polling on unmount or terminal status without stopping
+the run. Do not add a realtime service unless an observed requirement warrants it.
 
 Commands have stable IDs, payload identity, targets and expected revisions.
 Duplicate delivery returns the existing receipt; changed payload reuse conflicts.

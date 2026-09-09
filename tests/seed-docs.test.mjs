@@ -82,6 +82,22 @@ test("dry-run interaction scenarios reach implementation and independent review 
   }
 });
 
+test("selected foundations reach the relevant implementation packages", async () => {
+  const decisions = await read("docs/product/DECISIONS.md");
+  const architecture = await read("docs/product/ARCHITECTURE.md");
+  const packages = packagesIn(await read("docs/build-prompts.md"));
+  for (const id of ["D-129", "D-130", "D-131"]) {
+    assert.match(decisions, new RegExp(`^\\| ${id} \\|`, "m"));
+  }
+  assert.match(architecture, /@xyflow\/react/);
+  assert.match(architecture, /drizzle-orm/);
+  assert.match(architecture, /drizzle-kit/);
+  assert.match(packages.find((p) => p[1] === "2")[3], /@xyflow\/react, D-129/);
+  assert.match(packages.find((p) => p[1] === "4")[3], /drizzle-orm, D-130/);
+  assert.match(packages.find((p) => p[1] === "8")[3], /persisted progress initially \(D-131\)/);
+  assert.doesNotMatch(decisions.split("## Deliberately open")[1], /Canvas renderer/);
+});
+
 async function markdownFiles(directory) {
   const files = [];
   for (const entry of await readdir(resolve(root, directory), { withFileTypes: true })) {

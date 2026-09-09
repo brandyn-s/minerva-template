@@ -55,6 +55,13 @@ in Codex in the new application's directory; read relevant current code, the
 contract index, capability evidence and the short `docs/HANDOFF.md`.
 No source application, prior conversation or external repository is needed.
 
+The foundation choices in [DECISIONS](./product/DECISIONS.md) are already made:
+React Flow with custom cards/application layouts, Drizzle with explicit SQL
+migrations, and persisted-progress polling over the existing durable execution
+contract. Add dependencies when their application slices need them. Do not start
+a fresh architecture-selection exercise; plan only a consequential unresolved
+decision or respond to evidence that invalidates a selected approach.
+
 Keep existing working code. If a prerequisite is missing, complete or report
 that prerequisite rather than introducing a second architecture. Finish one
 outcome before advancing, or checkpoint it for a fresh session. Do not require
