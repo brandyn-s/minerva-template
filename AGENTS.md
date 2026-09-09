@@ -2,10 +2,12 @@
 
 Minerva is a single-user, browser-only spatial creative prototype with no sign-in.
 C01-C15 are required. Use the Next.js/TypeScript monolith: Postgres owns durable
-state; Vercel Workflow owns longer execution; UI and voice share named operations.
-Default to loopback-only local access. Hosting is optional only behind an existing
-suitable private boundary that preserves no-sign-in use and denies outside access.
-Do not build accounts, external APIs or access infrastructure.
+state; Vercel AI Gateway serves text and realtime voice models; Vercel Workflow
+owns longer execution; UI and voice share named operations. Local development
+binds to loopback. The release target is a public Vercel deployment for a bounded
+demonstration window used by a small judge panel, with no sign-in; its dates,
+budget and teardown live in the application handoff. Do not build accounts,
+external APIs or access infrastructure, and do not add gates that slow the judges.
 
 ## Sources and scope
 
@@ -56,8 +58,9 @@ the next action requires authority not already granted.
 
 The 32 packages form six milestones. M1 uses prepared local data; M2 integrates
 persistence, generation and voice. M2 reviews after package 10 and after package
-12; M5 reviews browser instruments/outputs. M6 reviews the candidate and confirms
-local operation. Hosting confirmation applies only when hosting is authorized.
+12; M5 reviews browser instruments/outputs. M6 reviews the candidate locally,
+then confirms hosted operation on the served Vercel URL before the demonstration
+window opens.
 
 Astra owns the writable checkout. The operator starts Fable 5.1 in Claude on a
 separate checkout of the exact committed candidate, read-only for application

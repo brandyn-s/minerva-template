@@ -11,17 +11,19 @@ Browser canvas / typed collaborator / voice
                     |
        feature-owned domain rules and contracts
                     |
-      Postgres       model adapter       Vercel Workflow
+      Postgres     AI Gateway adapter     Vercel Workflow
 ```
 
 One Next.js/React/TypeScript application is the deployment unit. Start with
 feature folders in one package, not empty packages or independently deployed
 services. Add dependencies when a working slice needs them.
 
-This is a single-user, browser-only prototype with no sign-in. Default to
-loopback-only local access. Browser-only does not remove the internal backend:
-browser/voice requests still reach shared operations, Postgres and workflows.
-Do not build an external REST/MCP surface, machine-client credentials or accounts.
+This is a single-user, browser-only prototype with no sign-in. Local development
+binds to loopback; the release target is a public Vercel deployment for a bounded
+demonstration window. Browser-only does not remove the internal backend:
+browser/voice requests still reach shared operations, Postgres, AI Gateway and
+workflows. Do not build an external REST/MCP surface, machine-client credentials
+or accounts.
 
 ## Ownership and dependencies
 
@@ -154,14 +156,19 @@ Incoming results merge by identity and preserve viewport, selection and delibera
 positions. Source edits affect dependent work only. Keep expensive layout and
 analysis off the synchronous pointer path; add workers for observed need.
 
-Voice uses a maintained provider adapter with server-mediated ephemeral
-credentials, bounded sessions, interruption and context resync. Barge-in stops
-speech, not unrelated work or acknowledged commands. Typed fallback remains.
+Voice uses the Vercel AI Gateway realtime path: a server route mints a single-use
+short-lived session token, the browser connects with that token, and the Gateway
+bounds each session (25 minutes maximum, 5 minutes idle). Realtime support is
+in beta; confirm the installed AI SDK channel against current documentation.
+Provide interruption and context resync. Barge-in stops speech, not unrelated
+work or acknowledged commands. Typed fallback remains.
 Typed and voice collaboration share context compilation and named application
 operations; neither introduces a conversation-specific mutation path.
 
 ## Provider and deployment boundaries
 
+Text generation, assessment and analysis call Vercel AI Gateway through the AI
+SDK with a server-held Gateway credential; runtime models are Gateway model ids.
 Runtime model profiles state capability, supported settings, output schema,
 limits and attempt policy. Astra as the development agent does not force the
 runtime model. Model output is untrusted and assessments are not proofs.
@@ -171,29 +178,28 @@ owns identity, revision consistency, graph-reference integrity, permissions,
 spend admission and state transitions. Deterministic code still requires
 correctness evidence; valid parent IDs do not certify meaningful inheritance.
 
-Open the local application without a login flow. Bind to loopback and validate
-Host/Origin on internal requests; reject cross-origin mutations and permissive
-CORS. Server-held credentials do not by themselves protect paid operations
-from an unrelated website. Keep admission and validation without adding accounts.
+Open the application without a login flow. Local development binds to loopback.
+Validate Host/Origin on internal requests for every configured serving hostname;
+reject cross-origin mutations and permissive CORS. Server-held credentials do not
+by themselves protect paid operations from an unrelated website. Keep admission
+and validation without adding accounts.
 
-Hosting is optional and requires separate authorization plus an existing suitable
-private boundary that preserves no-sign-in use and denies outside access.
-Verify every enabled serving address; a flag or obscure URL is not a boundary.
-Otherwise stay local rather than provisioning access infrastructure.
-If hosting is used, separate its data/configuration from local development.
-Provisionally use a cumulative $100 total
-application envelope, pending explicit scope/period confirmation before spend.
-Model, voice, hosting/workflow and database charges need separate accounting
-within that envelope. Confirm its period and included costs before live work;
-no automatic top-up, reset or independent allowance per credential.
+The release target is a public Vercel deployment for a bounded demonstration
+window used by a small judge panel. Each deployment and the opening of the window
+need the owner's authorization. Separate hosted data and configuration from local
+development and from preview deployments. The window's dates, budget and
+teardown are recorded in the application handoff; the template holds no
+account-specific values.
 
-Provider limits may be soft and metering delayed. Budget the actual credential
-route: Gateway project budgets do not cover every API-key or BYOK charge.
-Shared-team hosting limits can affect other projects; do not change them without
-authorization. Use bounded admission and headroom, not an exact billing guarantee.
-Consult current official provider documentation when configuring these services.
-Voice requires bounded sessions and server-mediated ephemeral credentials, never
-a long-lived key in the browser. Use runtime credentials, not captured build tokens.
+The owner sets the Vercel AI Gateway budget and Spend Management amount for the
+demonstration window; the Gateway rejects requests with HTTP 402 once its budget
+is exceeded, Spend Management checks every few minutes and does not cover
+Marketplace databases. Route model calls through Gateway-metered credit, not
+bring-your-own provider keys, so the budget applies. Application admission keeps
+its own bounded attempt and spend allowances with headroom. Consult current
+official Vercel documentation when configuring these services. Voice never
+places a long-lived key in the browser. Use runtime credentials, not captured
+build tokens.
 
 No infrastructure is created by the template. It contains no paid credentials,
 configured budget, database, voice implementation or deployed application.
@@ -206,8 +212,9 @@ reconciliation, correlated run/request diagnostics, and documented backup/
 restore and reproducible local startup paths. Test recovery on isolated data.
 Browser close does not stop running local services; service shutdown does stop
 local execution. Preserve checkpoints and reconcile work after service restart.
-If hosted, an expiring preview is not durable release storage. These are responsibilities
-to implement during the application milestones, not unused seed dependencies.
+An expiring preview deployment is not the demonstration's durable storage. These
+are responsibilities to implement during the application milestones, not unused
+seed dependencies.
 
 An ordinary new operation should extend its feature contract/definition,
 generation or analysis logic, registration and focused tests without editing
@@ -237,7 +244,7 @@ Choose compatible dependency versions, the Postgres driver/configuration,
 runtime text/voice profiles, exploration policy and analysis thresholds within
 the selected React Flow, Drizzle and polling foundations. Reconsider a foundation
 only for a demonstrated requirement failure or compatibility constraint.
-If hosting is requested, confirm the authorized project, data ownership and
-existing private boundary first. Creative efficacy remains an empirical question.
+Before deploying, confirm the authorized Vercel project, data ownership and the
+demonstration window's dates. Creative efficacy remains an empirical question.
 Escalate product scope, spending or destructive changes; make reversible
 implementation choices directly.

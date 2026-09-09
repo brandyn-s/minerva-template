@@ -30,10 +30,12 @@ shell needs no cloud account, provider key or sign-in. Add database, model and
 voice configuration when implementing those capabilities.
 
 The browser is the only client, not the only runtime. Keep the Next.js/TypeScript
-monolith, internal server endpoints, server-held credentials, Postgres and
-durable Vercel workflows. External REST/MCP APIs and accounts are excluded.
-Hosting is optional only behind an existing suitable private boundary that
-preserves no-sign-in use and denies outside access; otherwise stay local.
+monolith, internal server endpoints, server-held credentials, Postgres, Vercel
+AI Gateway for text and voice models and durable Vercel Workflows. External
+REST/MCP APIs and accounts are excluded. Local loopback is the development loop;
+the release target is a public Vercel deployment for a bounded demonstration
+window used by a small judge panel, still with no sign-in. See
+[setup](./docs/setup.md#vercel-demonstration-hosting).
 
 ## Build and review
 
@@ -46,7 +48,8 @@ Astra in Codex builds; the operator starts Fable 5.1 in Claude on a separate
 checkout of the exact candidate. Both start at medium effort. Use the existing
 handoff and capability record, not extra process machinery. See
 [AGENTS.md](./AGENTS.md) for working rules and [setup](./docs/setup.md) for
-copyable launch instructions. Publication and hosting need separate authorization.
+copyable launch instructions. Each deployment, paid call and the opening of the
+demonstration window needs the owner's authorization.
 
 ## Documentation
 
@@ -72,8 +75,9 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 
 `check` runs lint, typecheck, tests and build. Seed tests check document structure,
 references and selected textual guards, not semantic consistency or product
-behavior. Review prose against its owning contract and add behavior coverage as
-capabilities arrive.
+behavior. `tests/seed-only.test.mjs` asserts that this repository is still the
+empty seed; package 1 deletes it in the generated application. Review prose
+against its owning contract and add behavior coverage as capabilities arrive.
 ESLint 9 matches the installed Next.js plugin peer ranges; upgrade them together
 when compatible, without suppressing peer errors or removing lint rules.
 

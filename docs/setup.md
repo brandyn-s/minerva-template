@@ -18,15 +18,19 @@ npm pkg set name=minerva \
 ```
 
 Keep lockfile metadata consistent. Update README and SECURITY links and confirm
-the remote before pushing. Keep `"private": true` to avoid accidental npm
-publication; it does not control GitHub visibility. Configure Actions permissions,
-branch rules, required checks and private vulnerability reporting on the new repo.
+the remote before pushing. Delete `tests/seed-only.test.mjs`, which asserts that
+the repository is still the empty seed; keep `tests/seed-docs.test.mjs`. Keep
+`"private": true` to avoid accidental npm publication; it does not control GitHub
+visibility. Configure Actions permissions, branch rules, required checks and
+private vulnerability reporting on the new repo.
 
 ## Local operation
 
 The prototype is single-user and browser-only with no sign-in. Dev/start bind
-to 127.0.0.1. Open localhost and work; internal server endpoints, Postgres and
-durable runs remain. External REST/MCP APIs and accounts are excluded.
+to 127.0.0.1. Open localhost and work; internal server endpoints, Postgres,
+AI Gateway calls and durable runs remain. External REST/MCP APIs and accounts
+are excluded. Local operation is the development loop; the release target is the
+Vercel demonstration deployment described below.
 
 The foundation choices in [ARCHITECTURE](./product/ARCHITECTURE.md) are fixed:
 React Flow with custom cards/application layouts, Drizzle with explicit SQL
@@ -139,20 +143,36 @@ Commit a coherent candidate and provide the standard operator handoff.
 Do not launch Fable automatically or advance to another increment.
 ```
 
-## Optional private hosting
+## Vercel demonstration hosting
 
-Local operation is sufficient for release. Only host when separately authorized
-behind an existing suitable private boundary that preserves no-sign-in use and
-denies outside access. Do not build an access platform or use an obscure URL as
-protection. Keep unsupported addresses disabled and verify inside/outside access.
+The release target is a public Vercel deployment for a bounded demonstration
+window, used by a small judge panel with no sign-in. Anyone with the URL can use
+it during the window; the window, the Vercel budget and the teardown are the
+controls. Do not add sign-in, gates or confirmation steps that slow the judges.
+Record the window's dates, audience, budget and teardown owner in `docs/HANDOFF.md`.
 
-If using Vercel, add the deployment configuration at that time. Confirm the
-application root, installed-version requirements and plan behavior against official
-documentation. Git linking may deploy automatically; authorize it separately.
-Isolate local/review/hosted data and credentials. A build is not a hosted journey.
+- **Project.** Create the Vercel project in the authorized team when package 32
+  is authorized. Confirm the application root and framework settings against
+  official documentation. Git linking may deploy automatically; authorize it
+  separately. A build is not a hosted journey.
+- **Models.** Text and realtime voice use Vercel AI Gateway. Authenticate the
+  deployment with its Vercel OIDC token or a project-scoped Gateway key held
+  server-side; never a bring-your-own provider key. Set the Gateway budget the
+  owner chooses. Realtime voice is a beta Gateway capability: the token route
+  mints single-use short-lived client tokens and sessions are capped at 25 minutes.
+- **Platform spend.** Set the Spend Management amount the owner chooses. It
+  covers functions, bandwidth and workflow events, checks every few minutes and
+  does not cover Marketplace databases. Pausing production at that amount is
+  the owner's call: it caps platform spend but shows judges a 503 for the rest
+  of the window.
+- **Data.** Use a Marketplace Postgres or an authorized managed service with its
+  own spending cap. Keep local, preview and production databases and credentials
+  separate. Seed the demonstration workspace before the window opens.
+- **Durable runs.** Vercel Workflows execute Wander, Agent Drive and other runs;
+  use the stable SDK line unless a demonstrated requirement needs the beta.
+- **Teardown.** When the window closes, pause or delete the deployment, revoke
+  the Gateway key and database credentials, export or delete judge data, and
+  record in the handoff what was preserved.
 
-Before paid work, confirm the period and charges within the provisional cumulative
-$100 application allowance, including text, voice, database and workflow/hosting.
-Budget the actual credential routes with headroom for in-flight work and delayed
-billing. Do not buy credits, reset caps or change shared-team limits without
-authorization. See [ARCHITECTURE](./product/ARCHITECTURE.md#provider-and-deployment-boundaries).
+See [ARCHITECTURE](./product/ARCHITECTURE.md#provider-and-deployment-boundaries)
+for the ownership and spend boundaries these steps implement.
