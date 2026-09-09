@@ -37,9 +37,11 @@ the next action requires authority not already granted.
 - Domain rules do not import React, HTTP, database clients or provider SDK types.
   Add dependencies when needed; no generic command bus, extra agent engine,
   review coordinator or measurement infrastructure without a consequential need.
-- Exercise actual UI journeys and affected failure transitions using existing
-  checks. Keep fixtures distinct from live providers. Probe consequential provider
-  uncertainty with small authorized cases; retain failures and state evidence gaps.
+- During iteration, run the smallest checks that cover the changed behavior and
+  affected failure boundary. Complete required repository checks before delivery.
+  Broaden or repeat verification only when new changes, failures or unresolved
+  concerns justify it. Exercise actual browser journeys for UI changes; distinguish
+  fixtures from live-provider evidence.
 - Provisioning, publication, deployment, paid calls, destructive actions and
   contacting others require authorization. Preserve source revisions, request
   protections, cost admission and bounded recovery. Never commit secrets, private
