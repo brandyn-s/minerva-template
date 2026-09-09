@@ -21,6 +21,10 @@ assets. Do not port another application's implementation.
 
 ## Execute one connected outcome
 
+Within the authorized outcome, make routine reversible decisions and continue to
+completion. Ask only when missing information materially changes the result or
+the next action requires authority not already granted.
+
 - Respect advice/review requests as read-only. For implementation, state the user
   action, exclusions and stopping evidence. Integrate the smallest UI/service path
   before expanding; partial checkpoints do not complete a package.
