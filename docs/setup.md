@@ -4,6 +4,12 @@ The template provides a runnable shell, not a live database, canvas, AI
 integration or deployment. Use a fresh project repository and keep application
 content out of this template.
 
+The prototype is single-user and browser-only, with no sign-in. Default to
+loopback-only local access; the starter's dev/start commands bind to 127.0.0.1.
+Open the local URL and work. Internal server endpoints, Postgres and durable
+runs remain; there is no external REST/MCP/API buildout. Live model/voice
+capabilities still need configured providers and authorized spend.
+
 ## Repository identity
 
 Generate the public repository `brandyn-s/minerva` from `brandyn-s/minerva-template`
@@ -43,7 +49,8 @@ credentials into commands destined for an issue, handoff or commit.
 ## Fresh development sessions
 
 Follow the six milestone prerequisites in [build-prompts.md](./build-prompts.md).
-The 34 blocks are work packages, not 34 mandatory sessions. Start GPT-6 Astra
+The 32 blocks are work packages, not 32 mandatory sessions. IDs 29-30 are retired
+and the remaining IDs retain their meaning. Start GPT-6 Astra
 in Codex in the new application's directory; read relevant current code, the
 contract index, capability evidence and the short `docs/HANDOFF.md`.
 No source application, prior conversation or external repository is needed.
@@ -135,7 +142,7 @@ Next step: fix, review, owner decision or next bounded outcome; not automatic ex
 ```
 
 Fable reads the contract and exercises the candidate before consuming the
-builder's conclusions. M5 retains its external-client cold-start exception.
+builder's conclusions. M5 exercises browser instruments and outputs.
 A partial checkpoint is useful but never silently completes its package or
 milestone. Default to one review per planned boundary plus focused recheck; repeat only for remaining
 material failures or new evidence, not to chase agreement between models.
@@ -193,8 +200,7 @@ This is an operator-started Fable review, read-only for application source.
 Verify the checkout and exact candidate; do not reset or recreate anything.
 Read AGENTS.md, docs/HANDOFF.md, relevant docs/product/CAPABILITIES.md rows
 and local contracts. Form your view from the contract and behavior before
-consuming the builder's conclusions. Use the applicable standard review prompt;
-for M5 preserve its published-interface-first cold-start requirement.
+consuming the builder's conclusions. Use the applicable standard review prompt.
 Exercise the bounded journey and relevant failure case using existing checks.
 Do not alter the builder's server or working data. Report material findings
 with evidence, locations and affected revision; distinguish optional suggestions
@@ -273,18 +279,29 @@ Synthetic fixtures can support offline development, but label them clearly.
 Application model calls need explicit authorization and bounded cost admission.
 Do not equate a fixture-backed flow with a live provider integration.
 
-## Vercel
+Validate Host/Origin and reject cross-origin mutations on internal endpoints;
+do not enable permissive CORS. A local no-sign-in app must not let an unrelated
+website read its workspace or trigger paid work. Keep these request protections
+separate from user accounts. Document which local services must remain running:
+closing the browser does not cancel durable work, but stopping local services
+halts execution. Recover saved checkpoints and reconcile work after restart.
 
-Create a separate project only with authorization. Keep the application root
+## Optional private hosting
+
+Local operation is sufficient for prototype release. Do not provision a hosting
+or access platform as a prerequisite. Create a separate Vercel project only with
+authorization and a suitable existing private boundary. Keep the application root
 unambiguous, and configure development/preview/production environments explicitly.
 Preview data must not silently mutate production workspaces.
 
-Public code does not mean public application access. Use platform authentication
-without a second application owner-password screen. Deployment protection
-availability depends on the plan and address: a flag or private repo is not
-authentication. Verify preview, production/custom-domain and machine-client
-access separately. Keep unsupported deployment targets disabled.
-Check a real authenticated journey, not merely a successful build status.
+Public code does not mean public application access. Use an existing suitable
+private boundary that preserves no-sign-in use
+and denies outside access. Do not add app accounts, platform sign-in requirements
+or access infrastructure for this prototype. A flag, private repo or obscure URL
+is not a boundary. Verify preview and production/custom-domain access separately;
+keep unsupported addresses disabled. If no suitable boundary exists, stay local.
+Check a real no-sign-in browser journey and denial from outside the private
+boundary, not merely a successful build status.
 
 Before enabling paid work, confirm the budget period, included charges, text/
 voice credentials, database plan and hosting/workflow cost. The provisional
@@ -298,8 +315,9 @@ Use the separately initiated Fable session described above on a stable candidate
 Reviews do not edit application source; isolated synthetic journeys are allowed
 and paid calls need explicit allowance. Record findings and dispositions in
 the capability matrix, not a new diary per model. M2 includes an interim review;
-M5 begins with public interface instructions alone; M6 reviews before publication
-and confirms afterward. Neither model supplies the user's experience acceptance.
+M5 reviews browser instruments/outputs; M6 reviews the candidate and confirms
+local operation afterward. If private hosting is separately authorized, confirm
+that serving outcome too. Neither model supplies the user's experience acceptance.
 If a fix loop stalls, name the unresolved assumption and return a bounded
 decision rather than reopening the entire architecture. Keep exploratory
 measurement proportional to the question; ordinary delivery does not need

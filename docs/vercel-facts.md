@@ -4,16 +4,20 @@ Checked against official documentation on September 7, 2026. Reconfirm
 version/plan-dependent behavior before provisioning. These are platform facts,
 not claims that this template has deployed services or configured a budget.
 
+The prototype defaults to local access with no sign-in. These facts apply only
+when optional hosting is authorized behind an existing suitable private boundary;
+they do not require a deployment, login system or new access infrastructure.
+
 ## Access and environments
 
 | Fact | Consequence | Official source |
 |---|---|---|
 | Git integration can create deployments from pushes, including production-branch pushes | Authorize deployment separately from local development; inspect project settings before linking Git | [Git deployments](https://vercel.com/docs/deployments/git) |
-| Public/private source visibility is separate from application access; deployment protection varies by plan | Configure application authentication and verify the available protection for preview and production | [Deployment protection](https://vercel.com/docs/deployment-protection) |
+| Public/private source visibility is separate from application access; deployment protection varies by plan | Use only a verified existing private boundary that preserves no-sign-in use; otherwise stay local | [Deployment protection](https://vercel.com/docs/deployment-protection) |
 | Project Root Directory determines which app/configuration is built | Keep a single clear app root; do not rely on configuration above the selected root | [Build configuration](https://vercel.com/docs/deployments/configure-a-build) |
 | Environment variables are scoped by environment, with optional branch overrides | Configure development, preview and production deliberately; keep their data separate | [Environment variables](https://vercel.com/docs/environment-variables) |
 | AI Gateway OIDC authenticates a deployment's requests | Use the supported runtime credential mechanism; do not capture a build-time token as a permanent runtime secret | [Gateway OIDC](https://vercel.com/docs/ai-gateway/authentication-and-byok/oidc) |
-| A successful deployment build does not demonstrate authenticated application behavior | Exercise an actual authorized route/journey; distinguish access redirects from application errors | [Deployments](https://vercel.com/docs/deployments) |
+| A successful deployment build does not demonstrate protected application behavior | Exercise no-sign-in access inside the boundary and denial outside it | [Deployments](https://vercel.com/docs/deployments) |
 
 ## Spending is not one universal project cap
 

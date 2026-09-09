@@ -5,12 +5,12 @@ shell and specifications, not the implemented product.
 
 ## Purpose
 
-Minerva is a private, single-owner, online-first studio for exploring an idea
+Minerva is a single-user, browser-only prototype with no sign-in for exploring an idea
 space with AI. A person can investigate alternatives spatially, understand
 their relationships and origins, develop and recombine branches, interpret the
 patterns of the explored space, pursue explicit goals, materialize selected
 directions, and speak with a collaborator while work continues. The complete
-product is the sixteen capabilities C01-C16 in [SPEC.md](./SPEC.md); a canvas
+prototype comprises fifteen capabilities, C01-C14 and C16 in [SPEC.md](./SPEC.md); a canvas
 with a few generation buttons and a chat panel is a different, smaller product.
 
 The hypothesis is that persistent alternatives, visible lineage, and concurrent
@@ -35,8 +35,7 @@ model enthusiasm nor the number of generated cards establishes that benefit.
 8. Switch between Lineage, Evolution and Constellation over the same ideas,
    and use the creative instruments independently.
 9. Materialize a selected direction as a prototype, paired experiment,
-   coding handoff or reusable synthesis; reach the same operations through
-   REST and MCP.
+   coding handoff or reusable synthesis.
 10. Interrupt voice, close the browser, return, and recover saved work and run
     status.
 
@@ -84,12 +83,22 @@ The browser owns transient interaction, not canonical product truth or job
 lifetime. Code lives in a public GitHub repository generated from this template;
 application access, workspace data and paid operations remain private. No data migration is required.
 
+Open the local browser URL and work without accounts or a sign-in screen.
+Browser-only describes the client, not browser-local storage or a serverless
+application. Bind the application to loopback by default. Live AI/voice still
+needs configured providers and network access. Keep local services running while
+jobs execute; recover saved state and interrupted work after service restart.
+Hosting is optional only when an existing suitable private boundary preserves
+no-sign-in use and denies outside access. Otherwise remain local; do not create
+new access infrastructure or expose an anonymous internet service.
+
 ## Exclusions
 
-Multi-user co-editing, offline-first synchronization, billing, microservices,
+External REST/MCP APIs (retired C15), accounts/sign-in, multi-user co-editing,
+offline-first synchronization, billing, microservices,
 a plugin marketplace, an agent framework, desktop process hosting and a
 research platform are outside this contract unless the owner requests them.
-Views, instruments, execution outputs, Agent Drive and REST/MCP are required
+Views, instruments, execution outputs and Agent Drive are required
 capabilities, delivered in later milestones on the same records and
 operations. Responsive interaction is demonstrated in M1; persistent state,
 run recovery and voice recovery begin with the M2 working spine and expand with

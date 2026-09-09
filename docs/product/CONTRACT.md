@@ -1,7 +1,9 @@
 # Minerva contract index
 
-This seed builds the public `minerva` repository. Its hosted workspaces and
-paid operations stay private. The approved seed shell, configuration and owl
+This seed builds the public `minerva` repository for a single-user, browser-only
+prototype with no sign-in. Workspaces and paid operations stay local by default;
+optional hosting requires an existing suitable private boundary.
+The approved seed shell, configuration and owl
 are starting material; no earlier Minerva application's code or data is reused.
 
 This file is an index, not a duplicate specification.
@@ -9,7 +11,7 @@ This file is an index, not a duplicate specification.
 | Concern | Authoritative source |
 |---|---|
 | Purpose and product hypothesis | [INTENT.md](./INTENT.md) |
-| Required observable capabilities C01-C16 | [SPEC.md](./SPEC.md) |
+| Required observable capabilities C01-C14 and C16 (C15 retired) | [SPEC.md](./SPEC.md) |
 | Visual and interaction contract | [DESIGN.md](./DESIGN.md) |
 | Module and infrastructure ownership | [ARCHITECTURE.md](./ARCHITECTURE.md) |
 | Decisions and explicit supersession | [DECISIONS.md](./DECISIONS.md) |
