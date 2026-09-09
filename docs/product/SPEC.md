@@ -109,6 +109,14 @@ against a chosen revision with fresh validation and separate result identity.
 Save an evidence-bearing reusable synthesis. No silent source overwrite or
 automatic promotion of model assumptions to user constraints.
 
+Assess exact proposal revisions for goal fidelity, explicit constraints, causal
+dependencies, requested transformation and mechanism differences. Distinguish
+supported, contradicted, unclear, pending and unavailable evidence. Keeping
+records the decision, accepted revision and per-parent contributions atomically.
+Deterministically invalid output cannot be kept; unavailable assessment requires
+explicit acknowledgement as unreviewed work. Changed sources require regeneration
+or a separate historical-context branch. Undo preserves downstream references.
+
 ### C06: Comparison and Weave
 
 Maintain a two-to-four-card comparison set distinct from camera and AI attention.
@@ -161,12 +169,14 @@ precomputing outside that scope or adding confirmation to already authorized wor
 ### C09: Creative instruments
 
 Provide independently callable perspective generation under conflicting named
-operations, Constraint Deck (content-blind chance/medium/scale restrictions),
-Assumption Fork (independent reversals of named assumptions), Distance Panel
-(generation-independent comparison), and Refinery (human-selected development).
+operations, Constraint Deck (content-blind chance/medium/scale/combinatorial
+restrictions), Assumption Fork (independent reversals of named agency, sequence,
+interface or success assumptions), Distance Panel (generation-independent
+comparison), and Refinery (human-selected development).
 Each has distinct semantics, bounded behavior and a versioned input/output
 contract, not five labels for one prompt. Experimental constraints stay
 experimental. They share generation, review, context and admission machinery.
+These are selectable instruments, not a taxonomy every Wander idea must fit.
 
 ### C10: Wander
 

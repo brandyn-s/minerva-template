@@ -40,10 +40,19 @@ or accounts.
 | Canvas/UI | Viewport, selection, rendering and interaction | Canonical content or direct provider credentials |
 | Infrastructure | Database, model and workflow bindings | Independent business rules |
 
-Domain code does not import React, route handlers, `Request`/`Response`, or
-provider SDK objects. UI and transport adapters call the same application
+Domain code does not import React, database clients, route handlers,
+`Request`/`Response`, or provider SDK objects. UI and transport adapters call the same application
 functions. Use narrow dependencies at real boundaries; no generic command bus,
 service framework, dependency-injection container, or universal agent engine.
+
+This ownership description is the target, not a requirement to create every
+interface in M1. Implement the actual fixture/domain/presentation boundary for
+the interactive proof: fixture records use application-owned domain types and
+map to React Flow only in presentation. Retain that presentation as real state
+arrives. Define database interfaces with M2 / 4 operations, workflow and recovery
+interfaces with M2 / 8, and conversation/session interfaces with M2 / 11-12.
+Unused interfaces, empty modules and backup/recovery scaffolding do not belong
+in M1.
 
 ## Canonical records
 
@@ -188,10 +197,10 @@ by themselves protect paid operations from an unrelated website. Keep admission
 and validation without adding accounts.
 
 The release target is a public Vercel deployment for a bounded demonstration
-window used by a small judge panel. Each deployment and the opening of the window
-need the owner's authorization. Use one non-production database and configuration
-for local development and preview deployments, and a separate production
-database and configuration for the demonstration. The window's dates, budget and
+window used by a small judge panel. Follow [AGENTS](../../AGENTS.md#execute-one-connected-outcome)
+for authorization. Use one non-production database and configuration for local
+development and preview deployments, and a separate production database and
+configuration for the demonstration. The window's dates, budget and
 teardown are recorded in the application handoff; the template holds no
 account-specific values.
 
@@ -256,5 +265,3 @@ the selected React Flow, Drizzle and polling foundations. Reconsider a foundatio
 only for a demonstrated requirement failure or compatibility constraint.
 Before deploying, confirm the authorized Vercel project, data ownership and the
 demonstration window's dates. Creative efficacy remains an empirical question.
-Escalate product scope, spending or destructive changes; make reversible
-implementation choices directly.
