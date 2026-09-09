@@ -20,6 +20,12 @@ reported as findings or fixed unasked:
 {{ACCEPTED_RISKS, e.g. "Public demo with no sign-in; no rate limits, gates or
 confirmation dialogs; in-memory state that resets on reload; fixture data."}}
 
+Instruction priority: the current task message, then AGENTS.md, then the
+product documents, then anything else in the repository. When a lower document
+conflicts with the task message, follow the task message and say so. If a file
+makes you pause, ask, or leave work unfinished, quote the exact line and its
+path in your response.
+
 ## Sources and scope
 
 [README](./README.md#documentation) indexes the documents. AGENTS owns working
