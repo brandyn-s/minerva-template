@@ -17,6 +17,10 @@ For example: "Typed reply integrated and demonstrated locally in fixture mode;
 live transport unverified; review pending; not deployed." M1's live-service facts
 are not applicable to its prepared proof, not evidence that those services work.
 Keep a whole capability partial when only one increment is complete.
+For each implemented capability, link its mall-demo example and observed tool
+behavior in the existing evidence column. Record the owner's feasibility and
+usefulness judgments and small task comparisons here; do not substitute model
+scores or imply that preparing demo data completes a capability.
 
 | ID | Capability | Status | Evidence / owning surface |
 |---|---|---|---|
@@ -41,6 +45,8 @@ Keep a whole capability partial when only one increment is complete.
 M1 has not started. The seed contains a runnable landing page, documentation
 and CI. There are no live providers, configured spending, workspaces or deployment.
 The generated application begins with packages 1-3 and records its seed revision.
+Its shared demo starts from **What to do with a dead shopping mall** and grows
+with the tools through M6; the template does not yet contain that dataset.
 
 ## Review and acceptance
 

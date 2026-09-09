@@ -57,7 +57,8 @@ Optional contribution editing is additional by choice. A generic menu is not
 card-specific AI planning. Preview affected sources and selected contributions
 where the person works, not behind a mandatory diagnostic dashboard.
 
-Author an original populated fixture with independent roots, a multi-parent
+Author the [shipped mall demo](./SPEC.md#shipped-demo-and-human-judgment) incrementally,
+starting with an original populated fixture with independent roots, a multi-parent
 child, semantic links, drafts and unknown evidence. At M1 its local interactions
 are explicitly fixtures; do not fake persistence, generated output or voice.
 The seed landing page and dotted background are identity examples, not the final

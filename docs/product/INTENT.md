@@ -16,6 +16,10 @@ with a few generation buttons and a chat panel is a different, smaller product.
 The hypothesis is that persistent alternatives, visible lineage, and concurrent
 spatial/conversational work help people develop useful directions. Neither
 model enthusiasm nor the number of generated cards establishes that benefit.
+Humans judge idea feasibility and whether the creative experience is useful.
+The owner drives those judgments and iteration through milestones and their
+chunks. Build feasibility is settled; implementation proceeds without a separate
+feasibility study or estimation gate.
 
 ## The complete experience
 
@@ -44,8 +48,11 @@ experience proof and working spine come first so the interaction can be judged
 early, and every later milestone adds required capability rather than optional
 polish.
 
-Use synthetic, editable example content and an obvious blank-start path. No
-particular example domain is part of the architecture or a mandatory answer.
+Ship synthetic, editable demo data for **What to do with a dead shopping mall**,
+showing each tool and how it explores that creative space, alongside fully
+functional capabilities and an obvious blank-start path. Follow the
+[demo contract](./SPEC.md#shipped-demo-and-human-judgment). The example does not
+restrict the application's domain or prescribe a winning answer.
 
 ## Human and AI roles
 

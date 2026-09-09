@@ -13,6 +13,11 @@ Wander, Agent Drive, concurrent voice and usable outputs.
 Keep this template content-free; implement the application in its generated
 repository.
 
+The application will ship with editable demo data for **What to do with a dead
+shopping mall**, demonstrating every tool alongside fully functional capabilities
+and a blank-start path. The owner judges idea feasibility and creative usefulness
+while steering milestone chunks. See [the demo contract](./docs/product/SPEC.md#shipped-demo-and-human-judgment).
+
 ## Run locally
 
 ```sh
@@ -65,8 +70,10 @@ the current outcome and next step.
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
-`check` runs lint, typecheck, tests and build. Seed tests cover scaffold/document
-consistency, not product behavior. Add behavior coverage as capabilities arrive.
+`check` runs lint, typecheck, tests and build. Seed tests check document structure,
+references and selected textual guards, not semantic consistency or product
+behavior. Review prose against its owning contract and add behavior coverage as
+capabilities arrive.
 ESLint 9 matches the installed Next.js plugin peer ranges; upgrade them together
 when compatible, without suppressing peer errors or removing lint rules.
 

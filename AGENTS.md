@@ -19,6 +19,11 @@ in that repository. Author custom application code and assets for this build;
 reuse its existing work and appropriately licensed frameworks, libraries and
 assets. Do not port another application's implementation.
 
+The shipped application includes the editable shopping-mall demonstration in
+SPEC, with all tools functional. The owner judges idea feasibility and creative
+usefulness and steers milestone chunks. Treat build feasibility as settled;
+do not add feasibility studies or estimation gates. Keep existing spend controls.
+
 ## Execute one connected outcome
 
 Within the authorized outcome, make routine reversible decisions and continue to
@@ -91,7 +96,9 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
 The seed has documentation-consistency tests, not product coverage. Add relevant
-behavior coverage in application slices. Use a branch and PR; merge only after
+behavior coverage in application slices. Text checks do not prove that prose is
+consistent; review package prerequisites and completion criteria together against
+their owning contracts. Use a branch and PR; merge only after
 required CI. Generated repositories need their own settings. Report meaningful
 results, failures and unverified boundaries.
 

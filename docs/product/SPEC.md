@@ -142,6 +142,14 @@ generic fallback is not a substitute for contextual intelligence.
 Inspect a card in one activation; open/choose a move in at most two, excluding
 optional editing. After source selection, Weave is one further activation.
 
+Opening the chooser is local; planning suggestions and generating creative
+artifacts are distinct operations. Show valid saved suggestions and explicit
+pending/unavailable state. Planning uses declared inputs, revision-scoped
+freshness and bounded cost admission under an explicit request or existing
+authorized scope. Opening a menu creates no spending authority; navigation
+cannot launch model work. Define planning triggers with C08 without silently
+precomputing outside that scope or adding confirmation to already authorized work.
+
 ### C09: Creative instruments
 
 Provide independently callable perspective generation under conflicting named
@@ -263,6 +271,42 @@ readiness, experience acceptance and empirical creative efficacy are distinct.
 A roughly 90-second presentation may highlight one honest before/after loop,
 but does not replace full-product evidence or justify fake live behavior.
 
+### Shipped demo and human judgment
+
+Ship editable demo data whose seed prompt is **What to do with a dead shopping
+mall**. The demo shows each tool and all C01-C15 capabilities in exploring this
+creative space, including contrasting branches, inheritance, Weave, the three
+views, instruments, Wander, patterns, Agent Drive, conversation and outputs.
+Use synthetic material; additional site facts and constraints must be explicit
+example assumptions, not invented facts or permanent application requirements.
+
+Include editable starting proposals A: independent retail shops, B: a food hall,
+and C: a shared tool library. Users can apply tools to the seed problem alone,
+to any one proposal, or to a selected combination, and continue developing the
+resulting branches. The demo's purpose is to expand and explore the creative
+space. These proposals are starting material, not preclassified equivalents,
+endorsed answers or limits on subsequent directions. Brief-only results retain
+context membership; source-directed results retain their actual source revisions.
+
+Open the demo through normal workspace behavior and let users continue it with
+the same fully functional tools available in a blank workspace. Prepared records
+and fresh operations remain distinguishable. Demonstration data is shipped
+product content; it does not replace working tools or live-service evidence.
+Build the demo incrementally with each capability and verify complete coverage
+at M6. The content-free template records this contract; its generated application
+owns the data and implementation.
+
+Humans judge feasibility of proposed ideas and usefulness of the creative
+experience. Models can explain tradeoffs and supply evidence, but cannot grant
+those judgments. The owner steers examples, acceptance and iteration through
+milestones and their chunks. Small task comparisons in the build plan support
+that judgment without adding an efficacy gate or requiring numerical scores.
+Develop operational semantic examples with the owner and place agreed examples
+beside their owning capabilities. Proposed examples are not accepted rules.
+Frame each example as starting material, a requested tool operation, the resulting
+proposal and inspectable inherited/changed contributions. Use these transformations
+to clarify semantics as the creative space develops.
+
 ### Interaction boundary scenarios
 
 These are reusable acceptance cases, not prescriptions for a particular
@@ -288,6 +332,13 @@ Whether comparison/inspection feels like developing an idea rather than
 operating a diagram is a user experience judgment. A modal is not automatically
 wrong, nor is a non-modal layout automatically better; demonstrate the journey
 and separate reproduced failures from preferences.
+
+Use a lightweight reference setup: record the browser/version, device/input,
+viewport and actual card/edge counts for the demo and one denser scene. Choose
+these with the owner during M1 and extend only as actual use warrants. Observe
+direct manipulation, orientation and waiting separately from provider response
+time. Measure a reproduced responsiveness problem when needed; do not create a
+performance framework, broad device lab or arbitrary latency acceptance gate.
 
 ## Product exclusions
 
