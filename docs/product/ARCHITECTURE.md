@@ -1,8 +1,6 @@
 # Minerva: architecture
 
-Status: active modular-monolith architecture. The shell does not yet implement
-the services described here. [DECISIONS.md](./DECISIONS.md) records supersession
-of incompatible first-prototype decisions.
+The shell does not yet implement the services described here.
 
 ## System shape
 
@@ -186,7 +184,16 @@ If hosting is used, separate its data/configuration from local development.
 Provisionally use a cumulative $100 total
 application envelope, pending explicit scope/period confirmation before spend.
 Model, voice, hosting/workflow and database charges need separate accounting
-within that envelope. See [Vercel facts](../vercel-facts.md) for vendor limitations.
+within that envelope. Confirm its period and included costs before live work;
+no automatic top-up, reset or independent allowance per credential.
+
+Provider limits may be soft and metering delayed. Budget the actual credential
+route: Gateway project budgets do not cover every API-key or BYOK charge.
+Shared-team hosting limits can affect other projects; do not change them without
+authorization. Use bounded admission and headroom, not an exact billing guarantee.
+Consult current official provider documentation when configuring these services.
+Voice requires bounded sessions and server-mediated ephemeral credentials, never
+a long-lived key in the browser. Use runtime credentials, not captured build tokens.
 
 No infrastructure is created by the template. It contains no paid credentials,
 configured budget, database, voice implementation or deployed application.
@@ -207,3 +214,14 @@ generation or analysis logic, registration and focused tests without editing
 canvas pointer mechanics, voice connection lifecycle or unrelated workspace
 serialization. New data concepts may legitimately need migrations. Evaluate
 ownership boundaries, not arbitrary file counts or dependency minimization.
+
+## Open implementation choices
+
+Choose compatible dependency versions, the Postgres driver/configuration,
+runtime text/voice profiles, exploration policy and analysis thresholds within
+the selected React Flow, Drizzle and polling foundations. Reconsider a foundation
+only for a demonstrated requirement failure or compatibility constraint.
+If hosting is requested, confirm the authorized project, data ownership and
+existing private boundary first. Creative efficacy remains an empirical question.
+Escalate product scope, spending or destructive changes; make reversible
+implementation choices directly.

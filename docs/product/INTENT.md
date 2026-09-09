@@ -10,7 +10,7 @@ space with AI. A person can investigate alternatives spatially, understand
 their relationships and origins, develop and recombine branches, interpret the
 patterns of the explored space, pursue explicit goals, materialize selected
 directions, and speak with a collaborator while work continues. The complete
-prototype comprises fifteen capabilities, C01-C14 and C16 in [SPEC.md](./SPEC.md); a canvas
+prototype comprises fifteen capabilities, C01-C15 in [SPEC.md](./SPEC.md); a canvas
 with a few generation buttons and a chat panel is a different, smaller product.
 
 The hypothesis is that persistent alternatives, visible lineage, and concurrent
@@ -94,7 +94,7 @@ new access infrastructure or expose an anonymous internet service.
 
 ## Exclusions
 
-External REST/MCP APIs (retired C15), accounts/sign-in, multi-user co-editing,
+External REST/MCP APIs, accounts/sign-in, multi-user co-editing,
 offline-first synchronization, billing, microservices,
 a plugin marketplace, an agent framework, desktop process hosting and a
 research platform are outside this contract unless the owner requests them.
