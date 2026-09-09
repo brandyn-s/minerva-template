@@ -42,8 +42,9 @@ window. The controls are the window itself, the Vercel budget and the teardown
 at the end, not access infrastructure. Internal endpoints must still reject
 unexpected Host/Origin and cross-origin mutations; no sign-in is not permission
 for arbitrary websites to use server-held credentials or paid operations. The
-AI Gateway key stays on the server; realtime voice clients receive only
-single-use short-lived session tokens. External REST/MCP APIs are out of scope.
+deployment authenticates to AI Gateway with its Vercel OIDC token, held on the
+server; realtime voice clients receive only single-use short-lived session
+tokens. External REST/MCP APIs are out of scope.
 
 Especially relevant reports include:
 

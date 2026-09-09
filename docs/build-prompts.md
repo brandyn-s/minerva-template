@@ -386,7 +386,8 @@ demonstration deployment in package 32; do not create access infrastructure.
 Exercise lifecycle operations, reload, duplication reference integrity,
 stale writes and unavailable configuration against an isolated local database.
 Exercise opening the app without sign-in and rejection of unexpected Host/Origin
-and cross-origin mutations. Hosting belongs to package 32, not this package.
+and cross-origin mutations. Production hosting belongs to package 32, not this
+package.
 Update C01 evidence and the handoff; no unauthorized external provisioning.
 Package complete when: create, open, list, rename, duplicate and delete, brief
 and constraint revisions, the export contract and no-sign-in loopback access
@@ -560,8 +561,12 @@ Vendor metering and app reservations are not an exact hard billing ceiling.
 Exercise dispatch failure, duplicate completion, browser close, stopped admission,
 partial siblings and exhausted allowance using explicit fixtures. Keep the
 working Lineage view responsive. Repeat affected cases across Evolution and
-Constellation when those views arrive in M3. Update C10/C12 and architecture
-evidence; do not deploy.
+Constellation when those views arrive in M3. Link the repository to the
+authorized Vercel project in this package so automatic preview deployments exist
+from here on, and exercise restart recovery and dispatch reconciliation on a
+preview as well as locally; packages 9 and 12 use the same previews for budget
+rejection and realtime session limits. A preview is evidence, not the release.
+Update C10/C12 and architecture evidence; do not deploy to production.
 Package complete when: admission, dispatch, checkpointing, progress, pause,
 resume, stop, reconnect and reconciliation work against fixtures; command
 receipts are idempotent; the shared envelope and component allocations are
@@ -721,7 +726,7 @@ Integrate and exercise each in the running workspace before expanding it.
 
 | Increment | Observable result |
 |---|---|
-| Provider uncertainty | A small authorized probe through the Gateway token route establishes authentication, bidirectional transport, session limits and supported settings, or records the exact blocker |
+| Provider uncertainty | A small authorized probe through the Gateway token route establishes authentication, bidirectional transport, session limits including the team's concurrent-session cap, and supported settings, or records the exact blocker |
 | Basic voice | The user connects, speaks, hears a reply, interrupts and disconnects through the workspace UI; basic permission, cleanup and cost bounds are already enforced |
 | Continuity | The conversation remains grounded while the user moves cards and changes panels; late permission/setup cannot reopen a stopped session |
 | One spoken action | A clear spoken request invokes the already working typed operation and shows its acknowledged result without duplicate effects |
@@ -736,9 +741,12 @@ only with genuinely independent work. A component and endpoints that are not
 wired together do not complete an increment.
 
 Provide microphone input and spoken replies, interruption/barge-in, reconnect
-and disconnect. Mint single-use short-lived session tokens on the server; the
-Gateway key never reaches the browser. Sessions end at the Gateway's 25-minute
-limit, and reconnect starts a new session with resynchronized context. Keep
+and disconnect. Mint single-use short-lived session tokens on the server only
+after microphone permission is granted, because the Gateway closes a session
+that sends no client message within 30 seconds of connecting; Gateway
+credentials never reach the browser. Sessions end at the Gateway's 25-minute
+limit or after 5 idle minutes, and reconnect starts a new session with
+resynchronized context. Keep
 connection/model/config identities stable across renders.
 Voice has its own lifecycle, not that of an inspector panel or canvas view.
 
@@ -1778,8 +1786,9 @@ choice, recombination, conversation, partial failure and reconnect; repeat the
 local journey where it differs. Deliver the served URL, local startup commands,
 source provenance, operating instructions, the window's dates, cost limits and
 blockers. Write the teardown plan into the handoff: when the window closes,
-pause or delete the deployment, revoke the Gateway key and database credentials,
-export or delete judge data, and record what was preserved. Do not tear down
+pause or delete the deployment, which ends its OIDC access to the Gateway,
+revoke the database credentials, export or delete judge data, and record what
+was preserved. Do not tear down
 before the owner closes the window.
 Update the handoff. Functional completion is not empirical proof of creativity;
 never disguise missing functionality as later optional extensions.
