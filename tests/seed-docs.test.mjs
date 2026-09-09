@@ -23,6 +23,7 @@ test("the prototype has consecutive packages and complete milestone reviews", as
     assert.match(body, /Read AGENTS\.md/, `Prompt ${number} must load the shared working rules`);
     assert.doesNotMatch(body, /\/Users\/|minerva[-_]v[23]\b/, `Prompt ${number} depends on old material`);
   }
+  assert.match(packages[0][3], /tests\/seed-only\.test\.mjs/, "Prompt 1 must delete the seed-only test");
   assert.match(packages[11][2], /bidirectional voice/);
   assert.match(packages[10][3], /working Lineage view during a durable operation/);
   assert.doesNotMatch(packages[10][3], /scenarios pass in all three views/);
@@ -46,7 +47,8 @@ test("SPEC owns the full scope and the evidence matrix covers the same capabilit
   assert.match(index, /SPEC owns behavior/);
   assert.match(prompts[0][3], /SPEC\.md owns all fifteen required capabilities/);
   assert.doesNotMatch(prompts[0][3], /^C\d{2} /m);
-  assert.match(spec, /loopback-only local access with no sign-in/);
+  assert.match(spec, /no\s+sign-in, account or owner-password screen/);
+  assert.match(spec, /demonstration\s+window/);
   assert.match(await read("docs/product/INTENT.md"), /C01-C15 in \[SPEC\.md\]\(\.\/SPEC\.md\)/);
   assert.match(await read("docs/product/INTENT.md"), /recovery begin with the M2 working spine/);
 });
@@ -83,22 +85,22 @@ test("selected foundations reach the relevant implementation packages", async ()
   const architecture = await read("docs/product/ARCHITECTURE.md");
   const setup = await read("docs/setup.md");
   const packages = packagesIn(await read("docs/build-prompts.md"));
+  const pkg = (number) => packages.find((p) => p[1] === String(number))[3];
   assert.match(architecture, /@xyflow\/react/);
   assert.match(architecture, /drizzle-orm/);
   assert.match(architecture, /drizzle-kit/);
-  assert.match(packages.find((p) => p[1] === "2")[3], /@xyflow\/react/);
-  assert.match(packages.find((p) => p[1] === "4")[3], /drizzle-orm/);
-  assert.match(packages.find((p) => p[1] === "8")[3], /persisted progress initially/);
+  assert.match(architecture, /AI Gateway/);
+  assert.match(pkg(2), /@xyflow\/react/);
+  assert.match(pkg(4), /drizzle-orm/);
+  assert.match(pkg(8), /persisted progress initially/);
+  assert.match(pkg(9), /AI Gateway/);
+  assert.match(pkg(12), /AI Gateway/);
   assert.match(architecture, /mutation and its command receipt in the same database transaction/);
   assert.match(architecture, /Canceling a poll does not stop the\s+run/);
   assert.match(architecture, /Do not replace migrations with schema push/);
   assert.match(architecture, /Typed and voice collaboration share context compilation/);
   assert.match(setup, /React Flow with custom cards\/application layouts, Drizzle with explicit SQL/);
-  const manifest = JSON.parse(await read("package.json"));
-  for (const dependency of ["@xyflow/react", "drizzle-orm", "drizzle-kit"]) {
-    assert.equal(manifest.dependencies[dependency], undefined);
-    assert.equal(manifest.devDependencies[dependency], undefined);
-  }
+  assert.match(setup, /AI Gateway/);
 });
 
 async function markdownFiles(directory) {
@@ -140,15 +142,19 @@ test("checkpoints emit bounded operator launch prompts, not just a handoff link"
   assert.match(resume, /Do not launch Fable automatically or advance to another increment/);
 });
 
-test("prototype entry points retain the local no-sign-in scope and internal backend", async () => {
-  for (const file of ["README.md", "AGENTS.md", "docs/setup.md",
+test("entry points keep no-sign-in, loopback development and the Vercel demonstration target", async () => {
+  for (const file of ["README.md", "AGENTS.md", "SECURITY.md", "docs/setup.md",
     "docs/product/INTENT.md", "docs/product/SPEC.md", "docs/product/ARCHITECTURE.md",
     "docs/build-prompts.md"]) {
     const source = await read(file);
     assert.match(source, /no.sign.in/i, file);
     assert.match(source, /loopback|localhost/i, file);
+    assert.match(source, /Vercel/, file);
     assert.doesNotMatch(source, /C01-C16|sixteen required|34 (?:Astra work |mandatory |work )?packages/, file);
     assert.doesNotMatch(source, /READY TO DEPLOY|DEPLOYED OUTCOME CONFIRMED|platform-authenticated access/, file);
+    assert.doesNotMatch(source,
+      /Hosting is optional only|stay local|suitable\s+private boundary|\$100|expose it directly to the internet/,
+      `${file} still carries the local-only hosting posture`);
   }
   const spec = await read("docs/product/SPEC.md");
   const architecture = await read("docs/product/ARCHITECTURE.md");
@@ -156,14 +162,14 @@ test("prototype entry points retain the local no-sign-in scope and internal back
   assert.match(spec, /cross-origin\s+mutations/);
   assert.match(architecture, /Postgres/);
   assert.match(architecture, /Vercel Workflow/);
-  assert.match(architecture, /existing suitable\s+private boundary/);
+  assert.match(architecture, /demonstration\s+window/);
 
   const manifest = JSON.parse(await read("package.json"));
   assert.equal(manifest.scripts.dev, "next dev --hostname 127.0.0.1");
   assert.equal(manifest.scripts.start, "next start --hostname 127.0.0.1");
 });
 
-test("M5 ends with browser outputs and M6 permits local completion without hosting", async () => {
+test("M5 ends with browser outputs and M6 releases the hosted demonstration", async () => {
   const source = await read("docs/build-prompts.md");
   const packages = packagesIn(source);
   const outputs = packages.find((p) => p[1] === "28")[3];
@@ -173,20 +179,18 @@ test("M5 ends with browser outputs and M6 permits local completion without hosti
   assert.doesNotMatch(m5, /actual MCP client|published API|cold-start/);
   assert.match(m5, /instruments in the browser/);
   const release = packages.find((p) => p[1] === "32")[3];
-  assert.match(release, /Hosting is not required to complete this package/);
-  assert.match(release, /integrated local journey/);
-  assert.match(release, /existing\s+suitable private boundary/);
-  assert.doesNotMatch(release, /machine access|pre-deployment review/);
+  assert.match(release, /Vercel/);
+  assert.match(release, /demonstration\s+window/);
+  assert.match(release, /hosted journey/);
+  assert.match(release, /tear down/);
+  assert.doesNotMatch(release, /Hosting is not required|machine access|pre-deployment review/);
   const m6 = source.match(/### Fable review M6: [^\n]+\n\n```text\n([\s\S]*?)\n```/)[1];
-  assert.match(m6, /LOCAL OPERATION CONFIRMED/);
-  assert.match(m6, /Hosted operation is not required/);
+  assert.match(m6, /READY FOR HOSTED RELEASE/);
+  assert.match(m6, /HOSTED OPERATION CONFIRMED/);
+  assert.doesNotMatch(m6, /LOCAL OPERATION CONFIRMED|Hosted operation is not required/);
 });
 
 test("current documents have valid capability references and no obsolete scaffolding", async () => {
-  for (const file of ["docs/product/CONTRACT.md", "docs/product/DECISIONS.md",
-    "docs/vercel-facts.md", "vercel.json"]) {
-    await assert.rejects(access(resolve(root, file)), { code: "ENOENT" });
-  }
   for (const file of ["AGENTS.md", "README.md", ...await markdownFiles("docs")]) {
     const source = await read(file);
     assert.doesNotMatch(source, /CONTRACT\.md|DECISIONS\.md|vercel-facts\.md|D-\d{3}/, file);

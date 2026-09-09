@@ -35,12 +35,15 @@ who want attribution. This project does not currently operate a bug bounty.
 
 ## Security boundaries
 
-This single-user prototype has no sign-in and defaults to loopback-only access.
-Do not expose it directly to the internet or a shared network. Optional hosting
-requires an existing suitable private boundary that denies outside access.
-Internal endpoints must still reject unexpected Host/Origin and cross-origin
-mutations; no sign-in is not permission for arbitrary websites to use local
-credentials or paid operations. External REST/MCP APIs are out of scope.
+This single-user prototype has no sign-in. Local development binds to loopback.
+The release target is a public Vercel deployment for a bounded demonstration
+window used by a small judge panel; anyone with the URL can use it during that
+window. The controls are the window itself, the Vercel budget and the teardown
+at the end, not access infrastructure. Internal endpoints must still reject
+unexpected Host/Origin and cross-origin mutations; no sign-in is not permission
+for arbitrary websites to use server-held credentials or paid operations. The
+AI Gateway key stays on the server; realtime voice clients receive only
+single-use short-lived session tokens. External REST/MCP APIs are out of scope.
 
 Especially relevant reports include:
 
@@ -48,7 +51,9 @@ Especially relevant reports include:
 - AI context containing material outside the user's explicit selection;
 - untrusted model output bypassing validation or durable-state boundaries;
 - admission, spend, cancellation, or retry controls failing open;
-- dependency, build, or GitHub Actions supply-chain compromise; and
+- dependency, build, or GitHub Actions supply-chain compromise;
+- a deployment, credential or database left live after the demonstration window
+  closed; and
 - a simulation or partial failure being represented as live, durable, or safe.
 
 The repository's checks reduce risk; they are not a security certification.

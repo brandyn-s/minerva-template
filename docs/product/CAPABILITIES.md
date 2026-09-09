@@ -53,9 +53,10 @@ with the tools through M6; the template does not yet contain that dataset.
 No milestone is accepted. Record each material review finding with its capability,
 evidence, disposition and affected revision here; do not maintain parallel model
 diaries. Fable's judgment and the user's experience acceptance are distinct.
-The M2 interim review follows package 10; M6 reviews the candidate and confirms
-local operation. Hosted confirmation applies only if private hosting is authorized;
-no hosted deployment is required for prototype completion.
+The M2 interim review follows package 10; M6 reviews the candidate locally, then
+confirms hosted operation on the served Vercel URL before the demonstration
+window opens. Record the deployed revision and URL, the window's dates and the
+teardown outcome here when they exist.
 
 ## Next outcome
 

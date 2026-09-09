@@ -88,16 +88,19 @@ Use one Next.js/TypeScript modular monolith with server-owned Postgres state,
 immutable content revisions, explicit commands, and durable Vercel workflows.
 The browser owns transient interaction, not canonical product truth or job
 lifetime. Code lives in a public GitHub repository generated from this template;
-application access, workspace data and paid operations remain private. No data migration is required.
+credentials, workspace data and paid operations stay server-side, and the public
+deployment is open only for the demonstration window. No data migration is required.
 
-Open the local browser URL and work without accounts or a sign-in screen.
+Open the browser URL and work without accounts or a sign-in screen.
 Browser-only describes the client, not browser-local storage or a serverless
-application. Bind the application to loopback by default. Live AI/voice still
-needs configured providers and network access. Keep local services running while
+application. Local development binds to loopback. Live AI/voice still needs
+configured providers and network access. Keep local services running while
 jobs execute; recover saved state and interrupted work after service restart.
-Hosting is optional only when an existing suitable private boundary preserves
-no-sign-in use and denies outside access. Otherwise remain local; do not create
-new access infrastructure or expose an anonymous internet service.
+The release target is a public Vercel deployment for a bounded demonstration
+window, used by a small judge panel without accounts. Text and realtime voice
+models run through Vercel AI Gateway. The window's dates, the configured Vercel
+budget and the teardown at its end are the controls, recorded in the application
+handoff. Do not create access infrastructure or add steps that slow the judges.
 
 ## Exclusions
 

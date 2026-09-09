@@ -24,20 +24,23 @@ Reload recovers canonical content and view state, not only browser storage.
 Export versioned content, revisions, relationships, layouts, proposals, decisions,
 runs/attempts and provenance from a consistent snapshot without pagination loss.
 Old-system imports, endpoint compatibility and offline synchronization are not required.
-Public code does not grant access to workspaces or paid operations. Use verified
-loopback-only local access with no sign-in, accounts or owner-password screen.
-The browser is the only client; internal application endpoints and server-held
-provider credentials remain. Reject unexpected Host/Origin values and cross-origin
-mutations; do not enable permissive CORS or treat localhost as permission for
-unrelated websites to trigger paid work. These are internal request protections,
-not a user login flow.
+Public code does not grant access to workspaces or paid operations. There is
+no sign-in, account or owner-password screen. Local development binds to loopback;
+the release target is a public Vercel deployment for a bounded demonstration
+window used by a small judge panel. The browser is the only client; internal
+application endpoints and server-held provider credentials remain. Reject
+unexpected Host/Origin values and cross-origin mutations on every configured
+serving hostname; do not enable permissive CORS or treat an open URL as
+permission for unrelated websites to trigger paid work. These are internal
+request protections, not a user login flow.
 
-Hosting is optional only behind an existing suitable private boundary that
-preserves no-sign-in use and denies outside access on every serving address.
-If that boundary is unavailable, stay local rather than creating access
-infrastructure or exposing anonymous workspace/paid endpoints. Local services
-must stay running for work to execute; browser closure is not service shutdown.
-After service restart, recover saved state and reconcile interrupted work.
+During the demonstration window the judges share one deployment and its
+workspaces without accounts. The window's dates, the configured Vercel budget
+and the teardown at its end are the controls; record them in the application
+handoff. Do not add accounts, access infrastructure or confirmation steps that
+slow the judges. Local services must stay running for local work to execute;
+browser closure is not service shutdown. After a service or deployment restart,
+recover saved state and reconcile interrupted work.
 
 ### C02: Spatial canvas and view controls
 
@@ -254,8 +257,9 @@ No hidden memory is appended afterward; later retrieval gets its own receipt.
 Duplicate commands return the same receipt; changed payload reuse conflicts.
 Content, layout, run and voice lifecycles stay independent. Quota denial stops
 admission, partial failures retain evidence and stop does not promise zero
-cost for in-flight work. Allocate the cumulative $100 envelope across text,
-voice, hosting/workflow and database with headroom; soft metering is not a hard cap.
+cost for in-flight work. The owner sets the Vercel AI Gateway budget and platform
+spend limits for the demonstration window; application admission keeps its own
+bounded allowances because platform metering is delayed and soft.
 
 Use an original scenario with a brief anchor, independent roots, a grandchild,
 a multi-parent child, a semantic cycle, revised source, unkept/rejected work
@@ -343,7 +347,7 @@ performance framework, broad device lab or arbitrary latency acceptance gate.
 ## Product exclusions
 
 External API buildout, machine-client credentials,
-accounts/sign-in and new hosting-access infrastructure are excluded. Internal
+accounts/sign-in and access infrastructure are excluded. Internal
 browser/voice server endpoints are not an external API product and remain required.
 Multi-human co-editing, billing, a plugin marketplace, microservices, desktop
 agent hosting, global scale and a large research harness remain outside scope.

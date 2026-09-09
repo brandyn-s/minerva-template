@@ -1,9 +1,10 @@
 # Minerva: Astra build packages and Fable reviews
 
 Build the single-user, browser-only prototype defined by
-[SPEC](./product/SPEC.md), with no sign-in and loopback-only local access.
-Keep the internal backend, Postgres and durable workflows. Hosting is optional
-only behind an existing suitable private boundary; external APIs are excluded.
+[SPEC](./product/SPEC.md), with no sign-in. Local development binds to loopback;
+the release target is a public Vercel deployment for a bounded demonstration
+window used by a small judge panel. Keep the internal backend, Postgres, Vercel
+AI Gateway and durable workflows; external APIs are excluded.
 
 Read [AGENTS](../AGENTS.md) for shared working/review rules and
 [README](../README.md#documentation) for document ownership. Each copyable package
@@ -24,7 +25,7 @@ for bounded launch instructions and a concise evidence-based handoff.
 | M3: Creative workspace | 13-20 | Inheritance, reusable development, contextual moves, comparison/Weave and three views. |
 | M4: Exploration intelligence | 21-25 | Wander, challengeable recurrence/readings and goal-directed Agent Drive on shared operations. |
 | M5: Remaining product capabilities | 26-28 | Browser instruments, runnable output artifacts, experiments and reusable results. |
-| M6: Integrated release | 29-32 | Independently reviewed local operation, durable state, accepted experience and honest operating limits. |
+| M6: Integrated release | 29-32 | Independently reviewed local and hosted operation, durable state, accepted experience and honest operating limits. |
 
 ## Shared demonstration and review
 
@@ -59,10 +60,11 @@ M6's release verdicts are specified below. Name access/evidence gaps and pending
 user acceptance. Model agreement does not prove quality or grant acceptance.
 
 M1's experience acceptance precedes dependent work. M2 reviews after packages
-10 and 12. M6 reviews the candidate before local-release confirmation. Missing
-required review, behavior or acceptance remains a blocker; only authorized
-independent work may continue. Lack of optional hosting is not a local-release
-blocker, and creative-efficacy claims remain unresolved without human evidence.
+10 and 12. M6 reviews the candidate before the hosted-release confirmation.
+Missing required review, behavior or acceptance remains a blocker; only
+authorized independent work may continue. Local operation alone does not open
+the demonstration window, and creative-efficacy claims remain unresolved
+without human evidence.
 
 ### Small task comparisons within milestone chunks
 
@@ -116,13 +118,16 @@ Read AGENTS.md, README.md and the relevant product contracts in this repository.
 
 Use the owner's content-free minerva-template to create the public minerva
 repository only when authorized. Inspect the target first; never overwrite an
-existing repository. Follow docs/setup.md to set identity and repository settings.
-Keep the MIT license, pinned shell and original identity assets. Author custom
-application code for this build; licensed standard frameworks and libraries are allowed.
+existing repository. Follow docs/setup.md to set identity and repository settings,
+and delete tests/seed-only.test.mjs, which asserts that the seed is still empty;
+keep tests/seed-docs.test.mjs. Keep the MIT license, pinned shell and original
+identity assets. Author custom application code for this build; licensed standard
+frameworks and libraries are allowed.
 
 SPEC.md owns all fifteen required capabilities. Read it rather than duplicating
-its inventory. Confirm the single-user, browser-only, no-sign-in local default,
-internal backend, Postgres and durable workflows. Preserve the working code and
+its inventory. Confirm the single-user, browser-only, no-sign-in scope, the
+loopback development default, the Vercel demonstration target, internal backend,
+Postgres, AI Gateway and durable workflows. Preserve the working code and
 current requirements. Missing configuration stays explicit.
 
 Record the actual seed revision and use the mall seed prompt specified in SPEC
@@ -180,8 +185,8 @@ correlated run/request diagnostics as infrastructure responsibilities. At this
 experience-proof milestone, define their ownership and interfaces; build the
 working persistence and execution paths in the working-spine milestone rather
 than delaying the interactive proof for unused infrastructure. Document
-operational ownership and backup/restore paths. Hosting is optional, not a
-foundation prerequisite; do not add authentication or access infrastructure.
+operational ownership and backup/restore paths. Deployment is a later package,
+not a foundation prerequisite; do not add authentication or access infrastructure.
 Do not fill the UI with buttons
 for unimplemented capabilities or label a scaffold as the product. Do not
 manufacture empty modules.
@@ -371,18 +376,17 @@ provenance; extend it with later product records. An export is not an import.
 Never save the whole workspace for a card drag.
 
 Open the local URL and operate without accounts, platform sign-in or an
-owner-password screen. Bind the server to loopback, keep credentials server-side,
-validate Host/Origin and enforce same-origin JSON mutations. Reject cross-origin
-mutations and permissive CORS; another website must not be able to use local paid
-operations. Keep internal endpoints, not an external API product.
-Hosting is optional only behind an existing suitable private boundary that
-preserves no-sign-in use and denies outside access on all serving addresses.
-Otherwise stay local; do not create access infrastructure or an anonymous service.
+owner-password screen. Bind the development server to loopback, keep credentials
+server-side, validate Host/Origin for every configured serving hostname and
+enforce same-origin JSON mutations. Reject cross-origin mutations and permissive
+CORS; another website must not be able to use paid operations. Keep internal
+endpoints, not an external API product. The same protections carry to the Vercel
+demonstration deployment in package 32; do not create access infrastructure.
 
 Exercise lifecycle operations, reload, duplication reference integrity,
 stale writes and unavailable configuration against an isolated local database.
 Exercise opening the app without sign-in and rejection of unexpected Host/Origin
-and cross-origin mutations. Missing hosting is not a local-completion blocker.
+and cross-origin mutations. Hosting belongs to package 32, not this package.
 Update C01 evidence and the handoff; no unauthorized external provisioning.
 Package complete when: create, open, list, rename, duplicate and delete, brief
 and constraint revisions, the export contract and no-sign-in loopback access
@@ -547,9 +551,9 @@ Duplicate delivery returns the existing receipt; changed payload reuse conflicts
 Distinguish admitted/running/awaiting-input/completed/failed/stopped outcomes.
 Separate operation, Wander and goal-directed policy from shared execution.
 
-Reserve bounded attempts and spend before paid work. Use one cumulative
-application envelope, requested at $100 inclusive of text, voice, hosting/workflow
-and database; configure component allocations and headroom, not $100 per service.
+Reserve bounded attempts and spend before paid work. Use one application
+envelope sized by the owner for the demonstration window, inclusive of text,
+voice, workflow and database; configure component allocations and headroom.
 Retain failed/uncertain attempts. No automatic top-up or silent provider switch.
 Vendor metering and app reservations are not an exact hard billing ceiling.
 
@@ -577,11 +581,12 @@ Deliver live creative generation in Minerva using newly authored implementation.
 Use this repository's operation context, durable runs and spend admission.
 The product requires distinct alternatives with lineage, not a chat answer.
 
-Implement a server-side provider adapter with explicit supported model settings,
-output schema, timeout/output bounds, prompt version and attempt policy.
-GPT-6 Astra is the development agent; runtime model choice is independent.
-Consult current official SDK/provider documentation. Never change a model ID
-while inheriting unsupported sampling or reasoning settings.
+Implement a server-side model adapter over Vercel AI Gateway through the AI SDK,
+with a server-held Gateway credential, explicit supported model settings, output
+schema, timeout/output bounds, prompt version and attempt policy. Runtime models
+are Gateway model ids; GPT-6 Astra is the development agent and does not decide
+them. Consult current official AI Gateway and AI SDK documentation. Never change
+a model ID while inheriting unsupported sampling or reasoning settings.
 
 Generate bounded independent perspectives or source-directed alternatives as
 separate proposals. Preserve full text/code artifacts as appropriate, concise
@@ -705,16 +710,18 @@ Read AGENTS.md and the relevant product contracts; implement one connected outco
 
 Implement Minerva's bidirectional voice collaborator in this new
 codebase. Use its typed collaborator, shared commands, attention and cost
-admission. Read current official provider/SDK contracts and the product scope.
-Resolve conversation and audio retention with the owner before implementing
-storage, following the M2/11-12 lifecycle policies in ARCHITECTURE.
+admission. Voice runs through the Vercel AI Gateway realtime path, which is a
+beta capability: read its current official documentation, confirm the installed
+AI SDK channel, and read the product scope. Resolve conversation and audio
+retention with the owner before implementing storage, following the M2/11-12
+lifecycle policies in ARCHITECTURE.
 
 Use the following increments rather than one large "voice subsystem" assignment.
 Integrate and exercise each in the running workspace before expanding it.
 
 | Increment | Observable result |
 |---|---|
-| Provider uncertainty | A small authorized probe establishes authentication, bidirectional transport and supported settings, or records the exact blocker |
+| Provider uncertainty | A small authorized probe through the Gateway token route establishes authentication, bidirectional transport, session limits and supported settings, or records the exact blocker |
 | Basic voice | The user connects, speaks, hears a reply, interrupts and disconnects through the workspace UI; basic permission, cleanup and cost bounds are already enforced |
 | Continuity | The conversation remains grounded while the user moves cards and changes panels; late permission/setup cannot reopen a stopped session |
 | One spoken action | A clear spoken request invokes the already working typed operation and shows its acknowledged result without duplicate effects |
@@ -729,8 +736,10 @@ only with genuinely independent work. A component and endpoints that are not
 wired together do not complete an increment.
 
 Provide microphone input and spoken replies, interruption/barge-in, reconnect
-and disconnect. Use server-mediated ephemeral credentials and a maintained
-provider adapter. Keep connection/model/config identities stable across renders.
+and disconnect. Mint single-use short-lived session tokens on the server; the
+Gateway key never reaches the browser. Sessions end at the Gateway's 25-minute
+limit, and reconnect starts a new session with resynchronized context. Keep
+connection/model/config identities stable across renders.
 Voice has its own lifecycle, not that of an inspector panel or canvas view.
 
 In the representative journey, speak about one card while moving another.
@@ -1565,9 +1574,9 @@ All C01-C15 scope is now implemented or explicitly identified as a gap. Cross-pr
 
 **Entry:** Implemented C01-C15 paths and evidence/findings from all previous milestones; no unacknowledged scope cuts.
 
-**Working demonstration:** Run the complete cross-view, voice, exploration, comparison and output journey locally with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify local service/data ownership and restore instructions.
+**Working demonstration:** Run the complete cross-view, voice, exploration, comparison and output journey locally and on the served Vercel URL with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify service/data ownership, restore instructions and the teardown plan.
 
-**Exit and review:** Fable's release-candidate review, Astra's evidence-based resolution of material findings, user experience acceptance and local operation with configured services all complete. Missing live provider evidence remains a gap; lack of hosted deployment does not block a local prototype release.
+**Exit and review:** Fable's release-candidate review, Astra's evidence-based resolution of material findings, user experience acceptance, local operation with configured services and hosted operation on the served Vercel URL all complete. Missing live provider evidence remains a gap; the demonstration window does not open on a candidate that fails hosted confirmation.
 
 **Demonstration:** prepare one coherent before/after story targeting roughly
 90 seconds of presentation, not a 90-second provider-response guarantee.
@@ -1576,7 +1585,7 @@ short demonstration highlights the complete product; it does not reduce scope.
 
 **Still open:** Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
 
-**Review order:** complete Astra packages 29-31, run the Fable M6 review below against the release candidate, resolve material findings, then run Astra package 32. Return to Fable for local-operation confirmation. Confirm optional hosting only if separately authorized; do not wait until after publication for the first release review.
+**Review order:** complete Astra packages 29-31, run the Fable M6 review below against the release candidate, resolve material findings, then run Astra package 32. Return to Fable for hosted-operation confirmation on the served URL before the demonstration window opens; do not wait until after publication for the first release review.
 
 ### Prompt 29: qualify concurrency and bounded recovery across the product
 
@@ -1692,7 +1701,7 @@ Inspect infrastructure as well as modules: environment isolation, migration
 execution, database pooling, durable dispatch/reconciliation, observable failures,
 backup/restore instructions and reproducible local startup. Distinguish closing
 the browser from stopping local services; reconcile interrupted work on restart.
-Optional hosted data must not depend on a temporary preview expiry. Exercise the recovery path
+Hosted data must not depend on a temporary preview expiry. Exercise the recovery path
 without touching working data; no multi-region or enterprise platform is required.
 Confirm custom code/assets belong to this build and dependencies have suitable licenses.
 
@@ -1711,20 +1720,19 @@ matrix and handoff list all blockers; and the Fable release-candidate packet is
 prepared.
 ```
 
-### Prompt 32: release the local browser prototype honestly
+### Prompt 32: release the Vercel demonstration honestly
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
-Required prerequisites: Fable's M6 release-candidate review, material findings resolved, user acceptance and authorized configured services for local operation.
+Required prerequisites: Fable's M6 release-candidate review, material findings resolved, user acceptance, authorized configured services and the owner's authorization to deploy.
 Read AGENTS.md and the relevant product contracts; implement one connected outcome.
 
-Deliver Minerva as a single-user, browser-only local prototype with no sign-in.
-Publication or optional private hosting requires separate authorization.
-It is the complete spatial creative studio: relationship-rich cards and
-inheritance, three real views, contextual moves, comparison/Weave, instruments,
-Wander and space analysis, Agent Drive, concurrent voice and outputs.
-Read the capability matrix, design acceptance and architecture/infrastructure
-evidence.
+Deliver Minerva as a single-user, browser-only prototype with no sign-in, served
+from a public Vercel deployment for a bounded demonstration window used by a small
+judge panel. It is the complete spatial creative studio: relationship-rich cards
+and inheritance, three real views, contextual moves, comparison/Weave, instruments,
+Wander and space analysis, Agent Drive, concurrent voice and outputs. Read the
+capability matrix, design acceptance and architecture/infrastructure evidence.
 
 Ship the editable mall demo described in SPEC alongside every fully functional
 tool. Demonstrate each tool on that seed prompt, preserve the resulting source
@@ -1735,25 +1743,24 @@ missing live functionality, and demonstration records cannot claim fabricated
 historical provider receipts.
 
 Do not present further scope cuts as completed Minerva. All required behaviors must
-have evidence; unresolved subjective acceptance stays explicit.
-If representative user experience acceptance is missing, deliver a review build,
-not an overall product-completion claim.
-Development previews may be shared as incomplete, never relabeled complete
-because a deployment is Ready or a CI run is green.
+have evidence; unresolved subjective acceptance stays explicit. If representative
+user experience acceptance is missing, deliver a review build, not an overall
+product-completion claim. Development previews may be shared as incomplete, never
+relabeled complete because a deployment is Ready or a CI run is green.
 
-Default to a loopback-bound local server with authorized database/model resources.
-Open the browser URL and work without accounts or a login redirect. Confirm
-same-origin request protections and rejection of unexpected Host/Origin.
-Document local startup, required running services, persistence and recovery.
-Do not expose the no-sign-in app to a shared network or the internet.
+Local operation stays the development loop: a loopback-bound server with
+authorized database/model resources, documented startup, required running
+services, persistence and recovery. Confirm same-origin request protections and
+rejection of unexpected Host/Origin on every configured serving hostname.
 
-Only if optional hosting is requested and separately authorized, use an existing
-suitable private boundary that preserves no-sign-in use and denies outside access
-on every serving address. Otherwise remain local without adding access
-infrastructure. Public source is not public hosting: confirm no secret, user data
-or unlicensed asset has been committed.
-Do not silently change visibility. Never accept marketplace/legal terms for
-the person.
+Deploy to the authorized Vercel project following docs/setup.md: production
+database and credentials separate from local and preview, text and realtime voice
+through Vercel AI Gateway with a server-held credential, Vercel Workflows for
+durable runs, the owner's Gateway budget and Spend Management amount configured,
+and the demonstration workspace seeded. Public source is not a secret store:
+confirm no secret, user data or unlicensed asset has been committed. Do not
+silently change repository visibility. Never accept marketplace/legal terms for
+the person. Do not add sign-in, gates or confirmation steps that slow the judges.
 
 Use the public repository name minerva, without a version suffix. Prepare a
 short demonstration of the central loop: inspect potentially recurring ideas,
@@ -1765,34 +1772,29 @@ mock a core live capability to hit that duration. Label seeded records, fresh
 operations, recorded footage and fallback behavior. Keep full-product evidence
 separate from this selected presentation path.
 
-Confirm the cumulative requested $100 envelope covers text, voice, workflow/
-hosting and database, with separate provider caps and headroom. Do not change
-unrelated team limits, buy credits, silently reset caps or imply a hard total
-ceiling that metering cannot enforce. Distinguish temporary preview storage
-from owned durable production storage and disclose expiration.
-
-Exercise the integrated local journey using real configured services within
-authorization, including relationship tracing, views, contextual choice,
-recombination, conversation, partial failure and reconnect. Deliver actual
-local URL/startup commands, source provenance, operating instructions, cost
-limits and blockers. If hosting was separately authorized, additionally exercise
-the hosted journey and denial outside its existing private boundary.
+Exercise the integrated hosted journey on the served URL using real configured
+services within authorization, including relationship tracing, views, contextual
+choice, recombination, conversation, partial failure and reconnect; repeat the
+local journey where it differs. Deliver the served URL, local startup commands,
+source provenance, operating instructions, the window's dates, cost limits and
+blockers. Write the teardown plan into the handoff: when the window closes,
+pause or delete the deployment, revoke the Gateway key and database credentials,
+export or delete judge data, and record what was preserved. Do not tear down
+before the owner closes the window.
 Update the handoff. Functional completion is not empirical proof of creativity;
 never disguise missing functionality as later optional extensions.
 Milestone closeout: demonstrate this complete M6 journey:
-Run the complete cross-view, voice, exploration, comparison and output journey locally with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify local service/data ownership and restore instructions.
+Run the complete cross-view, voice, exploration, comparison and output journey locally and on the served Vercel URL with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify service/data ownership, restore instructions and the teardown plan.
 Prepare the exact-candidate packet for this milestone's Fable review.
 Still open at this milestone: Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
-Package complete when: the complete prototype operates locally with no sign-in,
-loopback binding and internal request protections; the integrated local journey
-is exercised against configured services; budget allocations and storage ownership
-are confirmed and disclosed; startup commands and local URL,
-provenance, operating instructions, cost limits and blockers are delivered; and
-the concise demonstration distinguishes prepared, live, recorded and unavailable
-behavior; and the Fable local-operation confirmation packet is prepared.
-Hosting is not required to complete this package. If separately authorized,
-record its private-boundary evidence and serving outcome without conflating it
-with local completion.
+Package complete when: the complete prototype operates locally and on the served
+Vercel URL with no sign-in and internal request protections; the integrated
+hosted journey is exercised against configured services; budget settings, data
+isolation and storage ownership are confirmed and disclosed; the served URL,
+startup commands, provenance, operating instructions, window dates, cost limits,
+blockers and teardown plan are delivered; the concise demonstration distinguishes
+prepared, live, recorded and unavailable behavior; and the Fable hosted-operation
+confirmation packet is prepared.
 ```
 
 ### Fable review M6: Integrated release
@@ -1805,28 +1807,28 @@ candidate, isolated checkout/data and startup instructions. Review only; no edit
 to application source or paid calls without explicit allowance.
 
 Required demonstration:
-Run the complete cross-view, voice, exploration, comparison and output journey locally with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify local service/data ownership and restore instructions.
+Run the complete cross-view, voice, exploration, comparison and output journey locally and on the served Vercel URL with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify service/data ownership, restore instructions and the teardown plan.
 
 Review focus:
-Return READY FOR LOCAL RELEASE, CHANGES REQUIRED or BLOCKED for the candidate;
-return LOCAL OPERATION CONFIRMED only after exercising the serving result.
-Report hosted outcomes separately only when hosting was authorized.
-Audit C01-C15 against running behavior and the exact candidate revision,
-not the builder's completion narrative. Reproduce representative concurrency,
-recovery, relationship and browser output journeys. Inspect architecture and
-local infrastructure evidence, plus populated desktop/mobile views. Confirm
-opening and operating without sign-in, loopback binding and internal request
-protections. Hosted operation is not required; review it only if separately
-authorized behind an existing suitable private boundary. Model agreement is
-not a substitute for user acceptance.
+Return READY FOR HOSTED RELEASE, CHANGES REQUIRED or BLOCKED for the candidate;
+return HOSTED OPERATION CONFIRMED only after exercising the served Vercel URL as
+a judge would, with no sign-in. Audit C01-C15 against running behavior and the
+exact candidate revision, not the builder's completion narrative. Reproduce
+representative concurrency, recovery, relationship and browser output journeys.
+Inspect architecture and infrastructure evidence, plus populated desktop/mobile
+views. Confirm opening and operating without sign-in, loopback binding for local
+development and internal request protections on every configured hostname.
+Confirm the deployed revision matches the candidate, production data is separate
+from local and preview, the Gateway budget and Spend Management amount are set as
+the owner specified, and the teardown plan is written. Do not execute the
+teardown. Model agreement is not a substitute for user acceptance.
 Sample IB01-IB06 on the final implementation and revisit cases adjacent to
 recent fixes. Verify the relationship list is bidirectional in coverage while
 preserving each edge's actual direction. Distinguish input simulation, physical
 device observation, technical defects and user experience preferences.
 Distinguish written, integrated, local/live demonstration, reviewed, accepted
-and optional hosted facts in the handoff. Confirm the actual locally served
-candidate. A merge or local server does not establish hosted operation; confirm
-that separately only if hosting was authorized.
+and hosted facts in the handoff. A merge or a Ready deployment does not
+establish hosted operation; exercise the served journey yourself.
 Watch the central before/after journey without builder narration compensating
 for missing behavior. Confirm the user can see the challenge, proposed change,
 actual outcome and source evidence. Distinguish prepared, live, recorded and
