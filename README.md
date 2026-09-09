@@ -48,13 +48,13 @@ Astra in Codex builds; the operator starts Fable 5.1 in Claude on a separate
 checkout of the exact candidate. Both start at medium effort. Use the existing
 handoff and capability record, not extra process machinery. See
 [AGENTS.md](./AGENTS.md) for working rules and [setup](./docs/setup.md) for
-copyable launch instructions. Each deployment, paid call and the opening of the
-demonstration window needs the owner's authorization.
+copyable launch instructions and scoped authorization boundaries.
 
 ## Documentation
 
 | Concern | Source |
 |---|---|
+| Global working, authorization and review rules | [AGENTS](./AGENTS.md) |
 | Purpose, complete experience and falsifiers | [INTENT](./docs/product/INTENT.md) |
 | Required capabilities C01-C15 and acceptance scenarios | [SPEC](./docs/product/SPEC.md) |
 | State ownership, boundaries and open implementation choices | [ARCHITECTURE](./docs/product/ARCHITECTURE.md) |
@@ -63,9 +63,10 @@ demonstration window needs the owner's authorization.
 | Work packages and milestone reviews | [Build prompts](./docs/build-prompts.md) |
 | Repository identity, sessions and local operation | [Setup](./docs/setup.md) |
 
-Read the relevant source, not every document each session. SPEC owns behavior;
-CAPABILITIES records evidence; the application's short `docs/HANDOFF.md` names
-the current outcome and next step.
+Read the relevant source, not every document each session. Packages reference
+these contracts and specify outcomes, prerequisites, integration work and
+completion evidence. The application's short `docs/HANDOFF.md` names the current
+outcome and next step.
 
 ## Check and contribute
 
@@ -73,11 +74,13 @@ the current outcome and next step.
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
-`check` runs lint, typecheck, tests and build. Seed tests check document structure,
-references and selected textual guards, not semantic consistency or product
-behavior. `tests/seed-only.test.mjs` asserts that this repository is still the
-empty seed; package 1 deletes it in the generated application. Review prose
-against its owning contract and add behavior coverage as capabilities arrive.
+`check` runs lint, typecheck, tests and build. Portable tests check document
+structure, references, matching IDs and actual configuration behavior;
+they do not prove semantic consistency or product behavior.
+`tests/seed-only.test.mjs` asserts that this repository is still the empty seed.
+Package 1 deletes that file and adapts the retained checks for application
+development. Review prose against its owning contract and add behavior coverage
+as capabilities arrive.
 ESLint 9 matches the installed Next.js plugin peer ranges; upgrade them together
 when compatible, without suppressing peer errors or removing lint rules.
 

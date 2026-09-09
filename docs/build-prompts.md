@@ -1,22 +1,20 @@
 # Minerva: Astra build packages and Fable reviews
 
-Build the single-user, browser-only prototype defined by
-[SPEC](./product/SPEC.md), with no sign-in. Local development binds to loopback;
-the release target is a public Vercel deployment for a bounded demonstration
-window used by a small judge panel. Keep the internal backend, Postgres, Vercel
-AI Gateway and durable workflows; external APIs are excluded.
+Build the prototype defined by [SPEC](./product/SPEC.md), using the technical
+boundaries in [ARCHITECTURE](./product/ARCHITECTURE.md) and design in
+[DESIGN](./product/DESIGN.md).
 
 Read [AGENTS](../AGENTS.md) for shared working/review rules and
 [README](../README.md#documentation) for document ownership. Each copyable package
-contains its specific task and acceptance conditions; it depends on the current
+contains its outcome, prerequisites, references, integration and completion
+evidence; it depends on the current
 repository, not a separate conversation. Read only the relevant contracts.
 
-Use one connected user outcome per assignment. These are 32 work packages, not
-32 mandatory sessions. Preserve prerequisites and keep partial work labeled.
-The six milestones demonstrate progress toward all fifteen required capabilities.
-Astra builds; the operator starts Fable on a separate exact-candidate checkout.
-Both start at medium effort. Follow [setup](./setup.md#standard-checkpoint-output)
-for bounded launch instructions and a concise evidence-based handoff.
+These are 32 work packages, not 32 mandatory sessions. Use AGENTS's authorized
+outcome and stopping rule across connected chunks; package numbering alone does
+not create a pause or grant authority. The six milestones demonstrate progress
+toward all fifteen required capabilities. Follow
+[setup](./setup.md#standard-checkpoint-output) for launch instructions and handoffs.
 
 | Milestone | Packages | Demonstrated outcome |
 |---|---|---|
@@ -32,32 +30,13 @@ for bounded launch instructions and a concise evidence-based handoff.
 Use the shipped mall demo in [SPEC](./product/SPEC.md#shipped-demo-and-human-judgment),
 plus counterexamples and dense scenes. Extend its editable data and demonstration
 of each tool as the owning capability arrives; verify all tools at release.
-Show tools expanding the seed problem alone, developing a selected starting
-proposal and working across selected proposals, following SPEC's demo inputs.
-Build semantic examples around those tool operations and resulting branches.
-Demonstrate explore -> observe -> challenge -> intervene -> inspect:
-discuss possible recurrence while manipulating ideas, inspect supporting evidence,
-request a change, recombine a distant contribution and inspect both parents and
-the actual result before keeping it. Include an inconclusive or failed intervention.
-Prepared data is not live AI; a separate chat beside decorative cards is insufficient.
+Use SPEC's tool-based semantic examples and lightweight reference setup. Resolve
+lifecycle policies with their owning operations as scheduled in ARCHITECTURE.
 
-Humans judge idea feasibility and creative usefulness. The owner drives examples
-and iteration within milestone chunks. Build feasibility is settled; do not add
-feasibility studies, estimation gates or a research platform. Define lifecycle
-policies when their owning milestone arrives, following
-[ARCHITECTURE](./product/ARCHITECTURE.md#open-implementation-choices).
-
-Use the lightweight reference setup in SPEC for the demo and one denser scene.
-Record actual input, viewport and graph size; measure reproduced friction when
-needed rather than establishing a performance framework or arbitrary time gate.
-
-Review the exact candidate against its milestone journey before reading the
-builder's conclusions. Report each material finding with capability, expected
-and observed behavior, reproduction/evidence, consequence, confidence and the
-smallest correction. Distinguish missing behavior, hypotheses and preferences.
+Follow AGENTS's review procedure. Review against this milestone's Entry, Working
+demonstration, Exit and review, and Still open sections, plus its specific focus.
 Return READY FOR NEXT MILESTONE, CHANGES REQUIRED or BLOCKED; M2's interim and
-M6's release verdicts are specified below. Name access/evidence gaps and pending
-user acceptance. Model agreement does not prove quality or grant acceptance.
+M6's release verdicts are specified below.
 
 M1's experience acceptance precedes dependent work. M2 reviews after packages
 10 and 12. M6 reviews the candidate before the hosted-release confirmation.
@@ -114,100 +93,69 @@ Report missing inputs explicitly. Astra records the disposition of your advice.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M1: Experience proof.
 Required prerequisites: The target project directory and authorization to create the application repository.
-Read AGENTS.md, README.md and the relevant product contracts in this repository.
+Read AGENTS.md.
+Relevant references:
+- docs/setup.md (Repository identity)
+- docs/product/SPEC.md (Required capabilities; Shipped demo and human judgment)
+- docs/product/CAPABILITIES.md
 
-Use the owner's content-free minerva-template to create the public minerva
-repository only when authorized. Inspect the target first; never overwrite an
-existing repository. Follow docs/setup.md to set identity and repository settings,
-and delete tests/seed-only.test.mjs, which asserts that the seed is still empty;
-keep tests/seed-docs.test.mjs. Keep the MIT license, pinned shell and original
-identity assets. Author custom application code for this build; licensed standard
-frameworks and libraries are allowed.
+Outcome: An application repository with correct identity, usable inherited checks
+and an accurate starting handoff.
 
-SPEC.md owns all fifteen required capabilities. Read it rather than duplicating
-its inventory. Confirm the single-user, browser-only, no-sign-in scope, the
-loopback development default, the Vercel demonstration target, internal backend,
-Postgres, AI Gateway and durable workflows. Preserve the working code and
-current requirements. Missing configuration stays explicit.
+Integration work:
+Inspect the target and follow setup's repository-identity procedure within the
+creation authorization. Record the actual seed revision and the mall brief.
+Convert the inherited tests for application development: delete
+tests/seed-only.test.mjs and retain/adapt the portable document checks in
+tests/seed-docs.test.mjs and configuration behavior in tests/lint-config.test.mjs.
+Remove empty-seed restrictions from the generated application, including bans
+on application dependencies/files and assertions that every capability is
+not started. Use the existing runner; no conversion framework is needed.
+Initialize capability evidence without erasing existing work. Create the short
+application docs/HANDOFF.md with scope, files, commands, blockers and next outcome.
 
-Record the actual seed revision and use the mall seed prompt specified in SPEC
-for the explore/observe/challenge/intervene/inspect journey. Author synthetic
-demo records and label any additional site assumptions explicitly.
-The experience includes an unsuccessful intervention, exact source contributions
-and uncertainty; a narrow demonstration does not remove required capabilities.
-
-Initialize docs/product/CAPABILITIES.md without erasing existing evidence.
-Create a short docs/HANDOFF.md with current scope, relevant files, actual commands
-and outcomes, blockers and the next connected task. Do not create extra indexes,
-decision registers or historical notes.
-
-Package complete when: repository identity and settings are configured as
-authorized; the seed revision and representative brief are recorded; SPEC remains
-the single capability contract; capability evidence is accurate; and the handoff
-names the next unfinished foundation outcome.
+Completion evidence:
+Run the inherited checks after conversion. Inspect the surviving assertions to
+confirm that application additions and capability progress are permitted while
+references, IDs, package structure and actual configuration remain checked.
+Record identity/settings, seed revision, representative brief and check results.
+Package complete when: the authorized repository setup and test conversion are
+complete, checks pass, capability evidence is accurate and the handoff names the
+next unfinished foundation outcome.
 ```
 
-### Prompt 2: create the runnable architecture without shrinking the product
+### Prompt 2: create the runnable fixture foundation
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M1: Experience proof.
-Required prerequisites: The full product contract; no persistence or model service is required yet.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Required prerequisites: Package 1 application setup and the full product contract; no persistence or model service is required yet.
+Read AGENTS.md.
+Relevant references:
+- docs/product/ARCHITECTURE.md (Ownership and dependencies; Concurrent interaction)
+- docs/product/SPEC.md (C02, C03, C15; IB01-IB06)
+- docs/product/DESIGN.md (Composition and direct interaction)
 
-Create Minerva's runnable foundation in the new project directory. It is a full
-spatial creative studio with relationship-rich cards, three views, contextual
-creative operations, Wander, Agent Drive, voice and outputs. It is a browser-only
-prototype with no sign-in, local access by default and no external API buildout.
-Read this repository's product contract; if absent, report that prerequisite.
-Author custom implementation within this new project. The template already
-provides a pinned Next.js shell, CI and exact Node/npm pins; extend it rather
-than re-scaffolding, and add dependencies only when a slice needs them. Use
-maintained, appropriately licensed dependencies.
+Outcome: A runnable fixture foundation that package 3 can compose into the atlas.
 
-Organize the shell as a Next.js/React/TypeScript modular monolith. Separate presentation,
-client interaction, application use cases, domain contracts, persistence,
-model adapters and durable orchestration. Domain types must not import React,
-HTTP objects, database clients or provider SDK types. Keep prompts owned by
-their features and transport adapters thin.
+Integration work:
+Extend the pinned Next.js shell and existing CI instead of re-scaffolding it.
+Implement the actual fixture/domain/presentation boundary described in
+ARCHITECTURE. Use application-owned fixture records and domain types; map them
+to React Flow (@xyflow/react) only at the presentation boundary. Add the renderer
+when the first interactive fixture uses it, with custom cards and application
+layouts. Keep a working route and local startup path.
+Retain the existing ownership description. Define database, workflow and
+recovery interfaces with their M2 operations; M1 needs no empty service modules,
+future adapter interfaces or backup/recovery scaffolding.
 
-Models interpret, suggest, generate and explain. Application code owns identity,
-revision consistency, graph-reference integrity, permissions, cost admission and
-state transitions. Validate model inputs to those operations. Deterministic
-code must still be correct, and cannot certify meaningful inheritance, semantic
-equivalence or novelty merely because identifiers and calculations are valid.
-
-Provide an actual startup path, pinned compatible dependencies, existing-runner
-unit/browser checks and CI. Establish a server-only configuration boundary and
-explicit unavailable states. Bind dev/start to loopback with no sign-in.
-Establish isolated development/review configuration,
-database migrations, connection pooling, durable dispatch/reconciliation and
-correlated run/request diagnostics as infrastructure responsibilities. At this
-experience-proof milestone, define their ownership and interfaces; build the
-working persistence and execution paths in the working-spine milestone rather
-than delaying the interactive proof for unused infrastructure. Document
-operational ownership and backup/restore paths. Deployment is a later package,
-not a foundation prerequisite; do not add authentication or access infrastructure.
-Do not fill the UI with buttons
-for unimplemented capabilities or label a scaffold as the product. Do not
-manufacture empty modules.
-
-Keep ownership and extension points in ARCHITECTURE.md.
-Use the selected React Flow renderer (@xyflow/react) with custom cards
-and application-owned layouts for the first interactive fixture. Keep canonical
-graph records and domain types independent of the renderer store and types.
-Preserve the living-atlas composition, not the library's demo appearance.
-Pin a compatible licensed version when adding it; exercise IB01-IB06 rather
-than assuming the library proves interaction quality. Reopen the choice only
-for a demonstrated requirement failure or compatibility constraint.
-
-Run the foundation, exercise its actual routes, and update the capability matrix
-and handoff. Do not provision, spend, publish or claim product completion.
-Package complete when: the shell runs locally with pinned dependencies and
-lint, typecheck, test and build pass; module ownership, extension points and
-infrastructure interfaces are recorded in ARCHITECTURE.md;
-AGENTS.md reflects the milestone contract; the startup path is documented; and
-the capability matrix shows every row at not started or partial with honest
-evidence and no unimplemented buttons in the UI.
+Completion evidence:
+Run the foundation and exercise the route with fixture records. Inspect imports
+across the fixture/domain/presentation boundary; domain types must remain
+independent of renderer and service types. Run required checks and document the
+startup path. Record partial C02/C03/C15 evidence and the remaining M1 work.
+Package complete when: the local fixture route runs, the implemented boundary
+is visible in code, required checks pass and package 3 can extend the same
+presentation without unused M2 infrastructure.
 ```
 
 ### Prompt 3: establish the original living-atlas design system
@@ -215,72 +163,37 @@ evidence and no unimplemented buttons in the UI.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M1: Experience proof.
 Required prerequisites: The product contract and runnable UI foundation; use local synthetic data only.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/DESIGN.md (Materials; Composition and direct interaction; Interaction transitions and overview)
+- docs/product/SPEC.md (C15; Shipped demo and human judgment; IB01-IB06)
+- docs/product/ARCHITECTURE.md (Concurrent interaction)
 
-Create Minerva's original visual system and composed application shell in this
-new repository. It is a spatial creative instrument, not an admin dashboard.
-Read DESIGN.md; use original custom code/art and appropriately licensed fonts/libraries.
+Outcome: A populated, interactive living-atlas experience proof using prepared data.
 
-Specify and implement paper #e9dfc7, card #f1e9d6, ink #273a35, deep teal #213f3e,
-teal #28686a, amber #b18a58, coral #a15442 and violet #755584 as shared tokens.
-Use an expressive editorial serif with compact monospaced instrument labels;
-Newsreader and IBM Plex Mono are suitable licensed choices, not mandatory
-copied files. Author restrained contour/terrain artwork and an original owl mark.
-Terrain is decorative, never a map of inferred idea quality.
+Integration work:
+Implement DESIGN's tokens, typography, composition and card interactions in the
+existing fixture presentation. Preserve the original identity assets and author
+the mall fixture with independent branches, a multi-parent child, an unkept draft,
+a semantic link and unknown evidence. Use the seed alone and selected A/B/C
+proposals as the starting material defined in SPEC.
+Wire pan/zoom, moving cards with attached edges, source inspection, pair
+selection and a local prepared contextual chooser. Expose only functioning M1
+interactions; production view switching, generation and voice arrive later.
+Update DESIGN only where an accepted design decision changes its contract.
 
-Compose one compact top header with identity, the current fixture perspective
-and prepared question context. M1 offers only functioning local interactions:
-pan/zoom, source inspection, comparison and prepared contextual moves.
-Production view switching, live exploration and conversation arrive in their
-own later milestones; do not add dead tabs or fake voice/generation controls
-to imply they already exist. The atlas occupies the field beneath the header.
-Put navigation instruments at the field's edges, zoom near
-a lower corner, and details in a dismissible overlay. No stack of full-width
-toolbars, permanent diagnostics, or a sidebar that resizes the working canvas.
-At a 1440x900 desktop viewport with panels closed, target at least 80% height
-for the canvas. This is a composition gate, not a performance measurement.
-These are design targets, not a copied pixel specification. An alternative
-composition must still keep the spatial field dominant and the workflows direct.
-
-Cards are approximately 260-320px wide at normal zoom, with a strong concise
-serif title, restrained operation/source accent, a visible relationship cue and
-one principal contextual action. Rich artifact text and evidence open on demand.
-Do not reproduce every action on every card. Preserve readable keyboard/touch
-controls; color and motion cannot be the only information channels.
-
-Build the original synthetic mall fixture with branches, a multi-parent child,
-an unkept draft and a semantic link. Label fixture-only behavior honestly.
-Make the fixture interactive: pan/zoom, move a card with attached edges, inspect
-its parents, select a pair and open a contextual chooser. These are local
-demonstration interactions, not fake persisted or AI-generated outcomes. Use an
-explicit fixture data boundary that the working spine can replace with the
-new server implementation; retain the newly authored presentation components.
-No database or live provider is a prerequisite for this experience proof.
-Exercise SPEC's interaction boundary scenarios IB01-IB06 locally: pan without
-accidental text selection; pinch starting over cards/actions; switch from a
-gesture to Enter/Space and supported assistive activation; Fit narrow and short
-desktop views with usable focus targets; inspect incoming and outgoing links;
-and return from comparison without losing source orientation. Include explicit
-unkept and unknown-evidence states rather than representing every fixture card
-as accepted or assessed. Label simulated device/assistive input honestly.
-Render desktop and narrow layouts and review the images for hierarchy and
-clutter before proceeding. Demonstrate what would become materially harder in
-linear chat: trace multiple parents and compare distant contributions while
-retaining spatial context. Do not substitute texture or animation for this.
-Write DESIGN.md as the enforceable visual contract,
-not generic adjectives. Update C15 evidence; this shell is not a finished app.
-Run the M1 small task comparison with the owner and record the observation;
-use its findings to guide this experience proof within the existing review.
-Milestone closeout: demonstrate this complete M1 journey:
-Pan and zoom; trace both parents of a recombination; move a card with its edges attached; inspect inherited material; select a pair; open a local contextual chooser on desktop and touch.
-Prepare the exact-candidate packet for this milestone's Fable review.
-Still open at this milestone: All production persistence, generation, voice and wider product capabilities remain open. Fixture interactions do not complete their capability rows.
-Package complete when: the interactive fixture renders the populated atlas at
-desktop and narrow widths; the full M1 journey works locally on mouse, touch
-and keyboard; DESIGN.md is written as an enforceable contract; C15 evidence is
-recorded for IB01-IB06 with the fixture boundary and input method labeled;
-unkept state and unknown evidence are distinguishable; and the Fable M1 review packet
-(revision, contracts, startup and fixture instructions) is prepared.
+Completion evidence:
+Exercise IB01-IB06 on the prepared fixture and label the actual input method,
+including any simulation. Inspect populated desktop and narrow renderings for
+DESIGN's composition targets, hierarchy and clutter. Trace both parents and
+compare distant contributions while retaining orientation. Record the demo
+and denser-scene reference setup specified in SPEC.
+Run the owner-led M1 small task comparison from this catalog. Record C15 evidence,
+fixture boundaries and the owner's observations; prepare the Fable M1 packet.
+Package complete when: the full M1 working demonstration and IB01-IB06 work
+locally, design/journey evidence is recorded and the exact candidate is ready
+for M1 review and owner experience acceptance. Fixture evidence leaves production
+persistence, generation and voice open.
 ```
 
 ### Fable review M1: Experience proof
@@ -288,9 +201,8 @@ unkept state and unknown evidence are distinguishable; and the Fable M1 review p
 ```text
 You are Fable 5.1 in Claude, independently reviewing M1: Experience proof
 Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
-Use the supplied exact
-candidate, isolated checkout/data and startup instructions. Review only; no edits
-to application source or paid calls without explicit allowance.
+Use the supplied exact candidate, isolated checkout/data and startup instructions
+under AGENTS.md's review rules.
 
 Required demonstration:
 Pan and zoom; trace both parents of a recombination; move a card with its edges attached; inspect inherited material; select a pair; open a local contextual chooser on desktop and touch.
@@ -319,9 +231,6 @@ Check the milestone's actual prerequisites: persistent recovery and live voice
 belong to M2, not M1. Surface conflicting instructions rather than demand a
 future capability or approve a fixture as its implementation.
 
-Still-open scope at this boundary:
-All production persistence, generation, voice and wider product capabilities remain open. Fixture interactions do not complete their capability rows.
-
 ```
 
 ## Milestone 2: Working spine
@@ -348,51 +257,34 @@ or new evidence warrant it; there is no required number of recheck rounds.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: The product contract, runnable foundation and original experience proof.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C01)
+- docs/product/ARCHITECTURE.md (Canonical records; Four shared contracts; Provider and deployment boundaries; Open implementation choices)
 
-Implement Minerva's workspace lifecycle in this new Next.js/TypeScript modular
-monolith. Postgres is authoritative; the browser owns transient interaction.
-Read the local product contract.
+Outcome: Workspace lifecycle and saved state work through the browser and Postgres.
 
-Deliver create/open/list/rename/duplicate and deliberate deletion with clear
-confirmation, plus saved brief and explicit constraints. Duplicate creates
-independent identities and preserves meaningful internal references; deletion
-must account for active runs and referenced history rather than orphaning it.
-Keep old-system import/migration out of scope.
-Resolve the M2/4 lifecycle policies listed in ARCHITECTURE before implementing
-deletion and retained-data behavior; later voice/run policies remain with their
-owning packages.
+Integration work:
+Replace fixture reads with workspace operations while retaining presentation.
+Implement the C01 lifecycle, brief/constraint revisions and independent layout
+writes. Define database interfaces against these actual operations using the
+selected Drizzle adapters and explicit SQL migrations in ARCHITECTURE.
+Implement atomic mutation/receipt storage and safe replay after a lost response.
+Resolve M2/4 deletion, retained-history, export and backup/restore policies before
+their behavior is implemented. Establish the export contract for current records
+and extend it with later feature records; old-system import remains excluded.
+Wire no-sign-in local access and Host/Origin/same-origin protections for configured
+serving hostnames. These carry into the package 32 Vercel demonstration.
 
-Use immutable content/brief revisions, independent layout versions, explicit
-migrations and named application operations. Use Drizzle (drizzle-orm)
-inside feature-owned Postgres adapters; keep ORM types out of domain contracts.
-Generate versioned SQL migrations with drizzle-kit, inspect and commit them,
-then apply them explicitly to the intended database. No schema push, request-time
-or implicit startup schema mutation. Commit each mutation and its command receipt
-atomically; replay after a lost acknowledgement must return the same receipt.
-Create an export contract for
-content, revision history, relationships, proposals, decisions, runs and
-provenance; extend it with later product records. An export is not an import.
-Never save the whole workspace for a card drag.
-
-Open the local URL and operate without accounts, platform sign-in or an
-owner-password screen. Bind the development server to loopback, keep credentials
-server-side, validate Host/Origin for every configured serving hostname and
-enforce same-origin JSON mutations. Reject cross-origin mutations and permissive
-CORS; another website must not be able to use paid operations. Keep internal
-endpoints, not an external API product. The same protections carry to the Vercel
-demonstration deployment in package 32; do not create access infrastructure.
-
-Exercise lifecycle operations, reload, duplication reference integrity,
-stale writes and unavailable configuration against an isolated local database.
-Exercise opening the app without sign-in and rejection of unexpected Host/Origin
-and cross-origin mutations. Production hosting belongs to package 32, not this
-package.
-Update C01 evidence and the handoff; no unauthorized external provisioning.
-Package complete when: create, open, list, rename, duplicate and delete, brief
-and constraint revisions, the export contract and no-sign-in loopback access
-are exercised against an isolated local database; the listed edge cases pass;
-and C01 evidence and the handoff are updated.
+Completion evidence:
+Exercise create/open/list/rename/duplicate/delete, brief and constraint edits,
+reload, duplicate reference integrity, stale writes, lost acknowledgement and
+unavailable configuration against isolated local data. Verify the export contract
+and backup/restore procedure for this state. Open without sign-in; reject unexpected
+Host/Origin and cross-origin mutations. Record C01 evidence and operating commands.
+Package complete when: the lifecycle, revision/receipt paths, export contract and
+request protections work against the isolated database, the listed cases pass
+and C01 evidence identifies remaining later-package records.
 ```
 
 ### Prompt 5: build the spatial canvas and deliberate view controls
@@ -400,44 +292,31 @@ and C01 evidence and the handoff are updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Working workspace/revision operations and the original fixture presentation.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C02, C15; IB01-IB04, IB06)
+- docs/product/ARCHITECTURE.md (Canonical records; Concurrent interaction)
+- docs/product/DESIGN.md (Composition and direct interaction; Interaction transitions and overview)
 
-Implement Minerva's spatial canvas in this new repository, using its original
-design system and server-owned workspace operations. All custom code must be
-newly authored. Read the complete product contract; do not reduce it.
+Outcome: The fixture canvas becomes a persistent, directly manipulated workspace.
 
-Support title-first cards, create/edit/inspect, direct selection, a comparison
-set, mouse/touch pan, zoom anchored to user intent, dragging, card resizing,
-find-by-title/content, explicit focus/fit, saved viewpoints and deliberate
-arrange/reset. Provide undo/redo for supported layout changes with clear scope.
-Preserve user positions, card sizes and active-view camera across reload.
-Undo of content decisions is a separate domain operation, not a camera action.
+Integration work:
+Wire C02's card editing, selection/comparison set, drag/resize, find/focus/fit,
+arrange/reset, saved viewpoints and scoped layout undo/redo to workspace
+operations. Keep immediate pointer feedback local and persist deliberate changes
+through target-scoped layout commands. Integrate incoming records by ID without
+resetting user positions, sizes, selection or camera.
+Carry semantic zoom, overlay behavior and input-mode transitions from the fixture
+across the real persistence/update boundary.
 
-Keep pointer interaction local and responsive; persist deliberate layout changes
-through target-scoped commands. Neither panning, zooming, searching, selecting
-nor switching a presentation starts a model call. Incoming records merge by ID
-without moving existing cards or fitting the camera.
-
-Use detail/title/overview presentation where needed for scale, with stable
-thresholds and hysteresis. Never make selected cards or actions disappear at
-a zoom boundary. Provide keyboard and touch equivalents, not hover-only access.
-The details panel must not change canvas dimensions or reset its transform.
-
-Carry SPEC's IB01-IB04 and IB06 behaviors forward from the original fixture.
-Exercise touch-to-keyboard/assistive activation after gestures and when results
-arrive; preserve usable overview focus targets and intentional text selection.
-Do not replace the scenarios with a particular event-handler trick or assume
-that a fix to pinch is complete until subsequent activation also works.
-
+Completion evidence:
 Exercise dragging while results arrive, resize/reload, find/focus, fit, arrange
-and layout undo/redo. Render a populated scene, not only an empty canvas.
-Update C02 and C15 evidence and the handoff. Missing behavior remains partial;
-do not publish this slice as the complete application.
-Package complete when: the listed canvas interactions work on a populated
-scene with mouse, touch and keyboard; positions, sizes and camera survive
-reload; layout undo/redo has a documented scope; no navigation or view switch
-starts a model call; IB01-IB04 and IB06 hold across the new persistence/update
-boundary; and C02/C15 evidence and the handoff are updated.
+and layout undo/redo on a populated scene. Repeat IB01-IB04 and IB06, including
+keyboard/assistive activation after gestures and intentional text selection.
+Check saved sizes/camera, usable overview targets and navigation without model
+calls. Record C02/C15 evidence and the documented undo scope.
+Package complete when: the persistent C02 journey and listed transition cases
+pass on mouse, touch and keyboard with incoming updates and reload.
 ```
 
 ### Prompt 6: make the relationship graph visible and understandable
@@ -445,43 +324,31 @@ boundary; and C02/C15 evidence and the handoff are updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Canonical revision identity and working canvas interaction; rerun fixture proposal transitions against real decisions before M2 closes.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C03; IB05)
+- docs/product/ARCHITECTURE.md (Canonical records)
+- docs/product/DESIGN.md (Composition and direct interaction)
 
-Implement Minerva's visible relationship graph in this new modular monolith.
-Use newly authored implementation in this project. Inspect canonical revisions,
-canvas rendering and the product contract. Database relationships alone do
-not satisfy this task: a person must see and reason about them on the canvas.
+Outcome: People can trace and manipulate the persisted graph from either endpoint.
 
-Represent exact-revision derivation, multi-parent recombination, labeled semantic
-connections and brief/run membership distinctly. Derivation is acyclic;
-semantic links may cycle and preserve kind/direction. Independent roots can
-share a brief-context anchor but must not be portrayed as inheriting one
-another's content. Never invent parentage to make a sparse graph look connected.
+Integration work:
+Map canonical graph relationships into Lineage edges, neighborhood emphasis,
+ancestry/descendant focus and an accessible relationship list. Implement C03's
+distinct context, derivation, multi-parent and semantic relationships, including
+explicit dense-scene aggregation and disclosed filtering/folding.
+Wire direct connection of selected cards and keep endpoints attached across
+movement/resize. Carry unkept proposals through real acceptance without severing
+sources; repeat that transition once package 10 supplies real decisions.
 
-In Lineage view, meaningful parent/child connections are visible at rest at the
-normal working zoom. Selection/hover/focus strengthens the relevant neighborhood
-and exposes direction, kind and contributions; it is not the only discoverability
-mechanism. Offer ancestry/descendant focus and an accessible relationship list.
-At dense zoom levels use explicit aggregation, not invisible low-opacity edges.
-The list exposes incoming sources, outgoing descendants and semantic associations
-with their kinds/directions and navigable endpoints. Exercise IB05 from either
-endpoint, including unkept work and unknown evidence. An incoming-only inspector
-is not a complete textual equivalent of the graph.
-
-Connect user-selected cards directly. Keep endpoints attached while cards move
-or resize. Unkept proposals and kept descendants remain connected to their
-actual sources; acceptance must not erase the visible graph. Filtering/folding
-must explain omitted branches and provide an explicit way back.
-
-Use a synthetic fixture with one brief, two independent roots, a grandchild,
-a two-parent recombination, a semantic cycle and an unkept proposal. Trace all
-paths visually and through keyboard/touch; test move, keep, filter and reload.
-No JSON inspector or screenshot containing untraceable lines counts as C03.
-Record the observed behavior and any gap; do not weaken the graph contract.
-Package complete when: every path in the fixture is traceable at rest and by
-keyboard and touch; edges survive move, keep, filter and reload; dense scenes
-aggregate explicitly; IB05 covers incoming and outgoing relationships with
-correct state distinctions; and C03 evidence records observed behavior and any gap.
+Completion evidence:
+Use one brief, two independent roots, a grandchild, a two-parent recombination,
+a semantic cycle and an unkept proposal. Trace every path at rest and through
+keyboard/touch; test move, keep, filter and reload. Exercise IB05 from both
+endpoints with unknown evidence and unkept work. Record observed C03 behavior.
+Package complete when: all fixture paths are traceable in the persisted graph,
+edges survive the listed changes, dense omissions are explicit and IB05 passes;
+any acceptance dependency is closed before M2 finishes.
 ```
 
 ### Prompt 7: compile exact operation context
@@ -489,40 +356,29 @@ correct state distinctions; and C03 evidence records observed behavior and any g
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Exact brief/source revisions and relationship identity; rich part-selection UI follows in M3.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C04, C08; Cross-cutting architecture and acceptance)
+- docs/product/ARCHITECTURE.md (Context compilation)
 
-Implement Minerva's operation-context compiler in this new modular monolith.
-Use newly authored code and current repository contracts only.
-Inspect revisions, traits, selected contributions and relationship identity.
-In the working spine, complete brief-only and whole-source context end to end.
-Define typed part/excerpt selection and validate it with focused domain cases;
-the creative-workspace milestone wires the richer selection UI. Track that UI
-as partial, not as a prerequisite that blocks the first real operation.
+Outcome: Preview and execution consume the same exact, inspectable operation input.
 
-A frozen manifest records exact source IDs/revisions, selected functional parts
-or validated excerpts, inclusion reasons/order, brief/constraint revision,
-operation/prompt version, runtime model profile and declared archive exposure.
-Preview and execution consume the same application-controlled input.
-No hidden memory or summary may be appended after this projection.
+Integration work:
+Implement the context compiler against stored brief/source revisions. Complete
+brief-only and whole-source manifests end to end in M2. Define typed part/excerpt
+selection and validate it in domain cases; its richer UI arrives in M3.
+Wire readable inherited/selected/excluded material beside the source cards.
+Validate dependency revisions and input bounds using ARCHITECTURE's manifest
+rules, including declared archive exposure and separate retrieval receipts.
 
-Independent-root context contains only the explicit brief and user constraints.
-Source-directed context contains selected sources plus declared references.
-Archive-aware context admits a named bounded subset explicitly. Spatial
-proximity, grouping and shared attention are hints, not inherited constraints.
-Record later tool retrieval as additional evidence, not a rewritten manifest.
-
-Show readable inherited/selected/excluded material next to the source cards.
-Reject stale excerpts and changed dependencies. Input limits must surface
-omissions or require a narrower selection, never silently truncate meaning.
-Moving a card or switching views must not invalidate content-only context.
-
-Test exact ordering, exclusions, stale dependencies, contribution selection,
-large inputs and model-boundary root isolation. Update C04/C08 evidence and
-the handoff. This is not permission to generate before cost admission exists.
-Package complete when: brief-only and whole-source manifests compile end to
-end with preview and execution sharing the same frozen input; the listed tests
-pass; typed part/excerpt selection is domain-tested with its UI tracked as
-partial; and C04/C08 evidence and the handoff are updated.
+Completion evidence:
+Test exact inclusion/order, exclusions, stale excerpts/dependencies, selected
+contributions, large inputs and root isolation at the model boundary. Verify
+that moving a card or switching views does not stale content-only context.
+Record C04/C08 evidence with rich selection UI explicitly pending.
+Package complete when: brief-only and whole-source preview/execution share frozen
+input, the listed cases pass and typed part selection is tested without blocking
+the working spine on its later UI. Paid generation awaits package 8 admission.
 ```
 
 ### Prompt 8: implement durable execution and bounded cost admission
@@ -530,49 +386,41 @@ partial; and C04/C08 evidence and the handoff are updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Frozen context, named application operations and stable command identity.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C10, C12; Cross-cutting architecture and acceptance)
+- docs/product/ARCHITECTURE.md (Four shared contracts; Durable execution; Open implementation choices)
+- docs/setup.md (Vercel demonstration hosting)
 
-Implement Minerva's shared durable run machinery in this new codebase.
-Keep the Next.js/TypeScript modular monolith, Postgres authority and Vercel
-Workflow. Inspect frozen context and application operations; report missing
-prerequisites rather than building a competing engine.
-Define the M2/8 run lifecycle policies in ARCHITECTURE with this implementation.
+Outcome: A browser action starts a recoverable, bounded operation with visible progress.
 
-Persist admission and dispatch intent, start workflows, checkpoint individual
-steps, expose progress and partial results, and support pause/resume/stop and
-reconnection. Reconcile the gap between database commit and workflow startup.
-The browser does not own run lifetime. Durable replay does not guarantee
-exactly-once external provider execution.
-Use bounded polling of persisted progress initially; reconnect from
-durable state and stop polling on unmount or terminal status without stopping
-the run. Do not add a realtime service unless an observed requirement warrants it.
+Integration work:
+Define workflow and recovery interfaces against the actual admission, dispatch,
+checkpoint and reconciliation operations. Implement ARCHITECTURE's Postgres/
+Vercel Workflow path, stable command/step identities and bounded polling.
+Resolve M2/8 run lifecycle policy alongside pause/resume/stop and reconnection.
+Expose admitted/running/awaiting-input/completed/failed/stopped states.
+Configure the owner's application envelope and component allocations for text,
+voice, workflow and database. Reserve bounded attempts/spend before paid work
+and retain uncertain attempts under the shared retry/repair allowance.
+Follow setup's package 8 project/linking procedure within the applicable
+authorization so preview deployments supply hosted evidence. Use the same
+previews for package 9 budget rejection and package 12 realtime session limits;
+production release remains package 32.
 
-Commands have stable IDs, payload identity, targets and expected revisions.
-Duplicate delivery returns the existing receipt; changed payload reuse conflicts.
-Distinguish admitted/running/awaiting-input/completed/failed/stopped outcomes.
-Separate operation, Wander and goal-directed policy from shared execution.
-
-Reserve bounded attempts and spend before paid work. Use one application
-envelope sized by the owner for the demonstration window, inclusive of text,
-voice, workflow and database; configure component allocations and headroom.
-Retain failed/uncertain attempts. No automatic top-up or silent provider switch.
-Vendor metering and app reservations are not an exact hard billing ceiling.
-
-Exercise dispatch failure, duplicate completion, browser close, stopped admission,
-partial siblings and exhausted allowance using explicit fixtures. Keep the
-working Lineage view responsive. Repeat affected cases across Evolution and
-Constellation when those views arrive in M3. Link the repository to the
-authorized Vercel project in this package so automatic preview deployments exist
-from here on, and exercise restart recovery and dispatch reconciliation on a
-preview as well as locally; packages 9 and 12 use the same previews for budget
-rejection and realtime session limits. A preview is evidence, not the release.
-Update C10/C12 and architecture evidence; do not deploy to production.
-Package complete when: admission, dispatch, checkpointing, progress, pause,
-resume, stop, reconnect and reconciliation work against fixtures; command
-receipts are idempotent; the shared envelope and component allocations are
-configured; the listed failure cases pass with the working Lineage view
-responsive; and C10/C12 and architecture evidence record the M3 cross-view
-obligation.
+Completion evidence:
+Exercise dispatch failure, changed-payload command reuse, duplicate completion,
+browser close/reconnect, stopped admission, partial siblings and exhausted
+allowance with fixtures. Verify the UI's polling cleanup does not stop the run.
+Exercise restart recovery and dispatch reconciliation locally and on a preview,
+preserving ARCHITECTURE's distinction between stranded local runs and hosted
+step resumption. Do not build a persistent local queue.
+Keep Lineage responsive; record the obligation to repeat affected cases in
+Evolution/Constellation when those views arrive. Update C10/C12 and architecture
+evidence with actual operation/interface boundaries.
+Package complete when: admission through recovery and cost denial work with
+idempotent application receipts, local/preview recovery evidence is recorded,
+the listed cases pass and the M3 cross-view obligation remains explicit.
 ```
 
 ### Prompt 9: generate live alternatives with capability-aware models
@@ -580,40 +428,32 @@ obligation.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Durable run/cost admission and frozen inputs; authorized provider access for live evidence.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C05, C08, C09)
+- docs/product/ARCHITECTURE.md (Provider and deployment boundaries; Durable execution)
 
-Deliver live creative generation in Minerva using newly authored implementation.
-Use this repository's operation context, durable runs and spend admission.
-The product requires distinct alternatives with lineage, not a chat answer.
+Outcome: One-source divergence produces persisted, lineage-linked live proposals.
 
-Implement a server-side model adapter over Vercel AI Gateway through the AI SDK,
-with a server-held Gateway credential, explicit supported model settings, output
-schema, timeout/output bounds, prompt version and attempt policy. Runtime models
-are Gateway model ids; GPT-6 Astra is the development agent and does not decide
-them. Consult current official AI Gateway and AI SDK documentation. Never change
-a model ID while inheriting unsupported sampling or reasoning settings.
+Integration work:
+Connect the context compiler and admitted durable run to a server-side Vercel
+AI Gateway adapter through the AI SDK. Consult current official documentation
+for supported model settings, credentials, schemas, output/time bounds and
+attempt behavior. Runtime model profiles remain explicit.
+Persist proposals with full artifacts, concise titles, mechanisms, prerequisites,
+uncertainties, per-parent contributions and requested-versus-observed change.
+Display each result or failure against its actual context without moving kept
+cards. Record actual input/output, finish state, usage and errors.
 
-Generate bounded independent perspectives or source-directed alternatives as
-separate proposals. Preserve full text/code artifacts as appropriate, concise
-titles, operative mechanism, prerequisites, uncertainties, parent contributions
-and the requested-versus-observed transformation. Different wording alone is
-not a different mechanism. Keep the original goal fixed.
-
-Persist every result or explicit failure and display it connected to its actual
-source/context. Do not move kept cards, drop inconvenient alternatives or label
-raw output accepted. Record actual input, output, finish state, usage and errors.
-Fixtures are clearly separate from live paths; missing credentials never produce
-fabricated live output.
-
-Exercise malformed output, partial failure and a bounded real call only with
-authorized credentials/spend. Complete one-source divergence in the working
-spine. The creative-workspace milestone extends this same path to rich branch
-development; leave those C05/C08/C09 behaviors explicitly partial until then.
-Package complete when: one-source divergence produces persisted,
-lineage-linked proposals through the durable path; malformed output and
-partial failure are handled; one bounded authorized live call is recorded with
-input, output, finish state and usage, or the live gate is marked blocked; and
-C05/C08/C09 rows state what remains partial.
+Completion evidence:
+Exercise malformed output and partial siblings, then a bounded authorized live
+one-source divergence through admission, provider, persistence and graph display.
+Exercise project-budget rejection on the authorized preview from package 8.
+Record the result or exact live-access blocker. Track richer branch development,
+contextual planning and instruments as remaining C05/C08/C09 obligations.
+Package complete when: the integrated divergence path and failure cases work
+and its live evidence is recorded; unavailable live access leaves that gate
+blocked, with the affected capability rows explicitly partial.
 ```
 
 ### Prompt 10: assess proposals and preserve human decisions
@@ -621,38 +461,33 @@ C05/C08/C09 rows state what remains partial.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Generated proposals, immutable source revisions and a visible graph.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C03, C04, C05)
+- docs/product/ARCHITECTURE.md (Canonical records; Four shared contracts)
+- docs/build-prompts.md (Small task comparisons; Fable review M2)
 
-Implement Minerva's independent review and transactional decisions in this new
-codebase. Use shared revisions, generation and lineage. Read the product
-contract; do not replace richer inspection with a single pass/fail badge.
+Outcome: A person can inspect, edit and decide on generated proposals with durable evidence.
 
-Assess exact proposal revisions for goal fidelity, explicit constraints,
-causal dependencies, requested transformation and mechanism differences.
-Distinguish supported, contradicted, unclear, pending and unavailable evidence.
-Grounding support is separate from recurrence and does not certify novelty.
+Integration work:
+Connect assessments to exact proposal revisions and expose supported,
+contradicted, unclear, pending and unavailable states. Wire inspect/edit/keep/
+set-aside and dependent undo to shared revisions and transactional decisions.
+Keeping records the accepted revision, per-parent contributions and lineage
+atomically. Editing invalidates dependent text-specific assessments. Reject
+deterministically invalid output; unavailable review requires explicit
+acknowledgement before keeping it as unreviewed work.
+For changed sources, offer regeneration or a separate historical-context branch.
+Preserve rejected work and downstream references.
 
-Let users inspect/edit/keep/set aside proposals. Keeping atomically records the
-decision, accepted revision, per-parent contributions and visible lineage.
-Editing retains the original and invalidates old text-specific assessments.
-Deterministically invalid output is not accepted; unavailable review can only
-be kept through explicit acknowledgement as unreviewed work.
-
-Changed sources require regeneration or an explicit separate historical-context
-branch. Rejected work remains inspectable. Undo respects downstream references
-and does not erase evidence or silently delete a used ancestor.
-
+Completion evidence:
 Exercise duplicate acceptance, changed parents, unavailable review, edited
-annotations, multi-parent keep and dependent undo. Verify graph visibility
-before/after keep and after reload. Update C03/C04/C05 evidence and the handoff.
-Use live calls only within existing authorization; no extra review engine.
-Run the M2/10 small task comparison using the saved live-operation results;
-record the owner's observations with the interim review evidence.
-Package complete when: assessment states, inspect/edit/keep/set-aside
-decisions, atomic acceptance with lineage, invalidation on edit and dependent
-undo work; the listed cases pass; graph visibility holds before and after keep
-and after reload; C03/C04/C05 evidence and the handoff are updated; and the
-interim Fable M2 review packet for packages 4-10 is prepared.
+annotations, multi-parent keep and dependent undo. Verify visible relationships
+before/after keep and after reload, closing package 6's acceptance dependency.
+Run the M2/10 small task comparison with saved live results and record the owner's
+observations. Update C03/C04/C05 and prepare the interim Fable M2 packet.
+Package complete when: the assessment/decision path and listed cases work and
+the exact candidate is ready for the required review before packages 11-12.
 ```
 
 ### Prompt 11: build a collaborative typed partner with shared attention
@@ -660,50 +495,33 @@ interim Fable M2 review packet for packages 4-10 is prepared.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: The working Lineage canvas, shared command receipts and creative-operation admission.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C13)
+- docs/product/ARCHITECTURE.md (Four shared contracts; Context compilation; Open implementation choices)
 
-Build Minerva's typed collaborator with newly authored code. It discusses and
-develops an evolving creative space, not only recites card text or dispatches
-commands. Use the local product contract and shared application operations.
-Define transcript retention and deletion before persisting conversation, using
-the M2/11-12 lifecycle policies in ARCHITECTURE. Raw-audio policy belongs to voice.
+Outcome: Typed collaboration discusses selected work and performs one requested creative action.
 
-Deliver this package as connected increments, not a whole collaborator subsystem.
-First select a saved card, send a typed message and display a context-grounded
-reply in the working UI; actions stay disabled for this increment. Label fixture
-versus live behavior. Then integrate shared attention and one explicit typed
-operation through the existing command/admission path, exposing its actual
-receipt. Do not start the next increment while these pieces have no working
-caller. These checkpoints do not waive the full package criteria below.
+Integration work:
+Resolve M2/11-12 transcript retention/deletion before conversation storage.
+First connect selected-card context, a typed message and a grounded reply in the
+working UI, with actions disabled until wired. Then integrate shared attention
+and one explicit creative action through existing commands/admission, displaying
+the actual receipt. Exercise each connected chunk before expanding it.
+Support C13's discussion, challenges, connections and suggestions; resolve named
+cards/relationships/comparison references and fetch bounded details on demand.
+Implement sequenced, expiring attention independently of selection and commands.
+Keep the collaborator independent of view/panel lifetimes.
 
-Support explanation, assumption challenges, connections, alternative readings,
-contextual move suggestions and explicitly requested scoped actions. Resolve
-named cards, relationships, comparison slots and active-view attention. Fetch
-specific details on demand rather than sending the whole graph/transcript
-every turn. Distinguish user requirements from conversational speculation.
-
-Use the same operation vocabulary as the UI, with stable intent/command IDs
-and exact target revisions. Acknowledge actual outcomes, not a model's intention.
-Clarify ambiguous referents. Suggestions and generated material remain proposals
-unless the user explicitly requested an allowed state change.
-
-Implement ephemeral attention for cards and edges with source, sequence and
-expiry. Highlighting does not replace selection, mutate content, launch work
-or move the camera. Explicit navigation can move it; stale events cannot.
-
-Exercise discussion during a durable creative operation, two-card references, relationship inspection,
-suggested versus executed actions, duplicates and out-of-order attention.
-In the working spine, deliver selected-card discussion, attention and one
-explicitly requested creative action against the working Lineage canvas.
-Keep the service independent of view/panel lifetimes. Cross-view and full
-creative-action coverage belongs to the creative-workspace milestone and stays
-open in C13; a read-only chat box cannot satisfy that later gate.
-Package complete when: the typed collaborator explains, challenges, suggests
-and executes explicitly requested scoped actions through shared operations
-with stable intent IDs; attention events behave as specified; the listed
-scenarios pass in the working Lineage view during a durable operation; and
-C13 evidence records voice for Prompt 12, cross-view/full creative-action
-coverage for M3, and repetition during Wander for M4 as pending obligations.
+Completion evidence:
+Exercise discussion during a durable operation, two-card references, relationship
+inspection, suggestions versus execution, duplicate intents and out-of-order
+attention. Verify the reply and acknowledged creative action in working Lineage.
+Record C13 evidence with voice in package 12, cross-view/full creative actions
+in M3 and repetition during Wander in M4 still open.
+Package complete when: the selected-card discussion, shared attention and one
+explicit action work through the UI and existing service path during a durable
+operation, and the listed cases and pending obligations are recorded.
 ```
 
 ### Prompt 12: deliver bidirectional voice that survives concurrent work
@@ -711,82 +529,44 @@ coverage for M3, and repetition during Wander for M4 as pending obligations.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
 Required prerequisites: Typed collaboration, shared attention, command identity and cost admission.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C13)
+- docs/product/ARCHITECTURE.md (Concurrent interaction; Provider and deployment boundaries; Open implementation choices)
+- docs/build-prompts.md (Small task comparisons; Fable review M2)
 
-Implement Minerva's bidirectional voice collaborator in this new
-codebase. Use its typed collaborator, shared commands, attention and cost
-admission. Voice runs through the Vercel AI Gateway realtime path, which is a
-beta capability: read its current official documentation, confirm the installed
-AI SDK channel, and read the product scope. Resolve conversation and audio
-retention with the owner before implementing storage, following the M2/11-12
-lifecycle policies in ARCHITECTURE.
+Outcome: Bidirectional voice stays grounded during concurrent canvas and generation work.
 
-Use the following increments rather than one large "voice subsystem" assignment.
-Integrate and exercise each in the running workspace before expanding it.
+Integration work:
+Extend the typed collaborator's context, attention, commands and admission with
+the Vercel AI Gateway realtime path. Check current official documentation and
+the installed AI SDK channel for this beta capability. Resolve raw-audio and
+session retention/reconnect policies with the owner before storage.
+Use ARCHITECTURE's server token boundary, session limits and independent lifecycle.
+Integrate each chunk in the running workspace:
 
-| Increment | Observable result |
+| Chunk | Observable result |
 |---|---|
-| Provider uncertainty | A small authorized probe through the Gateway token route establishes authentication, bidirectional transport, session limits including the team's concurrent-session cap, and supported settings, or records the exact blocker |
-| Basic voice | The user connects, speaks, hears a reply, interrupts and disconnects through the workspace UI; basic permission, cleanup and cost bounds are already enforced |
-| Continuity | The conversation remains grounded while the user moves cards and changes panels; late permission/setup cannot reopen a stopped session |
-| One spoken action | A clear spoken request invokes the already working typed operation and shows its acknowledged result without duplicate effects |
-| Recovery and combined journey | Reconnect, cancellation, denied allowance and uncertain outcomes behave explicitly during the full M2 canvas/generation/voice journey |
+| Provider probe | A bounded authorized Gateway probe establishes authentication, transport, session limits including the team's concurrent-session cap, and supported settings, or records the blocker |
+| Basic voice | Connect, speak, hear a reply, interrupt and disconnect with permission cleanup and cost bounds |
+| Continuity | Talk about one card while moving another; panel changes and late setup cannot reset or reopen a stopped session |
+| One spoken action | A clear request invokes the working typed operation and displays its acknowledged result without duplicate effects |
+| Recovery | Reconnect, cancellation, denied allowance and uncertain outcomes work during the combined M2 journey |
 
-These are implementation checkpoints within package 12, not extra milestone
-reviews or a reduced release. Keep any not-yet-delivered action path disabled
-and explicit. Use fixtures for repeated iterations and bounded authorized live
-cases at the transport boundary; no personal recordings are needed for synthetic
-browser exercises. If live access is unavailable, report that gap and proceed
-only with genuinely independent work. A component and endpoints that are not
-wired together do not complete an increment.
-
-Provide microphone input and spoken replies, interruption/barge-in, reconnect
-and disconnect. Mint single-use short-lived session tokens on the server only
-after microphone permission is granted, because the Gateway closes a session
-that sends no client message within 30 seconds of connecting; Gateway
-credentials never reach the browser. Sessions end at the Gateway's 25-minute
-limit or after 5 idle minutes, and reconnect starts a new session with
-resynchronized context. Keep
-connection/model/config identities stable across renders.
-Voice has its own lifecycle, not that of an inspector panel or canvas view.
-
-In the representative journey, speak about one card while moving another.
-The collaborator must resolve the intended reference and relevant state changes,
-not merely produce speech beside an unrelated canvas. Clarify an ambiguous
-reference instead of acting on whichever card is currently nearest.
-
-Panel switching, card selection, dragging, zooming and incoming operation results
-must not reset the voice connection or lose its relevant context. Demonstrate
-this in the working spine. Add the same scenario across all three views in the
-creative-workspace milestone and during Wander in the exploration-intelligence
-milestone; those absent features are tracked dependencies, not fake demonstrations.
-Stopping while microphone permission or setup is pending must dispose late
-media and prevent a stopped session from reopening.
-
-Interruption stops speech, not unrelated runs or acknowledged mutations.
-Reconnect resynchronizes context without replaying intents or camera events.
-Show microphone/listening/speaking state and retain typed fallback. Suppress
-decorative audio during the conversation.
-
-Bound duration and spend within the shared envelope; verify token and billing
-behavior instead of assuming token expiry is a hard billing cutoff. No silent
-provider switch or top-up. Exercise fixtures and an authorized real spoken
-exchange including interruption and reconnect. Record live versus simulated
-evidence for C13; do not describe transcription alone as voice collaboration.
-Run the M2/12 small task comparison during this combined journey and record
-the owner's judgment; the comparison adds no separate review gate.
-Milestone closeout: demonstrate this complete M2 journey:
-Create a workspace and idea; generate alternatives; trace sources; inspect and keep a result; reload; discuss a card by voice while moving another and receiving durable operation results; interrupt speech.
-Prepare the exact-candidate packet for this milestone's Fable review.
-Still open at this milestone: Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth and outputs remain explicitly open.
-Package complete when: microphone input, spoken replies, barge-in, disconnect
-and reconnect work with a stable connection across panel, selection, drag and
-zoom changes and incoming operation results; cross-view coverage is completed
-in M3 and Wander coverage in M4; speech remains grounded in the intended cards;
-duration and spend are bounded in
-the shared envelope; an authorized real exchange is recorded or the live gate
-is marked blocked; C13 evidence separates live from simulated; and the final
-Fable M2 review packet is prepared.
+Completion evidence:
+Exercise fixtures and an authorized real spoken exchange with interruption,
+reconnect and pending-permission cancellation. Verify grounded references while
+selection, drag, zoom, panels and incoming results change. Check typed fallback,
+visible voice state, sound suppression and duration/spend under the shared
+envelope, including actual token/billing behavior. Label simulations and live gaps.
+Use the package 8 preview for session-limit evidence. Check permission-before-token
+setup and initial-message/idle expiry as specified in ARCHITECTURE.
+Run the M2/12 small task comparison and full M2 working demonstration. Record C13
+and prepare the final Fable M2 packet. Track all-three-view coverage for M3 and
+Wander coverage for M4 rather than simulating absent features.
+Package complete when: the connected voice chunks and listed cases work, the
+real exchange is recorded or its live gate remains blocked, and the exact
+candidate is ready for final M2 review.
 ```
 
 ### Fable review M2: Working spine
@@ -794,9 +574,8 @@ Fable M2 review packet is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M2: Working spine
 Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
-Use the supplied exact
-candidate, isolated checkout/data and startup instructions. Review only; no edits
-to application source or paid calls without explicit allowance.
+Use the supplied exact candidate, isolated checkout/data and startup instructions
+under AGENTS.md's review rules.
 
 Interim demonstration (after package 10):
 Create a workspace and idea; generate alternatives; trace sources; inspect and
@@ -825,9 +604,6 @@ Do not accept an unconnected voice component or a reported code return as a
 working conversation. Review the planned boundary, not every increment as an
 additional full-review ceremony.
 
-Still-open scope at this boundary:
-Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth and outputs remain explicitly open.
-
 For the interim review, return READY FOR COLLABORATION INCREMENTS,
 CHANGES REQUIRED, or BLOCKED. Interim readiness does not complete M2 or
 permit advancing to M3. For the final review, return READY FOR NEXT MILESTONE,
@@ -849,37 +625,27 @@ CHANGES REQUIRED, or BLOCKED.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Persistent revisions, graph relationships, proposal assessments and the working spine.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C04)
+- docs/product/ARCHITECTURE.md (Canonical records)
+- docs/product/DESIGN.md (Composition and direct interaction)
 
-Build Minerva's history and inheritance inspection using newly authored
-code in this repository. Keep the modular monolith and immutable revisions.
-Read the product contract and existing source/relationship operations.
+Outcome: A card exposes readable inheritance evidence and revisitable history.
 
-From a card, let the person inspect its full artifact, exact parent revisions,
-functional parts/traits, inherited material, changes, reasons, newly enabled
-moves and per-parent contributions. Show original input, generation provenance,
-review evidence, human edits and decisions in a readable hierarchy.
-"Genome" is a product metaphor for inspectable functional structure, not a
-biological model, novelty score or fixed taxonomy imposed on every idea.
-Unknown traits and unsupported interpretations remain explicitly unknown.
+Integration work:
+Connect full artifacts, functional parts/traits, exact parents, selected excerpts,
+provenance, assessments, edits and decisions into C04's layered inspection.
+Wire ancestor/descendant navigation and revisit to source-linked new revisions
+or branches. Invalidate dependent claims on source edits while retaining layout
+and unrelated evidence. Keep model annotations, human assertions and locks distinct.
 
-Support history navigation, ancestor/descendant inspection and revisiting an
-earlier state. Revisit creates a provenance-bearing new revision/branch; it does
-not destroy later history or make an old review apply to new text.
-Keep generated annotations distinct from human assertions and explicit locks.
-
-Make source claims link to the actual content revision and relevant excerpt.
-A raw JSON dump, parent count or generic lineage badge is insufficient.
-Editing a source invalidates only dependent claims, never unrelated layout.
-
+Completion evidence:
 Exercise multi-parent inheritance, edited descendants, unknown traits, rejected
-work in history and revisit-after-edit. Confirm the displayed narrative matches
-records and export, without an extra model call just to inspect saved evidence.
-Update C04 evidence and the handoff. No external application reference is needed.
-Package complete when: from any card the full artifact, exact parents, parts
-and traits, inherited/changed/new material, provenance, review, edits and
-decisions are inspectable; revisit creates a provenance-bearing revision; the
-listed cases match records and export; and C04 evidence is updated.
+work and revisit-after-edit. Compare displayed contributions with actual sources,
+records and export; inspecting saved evidence must not call a model. Record C04.
+Package complete when: C04's inspection and revisit journey works from any card
+and the listed cases match canonical records and export.
 ```
 
 ### Prompt 14: support branch continuation and reusable transformation intent
@@ -887,35 +653,28 @@ listed cases match records and export; and C04 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Source/history inspection and the already working shared generation/review path; wire real behavior now.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C05)
+- docs/product/ARCHITECTURE.md (Canonical records; Context compilation)
 
-Implement branch-development intent for Minerva in this new repository.
-New custom implementation only. Use the product contract,
-immutable revisions and application operations; do not invent a smaller product.
+Outcome: A person develops a branch and replays reusable transformation intent.
 
-Any branch can be continued, varied or refined. Let the person name one axis
-to change, choose functional traits to preserve, specify what to avoid, and
-preview the exact source and intended change. Store a versioned transformation
-recipe with source identity, user constraints and requested behavior.
-Do not silently convert earlier model assumptions into permanent constraints.
+Integration work:
+Wire continue/vary/refine, a selected change axis, preserve/avoid choices and
+source/change preview into the existing generation/review path. Store versioned
+recipes with source identity, constraints and requested behavior. Integrate
+preview/accept-as-child/discard and explicit replay against a chosen revision
+with fresh validation and separate result identity.
 
-Provide explicit preview/accept-as-child/discard semantics. Retain rejected
-attempts and their reasons. A recipe can later be replayed against an explicitly
-chosen source revision, with fresh validation and separate result identity.
-Do not overwrite the source, silently rerun a recipe or imply its result works.
-
-Use fixtures for focused iteration, then integrate through the already working
-shared live generation/review path. If that prerequisite is unavailable, keep
-the package incomplete and report the specific gap. Completion requires
-generated alternatives through that path, not only saved forms or fixture UI.
-
-Exercise preserve/avoid conflicts, stale source selection, recipe replay,
-rejected previews and acceptance with downstream history. Update C05 with
-separate implemented and pending live-path evidence. Keep canvas controls usable.
-Package complete when: continue, vary and refine with preserve/avoid, preview,
-accept-as-child and discard, retained rejections, versioned recipes and replay
-work through the live generation/review path; the listed cases pass; and C05
-evidence is updated.
+Completion evidence:
+Exercise preserve/avoid conflicts, stale selections, recipe replay, rejected
+previews and acceptance with downstream history. Use fixtures for focused
+iteration, then demonstrate generated alternatives through the working live
+path. Record C05's implementation and live evidence separately.
+Package complete when: the branch-development and replay journey works through
+generation/review, the listed cases pass and C05 evidence is recorded. Missing
+live-path prerequisites leave this package incomplete.
 ```
 
 ### Prompt 15: build the comparison workbench
@@ -923,35 +682,29 @@ evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Canonical cards/revisions and multi-selection; build the complete comparison workbench.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C06, C09)
+- docs/product/ARCHITECTURE.md (Canonical records; Concurrent interaction)
+- docs/product/DESIGN.md (Interaction transitions and overview)
 
-Build Minerva's generation-independent comparison workflow in the new project.
-Use newly written code and this project's canonical idea/revision model.
-Read the complete contract; comparison is required, not optional polish.
+Outcome: Two to four distant ideas can be compared without generating new artifacts.
 
-Let users add two to four cards to a stable comparison set, replace/remove
-slots, inspect full artifacts side by side, and compare functional mechanisms,
-constraints, inheritance and available evidence. Preserve input order and
-source revision identity. Distant cards are selectable without moving them.
+Integration work:
+Connect ordered comparison slots to exact canonical revisions, with add/remove/
+replace and full side-by-side inspection. Implement the Distance Panel using a
+stated lexical/structural/semantic method and expose its limits and unknowns.
+Keep comparison independent of camera and temporary attention. Integrate the
+contextual workbench with voice and the path to contribution selection/Weave;
+leave any unwired action explicitly unavailable until package 19.
 
-Provide a Distance Panel that can compare supplied artifacts without generating
-new ones. State the actual lexical/structural/semantic method and its limits.
-Distance is neither quality nor novelty. Missing profiles or contradictions
-must not be converted into a winner or a confident equivalence claim.
-
-Comparison selection is distinct from camera focus and temporary AI attention.
-Use a compact contextual workbench, not repeated controls covering every card.
-Keep source cards readable and the active voice channel independent.
-Show the path to contribution selection and Weave; if generation is not yet
-implemented, clearly mark that action unavailable rather than simulate it.
-
-Exercise repeated slot selection, source edits, identical artifacts, unknown
-profiles, removing a slot and view switching with the comparison set intact.
-Update C06/C09 evidence and the handoff. Do not introduce another content store.
-Package complete when: a stable two-to-four slot comparison set with
-side-by-side inspection and a generation-independent Distance Panel works with
-its method and limits stated; the listed cases pass with voice unaffected; and
-C06/C09 evidence is updated.
+Completion evidence:
+Exercise repeated selection, edited sources, identical artifacts, unknown
+profiles, contradictory evidence, slot removal and view switching. Verify
+comparison needs no generation and preserves voice and source orientation.
+Record C06/C09 evidence with the method and limits.
+Package complete when: the complete comparison set and generation-independent
+Distance Panel work, and the listed cases pass with voice unaffected.
 ```
 
 ### Prompt 16: implement the Evolution view
@@ -959,34 +712,30 @@ C06/C09 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Visible lineage and recorded history; preserve the working voice lifecycle.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C07)
+- docs/product/ARCHITECTURE.md (Canonical records; Concurrent interaction)
+- docs/product/DESIGN.md (Composition and direct interaction)
 
-Implement Minerva's Evolution view as required product behavior in this new
-repository. Newly authored implementation only. Use the same canonical ideas,
-revisions, relationships, decisions and runs as Lineage; read the contract first.
+Outcome: Evolution follows recorded development while preserving the shared workspace.
 
-Show development over recorded time, including continuation, variation,
-refinement, recombination, edits and human decisions. Let users follow a thread,
-inspect a prior step, focus related work and return to the current branch.
-Creation order alone is not a causal relationship; render the real source links.
+Integration work:
+Project canonical ideas, revisions, source links and decisions into the recorded
+development timeline. Wire following a thread, inspecting earlier steps,
+focusing related work and returning to the current branch. Use actual source
+links rather than inferring cause from creation order.
+Store Evolution layout/viewpoint independently; integrate shared selection,
+comparison and voice. Explain folded history and preserve the user's place
+as results arrive.
 
-Maintain stable IDs, selected cards and comparison slots across view changes.
-Store the Evolution arrangement/viewpoint independently from Lineage. Changes
-to presentation must not copy content, regenerate artifacts or mutate lineage.
-Incoming work does not reset the user's chosen place in the stream.
-
-Use the original atlas typography and compact instruments. Keep a clear way
-to switch views and explain folded/omitted work. Support keyboard and touch.
-Do not render a disabled tab, the same flat grid, or a list of timestamps and
-claim that the Evolution capability is complete.
-
-Exercise a branched timeline with a two-parent child, revised content, hidden
-history and incoming results. Verify selection continuity and saved viewpoint
-recovery. Update C07 evidence and the handoff without reducing other scope.
-Package complete when: Evolution renders real source links over recorded
-time with independent layout, selection and comparison continuity across views
-and a stable place during incoming results; the listed cases pass; and C07
-evidence is updated.
+Completion evidence:
+Exercise a branched timeline, two-parent child, revised content, hidden history,
+incoming results and saved viewpoint recovery on keyboard/touch. Repeat affected
+package 8 run/progress and package 12 voice cases across the available views.
+Verify switching does not mutate content or launch generation. Record C07.
+Package complete when: Evolution renders real development/source relationships,
+its independent layout and cross-view continuity work and the listed cases pass.
 ```
 
 ### Prompt 17: implement the Constellation view
@@ -994,36 +743,28 @@ evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Canonical graph and view-state separation; compute initial groups, with M4 interpretation tracked separately.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C07, C11)
+- docs/product/ARCHITECTURE.md (Canonical records; Concurrent interaction)
 
-Implement Minerva's required Constellation view with newly authored
-code in this repository. Use canonical records and the complete product contract.
-It complements Lineage and Evolution; it must not become a separate workspace.
+Outcome: Constellation provides computed provisional groups on the same canonical ideas.
 
-Show provisional relationships or groupings under a stated analysis, while
-retaining access to actual ancestry. Let users inspect groups, representatives,
-outliers and source records, search/focus a card, and return to another view
-with the same selection and comparison set.
+Integration work:
+Compute an initial grouping from available relationships/content using a stated
+deterministic method. Wire groups, representatives, outliers, actual ancestry,
+search/focus and return to other views. Keep unknown records visible and store
+the view's arrangement independently. Recompute through an explicit action or
+indicated new analysis snapshot without moving deliberate positions.
+Track model-assisted readings and recurrence overlays for M4.
 
-Store view layout independently from content. Preserve deliberate positions;
-recompute a grouping only through an explicit action or a clearly indicated
-new analysis snapshot. Do not silently rearrange the working field when results
-arrive. Unknown profiles must be visible, not fabricated coordinates or scores.
-Spatial distance and regions are not quality or novelty claims.
-
-For this milestone, compute a real initial grouping from available canonical
-relationships/content under a stated deterministic method. Do not use a canned
-fixture as the only implementation. Model-assisted interpretation and recurrence
-overlays are completed in the exploration-intelligence milestone; keep that C11
-dependency open. A renamed Lineage view is not completion.
-
-Exercise multiple groups, unknown records, a cross-group relationship, filtering,
-saved arrangement and switching during incoming updates. Verify that no view
-switch triggers generation or loses source identity. Update C07/C11 evidence.
-Package complete when: Constellation shows computed provisional groups under
-a stated method with access to ancestry, independent layout, no silent
-rearrangement and visible unknowns; the listed cases pass; and C07/C11
-evidence records the M4 interpretation dependency.
+Completion evidence:
+Exercise multiple groups, unknown records, cross-group links, filtering, saved
+arrangement and switching during updates. Repeat affected package 8 progress
+and package 12 voice cases across all three views. Verify stable source identity,
+comparison and selection with no model call on view switch. Record C07/C11.
+Package complete when: computed grouping and view continuity work, the listed
+cases pass and C11's M4 interpretation dependency remains explicit.
 ```
 
 ### Prompt 18: make contextual creative moves specific and immediate
@@ -1031,44 +772,31 @@ evidence records the M4 interpretation dependency.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Shared context, generation, review and the creative workspace; no static-menu substitute.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C08, C15)
+- docs/product/ARCHITECTURE.md (Context compilation; Durable execution)
+- docs/product/DESIGN.md (Composition and direct interaction)
 
-Build Minerva's contextual move experience with newly authored implementation.
-Use this repository's frozen context, shared generation/review and durable runs.
-Read the complete contract; a toolbar of generic operation names is insufficient.
+Outcome: A card-local chooser leads directly to specific AI-planned creative moves.
 
-From one card, expose a discoverable one-level chooser immediately, with mouse,
-touch and keyboard access. Produce card-specific AI suggestions for divergence,
-combination, recombination, split, tension and mechanism escape. Suggestions name
-what would change, why, the actual proposed sources and what to preserve.
-Retrieve a relevant contrasting partner when appropriate, rather than forcing
-the user to manually construct every pairing or write a long instruction.
+Integration work:
+Wire the immediate local chooser to saved suggestions, bounded contextual
+planning and separate artifact generation. Define planning triggers, revision
+freshness and admission under C08; retain choices while planning continues.
+Connect the six move families, suggested contrasting partners and source/
+contribution preview to the existing context, generation/review and graph paths.
+Implement the direct one-level mouse/touch/keyboard journey described in SPEC
+and DESIGN; a radial layout is an implementation choice.
 
-Preview affected cards and contributions before admission. A person can choose
-available moves while planning continues; late suggestions must not replace a
-choice already made. Pan/zoom does not restart planning. Source/constraint edits
-do require revalidation. A static generic fallback must be labeled as such and
-cannot stand in for the required contextual-planning capability.
-
-Implement C08's distinction between the local chooser, bounded planning and
-creative artifact generation. Define the planning trigger, revision-scoped
-freshness and admission with this package while preserving the direct journey.
-
-Do not prescribe a radial implementation, but preserve its useful behavior:
-local to the card, immediate, small, specific, no nested menu path. From a visible
-card, opening and choosing a move should need at most two activations, excluding
-optional editing. Navigation cannot launch model work; opening the chooser must
-not generate creative artifacts or create new spending authority.
-
-Exercise suggestions for genuinely different source cards, proposed partner
-preview, choosing during planning, stale sources, planner failure and keyboard/
-touch use. Confirm every admitted alternative or failure appears in the graph.
-Update C08/C15 evidence; do not call a generic menu equivalent to this workflow.
-Package complete when: a card-local one-level chooser yields specific AI
-suggestions with source previews within two activations on mouse, touch and
-keyboard; a choice survives late planning results; stale sources and planner
-failure are handled; every admitted result or failure appears in the graph;
-and C08/C15 evidence is updated.
+Completion evidence:
+Exercise different source cards, partner previews, choosing during planning,
+late suggestions, source/constraint edits and planner failure. Verify pan/zoom
+does not restart planning, the chooser creates no spending authority and each
+admitted result/failure reaches the graph. Record C08/C15 and activation counts.
+Package complete when: specific suggestions and source preview are available
+within the prescribed direct journey, choices survive late results and the
+listed freshness/failure cases pass.
 ```
 
 ### Prompt 19: complete distant recombination and contribution selection
@@ -1076,42 +804,31 @@ and C08/C15 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Comparison slots, selected-part context and shared generation/review.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C03, C06, C08)
+- docs/product/ARCHITECTURE.md (Context compilation; Four shared contracts)
+- docs/product/DESIGN.md (Composition and direct interaction)
 
-Complete Minerva's Weave workflow in this new codebase. Use canonical
-revisions, the comparison set, context compiler and shared generation/review.
+Outcome: Selected contributions from distant ideas become inspectable multi-parent results.
 
-Two to four distant cards can be compared and recombined without moving them.
-Let the person choose whole ideas or exact functional parts/excerpts, identify
-what each contributes, and distinguish preservation from a changed interaction.
-Offer both combine and recombine semantics; do not concatenate summaries and
-call the result emergent.
+Integration work:
+Connect two-to-four-card comparison, whole/part/excerpt selection, source threads
+and intended-interaction preview to shared context and generation/review.
+Expose combine and recombine semantics and evidence-bearing contrasting-partner
+recommendations. Put Connect/Weave beside the selection as prescribed in DESIGN.
+Show selected material from each parent against where it appears or changes in
+the actual result, and retain all parent edges after acceptance.
 
-AI may recommend a useful contrasting pair with evidence and uncertainty;
-spatial distance or a scalar similarity score alone is not the recommendation.
-Preview source threads and the intended interaction before admission. Show
-each proposed result with all real parents, then retain those edges after keep.
-
-Expose what was selected from each parent and where it appears or changes in
-the result. Parent identifiers establish provenance, not proof that the claimed
-contribution was meaningfully used. Unsupported inheritance claims and mere
-summary concatenation remain visible for challenge, not labeled emergent success.
-
-Place Connect and Weave directly beside the selected comparison set, not behind
-workspace settings or a mandatory inspector sequence. After selecting the
-sources, the principal recombination action is one further activation; optional
-contribution editing is additional by choice.
-
-Exercise different parent counts, duplicate source selection, edited sources,
-partial alternatives, true contribution preservation and acceptance/reload.
-Keep the camera, comparison slots and voice stable. Update C03/C06/C08 evidence.
-Do not use a new standalone recombination engine or claim proven creativity.
-Package complete when: two to four distant cards can be compared and
-recombined with chosen parts, previewed contributions and all real parents
-retained after keep; Connect and Weave sit beside the comparison set as one
-activation; the displayed contributions can be inspected against source and
-result artifacts rather than inferred from parent IDs; the listed cases pass;
-and C03/C06/C08 evidence is updated.
+Completion evidence:
+Exercise different parent counts, duplicate selections, edited sources, partial
+alternatives and acceptance/reload. Inspect true contribution preservation,
+unsupported inheritance and summary concatenation against the artifacts;
+parent IDs alone establish no semantic success. Verify stable camera, slots
+and voice, plus the source-selection-to-Weave activation count. Record C03/C06/C08.
+Package complete when: selected contributions pass through preview, generation
+and keep with all parents traceable, actual inheritance can be inspected and
+the listed cases pass.
 ```
 
 ### Prompt 20: connect conversation to the full creative workflow
@@ -1119,48 +836,32 @@ and C03/C06/C08 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M3: Creative workspace.
 Required prerequisites: Working voice, three views, comparison, contextual moves and Weave.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C13, C08; Shipped demo and human judgment)
+- docs/product/ARCHITECTURE.md (Four shared contracts; Concurrent interaction)
 
-Complete Minerva's collaborative actions with newly authored code.
-Use the same live workspace, typed/voice channels, context compiler and
-application operations. This is not a second agent engine.
+Outcome: Conversation performs the full creative workspace journey across all views.
 
-A person can discuss a card's ancestry, ask about a relationship, request a
-contrasting direction, compare two named ideas, propose a link, choose parts
-to recombine and direct bounded exploration. Resolve references against current
-IDs/revisions and expose affected sources before ambiguous or material actions.
+Integration work:
+Extend the existing typed/voice collaborator from package 11's single action to
+ancestry/relationship discussion, contrasting directions, comparison, links,
+contribution selection and recombination. Resolve current revisions and affected
+sources through the same operations as UI actions. Integrate challenges through
+evidence, intervention preview and the requested action, preserving the distinction
+between an observation and authorization to act.
+Keep partial speech, attention, proposals and finalized commands distinct;
+resynchronize relevant context across view/panel changes and source edits.
 
-Separate discussion, attention, suggestions, proposals and explicit commands.
-Partial speech never mutates. Finalized intents have stable identity; execute
-each allowed requested effect at most once and report its receipt. Do not
-silently narrow the collaborator to only highlighting and navigation while
-claiming the complete action contract.
-
-AI attention and user selection remain independent. Keep context coherent when
-views/panels change or one person speaks while manipulating a different card.
-If the source changed, clarify or replan only that action.
-
-Treat "these ideas use the same mechanism" as a challenge to examine, not an
-automatic fact or an instruction to overwrite either card. Discuss evidence,
-preview a concrete intervention and resolve whether the person requested
-execution. Reuse existing scoped authority for clear requests; do not add
-another confirmation dialog to every reversible interaction.
-
-Exercise a real or clearly labeled fixture conversation that explains a
-multi-parent child, identifies a tension, proposes a connection, and performs
-an explicitly requested recombination while a durable creative operation
-continues. The exploration-intelligence milestone repeats it during Wander
-once that policy exists. Verify no
-unrequested acceptance, no duplicate effects and no canvas lock. Update C13/C08.
-Milestone closeout: demonstrate this complete M3 journey:
-Inspect a multi-parent genome; preserve selected parts; compare distant cards; choose a card-specific suggested move; Weave and keep a child; revisit history; switch all three views while speaking and while a durable operation finishes.
-Prepare the exact-candidate packet for this milestone's Fable review.
-Still open at this milestone: Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth and output artifacts belong to M5; they are not optional.
-Package complete when: a real or clearly labeled fixture conversation
-performs the listed discussion-and-action journey during a durable creative
-operation with no unrequested acceptance, duplicate effect or canvas lock;
-the same journey during Wander remains required in M4; C13/C08 evidence is
-updated; and the Fable M3 review packet is prepared.
+Completion evidence:
+Demonstrate a real or labeled fixture conversation explaining a multi-parent
+child, identifying tension, proposing a link and performing requested recombination
+during a durable creative operation. Verify no unrequested acceptance, duplicate
+effects or canvas lock. Run the full M3 working demonstration, including all
+views and voice; record C13/C08 and prepare the Fable M3 packet. Repeat the
+conversation during Wander in M4 once that policy exists.
+Package complete when: the complete M3 discussion/action and cross-view journey
+passes and the exact candidate is ready for review with M4 dependencies recorded.
 ```
 
 ### Fable review M3: Creative workspace
@@ -1168,18 +869,14 @@ updated; and the Fable M3 review packet is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M3: Creative workspace
 Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
-Use the supplied exact
-candidate, isolated checkout/data and startup instructions. Review only; no edits
-to application source or paid calls without explicit allowance.
+Use the supplied exact candidate, isolated checkout/data and startup instructions
+under AGENTS.md's review rules.
 
 Required demonstration:
 Inspect a multi-parent genome; preserve selected parts; compare distant cards; choose a card-specific suggested move; Weave and keep a child; revisit history; switch all three views while speaking and while a durable operation finishes.
 
 Review focus:
 Test inheritance evidence and multi-parent visibility, rejected recipes and revisit behavior, comparison slots, selected contributions, source-specific AI suggestions and actual recombination. Switch Lineage/Evolution/Constellation without changing content or losing voice. Distinguish computed initial Constellation groups from M4 interpretation. Flag generic menus or repeated toolbars that recreate friction.
-
-Still-open scope at this boundary:
-Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth and output artifacts belong to M5; they are not optional.
 
 ```
 
@@ -1198,36 +895,29 @@ Wander-specific recurrence overlays and advanced space readings belong to M4. St
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Shared creative operations, durable execution and an independently testable context compiler.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C10)
+- docs/product/ARCHITECTURE.md (Four shared contracts; Context compilation; Durable execution; Open implementation choices)
 
-Implement Minerva's durable Wander foundation with newly authored code.
-It explores a possibility space while a person works on the canvas and speaks.
-Use this repository's context, generation/review, run and graph contracts.
+Outcome: Bounded Wander produces independent roots, a frontier and an inspectable archive.
 
-Start a user-authorized bounded exploration from the brief and explicit
-constraints. Generate multiple independent roots: no sibling output, prior
-narrative, selected favorite or generated archive in their model inputs.
-Record actual context exposure. Independence does not guarantee novelty.
+Integration work:
+Connect Wander policy to existing context, generation/review, durable execution
+and graph operations. Use brief-only inputs for independent roots and record
+actual context exposure. Build a frontier and archive of full artifacts,
+mechanisms, paths, reviews, repairs, repeated/rejected outcomes and usage.
+Integrate allowance-driven concurrent branches, partial results without a keep
+click per card, progress/control and archive inspection/export. Resolve the
+Wander portion of M4 overlapping-run policy as these operations arrive.
 
-Maintain a frontier of branches available for exploration and an archive of full artifacts,
-mechanisms, source paths, operations, reviews, repeated/rejected outcomes,
-repairs and usage. Keep archive classification separate from human taste.
-Allow useful partial results to appear without a keep click per generated card.
-Make root-context membership distinguishable from content inheritance in the graph.
-
-Provide understandable exploration envelopes governed by allowance, not an
-arbitrary tiny demo quota presented as whole-space exploration. Short runs
-are labeled starting points. Bounded concurrent branches may refill as they
-finish when allowed; one failed sibling does not erase the others.
-
-Support progress, pause/resume/stop, reconnect and full archive inspection/export.
-Neither results nor run-state changes take over the canvas or voice.
-Exercise model-boundary isolation, partial roots, duplicate completion, browser
-close and archive retention. Update C10 evidence without claiming efficacy.
-Package complete when: an authorized bounded Wander run produces isolated
-independent roots, a frontier and an inspectable, exportable archive with
-recorded context exposure, partial results, pause, resume, stop and reconnect;
-the listed cases pass; and C10 evidence is updated without efficacy claims.
+Completion evidence:
+Exercise model-boundary root isolation, partial roots, duplicate completion,
+browser close/reconnect and archive retention. Verify that failed siblings leave
+successful work intact and that results preserve canvas and voice. Record C10
+without treating a short run as exhaustive coverage or efficacy evidence.
+Package complete when: bounded Wander and its frontier/archive work through
+shared operations, the listed cases pass and C10 evidence is recorded.
 ```
 
 ### Prompt 22: make Wander change strategy on actual recurrence
@@ -1235,47 +925,30 @@ the listed cases pass; and C10 evidence is updated without efficacy claims.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Wander roots, frontier, archive and recorded outcomes.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C10, C11)
+- docs/product/ARCHITECTURE.md (Four shared contracts; Context compilation; Durable execution)
 
-Implement Minerva's adaptive exploration policy with newly authored
-code. Use shared durable execution, archive and operation services; read the
-complete product contract. This is not a fixed loop over renamed operations.
+Outcome: Wander changes strategy from observed recurrence and exposes the result of intervention.
 
-Choose among fresh brief-only roots, local branch development, distant
-recombination and targeted assumption/mechanism challenges. Record the source,
-context exposure, requested change, observed result and rationale for the next
-move. Keep the original goal and explicit constraints fixed.
+Integration work:
+Connect recorded mechanisms/paths to selection among clean roots, local
+development, distant recombination and targeted challenges. Record source/context,
+requested change, actual result and next-move rationale. Integrate bounded repairs
+and a specific stagnation stop that preserves partial work and failed attempts.
+Link a user's recurrence challenge to exact revisions, counterevidence, proposed
+intervention, an admitted step within scope and its observed result, or a reason
+not to act. Reconsider strategy from that evidence.
 
-Detect recurrence from operative mechanisms and recorded paths, not titles,
-operation names, layout distance or the generator's own narrative. On stagnation,
-change an inherited assumption or causal structure, try a clean root or combine
-genuinely different contributions. Repair near misses within a declared allowance.
-Do not treat the act of choosing an escape operation as an achieved escape.
-
-Retain repeated and failed outcomes. Do not silently request the same source/
-operation/context repeatedly. If bounded alternatives fail, stop or ask for
-direction with a specific stagnation explanation and intact partial map.
-No scalar model-rated creativity score governs success.
-
-Close the user-feedback loop: link an explicit challenge to the exact source
-revisions, the proposed intervention, the admitted step when authorized, and its
-observed result. Reconsider the next move from that evidence. Do not silently
-promote the challenge to a permanent constraint or treat it as necessarily true.
-An already-authorized bounded run may act within its scope; otherwise surface
-the proposed action rather than spend just because somebody made an observation.
-
-Exercise paraphrases, changed wording/same mechanism, distinct mechanism changes,
+Completion evidence:
+Exercise paraphrases, new wording/same mechanism, real mechanism changes,
 infeasible novelty, independent reconvergence, contaminated roots and exhausted
-alternatives. Show both successful intervention and honest failure. Update
-C10/C11 evidence and unresolved quality risks; fixtures do not prove live efficacy.
-Package complete when: the policy chooses among fresh roots, local
-development, distant recombination and targeted challenges from recorded
-evidence; recurrence is detected from mechanisms and paths; strategy changes or
-a specific stagnation stop occurs; repeated and failed outcomes are retained;
-both a supported and a mistaken user recurrence challenge lead to explicit,
-evidence-linked dispositions and an inspectable next-step outcome; the listed
-fixture cases pass; and C10/C11 evidence and quality risks are
-recorded.
+alternatives. Include supported and mistaken challenges, successful intervention
+and honest failure. Record C10/C11 dispositions and unresolved quality risks.
+Package complete when: observed evidence changes policy or produces a bounded
+stagnation stop, both challenge cases have inspectable outcomes, and the listed
+cases pass without treating fixture results as live efficacy.
 ```
 
 ### Prompt 23: make the explored space readable, challengeable and navigable
@@ -1283,46 +956,29 @@ recorded.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Actual artifacts, ancestry/context exposure, archive and computed Constellation view.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C07, C11)
+- docs/product/ARCHITECTURE.md (Canonical records; Context compilation)
+- docs/product/DESIGN.md (Composition and direct interaction)
 
-Build Minerva's evidence-linked map and What this space suggests experience in
-this new codebase. Use canonical artifacts, ancestry, context exposure
-and the exploration archive. A text summary alone is not the map capability.
+Outcome: Patterns and readings lead to source evidence, challenges and concrete next experiments.
 
-Expose provisional groups, representatives, unusual candidates, repeated
-mechanisms, possible connections and alternative next experiments. Users can
-navigate from a reading to actual cards and paths, inspect members and omitted
-records, challenge a grouping, identify equivalent mechanisms or request another
-analysis. Persist explicit feedback with provenance, not hidden preferences.
+Integration work:
+Connect the archive and canonical artifacts/paths to Constellation analysis and
+Lineage overlays. Implement C11's provisional groups, representatives, outliers,
+recurrence and next experiments with exact evidence, uncertainty, counterexamples
+and coverage limits. Wire navigation from claims to cards, members and omissions.
+Persist explicit challenge provenance and connect it to the intervention/result
+path from package 22. Mark stale readings and preserve deliberate arrangement.
 
-Make the feedback actionable and visible: from a claim, open the referenced
-cards, examine counterevidence, propose a specific change, and inspect what
-happened after the authorized intervention. A saved comment with no path back
-to exploration does not complete the loop. If no intervention is supported,
-say so. Keep evidence beside the relevant interaction, not in a mandatory audit
-dashboard, and do not replace explanation with an unexplained confidence score.
-
-Distinguish a provisional basin under a stated analysis from a candidate
-attractor evidenced by distinct paths returning to a mechanism. A large family
-is not an attractor. An escape needs a supported mechanism change serving the
-goal, not merely a new label; feasibility and global novelty remain separate.
-Do not force a grouping or manufacture attractors to fill an output schema.
-
-Link every substantive claim to exact supporting revisions and include confidence/
-uncertainty, counterexamples, competing explanations and coverage limits.
-Similarity retrieves candidates; it does not prove equivalence or creativity.
-A stale reading is visibly stale and cannot quietly govern new work.
-
-Wire the analysis into Constellation and the relevant Lineage overlays without
-automatic rearrangement or permanent diagnostic clutter. Exercise misgrouping,
-unknown profiles, stale data, contradictory evidence and navigation to a
-multi-parent source. Update C07/C11 with behavior, not just generated prose.
-Package complete when: readings expose groups, representatives, outliers,
-recurrence and next experiments linked to exact revisions with uncertainty;
-challenges persist with provenance and connect to a proposed intervention and
-its outcome or an explicit reason not to act; Constellation and Lineage overlays are
-wired without rearrangement; the listed cases pass; and C07/C11 evidence is
-updated.
+Completion evidence:
+Exercise misgrouping, unknown profiles, stale data, contradictory evidence,
+navigation to a multi-parent source and unsupported attractor/escape claims.
+Follow a challenge through its proposed intervention and actual outcome, including
+a reason not to act. Record C07/C11 behavior on the canvas.
+Package complete when: readings and overlays provide the evidence-linked C11
+journey without rearrangement, and the listed cases and feedback loop pass.
 ```
 
 ### Prompt 24: implement goal-directed Agent Drive
@@ -1330,39 +986,29 @@ updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Shared operations, durable execution, cost admission and recoverable state.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C12)
+- docs/product/ARCHITECTURE.md (Ownership and dependencies; Durable execution; Open implementation choices)
 
-Implement Minerva's required Agent Drive using newly authored code in this
-repository. It pursues an explicit goal; Wander explores possibilities.
-Keep their policies distinct while sharing context, operations, durable
-execution, review, cost admission and recovery.
+Outcome: Agent Drive pursues an explicit goal through the same operations a person uses.
 
-Let the person set a goal, permitted action scope, observable stopping condition
-and attempt/spend allowance. The policy can inspect, develop, compare and
-propose recombinations through normal application operations. Record why each
-action serves the goal and what result actually occurred.
-Resolve the M4 lifecycle policies in ARCHITECTURE here: overlapping run scope
-and the evidence appropriate to each stopping condition. Human judgments of
-feasibility and creative usefulness remain with the person.
+Integration work:
+Wire goal, permitted actions, observable stopping condition and attempt/spend
+allowance to a goal-directed policy over shared operations. Keep its policy
+distinct from Wander. Record action rationale and observed effects, retaining
+partial work and history when stopping. Resolve overlapping-run scope and
+goal-specific evidence in M4's lifecycle policies, including subjective stopping
+conditions that require human judgment.
+Expose goal progress/control without blocking canvas inspection or voice.
 
-Distinguish model-estimated progress from an observed satisfied condition.
-Stop on completion, user stop, allowance exhaustion or bounded stagnation.
-Do not redefine success after seeing the output or launch unauthorized actions
-under a broad goal. Keep partial work, source identity and decision history.
-
-Make goal pursuit and exploration clearly distinguishable without another
-control dashboard. Conflicting agents may have scoped admission constraints,
-but canvas manipulation, inspection and voice remain available.
-
-Exercise an achievable goal, an impossible goal, repeated attempts, source edits,
-interruption and reload. Confirm that the same command receives the same result
-through manual and agent invocation. Update C12 evidence; do not defer this
-required capability as an optional extension.
-Package complete when: goal, action scope, stop condition and allowance can
-be set; estimated progress is distinguished from an observed satisfied
-condition; the achievable and impossible goals and the listed scenarios pass
-with identical receipts for manual and agent invocation; and C12 evidence is
-updated.
+Completion evidence:
+Exercise achievable/impossible goals, repeated attempts, source edits, interruption,
+exhaustion and reload. Distinguish estimated progress from observed completion.
+Verify identical command receipts through manual and agent invocation and scoped
+conflicts while canvas/voice remain usable. Record C12.
+Package complete when: the configured goal/control journey and listed cases pass
+with shared operation semantics and evidence for each stopping outcome.
 ```
 
 ### Prompt 25: qualify exploration without trusting its own narrative
@@ -1370,42 +1016,33 @@ updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M4: Exploration intelligence.
 Required prerequisites: Actual exploration policy, manifests/artifacts and the interactive analysis loop.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C10, C11; Shipped demo and human judgment)
+- docs/product/ARCHITECTURE.md (Context compilation; Durable execution)
 
-Assess and improve Minerva's exploration implementation using newly authored code.
-Read actual artifacts, manifests and the complete product contract. A successful
-run or fluent reading does not demonstrate useful creative exploration.
+Outcome: Exploration's functional evidence and human comparison are inspectable.
 
-Maintain compact repeatable cases for paraphrases, repeated mechanisms, real
-mechanism changes, infeasible novelty, independent reconvergence, contaminated
-roots, unsupported escapes, misleading summaries and partial failures.
-Verify context isolation, goal fidelity, truthful graph relationships, archive
-retention and bounded strategy change/stagnation.
-
+Integration work:
+Use compact repeatable cases covering paraphrases, repeated mechanisms, real
+changes, infeasible novelty, independent reconvergence, contaminated roots,
+unsupported escapes, misleading summaries and partial failures. Fix supported
+context, policy or methodological defects in their owning implementation.
 Prepare a small blinded comparison with ordinary independent generation on
-representative synthetic briefs. Declare model/settings, candidate/attempt
-counts and comparable bounded spend before running. Retain failures, usage,
-cost and context exposure. A fixed candidate count alone is not cost parity.
-Run paid comparisons only within explicit authorization.
+representative synthetic briefs. Declare model/settings, candidate/attempt counts
+and comparable bounded spend before any authorized run; retain failures, usage
+and context exposure. Candidate count alone is not cost parity.
 
-Separate human judgments of useful differences/feasibility from model scores.
-Record confidence, supporting artifacts, counterexamples and what would refute
-the interpretation. If human judgments or live runs are unavailable, keep
-efficacy unresolved. Do not claim an improvement percentage from fixtures.
-
-Fix supported methodological defects without changing the goal or deleting
-counterexamples. Update C10/C11 and efficacy status separately from functional
-completion. Keep evaluation compact rather than building a research platform
-or cutting product scope.
-Milestone closeout: demonstrate this complete M4 journey:
-Explore independent roots and multiple paths; expose a repeated mechanism; attempt a targeted change and an honest stagnation case; navigate a reading to source evidence; challenge a grouping; pursue an achievable and impossible goal. Speak, move and switch views during these runs.
-Prepare the exact-candidate packet for this milestone's Fable review.
-Still open at this milestone: Instrument breadth and materialized outputs still need M5. Final full-product and infrastructure qualification belongs to M6.
-Package complete when: the compact case set runs repeatably; context
-isolation and truthful relationships are verified; the blinded comparison is
-prepared with declared settings and spend and run only if authorized; efficacy
-status is recorded separately from functional status; C10/C11 evidence is
-updated; and the Fable M4 review packet is prepared.
+Completion evidence:
+Verify isolation, goal fidelity, truthful relationships, archive retention and
+bounded strategy change/stagnation. Record human observations separately from
+model scores, including confidence, counterexamples and possible refutations.
+Keep efficacy unresolved when live runs or human judgments are unavailable.
+Run the full M4 working demonstration, including voice and views during Wander
+and Agent Drive. Update C10/C11 and prepare the Fable M4 packet.
+Package complete when: the compact cases pass, the comparison is prepared,
+authorized live runs and human observations are recorded or explicitly pending,
+functional/efficacy evidence is separate and the candidate is ready for M4 review.
 ```
 
 ### Fable review M4: Exploration intelligence
@@ -1413,9 +1050,8 @@ updated; and the Fable M4 review packet is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M4: Exploration intelligence
 Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
-Use the supplied exact
-candidate, isolated checkout/data and startup instructions. Review only; no edits
-to application source or paid calls without explicit allowance.
+Use the supplied exact candidate, isolated checkout/data and startup instructions
+under AGENTS.md's review rules.
 
 Required demonstration:
 Explore independent roots and multiple paths; expose a repeated mechanism; attempt a targeted change and an honest stagnation case; navigate a reading to source evidence; challenge a grouping; pursue an achievable and impossible goal. Speak, move and switch views during these runs.
@@ -1426,9 +1062,6 @@ Exercise the complete challenge-to-intervention-to-result loop, including a
 mistaken challenge and an attempted change that fails. Verify the displayed
 contributions against actual artifacts; correct provenance alone does not
 establish that the claimed creative transformation occurred.
-
-Still-open scope at this boundary:
-Instrument breadth and materialized outputs still need M5. Final full-product and infrastructure qualification belongs to M6.
 
 ```
 
@@ -1447,35 +1080,27 @@ Instrument breadth and materialized outputs still need M5. Final full-product an
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining product capabilities.
 Required prerequisites: Shared generation/review, comparison and branch refinement; extend rather than duplicate them.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C09)
+- docs/product/ARCHITECTURE.md (Ownership and dependencies; Context compilation)
 
-Implement Minerva's required creative instruments using newly authored code and
-the existing shared operation pipeline. Read the product contract. These are
-distinct capabilities, not optional labels on the same generic prompt.
+Outcome: Each of the five creative instruments is independently usable in the browser.
 
-Provide independent perspective generation under explicitly chosen conflicting
-operations; Constraint Deck with content-blind chance/medium/scale/combinatorial
-restrictions; Assumption Fork with independent reversals of agency, sequence,
-interface or success assumptions; generation-independent Distance Panel; and
-Refinery for human-selected development while preserving chosen constraints.
+Integration work:
+Connect C09's perspective generation, Constraint Deck, Assumption Fork, Distance
+Panel and Refinery to the existing context, admission, generation, assessment,
+lineage and decision services. Extend the working comparison/refinement paths.
+Give each its distinct versioned input/output contract, prompt or algorithm,
+bounded behavior and contextual entry point without duplicating the pipeline.
 
-Each instrument has a clear input/output contract, appropriate use, prompt or
-algorithm version, bounded behavior and readable result. Experimental
-restrictions are not silently promoted to permanent user requirements.
-These are user-selectable instruments, not a taxonomy every Wander idea must fit.
-
-Use the same context, cost, generation, assessment, lineage and decision services.
-Expose instruments contextually without adding every instrument button to every
-card. Preserve the ability to invoke one without running the whole family.
-
-Exercise materially distinct inputs and outputs for each instrument, independent
-comparison without generation, retained failures and refinement lineage.
-Use authorized bounded live cases where available, label fixtures separately,
-and update C09 evidence. A renamed operation enum is not completion.
-Package complete when: each of the five instruments has a distinct contract,
-is independently invocable through the shared pipeline and produces materially
-distinct results in the listed cases; fixtures are labeled apart from
-authorized live cases; and C09 evidence is updated.
+Completion evidence:
+Exercise materially distinct inputs/results for each instrument, content-blind
+restrictions, independent assumption reversals, comparison without generation,
+retained failures and refinement lineage. Record actual bounded live cases and
+labeled fixture evidence separately in C09.
+Package complete when: all five instruments are independently callable with
+their distinct semantics through shared operations and the listed cases pass.
 ```
 
 ### Prompt 27: materialize selected ideas into controlled prototypes
@@ -1483,34 +1108,29 @@ authorized live cases; and C09 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining product capabilities.
 Required prerequisites: Selected revisions, shared generation/admission and artifact provenance.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C14)
+- docs/product/ARCHITECTURE.md (Ownership and dependencies; Canonical records)
 
-Implement Minerva's required prototype outputs with newly authored
-code. Use selected exact revisions, execution contracts, shared generation,
-spend admission and provenance; read the complete product contract.
+Outcome: Selected ideas produce inspectable, downloadable working browser prototypes.
 
-Provide a structured browser prototype with actual screens/actions and a
-self-contained runnable HTML prototype. Each is a separate branch-linked
-artifact stating the goal, preserved contributions, requested behavior,
-observable outcome and evidence to return. Text/code source remains inspectable.
+Integration work:
+Connect exact selected revisions, shared generation/admission and artifact
+provenance to structured screen/action prototypes and self-contained runnable
+HTML. Include goal, preserved contributions, requested behavior and evidence
+to return. Implement C14's sandbox boundary, full source inspection, focus/
+side-by-side viewing, download and new result revisions.
+Preserve failures and partial outputs through the existing receipt path.
 
-Render generated HTML in an isolated sandbox without application credentials,
-same-origin authority or unapproved network access. Do not insert it into
-Minerva's runtime, execute generated server code or autonomously deploy a site.
-Distinguish static validity from demonstrated interaction and actual feasibility.
-
-Support focus/side-by-side inspection, download and later result revision.
-Source edits do not rewrite an execution artifact already used elsewhere.
-Preserve failure receipts and partial results; no generic success-shaped output.
-
+Completion evidence:
 Exercise structured screen navigation, an actual HTML interaction, malformed
-output, forbidden capabilities and source revision changes. Use authorized live
-calls or honest fixtures. Update C14 evidence; output generation is not an
-optional extension and a code block alone is not a runnable prototype.
-Package complete when: a structured browser prototype and an isolated
-runnable HTML prototype are produced from selected revisions, rendered in a
-credential-free sandbox, inspectable and downloadable; the listed cases pass;
-and C14 evidence is updated.
+output, forbidden capabilities and source edits after an artifact is used.
+Verify generated HTML has no credentials, same-origin authority or unapproved
+network access. Record C14 live/fixture evidence and actual interactive results.
+Package complete when: both prototype forms work from selected revisions, render
+within the required isolation boundary, can be inspected/downloaded and pass
+the listed cases.
 ```
 
 ### Prompt 28: support paired experiments, handoffs and reusable synthesis
@@ -1518,38 +1138,29 @@ and C14 evidence is updated.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining product capabilities.
 Required prerequisites: Prototype/output contracts, comparison and source-linked evidence.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C05, C14)
+- docs/product/ARCHITECTURE.md (Canonical records)
 
-Complete Minerva's output-to-next-work loop with newly authored code. Use the
-existing execution/artifact contracts and exact source revisions.
+Outcome: Experiments and coding handoffs return reusable evidence to the workspace.
 
-Provide a controlled paired experiment comparing ordinary output and a selected
-direction under declared comparable conditions. Record inputs, procedure,
-artifacts, observations and limitations; do not retroactively choose a favorable
-baseline or treat model scores as human evidence.
+Integration work:
+Connect selected outputs and comparison to a controlled paired experiment with
+declared inputs, comparable conditions, procedure, artifacts and observations.
+Generate a coding-session handoff with goal, contributions, constraints, behavior,
+uncertainties and observable acceptance cases, independent of hidden conversation.
+Wire recording observed effect, evidence and rationale into a source-linked
+reusable synthesis with save/copy/download and experiment references.
 
-Generate a coding-session handoff containing the goal, selected contributions,
-constraints, proposed behavior, uncertainties and observable acceptance cases.
-Keep it independent of hidden conversations or inaccessible application repos.
-
-Let the person record observed effect, evidence, rationale and a reusable
-synthesis, save it as a provenance-bearing result, and copy/download it.
-Preserve links to the experiment and sources. An observation and an AI
-interpretation must remain distinguishable.
-
-Exercise a pair with a contradictory outcome, missing human observation,
-edited sources, handoff export and synthesis reload. Keep unmeasured effects
-unresolved. Use shared modules and authorized spend, not a research platform.
-Update C05/C14 evidence and the handoff without claiming product completion.
-Milestone closeout: demonstrate this complete M5 journey:
-Invoke each instrument in the browser; produce a structured prototype and
-isolated runnable HTML; compare a controlled pair; save/download a synthesis
-and coding handoff. Prepare the exact revision and evidence packet for Fable's
-M5 review. Cross-product qualification and final user acceptance remain open.
-Package complete when: a controlled paired experiment, a coding-session
-handoff and a saved reusable synthesis exist with provenance; the listed cases
-pass with unmeasured effects left unresolved; C05/C14 evidence is updated;
-and the Fable M5 review packet is prepared.
+Completion evidence:
+Exercise contradictory outcomes, missing human observation, edited sources,
+handoff export and synthesis reload. Keep observations distinct from model
+interpretations. Run the full M5 browser instrument/output demonstration, update
+C05/C14 and prepare the Fable M5 packet.
+Package complete when: the paired experiment, coding handoff and reusable
+synthesis work with provenance, the listed cases pass and the exact candidate
+is ready for M5 review. Unmeasured effects remain unresolved.
 ```
 
 ### Fable review M5: Remaining product capabilities
@@ -1557,9 +1168,8 @@ and the Fable M5 review packet is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M5: Remaining product capabilities
 Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
-Use the supplied exact
-candidate, isolated checkout/data and startup instructions. Review only; no edits
-to application source or paid calls without explicit allowance.
+Use the supplied exact candidate, isolated checkout/data and startup instructions
+under AGENTS.md's review rules.
 
 Required demonstration:
 Invoke each instrument in the browser; produce a structured prototype and isolated runnable HTML; compare a controlled pair; save/download a synthesis and coding handoff.
@@ -1572,9 +1182,6 @@ Confirm generated artifacts cannot acquire application authority. No external
 API, machine-client journey or generic execution platform is required.
 Missing paid-call allowance is a stated limit, not permission to spend or
 substitute a fabricated response.
-
-Still-open scope at this boundary:
-All C01-C15 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
 
 ```
 
@@ -1600,38 +1207,29 @@ short demonstration highlights the complete product; it does not reduce scope.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
 Required prerequisites: All required capability paths implemented or explicitly listed as blockers.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C01-C15; Cross-cutting architecture and acceptance; IB01-IB06)
+- docs/product/ARCHITECTURE.md (Durable execution; Concurrent interaction)
 
-Qualify and fix Minerva's integrated behavior in this new codebase.
-Use its complete capability contract; do not reduce scope to make checks pass.
-Canvas, exploration/goal execution and voice have independent lifecycles.
+Outcome: The integrated studio survives concurrent work and bounded failures.
 
-Run this journey: start Wander; speak about one branch; move/resize another;
-zoom to distant work; inspect a relationship; compare and Weave selected parts;
-switch Lineage/Evolution/Constellation; interrupt speech; receive proposals;
-keep one; close/reopen; recover state and runs.
+Integration work:
+Run Wander; speak about one branch; move/resize another; zoom to distant work;
+inspect a relationship; compare/Weave parts; switch all views; interrupt speech;
+receive/keep proposals; close/reopen and recover state/runs. Fix reproduced
+failures in their owning modules and existing recovery paths.
 
-Inject transient provider failure, malformed output, review unavailability,
-source edits, duplicate dispatch, delayed reads, voice loss and exhausted
-allowance. Preserve successful siblings and all uncertain/billed attempts.
-Retry/repair/replan only within one explicit combined SDK/workflow allowance.
-Unknown repeated errors stop the affected action with a useful explanation.
-
-No global busy lock, fit-on-update, remount-driven voice loss, hidden failure,
-false success, silent model switch or replayed human decision is acceptable.
-Conflicting writes are target-scoped; layout changes do not stale content.
-
-Exercise representative small and dense scenes, mouse/touch/keyboard and
-reduced motion. Save concrete evidence for the capability matrix. Fix failures
-through their owning modules rather than another recovery framework.
-Include IB01-IB06 across supported input-mode transitions, not only one isolated
-journey per device. After repairing a gesture, repeat its next deliberate
-pointer/keyboard/assistive action and relevant voice/update transition.
-Do not publish or claim the complete product while a required journey fails.
-Package complete when: the integrated journey and every injected failure
-behave as specified on small and dense scenes with mouse, touch, keyboard and
-reduced motion; fixes land in owning modules; and concrete evidence is saved to
-the capability matrix.
+Completion evidence:
+Inject transient provider failure, malformed output, unavailable review, source
+edits, duplicate dispatch, delayed reads, voice loss and exhausted allowance.
+Check target-scoped conflicts, the combined retry/repair allowance, retained
+siblings/uncertain attempts and no false success or replayed decisions.
+Use small/dense scenes, mouse/touch/keyboard and reduced motion. Repeat IB01-IB06
+and affected voice/update transitions, including the next deliberate activation
+after any gesture correction. Save concrete evidence in CAPABILITIES.
+Package complete when: the integrated journey and injected failures satisfy the
+contracts across the listed scenes/input transitions and evidence is recorded.
 ```
 
 ### Prompt 30: qualify the look, feel and interaction economy
@@ -1639,45 +1237,29 @@ the capability matrix.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
 Required prerequisites: A populated working product and original design contract, not a static shell.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C15; IB01-IB06)
+- docs/product/DESIGN.md
 
-Review and correct Minerva against this new repository's complete product and
-original design contracts. Use newly authored custom code/assets. This is a
-functional experience gate, not permission to hide missing features with polish.
+Outcome: The complete studio meets its visual and interaction contract in actual use.
 
-Render a populated atlas with two independent roots, descendants, a multi-parent
-child, a semantic link, unkept/rejected work and a live or labeled fixture run.
-Inspect desktop, narrow-screen, normal-zoom and overview images and interaction.
-Verify original cartographic paper/ink, expressive title-first typography,
-distinct but restrained card accents and legible source paths.
+Integration work:
+Review and correct the populated product against DESIGN using independent roots,
+descendants, a multi-parent child, semantic links, unkept/rejected work and a
+live or labeled fixture run. Fix composition, direct-action or interaction
+problems through the existing presentation components.
 
-At desktop with panels closed, the canvas target is at least 80% of viewport
-height. Primary controls must not be stacked in full-width bars. Cards expose
-one principal next action and a compact contextual selection affordance, not
-the full operation catalog. From a visible card, inspect is one activation;
-open/choose a contextual move at most two; after source selection Weave is one.
-These exclude optional user-requested editing, not mandatory hidden setup.
-
-Trace relationships without hunting through JSON or relying only on hover.
-Switch real views with one explicit action. Opening details must not resize
-the canvas or disconnect voice. Verify dense scenes and keyboard/touch
-equivalents, readable focus/contrast, reduced motion and non-color state.
-Use IB01-IB06 to judge actual screen-space overview targets, readable
-incoming/outgoing relationships and source orientation through comparison.
-Record subjective friction separately from a demonstrated functional failure.
-
-Optional tactile sound stays off by default, sparse, tied to acknowledged
-events and suppressed during voice. No autoplay or correctness celebrations.
-Use original custom assets and appropriately licensed standard resources.
-
-Record annotated visual and journey evidence. Human look/feel acceptance is a
-separate status; if unavailable, say pending rather than inventing a likeness
-score. Fewer buttons achieved by removing capabilities is a failure. Update C15.
-Judge capability, responsiveness and visual character against the product contract.
-Package complete when: populated desktop, narrow, normal-zoom and overview
-renderings meet the composition, activation-count, relationship-legibility,
-accessibility and sound rules; annotated visual and journey evidence is
-recorded; and C15 names human acceptance as recorded or pending.
+Completion evidence:
+Inspect desktop/narrow, normal-zoom/overview renderings and journeys. Check
+DESIGN's field proportion, card hierarchy, activation counts, source threads,
+view switching, overlays, focus/contrast, non-color state and reduced motion.
+Exercise IB01-IB06 for overview targets, both relationship directions and
+comparison orientation. Verify optional sound behavior and voice suppression.
+Record annotated images, actual journey results and subjective friction separately.
+Update C15 with the owner's look/feel acceptance as recorded or pending.
+Package complete when: the populated renderings and journeys meet DESIGN and
+SPEC, evidence is recorded and human acceptance status remains explicit.
 ```
 
 ### Prompt 31: prove completeness and architectural improvement
@@ -1685,47 +1267,35 @@ recorded; and C15 names human acceptance as recorded or pending.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
 Required prerequisites: The full capability matrix and representative functional/visual/runtime evidence.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C01-C15)
+- docs/product/ARCHITECTURE.md (Ownership and dependencies; Infrastructure and extension evidence)
+- docs/product/CAPABILITIES.md
 
-Audit this newly authored Minerva implementation against every required
-capability C01-C15 and the backend architecture contract.
-Do not substitute "core works" for completeness.
+Outcome: Full-product completeness and maintainability are supported by traceable evidence.
 
-For each capability, trace a visible user workflow through application logic,
-persistence/provider execution and back to the browser. Record evidence and gaps.
-A stored edge is not a visible relationship;
-a generic action enum is not contextual planning; a text summary is not a map;
-transcription is not conversation; tabs are not implemented views.
+Integration work:
+Trace every capability from visible user action through application logic,
+persistence/provider execution and back to the browser. Resolve supported gaps
+through their owning modules and record remaining blockers.
+Verify ARCHITECTURE's representative new-operation extension: contract/definition,
+generation or analysis logic, registration and focused checks should suffice
+without changing pointer mechanics, voice lifecycle or unrelated serialization.
+Explain any legitimate new-data migration separately.
 
-Verify maintainability using a representative change: an ordinary new creative
-operation should extend its contract/definition, generation or analysis logic,
-registration and focused checks without editing canvas pointer mechanics,
-voice connection lifecycle or unrelated workspace serialization. Explain any
-legitimate new-data migration separately. Do not impose an arbitrary file count.
-Domain code cannot depend on React, routes or provider SDKs; all transports
-must share business operations. Content/layout/run writes remain independent.
-
-Inspect infrastructure as well as modules: environment isolation, migration
-execution, database pooling, durable dispatch/reconciliation, observable failures,
-backup/restore instructions and reproducible local startup. Distinguish closing
-the browser from stopping local services; reconcile interrupted work on restart.
-Hosted data must not depend on a temporary preview expiry. Exercise the recovery path
-without touching working data; no multi-region or enterprise platform is required.
-Confirm custom code/assets belong to this build and dependencies have suitable licenses.
-
-Run the appropriate existing checks and representative live/visual journeys.
-Separate functional, visual, architecture, infrastructure, runtime and efficacy
-statuses. Any required missing capability blocks a completion claim; only an
-explicit user-approved scope change can change the contract.
-Missing user experience acceptance also blocks an overall completed-product
-claim, even if automated functional checks pass.
-Update the matrix and a concise handoff, including all remaining blockers.
-Package complete when: every C01-C15 journey is traced with evidence or a
-named gap; the representative change and dependency rules are verified;
-infrastructure and provenance checks are recorded; functional, visual,
-architecture, infrastructure, runtime and efficacy statuses are separated; the
-matrix and handoff list all blockers; and the Fable release-candidate packet is
-prepared.
+Completion evidence:
+Inspect actual dependency boundaries, shared transports/operations and independent
+content/layout/run writes. Exercise isolated infrastructure recovery: configuration,
+migrations, pooling, dispatch/reconciliation, diagnostics, backup/restore and
+reproducible startup, including service restart and hosted storage ownership.
+Confirm code/asset provenance and dependency licenses. Record required checks
+and representative live/visual journeys, separating functional, visual,
+architecture, infrastructure, runtime and efficacy statuses. Update CAPABILITIES
+and the handoff with missing requirements and owner acceptance.
+Package complete when: C01-C15 are traced, the extension/recovery checks are
+recorded, all gaps are explicit and the exact release candidate is ready for
+Fable review before package 32.
 ```
 
 ### Prompt 32: release the Vercel demonstration honestly
@@ -1733,77 +1303,44 @@ prepared.
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
 Required prerequisites: Fable's M6 release-candidate review, material findings resolved, user acceptance, authorized configured services and the owner's authorization to deploy.
-Read AGENTS.md and the relevant product contracts; implement one connected outcome.
+Read AGENTS.md.
+Relevant references:
+- docs/product/SPEC.md (C01-C15; Shipped demo and human judgment)
+- docs/product/ARCHITECTURE.md (Provider and deployment boundaries; Infrastructure and extension evidence)
+- docs/setup.md (Vercel demonstration hosting)
+- docs/product/CAPABILITIES.md
 
-Deliver Minerva as a single-user, browser-only prototype with no sign-in, served
-from a public Vercel deployment for a bounded demonstration window used by a small
-judge panel. It is the complete spatial creative studio: relationship-rich cards
-and inheritance, three real views, contextual moves, comparison/Weave, instruments,
-Wander and space analysis, Agent Drive, concurrent voice and outputs. Read the
-capability matrix, design acceptance and architecture/infrastructure evidence.
+Outcome: The complete Minerva demonstration operates locally and on its public Vercel URL.
 
-Ship the editable mall demo described in SPEC alongside every fully functional
-tool. Demonstrate each tool on that seed prompt, preserve the resulting source
-relationships and outputs, and let the person continue exploring through normal
-workspace operations. Verify the blank-start path as well. Record each demo
-example in the owning capability's evidence; prepared records never replace
-missing live functionality, and demonstration records cannot claim fabricated
-historical provider receipts.
+Integration work:
+Ship the editable mall demo through normal workspace behavior alongside every
+working tool and a blank-start path. Verify tools expanding the seed alone,
+selected A/B/C proposals and combinations; retain actual source relationships
+and outputs. Record each example in its capability evidence.
+Follow setup's authorized deployment procedure for production data/credentials,
+Gateway text/realtime voice, durable workflows, owner-selected budgets and
+demo seeding. Confirm request protections on every configured serving hostname.
+Retain the local loopback startup/recovery path and public repository identity
+minerva. Never accept marketplace/legal terms for the person.
+Prepare the roughly 90-second central-loop presentation: inspect recurrence,
+discuss while moving cards, request an intervention, Weave, inspect the result
+and both parents, then decide what to keep. Label prepared/live/recorded/fallback
+segments and retain a failed or inconclusive transformation.
 
-Do not present further scope cuts as completed Minerva. All required behaviors must
-have evidence; unresolved subjective acceptance stays explicit. If representative
-user experience acceptance is missing, deliver a review build, not an overall
-product-completion claim. Development previews may be shared as incomplete, never
-relabeled complete because a deployment is Ready or a CI run is green.
-
-Local operation stays the development loop: a loopback-bound server with
-authorized database/model resources, documented startup, required running
-services, persistence and recovery. Confirm same-origin request protections and
-rejection of unexpected Host/Origin on every configured serving hostname.
-
-Deploy to the authorized Vercel project following docs/setup.md: production
-database and credentials separate from local and preview, text and realtime voice
-through Vercel AI Gateway with a server-held credential, Vercel Workflows for
-durable runs, the owner's Gateway budget and Spend Management amount configured,
-and the demonstration workspace seeded. Public source is not a secret store:
-confirm no secret, user data or unlicensed asset has been committed. Do not
-silently change repository visibility. Never accept marketplace/legal terms for
-the person. Do not add sign-in, gates or confirmation steps that slow the judges.
-
-Use the public repository name minerva, without a version suffix. Prepare a
-short demonstration of the central loop: inspect potentially recurring ideas,
-discuss them while manipulating the canvas, request a specific intervention,
-Weave useful contributions, and inspect the result and both parents before
-deciding what to keep. A failed or inconclusive transformation stays honest.
-Aim for roughly 90 seconds of presentation; do not fake fast completion or
-mock a core live capability to hit that duration. Label seeded records, fresh
-operations, recorded footage and fallback behavior. Keep full-product evidence
-separate from this selected presentation path.
-
-Exercise the integrated hosted journey on the served URL using real configured
-services within authorization, including relationship tracing, views, contextual
-choice, recombination, conversation, partial failure and reconnect; repeat the
-local journey where it differs. Deliver the served URL, local startup commands,
-source provenance, operating instructions, the window's dates, cost limits and
-blockers. Write the teardown plan into the handoff: when the window closes,
-pause or delete the deployment, which ends its OIDC access to the Gateway,
-revoke the database credentials, export or delete judge data, and record what
-was preserved. Do not tear down
-before the owner closes the window.
-Update the handoff. Functional completion is not empirical proof of creativity;
-never disguise missing functionality as later optional extensions.
-Milestone closeout: demonstrate this complete M6 journey:
-Run the complete cross-view, voice, exploration, comparison and output journey locally and on the served Vercel URL with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify service/data ownership, restore instructions and the teardown plan.
-Prepare the exact-candidate packet for this milestone's Fable review.
-Still open at this milestone: Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
-Package complete when: the complete prototype operates locally and on the served
-Vercel URL with no sign-in and internal request protections; the integrated
-hosted journey is exercised against configured services; budget settings, data
-isolation and storage ownership are confirmed and disclosed; the served URL,
-startup commands, provenance, operating instructions, window dates, cost limits,
-blockers and teardown plan are delivered; the concise demonstration distinguishes
-prepared, live, recorded and unavailable behavior; and the Fable hosted-operation
-confirmation packet is prepared.
+Completion evidence:
+Exercise the integrated hosted journey on the served URL with configured services,
+including relationships, views, contextual choice, recombination, conversation,
+partial failure and reconnect. Repeat local behavior where it differs and the
+complete M6 working demonstration. Verify each demo tool and the blank start.
+Exercise the judge's duplicate-demo start and seed restoration defined in C01.
+Deliver the URL, startup/services, provenance, operating limits, window dates,
+budget settings, data ownership and blockers. Record setup's teardown plan and
+owner in the handoff; execute teardown only when the owner closes the window.
+Prepare the exact-candidate packet for Fable's hosted-operation confirmation.
+Package complete when: local and hosted journeys work, demo/tool coverage and
+operating evidence are recorded, and the confirmation packet is ready. The
+demonstration window opens only after required hosted confirmation and owner
+acceptance; unproven creative superiority remains a separate status.
 ```
 
 ### Fable review M6: Integrated release
@@ -1811,9 +1348,8 @@ confirmation packet is prepared.
 ```text
 You are Fable 5.1 in Claude, independently reviewing M6: Integrated release
 Read AGENTS.md and the Shared demonstration and review section of docs/build-prompts.md.
-Use the supplied exact
-candidate, isolated checkout/data and startup instructions. Review only; no edits
-to application source or paid calls without explicit allowance.
+Use the supplied exact candidate, isolated checkout/data and startup instructions
+under AGENTS.md's review rules.
 
 Required demonstration:
 Run the complete cross-view, voice, exploration, comparison and output journey locally and on the served Vercel URL with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify service/data ownership, restore instructions and the teardown plan.
@@ -1843,8 +1379,5 @@ for missing behavior. Confirm the user can see the challenge, proposed change,
 actual outcome and source evidence. Distinguish prepared, live, recorded and
 fallback segments; a short polished presentation cannot conceal missing
 capabilities, failed transformations or unusable browser outputs.
-
-Still-open scope at this boundary:
-Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
 
 ```

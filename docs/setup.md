@@ -18,11 +18,19 @@ npm pkg set name=minerva \
 ```
 
 Keep lockfile metadata consistent. Update README and SECURITY links and confirm
-the remote before pushing. Delete `tests/seed-only.test.mjs`, which asserts that
-the repository is still the empty seed; keep `tests/seed-docs.test.mjs`. Keep
-`"private": true` to avoid accidental npm publication; it does not control GitHub
+the remote before pushing. Keep `"private": true` to avoid accidental npm
+publication; it does not control GitHub
 visibility. Configure Actions permissions, branch rules, required checks and
 private vulnerability reporting on the new repo.
+
+Package 1 converts the inherited checks for application development: delete
+`tests/seed-only.test.mjs`, whose empty-seed restrictions would reject application
+dependencies, files and progress. Retain the portable structure/reference checks
+in `tests/seed-docs.test.mjs` and the actual ESLint behavior checks in
+`tests/lint-config.test.mjs`. Adapt their paths and configuration expectations to
+the generated application as needed, then run `npm run check`. Confirm that normal
+application additions and capability-status updates are allowed. Use the existing
+runner and files; this is a small conversion step, not a testing framework.
 
 ## Local operation
 
@@ -32,11 +40,8 @@ AI Gateway calls and durable runs remain. External REST/MCP APIs and accounts
 are excluded. Local operation is the development loop; the release target is the
 Vercel demonstration deployment described below.
 
-The foundation choices in [ARCHITECTURE](./product/ARCHITECTURE.md) are fixed:
-React Flow with custom cards/application layouts, Drizzle with explicit SQL
-migrations, and persisted-progress polling over the existing durable execution
-contract. Reconsider only for a demonstrated requirement failure or compatibility
-constraint, not as a new selection exercise each session.
+Use the foundation choices and milestone timing in
+[ARCHITECTURE](./product/ARCHITECTURE.md#ownership-and-dependencies).
 
 Add dependencies and configuration only with their application slices. Document
 variables in `.env.example` without values. Use a local Postgres path or explicitly
@@ -53,9 +58,9 @@ reconcile interrupted work after restart.
 ## Resuming an existing checkpoint
 
 Read AGENTS, the selected package, relevant capability rows and the short handoff.
-Use the existing code; do not recreate a working foundation. Each assignment is
-one user action, not a subsystem. Packages 11-12 demonstrate incremental typed
-and voice integration. Probe external transport/settings early within authorized
+Use the existing code; do not recreate a working foundation. Follow AGENTS's
+authorized-outcome rule across connected chunks. Packages 11-12 demonstrate
+incremental typed and voice integration. Probe external transport/settings early within authorized
 bounds; keep unavailable live evidence explicit.
 
 Use the Astra launch block below for both fixes and new outcomes. Fill the exact
@@ -65,15 +70,18 @@ machine or resetting files.
 
 ## Separate builder and critic
 
-Commit the intended candidate. The operator opens Fable 5.1 in Claude on a
-separate checkout; two terminals on one mutable tree are not isolation.
+Prepare the intended committed candidate within the task's authorization.
+The operator opens Fable 5.1 in Claude on a separate checkout; two terminals
+on one mutable tree are not isolation.
 Existing checks may write ignored artifacts. Use separate ports and isolated
 synthetic data, not the builder's working database. A fix creates a new candidate.
 
-Fable first reads the contract and exercises the app, then considers the builder's
-conclusions. Use one review per planned boundary, not automatically after every
-increment. Focus rechecks on material fixes. The reviewer does not edit application
-source, expand scope, grant user acceptance or authorize deployment/spend.
+Follow [AGENTS](../AGENTS.md#milestones-and-review) for review timing, independence
+and finding dispositions. When adapting a general builder prompt for Minerva,
+use those milestone reviews and focused rechecks, the authorized-outcome rule,
+and the scoped dependency/CI permissions in AGENTS. Replace conflicting generic
+defaults in the launch prompt before use; do not layer a review of every change,
+blanket edit approvals or automatic reviewer precedence over these rules.
 
 ## Standard checkpoint output
 
@@ -139,8 +147,8 @@ Read AGENTS.md, docs/HANDOFF.md, relevant docs/product/CAPABILITIES.md rows
 and the selected work package. Preserve existing work and evidence.
 Implement the connected UI/backend outcome or reproduce and fix the named findings.
 Exercise the affected journey, failure boundary and required checks.
-Commit a coherent candidate and provide the standard operator handoff.
-Do not launch Fable automatically or advance to another increment.
+Prepare a coherent candidate, commit if authorized, and provide the standard
+operator handoff at the stopping boundary defined in AGENTS.md.
 ```
 
 ## Vercel demonstration hosting

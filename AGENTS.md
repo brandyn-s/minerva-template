@@ -1,36 +1,35 @@
 # Minerva: Astra builds, Fable reviews
 
-Minerva is a single-user, browser-only spatial creative prototype with no sign-in.
-C01-C15 are required. Use the Next.js/TypeScript monolith: Postgres owns durable
-state; Vercel AI Gateway serves text and realtime voice models; Vercel Workflow
-owns longer execution; UI and voice share named operations. Local development
-binds to loopback. The release target is a public Vercel deployment for a bounded
-demonstration window used by a small judge panel, with no sign-in; its dates,
-budget and teardown live in the application handoff. Do not build accounts,
-external APIs or access infrastructure, and do not add gates that slow the judges.
+These are the shared working rules for building and reviewing Minerva.
 
 ## Sources and scope
 
-[README](./README.md#documentation) indexes the documents. SPEC owns requirements;
-CAPABILITIES owns evidence. Read the selected package and relevant contracts,
-not the whole catalog. Keep template docs current-only: no commented-out
-alternatives, decision history or duplicate specifications.
+[README](./README.md#documentation) indexes the documents. AGENTS owns working
+rules; SPEC owns product behavior; ARCHITECTURE owns technical boundaries;
+DESIGN owns visual and interaction design; CAPABILITIES owns evidence. Read the
+selected package and relevant contracts, not the whole catalog. Packages state
+outcomes, prerequisites, relevant references, integration work and completion
+evidence; link to the owning contract instead of restating it. Keep template
+docs current-only: no commented-out alternatives, decision history or duplicate
+specifications.
 
 Keep this seed content-free. Generate the application from it, then implement
 in that repository. Author custom application code and assets for this build;
 reuse its existing work and appropriately licensed frameworks, libraries and
 assets. Do not port another application's implementation.
 
-The shipped application includes the editable shopping-mall demonstration in
-SPEC, with all tools functional. The owner judges idea feasibility and creative
-usefulness and steers milestone chunks. Treat build feasibility as settled;
-do not add feasibility studies or estimation gates. Keep existing spend controls.
+Treat build feasibility as settled; do not add feasibility studies or estimation
+gates. The owner steers milestone chunks and makes the human judgments defined
+in [SPEC](./docs/product/SPEC.md#shipped-demo-and-human-judgment).
 
 ## Execute one connected outcome
 
-Within the authorized outcome, make routine reversible decisions and continue to
-completion. Ask only when missing information materially changes the result or
-the next action requires authority not already granted.
+Complete the authorized outcome, including its connected chunks. Stop at the next
+required owner or review boundary, or when further work exceeds that authorization.
+
+Make routine reversible decisions within that scope. Ask only when missing
+information materially changes the result or an action requires authority not
+already granted. Existing authorization persists across chunks and handoffs.
 
 - Respect advice/review requests as read-only. For implementation, state the user
   action, exclusions and stopping evidence. Integrate the smallest UI/service path
@@ -41,18 +40,24 @@ the next action requires authority not already granted.
 - Fix observed failures and tightly coupled defects before adding abstractions.
   Keep optional suggestions outside the task. Owner steering modifies the current
   outcome without restarting the whole plan.
-- Domain rules do not import React, HTTP, database clients or provider SDK types.
-  Add dependencies when needed; no generic command bus, extra agent engine,
-  review coordinator or measurement infrastructure without a consequential need.
+- Add a needed dependency, adapt inherited checks, or change local/CI configuration
+  when necessary for the authorized outcome. These edits do not require separate
+  approval merely because of their file type. Follow ARCHITECTURE's boundaries;
+  avoid speculative abstractions and process infrastructure.
 - During iteration, run the smallest checks that cover the changed behavior and
   affected failure boundary. Complete required repository checks before delivery.
   Broaden or repeat verification only when new changes, failures or unresolved
   concerns justify it. Exercise actual browser journeys for UI changes; distinguish
-  fixtures from live-provider evidence.
+  fixtures from live-provider evidence. Keep structural documentation checks and
+  actual configuration tests; do not preserve sentences with assertions that merely
+  mirror the prose. Add meaningful behavior coverage as application slices arrive.
 - Provisioning, publication, deployment, paid calls, destructive actions and
-  contacting others require authorization. Preserve source revisions, request
-  protections, cost admission and bounded recovery. Never commit secrets, private
-  workspace data or unlicensed assets. Follow the active runner's restrictions.
+  contacting others require authorization covering the action, as do shared-data
+  migrations or material changes to scope, cost or authority. Do not ask again
+  when that authorization already exists. Prepare the concrete result before
+  requesting any missing final authorization. Commit and push only when asked;
+  never commit secrets, private workspace data or unlicensed assets. Follow the
+  active runner's restrictions.
 
 ## Milestones and review
 
@@ -72,8 +77,14 @@ for demonstrated difficulty, then return to medium.
 Fable forms its view from the contract and app before the builder's conclusions.
 Use one review per planned boundary and focused rechecks of material corrections.
 Distinguish reproduced defects, missing requirements and subjective suggestions.
-Record evidence-based dispositions; fix confirmed defects. Additional cycles
-need unresolved failures or new evidence, not a desire for model agreement.
+For each material finding report capability, expected/observed behavior,
+reproduction and evidence, consequence, confidence and the smallest correction.
+Record evidence-based dispositions and address confirmed blocking defects first.
+Reviewer suggestions do not automatically override the owner's instructions or
+the product and architecture contracts. Reproduce a disputed finding and explain
+its disposition with evidence; bring a material contract conflict to the owner
+instead of silently changing scope. Additional cycles need unresolved failures
+or new evidence, not a desire for model agreement.
 If blocked, name the missing input or unresolved assumption. Do not invent
 approval or waive required behavior. User experience acceptance is separate.
 
@@ -87,8 +98,9 @@ Do not add diaries, status engines or parallel per-model records.
 Emit the operator handoff in the final response, not just a link: outcome/state,
 candidate SHA, branch, absolute worktree, startup mode, handoff path and next
 role. Supply the applicable bounded launch instructions from
-[setup](./docs/setup.md#standard-checkpoint-output). A handoff is context, not
-authorization. Do not automatically advance or create a review gate per increment.
+[setup](./docs/setup.md#standard-checkpoint-output). Apply the authorized-outcome
+stopping rule above; a handoff neither grants new authority nor creates a review
+gate per increment.
 
 ## Run and contribute
 

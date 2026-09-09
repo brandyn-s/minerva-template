@@ -23,8 +23,8 @@ should keep plain domain names rather than spread metaphor through types.
 
 ## Materials
 
-Paper `#e9dfc7`, cards `#f1e9d6`, ink `#273a35`, teal `#28686a`, coral
-`#a15442`, amber `#b18a58`, violet `#755584`. Use aged bronze sparingly for
+Paper `#e9dfc7`, cards `#f1e9d6`, ink `#273a35`, deep teal `#213f3e`, teal `#28686a`,
+coral `#a15442`, amber `#b18a58`, violet `#755584`. Use aged bronze sparingly for
 deliberate selection and details. Serif content and headings sit alongside
 compact instrument-like labels. A readable editorial serif and restrained
 monospaced controls are appropriate; font packages need suitable licenses.
