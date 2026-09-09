@@ -2,16 +2,33 @@
 
 These are the shared working rules for building and reviewing Minerva.
 
+## Current direction
+
+The default target is a functional demonstration on a public Vercel URL, not a
+production application. Reach it in the fewest task messages: a hosted URL with
+live model calls on the existing atlas, in memory, with prepared data. This
+section supersedes the milestone and package catalog in docs/build-prompts.md
+and any next outcome named in docs/HANDOFF.md until the owner edits it.
+
+Build only what the current task message names. Do not add persistence,
+recovery, receipts, admission or budget logic, ledgers, export, migrations or
+voice unless the task message asks for them by name. Platform budgets in the
+Vercel dashboard are the only spend control unless the owner says otherwise.
+
+Accepted risks, set by the owner before the first build session and not to be
+reported as findings or fixed unasked:
+{{ACCEPTED_RISKS, e.g. "Public demo with no sign-in; no rate limits, gates or
+confirmation dialogs; in-memory state that resets on reload; fixture data."}}
+
 ## Sources and scope
 
 [README](./README.md#documentation) indexes the documents. AGENTS owns working
 rules; SPEC owns product behavior; ARCHITECTURE owns technical boundaries;
-DESIGN owns visual and interaction design; CAPABILITIES owns evidence. Read the
-selected package and relevant contracts, not the whole catalog. Packages state
-outcomes, prerequisites, relevant references, integration work and completion
-evidence; link to the owning contract instead of restating it. Keep template
-docs current-only: no commented-out alternatives, decision history or duplicate
-specifications.
+DESIGN owns visual and interaction design; CAPABILITIES owns evidence;
+docs/build-prompts.md is a backlog catalog, read only when the task message
+names a package from it. Read the relevant contract sections for the task, not
+the whole catalog. Keep template docs current-only: no commented-out
+alternatives, decision history or duplicate specifications.
 
 Keep this seed content-free. Generate the application from it, then implement
 in that repository. Author custom application code and assets for this build;
@@ -22,14 +39,14 @@ Treat build feasibility as settled; do not add feasibility studies or estimation
 gates. The owner steers milestone chunks and makes the human judgments defined
 in [SPEC](./docs/product/SPEC.md#shipped-demo-and-human-judgment).
 
-## Execute one connected outcome
+## Execute the task message, then stop
 
-Complete the authorized outcome, including its connected chunks. Stop at the next
-required owner or review boundary, or when further work exceeds that authorization.
+Complete the current task message, then stop. Do not continue into a next
+package, milestone or handoff outcome without a new task message from the owner.
 
 Make routine reversible decisions within that scope. Ask only when missing
 information materially changes the result or an action requires authority not
-already granted. Existing authorization persists across chunks and handoffs.
+already granted.
 
 - Respect advice/review requests as read-only. For implementation, state the user
   action, exclusions and stopping evidence. Integrate the smallest UI/service path
@@ -43,14 +60,15 @@ already granted. Existing authorization persists across chunks and handoffs.
 - Add a needed dependency, adapt inherited checks, or change local/CI configuration
   when necessary for the authorized outcome. These edits do not require separate
   approval merely because of their file type. Follow ARCHITECTURE's boundaries;
-  avoid speculative abstractions and process infrastructure.
+  avoid speculative abstractions and process infrastructure. Prefer the least
+  code that makes the task work; a generalized module for a later package is
+  out of scope.
 - During iteration, run the smallest checks that cover the changed behavior and
   affected failure boundary. Complete required repository checks before delivery.
   Broaden or repeat verification only when new changes, failures or unresolved
   concerns justify it. Exercise actual browser journeys for UI changes; distinguish
-  fixtures from live-provider evidence. Keep structural documentation checks and
-  actual configuration tests; do not preserve sentences with assertions that merely
-  mirror the prose. Add meaningful behavior coverage as application slices arrive.
+  fixtures from live-provider evidence. Keep the inherited link and configuration
+  tests; add behavior coverage only for behavior the task adds.
 - Provisioning, publication, deployment, paid calls, destructive actions and
   contacting others require authorization covering the action, as do shared-data
   migrations or material changes to scope, cost or authority. Do not ask again
@@ -59,20 +77,19 @@ already granted. Existing authorization persists across chunks and handoffs.
   never commit secrets, private workspace data or unlicensed assets. Follow the
   active runner's restrictions.
 
-## Milestones and review
+## Review
 
-The 32 packages form six milestones. M1 uses prepared local data; M2 integrates
-persistence, generation and voice. M2 reviews after package 10 and after package
-12; M5 reviews browser instruments/outputs. M6 reviews the candidate locally,
-then confirms hosted operation on the served Vercel URL before the demonstration
-window opens.
+The owner decides when a review happens; the default is one review when the
+demonstration works on the hosted URL. The backlog catalog's milestone reviews
+apply only if the owner opens a milestone from it.
 
 Astra owns the writable checkout. The operator starts Fable 5.1 in Claude on a
 separate checkout of the exact committed candidate, read-only for application
-source. Do not launch the critic unless explicitly requested. Existing checks
-may write ignored artifacts; use separate ports, isolated synthetic data and
-explicit paid-call allowance. Start both models at medium effort; escalate only
-for demonstrated difficulty, then return to medium.
+source, using the rubric in docs/review/judge-fable-5-1.system.md. Do not launch
+the critic unless explicitly requested. Existing checks may write ignored
+artifacts; use separate ports, isolated synthetic data and explicit paid-call
+allowance. Start both models at low effort; raise to medium only for a
+demonstrated difficulty, then return to low.
 
 Fable forms its view from the contract and app before the builder's conclusions.
 Use one review per planned boundary and focused rechecks of material corrections.
@@ -87,20 +104,22 @@ instead of silently changing scope. Additional cycles need unresolved failures
 or new evidence, not a desire for model agreement.
 If blocked, name the missing input or unresolved assumption. Do not invent
 approval or waive required behavior. User experience acceptance is separate.
+Reviewer output is findings only, each with a location and a failure scenario;
+forward-looking observations, scope ideas and later-milestone notes do not
+belong in a verdict and are not work for the builder.
 
 ## Handoff
 
-Use CAPABILITIES and a short application `docs/HANDOFF.md` for scope, findings,
-dispositions, evidence and the next outcome. Distinguish written, integrated,
-locally/live demonstrated, reviewed, accepted and hosted facts by revision.
-Do not add diaries, status engines or parallel per-model records.
+Use CAPABILITIES and a short application `docs/HANDOFF.md`, at most 60 lines,
+for scope, evidence and the next outcome. State what works, what was verified
+live, and what is not implemented. Do not add diaries, status engines or
+parallel per-model records.
 
 Emit the operator handoff in the final response, not just a link: outcome/state,
 candidate SHA, branch, absolute worktree, startup mode, handoff path and next
 role. Supply the applicable bounded launch instructions from
-[setup](./docs/setup.md#standard-checkpoint-output). Apply the authorized-outcome
-stopping rule above; a handoff neither grants new authority nor creates a review
-gate per increment.
+[setup](./docs/setup.md#standard-checkpoint-output). A handoff neither grants new
+authority nor names work the next session may start on its own.
 
 ## Run and contribute
 
@@ -110,11 +129,9 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run check
 ```
 
-The seed has documentation-consistency tests, not product coverage. Add relevant
-behavior coverage in application slices. Text checks do not prove that prose is
-consistent; review package prerequisites and completion criteria together against
-their owning contracts. Use a branch and PR; merge only after
-required CI. Generated repositories need their own settings. Report meaningful
+The seed has documentation-consistency tests, not product coverage. Add
+behavior coverage only for behavior the task adds; do not add tests of
+documentation. Use a branch and PR; merge only after required CI. Generated repositories need their own settings. Report meaningful
 results, failures and unverified boundaries.
 
 <!-- BEGIN:nextjs-agent-rules -->
