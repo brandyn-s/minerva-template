@@ -157,9 +157,11 @@ positions. Source edits affect dependent work only. Keep expensive layout and
 analysis off the synchronous pointer path; add workers for observed need.
 
 Voice uses the Vercel AI Gateway realtime path: a server route mints a single-use
-short-lived session token, the browser connects with that token, and the Gateway
-bounds each session (25 minutes maximum, 5 minutes idle). Realtime support is
-in beta; confirm the installed AI SDK channel against current documentation.
+short-lived session token after microphone permission is granted, the browser
+connects with that token, and the Gateway bounds each session (25 minutes
+maximum, 5 minutes idle, and closed if no client message arrives within 30
+seconds of connecting). Realtime support is in beta; confirm the installed AI
+SDK channel against current documentation.
 Provide interruption and context resync. Barge-in stops speech, not unrelated
 work or acknowledged commands. Typed fallback remains.
 Typed and voice collaboration share context compilation and named application
@@ -168,7 +170,8 @@ operations; neither introduces a conversation-specific mutation path.
 ## Provider and deployment boundaries
 
 Text generation, assessment and analysis call Vercel AI Gateway through the AI
-SDK with a server-held Gateway credential; runtime models are Gateway model ids.
+SDK with the deployment's Vercel OIDC token; runtime models are Gateway model
+ids.
 Runtime model profiles state capability, supported settings, output schema,
 limits and attempt policy. Astra as the development agent does not force the
 runtime model. Model output is untrusted and assessments are not proofs.
@@ -186,16 +189,19 @@ and validation without adding accounts.
 
 The release target is a public Vercel deployment for a bounded demonstration
 window used by a small judge panel. Each deployment and the opening of the window
-need the owner's authorization. Separate hosted data and configuration from local
-development and from preview deployments. The window's dates, budget and
+need the owner's authorization. Use one non-production database and configuration
+for local development and preview deployments, and a separate production
+database and configuration for the demonstration. The window's dates, budget and
 teardown are recorded in the application handoff; the template holds no
 account-specific values.
 
-The owner sets the Vercel AI Gateway budget and Spend Management amount for the
-demonstration window; the Gateway rejects requests with HTTP 402 once its budget
-is exceeded, Spend Management checks every few minutes and does not cover
-Marketplace databases. Route model calls through Gateway-metered credit, not
-bring-your-own provider keys, so the budget applies. Application admission keeps
+Every deployment authenticates to the AI Gateway with its Vercel OIDC token, the
+one credential lane, and the owner sets a project-scoped Gateway budget, the one
+scope that meters that lane; the Gateway rejects requests with HTTP 402 once
+that budget is exceeded. Spend Management is the backstop: it checks every few
+minutes and does not cover Marketplace databases. Do not add Gateway API keys or
+bring-your-own provider keys, which the project budget does not meter.
+Application admission keeps
 its own bounded attempt and spend allowances with headroom. Consult current
 official Vercel documentation when configuring these services. Voice never
 places a long-lived key in the browser. Use runtime credentials, not captured
@@ -212,6 +218,10 @@ reconciliation, correlated run/request diagnostics, and documented backup/
 restore and reproducible local startup paths. Test recovery on isolated data.
 Browser close does not stop running local services; service shutdown does stop
 local execution. Preserve checkpoints and reconcile work after service restart.
+The local Workflow world queues steps in memory, so a local restart surfaces
+stranded runs from their dispatch records and re-dispatches or fails them
+explicitly; full resumption of in-flight steps is a hosted property. Do not
+build a persistent local queue.
 An expiring preview deployment is not the demonstration's durable storage. These
 are responsibilities to implement during the application milestones, not unused
 seed dependencies.

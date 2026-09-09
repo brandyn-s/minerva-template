@@ -37,10 +37,15 @@ request protections, not a user login flow.
 During the demonstration window the judges share one deployment and its
 workspaces without accounts. The window's dates, the configured Vercel budget
 and the teardown at its end are the controls; record them in the application
-handoff. Do not add accounts, access infrastructure or confirmation steps that
-slow the judges. Local services must stay running for local work to execute;
-browser closure is not service shutdown. After a service or deployment restart,
-recover saved state and reconcile interrupted work.
+handoff. Do not add accounts, access infrastructure or access-gating
+confirmation steps that slow the judges; the deletion confirmation above stays.
+Judges start by duplicating the seeded demonstration workspace, and re-running
+the seed restores it. Local services must stay running for local work to
+execute; browser closure is not service shutdown. After a service or deployment
+restart, recover saved state and reconcile interrupted work. Locally, a restart
+surfaces stranded runs from their dispatch records and re-dispatches or fails
+them explicitly; full resumption of in-flight steps is a hosted property of
+Vercel Workflow.
 
 ### C02: Spatial canvas and view controls
 

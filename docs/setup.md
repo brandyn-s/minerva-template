@@ -151,28 +151,34 @@ it during the window; the window, the Vercel budget and the teardown are the
 controls. Do not add sign-in, gates or confirmation steps that slow the judges.
 Record the window's dates, audience, budget and teardown owner in `docs/HANDOFF.md`.
 
-- **Project.** Create the Vercel project in the authorized team when package 32
-  is authorized. Confirm the application root and framework settings against
-  official documentation. Git linking may deploy automatically; authorize it
-  separately. A build is not a hosted journey.
+- **Project.** Create the Vercel project in the authorized team and link the
+  repository when package 8 is authorized, so automatic preview deployments
+  serve as hosted evidence from then on; production deployment remains package
+  32. Confirm the application root and framework settings against official
+  documentation. Git linking deploys previews automatically; authorize it
+  separately. A preview build is evidence, not the release or a hosted journey.
 - **Models.** Text and realtime voice use Vercel AI Gateway. Authenticate the
-  deployment with its Vercel OIDC token or a project-scoped Gateway key held
-  server-side; never a bring-your-own provider key. Set the Gateway budget the
-  owner chooses. Realtime voice is a beta Gateway capability: the token route
-  mints single-use short-lived client tokens and sessions are capped at 25 minutes.
+  deployment with its Vercel OIDC token only; do not add a Gateway API key or a
+  bring-your-own provider key. Set the Gateway budget at project scope, the one
+  scope that meters OIDC requests and rejects with HTTP 402 when exceeded.
+  Realtime voice is a beta Gateway capability: the token route mints single-use
+  short-lived client tokens after microphone permission is granted, and sessions
+  are capped at 25 minutes.
 - **Platform spend.** Set the Spend Management amount the owner chooses. It
   covers functions, bandwidth and workflow events, checks every few minutes and
   does not cover Marketplace databases. Pausing production at that amount is
   the owner's call: it caps platform spend but shows judges a 503 for the rest
   of the window.
 - **Data.** Use a Marketplace Postgres or an authorized managed service with its
-  own spending cap. Keep local, preview and production databases and credentials
-  separate. Seed the demonstration workspace before the window opens.
+  own spending cap. Use one non-production database for local and preview work
+  and a separate production database with its own credentials. Seed the
+  demonstration workspace before the window opens; judges start by duplicating
+  it, and re-running the seed restores it.
 - **Durable runs.** Vercel Workflows execute Wander, Agent Drive and other runs;
   use the stable SDK line unless a demonstrated requirement needs the beta.
-- **Teardown.** When the window closes, pause or delete the deployment, revoke
-  the Gateway key and database credentials, export or delete judge data, and
-  record in the handoff what was preserved.
+- **Teardown.** When the window closes, pause or delete the deployment, which
+  ends its OIDC access to the Gateway, revoke the database credentials, export
+  or delete judge data, and record in the handoff what was preserved.
 
 See [ARCHITECTURE](./product/ARCHITECTURE.md#provider-and-deployment-boundaries)
 for the ownership and spend boundaries these steps implement.
