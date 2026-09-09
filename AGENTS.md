@@ -1,10 +1,15 @@
 # Minerva: Astra builds, Fable reviews
 
-Minerva is a private, single-owner spatial creative studio built in a public
-repository. All C01-C16 capabilities remain required. Use the Next.js/TypeScript
+Minerva is a single-user, browser-only spatial creative prototype with no sign-in,
+built in a public repository. C01-C14 and C16 remain required; C15 is retired.
+Use the Next.js/TypeScript
 modular monolith: Postgres owns durable state; Vercel Workflow owns longer
-execution; UI, voice, REST and MCP share named application operations.
+execution; UI and voice share named application operations.
 Public source does not grant access to workspaces, credentials or paid AI.
+Default to loopback-only local access. Hosting is optional only behind an existing
+suitable private boundary that preserves no-sign-in use and denies outside access.
+Do not build accounts, sign-in, external REST/MCP APIs or new access infrastructure.
+Internal server endpoints and server-held credentials remain necessary.
 
 This template stays content-free. In a generated application, implement directly
 in that repository; inherited seed wording is not a request to create another
@@ -62,7 +67,7 @@ safeguards. A previous session's "done" is a claim to verify, not evidence.
 
 ## Milestones and independent review
 
-The 34 packages form six milestones, not reduced product definitions. M1 is an
+The 32 packages form six milestones; IDs 29-30 are retired, not renumbered. M1 is an
 interactive local fixture; M2 introduces persistent recovery and live services.
 The [setup guide](./docs/setup.md) owns procedural launch/review instructions.
 
@@ -82,8 +87,9 @@ This does not waive known defects. Fable's review and user experience acceptance
 are distinct. Missing access or review remains a stated gap.
 
 M2 reviews after package 10 without collaboration and after package 12 with
-voice. M5 begins with published interface instructions before source coaching.
-M6 reviews before deployment and confirms the serving outcome afterward.
+voice. M5 reviews browser-based instruments and outputs.
+M6 reviews the release candidate and confirms local operation afterward; hosted
+confirmation applies only to separately authorized hosting.
 Review checks may create ignored artifacts; use isolated data/ports and
 explicit paid-call allowance, never the builder's working data or server.
 

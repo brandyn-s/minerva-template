@@ -34,8 +34,11 @@ Keep a whole capability partial when only one increment is complete.
 | C12 | Agent Drive | not started | No application implementation |
 | C13 | Typed and spoken collaboration | not started | No application implementation |
 | C14 | Outputs and reusable results | not started | No application implementation |
-| C15 | REST and MCP | not started | No application implementation |
 | C16 | Living-atlas experience | not started | Seed identity is not an interactive atlas |
+
+C15 is retired from prototype scope; the remaining IDs stay stable. External
+REST/MCP APIs and sign-in are not pending work. Internal browser/voice endpoints,
+local access protections and paid-work admission remain part of the owning capabilities.
 
 ## Current milestone
 
@@ -48,7 +51,9 @@ The generated application begins with packages 1-3 and records its seed revision
 No milestone is accepted. Record each material review finding with its capability,
 evidence, disposition and affected revision here; do not maintain parallel model
 diaries. Fable's judgment and the user's experience acceptance are distinct.
-The M2 interim review follows package 10; M6 reviews before and after deployment.
+The M2 interim review follows package 10; M6 reviews the candidate and confirms
+local operation. Hosted confirmation applies only if private hosting is authorized;
+no hosted deployment is required for prototype completion.
 
 ## Next outcome
 

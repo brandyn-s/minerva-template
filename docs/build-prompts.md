@@ -3,7 +3,7 @@
 This repository's standard edition is authoritative. Exported HTML and Downloads
 copies are reading aids, not independently edited sources. Use this edition for
 the whole build. [CONTRACT.md](./product/CONTRACT.md) indexes the contracts:
-[SPEC.md](./product/SPEC.md) owns C01-C16 requirements, while
+[SPEC.md](./product/SPEC.md) owns C01-C14 and C16 requirements, while
 [CAPABILITIES.md](./product/CAPABILITIES.md) owns implementation evidence.
 Keep those responsibilities distinct rather than maintaining competing specs.
 
@@ -11,6 +11,15 @@ Keep those responsibilities distinct rather than maintaining competing specs.
 studio described below, with better architecture and implementation. This is not
 a smaller MVP, a generic canvas, or a reskin. Engineering may be staged; the
 required product capabilities may not be silently staged out of delivery.
+
+**Prototype scope amendment, September 8, 2026:** this is a single-user,
+browser-only prototype with no sign-in. C15 and external REST/MCP/API packages
+29-30 are removed; all remaining capability and package IDs stay stable.
+Default to loopback-only local access. Internal browser/voice endpoints,
+server-held provider credentials, Postgres and durable runs remain.
+Hosting is optional only behind an existing suitable private boundary that
+preserves no-sign-in use and denies outside access. Otherwise remain local;
+do not create accounts, access infrastructure or an anonymous public paid service.
 
 **New implementation:** author the custom application code, styling, runtime
 prompts, tests and custom assets from scratch. Do not copy, port, translate,
@@ -30,8 +39,8 @@ are required to execute these prompts.
 
 **Repository and starting point (owner decision, September 8):** the new
 `minerva` repository is a **public** GitHub repository created from the
-owner's template, https://github.com/brandyn-s/minerva-template. The hosted
-application stays private behind platform authentication; public source never
+owner's template, https://github.com/brandyn-s/minerva-template. The
+application defaults to local access with no sign-in; public source never
 grants access to workspaces, credentials or paid operations, so the repository
 must never contain secrets, user workspace data or unlicensed third-party
 assets, and its MIT license carries forward. The template's pinned Next.js
@@ -45,8 +54,8 @@ only where needed. Clearly superseded historical decisions can remain. Do not
 infer that a template update is published from the existence of a proposed
 patch or branch name; inspect the actual generated files.
 
-**Delivery model:** six milestones, 34 Astra work packages, not 34 mandatory
-sessions. The full C01-C16 contract remains required. Demonstrations are
+**Delivery model:** six milestones, 32 Astra work packages, not 32 mandatory
+sessions. IDs 29-30 are retired. C01-C14 and C16 remain required. Demonstrations are
 checkpoints of that complete product, not reduced MVP definitions.
 
 **Central feedback loop:** explore -> observe -> challenge -> intervene ->
@@ -69,8 +78,8 @@ other work. A separate chat box beside decorative cards does not meet this goal.
 | M2: Working spine | 4-12 | One real end-to-end path through persistence, visible graph, a creative operation, assessment, acceptance and concurrent spoken collaboration. |
 | M3: Creative workspace | 13-20 | Rich inheritance, reusable branch development, specific contextual suggestions, direct comparison/Weave and three real views over one workspace. |
 | M4: Exploration intelligence | 21-25 | Wander explores and responds to recurrence; map/readings are challengeable; Agent Drive pursues explicit goals without a separate engine. |
-| M5: Remaining product capabilities | 26-30 | Complete instrument coverage, usable output artifacts and real REST/MCP access, without duplicating engines or creating alternative state stores. |
-| M6: Integrated release | 31-34 | A complete, independently reviewed Minerva with durable infrastructure and accepted experience, deployed privately with honest operating limits. |
+| M5: Remaining product capabilities | 26-28 | Complete instrument coverage and usable browser output artifacts, without duplicating engines or creating alternative state stores. |
+| M6: Integrated release | 31-34 | A complete, independently reviewed prototype operating locally with durable state and accepted experience; private hosting is optional. |
 
 **Scheduling:** follow the milestone dependencies and each package's stated
 prerequisites. Numbering gives a recommended route, not permission to continue
@@ -149,10 +158,8 @@ under the reviewer. Never include secrets or private user workspace data.
 Keep the handoff small: current outcome and exclusions; candidate and startup/
 journey; observed evidence and gaps; specific review question; next bounded step.
 Use the existing handoff/matrix rather than a new per-model tracking system.
-M5 has one exception to the initial source-first packet: Fable first attempts
-the external-client journey using only the published interface documentation,
-task, endpoint and authorized access. Give implementation details afterward
-for diagnosis, not as a walkthrough that conceals a discovery/usability failure.
+M5 reviews the browser instrument/output journey; no external-client review
+or machine-access setup is required.
 
 **Continuity:** keep one capability matrix in docs/product/CAPABILITIES.md and
 a short docs/HANDOFF.md. The template's `AGENTS.md` remains the working
@@ -236,8 +243,10 @@ by the reviewer, so clarity matters more than formatting.
 proof needs correction. If review, user acceptance, credentials or infrastructure
 are unavailable, mark that gate pending/blocked. Only explicitly authorized
 nondependent work may continue; do not manufacture an approval or waive the gap.
-M6 has a pre-deployment release-candidate review and a post-deployment outcome
-confirmation. Required functionality and overall user experience acceptance
+M6 has a release-candidate review and a local-operation confirmation. A hosted
+confirmation applies only when optional private hosting is authorized; lack of
+hosting does not block local release. Required functionality and overall user
+experience acceptance
 cannot be deferred by calling a partial build complete. Empirical creativity
 claims require their own evidence and may honestly remain unresolved.
 
@@ -254,8 +263,9 @@ turn an impasse into a new framework or an expanded feature assignment.
 Use the new repository path, current revision, product/design contracts and
 specific question supplied for this consultation. The product is a complete
 spatial creative studio with visible relationships, three views, contextual
-operations, comparison/Weave, Wander/Agent Drive, concurrent voice, outputs and
-REST/MCP. Custom implementation is new; no old application or template is needed.
+operations, comparison/Weave, Wander/Agent Drive, concurrent voice and outputs.
+It is browser-only with no sign-in and local access by default; external
+REST/MCP APIs are excluded. Custom implementation is new; no old application is needed.
 
 Complete the consultation in one pass without pausing for permission; the
 read-only steps here are already authorized and the user is not watching.
@@ -294,8 +304,9 @@ Choose one demonstrable outcome for this session; label partial checkpoints
 with their next unfinished outcome. Prepare the handoff for an operator-started
 Fable session in a separate checkout; do not routinely launch your own critic.
 
-Build a new Minerva: a private, single-owner, online-first spatial human-AI
-creative studio. It must support exploring an idea space, seeing relationships
+Build a new Minerva: a single-user, browser-only spatial human-AI creative
+prototype with no sign-in and local access by default. It must support exploring
+an idea space, seeing relationships
 and inheritance, developing and recombining branches, interpreting patterns,
 and talking to a collaborator while working. Better architecture must preserve
 this product, not reduce it to a canvas, a few generation buttons and a chat panel.
@@ -315,9 +326,10 @@ atlas theme.
 
 First inspect the active contract in docs/build-prompts.md,
 docs/product/INTENT.md, docs/product/SPEC.md, docs/product/DECISIONS.md,
-README.md and AGENTS.md. If active instructions still prescribe a 23-prompt
-sequence, make views/instruments/outputs/Agent Drive/REST/MCP optional, or
-forbid milestone gates, reconcile only those outdated instructions with this
+README.md and AGENTS.md. If active instructions still require C15/external APIs,
+sign-in or mandatory hosted deployment, prescribe the old 23-prompt sequence,
+make other required capabilities optional, or forbid milestone gates,
+reconcile only those outdated instructions with this
 contract. Record an actual supersession in docs/product/DECISIONS.md and retain
 the working agreement's bias-to-action and authorization boundaries.
 Historical decisions such as D-104/D-111 may remain when clearly superseded;
@@ -379,23 +391,25 @@ C13 Collaboration: typed and bidirectional voice discussion, idea/link
 C14 Outputs: branch-linked structured browser prototype, runnable isolated
     HTML prototype, controlled paired experiment, coding-session handoff and
     reusable synthesis with evidence and provenance.
-C15 External access: documented REST and MCP creative/workspace capabilities,
-    using the same application operations, identities and cost admission.
 C16 Experience: a living atlas, cartographic paper/ink, concise expressive
     titles, legible relationships, compact contextual controls, direct touch/
     keyboard access and concurrent interaction without a dashboard of buttons.
 
 These are release requirements, not a backlog of optional extensions. Keep
 multi-user editing, billing, marketplace plugins, global scale and a large
-research harness outside this contract unless explicitly requested.
+research harness outside this contract unless explicitly requested. C15 is
+retired; external REST/MCP APIs, accounts and sign-in are excluded.
 Do not reproduce opaque lockouts, broken controls or misleading creativity claims.
 
 Use a Next.js/React/TypeScript modular monolith, server-owned Postgres and durable
 Vercel workflows. The target is the public GitHub repository created from the
-owner's template and a separate Vercel project with a requested cumulative $100
-application envelope. The hosted application is private; the source is public. GPT-6 Astra is
-the coding agent; runtime model profiles are an independent choice.
-There must be no second application owner-password screen.
+owner's template with a requested cumulative $100 application envelope.
+Default to loopback-only local access with no sign-in. Internal browser/voice
+server endpoints remain; this is not browser-only storage or execution.
+Hosting is optional only behind an existing suitable private boundary that
+preserves no-sign-in use and denies outside access; otherwise stay local.
+Do not build an access platform. GPT-6 Astra is the coding agent; runtime model
+profiles are an independent choice.
 
 Record six delivery milestones in the product contract:
 M1 Experience proof: original populated interactive fixture, no live services.
@@ -404,9 +418,10 @@ M2 Working spine: persistence, visible graph, one real creative operation,
 M3 Creative workspace: inheritance/recipes, comparison, contextual planning,
    Weave and three views with voice continuity.
 M4 Exploration intelligence: Wander, recurrence, map/readings and Agent Drive.
-M5 Remaining capabilities: complete instruments, outputs, REST and MCP.
+M5 Remaining capabilities: complete browser instruments and outputs.
 M6 Integrated release: full journeys, independent release review, infrastructure
-   readiness, user experience acceptance and verified authorized deployment.
+   readiness, user experience acceptance and verified local operation.
+   Hosted operation is conditional on separate authorization and a suitable boundary.
 These are milestones, not six reduced products. Astra implements; Fable 5.1
 in Claude independently reviews each milestone and provides outside advice.
 Keep current milestone, package state, findings/dispositions and open capability
@@ -417,7 +432,7 @@ Distinguish required outcomes from flexible implementation choices. Do not
 invent a scope reduction. This session produces the complete product contract
 and a short handoff, not an application-completion claim.
 Package complete when: docs/product/CONTRACT.md indexes the authoritative
-documents, SPEC.md contains all sixteen required capabilities and observable
+documents, SPEC.md contains all fifteen required capabilities and observable
 acceptance journeys, CAPABILITIES.md records their honest implementation state,
 and the six milestones and unknowns are recorded; the active inherited contract is verified
 current or reconciled where outdated, with any actual supersession recorded
@@ -438,7 +453,8 @@ Fable session in a separate checkout; do not routinely launch your own critic.
 
 Create Minerva's runnable foundation in the new project directory. It is a full
 spatial creative studio with relationship-rich cards, three views, contextual
-creative operations, Wander, Agent Drive, voice, outputs and REST/MCP access.
+creative operations, Wander, Agent Drive, voice and outputs. It is a browser-only
+prototype with no sign-in, local access by default and no external API buildout.
 Read this repository's product contract; if absent, report that prerequisite.
 Author custom implementation within this new project. The template already
 provides a pinned Next.js shell, CI and exact Node/npm pins; extend it rather
@@ -460,14 +476,16 @@ equivalence or novelty merely because identifiers and calculations are valid.
 
 Provide an actual startup path, pinned compatible dependencies, existing-runner
 unit/browser checks and CI. Establish a server-only configuration boundary and
-explicit unavailable states. Establish development/preview/production configuration,
+explicit unavailable states. Bind dev/start to loopback with no sign-in.
+Establish isolated development/review configuration,
 database migrations, connection pooling, durable dispatch/reconciliation and
 correlated run/request diagnostics as infrastructure responsibilities. At this
 experience-proof milestone, define their ownership and interfaces; build the
 working persistence and execution paths in the working-spine milestone rather
 than delaying the interactive proof for unused infrastructure. Document
-operational ownership and backup/restore paths; do not substitute an expiring
-demo database for durable release infrastructure. Do not fill the UI with buttons
+operational ownership and backup/restore paths. Hosting is optional, not a
+foundation prerequisite; do not add authentication or access infrastructure.
+Do not fill the UI with buttons
 for unimplemented capabilities or label a scaffold as the product. Do not
 manufacture empty modules.
 
@@ -587,7 +605,8 @@ and design contracts, capability matrix and startup/fixture instructions.
 No earlier application source, template, external screenshot or conversation is
 required. The full product is a relationship-rich spatial creative studio with
 three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice, outputs and REST/MCP. This milestone is not the entire release.
+concurrent voice and outputs. The browser-only prototype has no sign-in and
+defaults to local access. This milestone is not the entire release.
 
 Required demonstration:
 Pan and zoom; trace both parents of a recombination; move a card with its edges attached; inspect inherited material; select a pair; open a local contextual chooser on desktop and touch.
@@ -633,7 +652,8 @@ source-only inspection cannot approve visual or live-interaction claims.
 Use synthetic data and existing project commands. Preserve private access.
 
 Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY TO DEPLOY from DEPLOYED OUTCOME CONFIRMED.
+BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
+Report hosted outcomes separately only when hosting was authorized.
 For each material finding give capability ID, expected versus observed behavior,
 reproduction/evidence, consequence, confidence and the smallest corrective
 outcome. Separate observed failures, hypotheses and optional suggestions.
@@ -653,7 +673,7 @@ claim that the problem was fixed. This review never authorizes reduced scope.
 
 **Exit and review:** State and lineage persist, a bounded real generation/review path and bidirectional voice work, the canvas stays usable, and Fable verifies this exact spine. Missing live credentials leave the live gate blocked, not replaced by fixture claims.
 
-**Still open:** Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth, outputs and external-client coverage remain explicitly open.
+**Still open:** Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth and outputs remain explicitly open.
 
 **Review cadence:** M2 is the heaviest milestone, so it has two review points.
 After package 10, run the Fable M2 review below as an **interim review** of the
@@ -664,7 +684,7 @@ the same review as the **final M2 review** with the full demonstration,
 including voice during canvas work. Expect the final review to take at least
 one recheck round; that is normal for this milestone, not a scope problem.
 
-### Prompt 4: implement workspaces, persistence and frictionless private access
+### Prompt 4: implement workspaces, persistence and no-sign-in local access
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M2: Working spine.
@@ -678,7 +698,7 @@ Fable session in a separate checkout; do not routinely launch your own critic.
 Implement Minerva's workspace lifecycle in this new Next.js/TypeScript modular
 monolith. Postgres is authoritative; the browser owns transient interaction.
 Read the local product contract. Newly authored custom implementation only;
-do not import any earlier application's data, schema implementation or auth code.
+do not import any earlier application's data or schema implementation.
 
 Deliver create/open/list/rename/duplicate and deliberate deletion with clear
 confirmation, plus saved brief and explicit constraints. Duplicate creates
@@ -692,20 +712,22 @@ content, revision history, relationships, proposals, decisions, runs and
 provenance; extend it with later product records. An export is not an import.
 Never save the whole workspace for a card drag.
 
-Use hosting-platform authentication without a second owner-password screen.
-Verify the actual protection scope for every deployed address; a public source
-repository, a Vercel project setting or a VERCEL environment variable does not
-authenticate a request. Keep local
-access explicit and loopback-only, never enabled on a hosted deployment.
-Keep server credentials private and enforce same-origin JSON mutations.
-Do not silently enable an unprotected production/custom domain.
+Open the local URL and operate without accounts, platform sign-in or an
+owner-password screen. Bind the server to loopback, keep credentials server-side,
+validate Host/Origin and enforce same-origin JSON mutations. Reject cross-origin
+mutations and permissive CORS; another website must not be able to use local paid
+operations. Keep internal endpoints, not an external API product.
+Hosting is optional only behind an existing suitable private boundary that
+preserves no-sign-in use and denies outside access on all serving addresses.
+Otherwise stay local; do not create access infrastructure or an anonymous service.
 
 Exercise lifecycle operations, reload, duplication reference integrity,
 stale writes and unavailable configuration against an isolated local database.
-Report missing hosted access instead of adding a surprise password or fake data.
+Exercise opening the app without sign-in and rejection of unexpected Host/Origin
+and cross-origin mutations. Missing hosting is not a local-completion blocker.
 Update C01 evidence and the handoff; no unauthorized external provisioning.
 Package complete when: create, open, list, rename, duplicate and delete, brief
-and constraint revisions, the export contract and platform-authenticated access
+and constraint revisions, the export contract and no-sign-in loopback access
 are exercised against an isolated local database; the listed edge cases pass;
 and C01 evidence and the handoff are updated.
 ```
@@ -1024,12 +1046,12 @@ In the working spine, deliver selected-card discussion, attention and one
 explicitly requested creative action against the working Lineage canvas.
 Keep the service independent of view/panel lifetimes. Cross-view and full
 creative-action coverage belongs to the creative-workspace milestone and stays
-open in C13/C15; a read-only chat box cannot satisfy that later gate.
+open in C13; a read-only chat box cannot satisfy that later gate.
 Package complete when: the typed collaborator explains, challenges, suggests
 and executes explicitly requested scoped actions through shared operations
 with stable intent IDs; attention events behave as specified; the listed
 scenarios pass in the working Lineage view during a durable operation; and
-C13/C15 evidence records voice for Prompt 12, cross-view/full creative-action
+C13 evidence records voice for Prompt 12, cross-view/full creative-action
 coverage for M3, and repetition during Wander for M4 as pending obligations.
 ```
 
@@ -1100,7 +1122,7 @@ Create a workspace and idea; generate alternatives; trace sources; inspect and k
 Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
 this milestone's independent review prompt. Record and resolve material findings;
 Fable's opinion does not replace user acceptance or observed behavior.
-Still open at this milestone: Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth, outputs and external-client coverage remain explicitly open.
+Still open at this milestone: Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth and outputs remain explicitly open.
 Package complete when: microphone input, spoken replies, barge-in, disconnect
 and reconnect work with a stable connection across panel, selection, drag and
 zoom changes and incoming operation results; cross-view coverage is completed
@@ -1135,7 +1157,8 @@ and design contracts, capability matrix and startup/fixture instructions.
 No earlier application source, template, external screenshot or conversation is
 required. The full product is a relationship-rich spatial creative studio with
 three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice, outputs and REST/MCP. This milestone is not the entire release.
+concurrent voice and outputs. The browser-only prototype has no sign-in and
+defaults to local access. This milestone is not the entire release.
 
 Interim demonstration (after package 10):
 Create a workspace and idea; generate alternatives; trace sources; inspect and
@@ -1165,7 +1188,7 @@ working conversation. Review the planned boundary, not every increment as an
 additional full-review ceremony.
 
 Still-open scope at this boundary:
-Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth, outputs and external-client coverage remain explicitly open.
+Rich genome/recipe workflows, full comparison/Weave, alternate views, contextual planning, Wander/Agent Drive, instrument breadth and outputs remain explicitly open.
 
 Complete the whole review in one pass; the user is not watching while you work
 and has already authorized every read-only step in this prompt, so do not pause
@@ -1203,7 +1226,7 @@ claim that the problem was fixed. This review never authorizes reduced scope.
 
 **Exit and review:** The complete creative-workspace journey works with existing services, all views use canonical data, Fable verifies the interaction, and the user reviews the richer experience. Constellation initially uses a stated computed method, not canned groupings.
 
-**Still open:** Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth, output artifacts and external clients belong to M5; they are not optional.
+**Still open:** Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth and output artifacts belong to M5; they are not optional.
 
 ### Prompt 13: expose history, inheritance and the idea genome
 
@@ -1546,7 +1569,7 @@ Inspect a multi-parent genome; preserve selected parts; compare distant cards; c
 Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
 this milestone's independent review prompt. Record and resolve material findings;
 Fable's opinion does not replace user acceptance or observed behavior.
-Still open at this milestone: Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth, output artifacts and external clients belong to M5; they are not optional.
+Still open at this milestone: Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth and output artifacts belong to M5; they are not optional.
 Package complete when: a real or clearly labeled fixture conversation
 performs the listed discussion-and-action journey during a durable creative
 operation with no unrequested acceptance, duplicate effect or canvas lock;
@@ -1573,7 +1596,8 @@ and design contracts, capability matrix and startup/fixture instructions.
 No earlier application source, template, external screenshot or conversation is
 required. The full product is a relationship-rich spatial creative studio with
 three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice, outputs and REST/MCP. This milestone is not the entire release.
+concurrent voice and outputs. The browser-only prototype has no sign-in and
+defaults to local access. This milestone is not the entire release.
 
 Required demonstration:
 Inspect a multi-parent genome; preserve selected parts; compare distant cards; choose a card-specific suggested move; Weave and keep a child; revisit history; switch all three views while speaking and while a durable operation finishes.
@@ -1582,7 +1606,7 @@ Review focus:
 Test inheritance evidence and multi-parent visibility, rejected recipes and revisit behavior, comparison slots, selected contributions, source-specific AI suggestions and actual recombination. Switch Lineage/Evolution/Constellation without changing content or losing voice. Distinguish computed initial Constellation groups from M4 interpretation. Flag generic menus or repeated toolbars that recreate friction.
 
 Still-open scope at this boundary:
-Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth, output artifacts and external clients belong to M5; they are not optional.
+Wander-specific recurrence overlays and advanced space readings belong to M4. Standalone instrument breadth and output artifacts belong to M5; they are not optional.
 
 Complete the whole review in one pass; the user is not watching while you work
 and has already authorized every read-only step in this prompt, so do not pause
@@ -1598,7 +1622,8 @@ source-only inspection cannot approve visual or live-interaction claims.
 Use synthetic data and existing project commands. Preserve private access.
 
 Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY TO DEPLOY from DEPLOYED OUTCOME CONFIRMED.
+BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
+Report hosted outcomes separately only when hosting was authorized.
 For each material finding give capability ID, expected versus observed behavior,
 reproduction/evidence, consequence, confidence and the smallest corrective
 outcome. Separate observed failures, hypotheses and optional suggestions.
@@ -1618,7 +1643,7 @@ claim that the problem was fixed. This review never authorizes reduced scope.
 
 **Exit and review:** Fable verifies policy/context boundaries and the interactive analysis loop, including previously deferred Wander-plus-voice scenarios. Efficacy has its own evidence status; unresolved human comparative judgments prohibit improvement claims, not honest reporting of implemented behavior.
 
-**Still open:** Instrument breadth, materialized outputs and external-client coverage still need M5. Final full-product and infrastructure qualification belongs to M6.
+**Still open:** Instrument breadth and materialized outputs still need M5. Final full-product and infrastructure qualification belongs to M6.
 
 ### Prompt 21: build Wander roots, frontier and exploration archive
 
@@ -1846,7 +1871,7 @@ Explore independent roots and multiple paths; expose a repeated mechanism; attem
 Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
 this milestone's independent review prompt. Record and resolve material findings;
 Fable's opinion does not replace user acceptance or observed behavior.
-Still open at this milestone: Instrument breadth, materialized outputs and external-client coverage still need M5. Final full-product and infrastructure qualification belongs to M6.
+Still open at this milestone: Instrument breadth and materialized outputs still need M5. Final full-product and infrastructure qualification belongs to M6.
 Package complete when: the compact case set runs repeatably; context
 isolation and truthful relationships are verified; the blinded comparison is
 prepared with declared settings and spend and run only if authorized; efficacy
@@ -1873,7 +1898,8 @@ and design contracts, capability matrix and startup/fixture instructions.
 No earlier application source, template, external screenshot or conversation is
 required. The full product is a relationship-rich spatial creative studio with
 three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice, outputs and REST/MCP. This milestone is not the entire release.
+concurrent voice and outputs. The browser-only prototype has no sign-in and
+defaults to local access. This milestone is not the entire release.
 
 Required demonstration:
 Explore independent roots and multiple paths; expose a repeated mechanism; attempt a targeted change and an honest stagnation case; navigate a reading to source evidence; challenge a grouping; pursue an achievable and impossible goal. Speak, move and switch views during these runs.
@@ -1886,7 +1912,7 @@ contributions against actual artifacts; correct provenance alone does not
 establish that the claimed creative transformation occurred.
 
 Still-open scope at this boundary:
-Instrument breadth, materialized outputs and external-client coverage still need M5. Final full-product and infrastructure qualification belongs to M6.
+Instrument breadth and materialized outputs still need M5. Final full-product and infrastructure qualification belongs to M6.
 
 Complete the whole review in one pass; the user is not watching while you work
 and has already authorized every read-only step in this prompt, so do not pause
@@ -1902,7 +1928,8 @@ source-only inspection cannot approve visual or live-interaction claims.
 Use synthetic data and existing project commands. Preserve private access.
 
 Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY TO DEPLOY from DEPLOYED OUTCOME CONFIRMED.
+BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
+Report hosted outcomes separately only when hosting was authorized.
 For each material finding give capability ID, expected versus observed behavior,
 reproduction/evidence, consequence, confidence and the smallest corrective
 outcome. Separate observed failures, hypotheses and optional suggestions.
@@ -1918,16 +1945,11 @@ claim that the problem was fixed. This review never authorizes reduced scope.
 
 **Entry:** The creative workspace and exploration intelligence on shared application services.
 
-**Working demonstration:** Invoke each instrument independently; produce a structured prototype and isolated runnable HTML; compare a controlled pair; save/download a synthesis and coding handoff; navigate and invoke the same scoped operation through REST and an actual MCP client.
+**Working demonstration:** Invoke each instrument in the browser; produce a structured prototype and isolated runnable HTML; compare a controlled pair; save/download a synthesis and coding handoff.
 
-**Exit and review:** Every required capability has an implemented path. Fable verifies representative adapters, outputs and shared admission. A tool list, code block or endpoint declaration is not enough; unresolved paths remain blockers for M6 completion.
+**Exit and review:** Every required capability has an implemented path. Fable verifies browser instruments, outputs and shared admission. A code block alone is not a working output; unresolved paths remain blockers for M6 completion.
 
-**Cold-start exercise:** Fable first uses only published interface documentation,
-an assigned task, endpoints and authorized access to discover and complete a
-REST/MCP journey. No builder walkthrough or special demonstration wrapper.
-Source inspection follows that attempt to diagnose failures.
-
-**Still open:** All C01-C16 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
+**Still open:** All C01-C14 and C16 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
 
 ### Prompt 26: implement the complete creative instrument family
 
@@ -2040,101 +2062,15 @@ Exercise a pair with a contradictory outcome, missing human observation,
 edited sources, handoff export and synthesis reload. Keep unmeasured effects
 unresolved. Use shared modules and authorized spend, not a research platform.
 Update C05/C14 evidence and the handoff without claiming product completion.
+Milestone closeout: demonstrate this complete M5 journey:
+Invoke each instrument in the browser; produce a structured prototype and
+isolated runnable HTML; compare a controlled pair; save/download a synthesis
+and coding handoff. Prepare the exact revision and evidence packet for Fable's
+M5 review. Cross-product qualification and final user acceptance remain open.
 Package complete when: a controlled paired experiment, a coding-session
 handoff and a saved reusable synthesis exist with provenance; the listed cases
-pass with unmeasured effects left unresolved; and C05/C14 evidence is updated.
-```
-
-### Prompt 29: expose the complete application through REST
-
-```text
-You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining product capabilities.
-Required prerequisites: The complete application operations and a workable protected-access model.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
-
-Implement Minerva's REST surface with newly authored code. Read the
-product contract and application operations. External access is required,
-not a separate implementation of the product.
-
-Expose documented schemas for creative instruments and progressive workspace
-navigation: list/open/active scope, summaries, graph, search, selected cards,
-history/provenance, comparison, contextual moves, runs/control, output artifacts
-and complete export. HTTP paths may be new; no old endpoint compatibility is
-required. Their useful behaviors must exist.
-
-Routes call the same application functions as UI and voice. Preserve exact IDs,
-target revisions, input validation, idempotency receipts, read/mutation authority
-and shared cost admission. Do not use a global active-workspace pointer for
-unrelated callers or a second persistence path.
-
-Keep browser access frictionless after platform authentication, without adding
-an owner-password screen. Provide a permitted, scoped machine-access mechanism
-and verify it works with deployment protection; never publish an open paid API.
-
-Exercise progressive reads and the same operation through UI/application and
-REST, including duplication, stale revisions, denied authority and budget
-exhaustion. Update C15 and exact API docs; endpoint presence is not coverage.
-Package complete when: documented REST routes cover the listed navigation and
-creative operations through shared application functions with idempotency,
-authority and admission; the same operation is exercised through UI and REST
-including the listed cases; scoped machine access works with deployment
-protection; and C15 evidence and API docs are updated.
-```
-
-### Prompt 30: expose the same capabilities through MCP
-
-```text
-You are GPT-6 Astra in Codex, implementing a work package in M5: Remaining product capabilities.
-Required prerequisites: Shared application operations, REST contracts and authorized machine access.
-Work only in the new project's code and contracts. Preserve the full product
-scope and report package readiness separately from milestone/user acceptance.
-Choose one demonstrable outcome for this session; label partial checkpoints
-with their next unfinished outcome. Prepare the handoff for an operator-started
-Fable session in a separate checkout; do not routinely launch your own critic.
-
-Implement Minerva's MCP adapter with newly authored code and maintained
-protocol libraries. Use current official documentation and the complete product
-contract in this repository; no external application is a prerequisite.
-
-Expose independently useful creative instruments plus progressive workspace
-discovery, active scope, summary/graph/search, exact cards and provenance, run
-status/control, scoped creative requests, execution artifacts and export.
-Do not require a client to upload the entire workspace or invoke the full suite.
-
-Tools call the same application operations as UI, voice and REST. Scope caller
-identity and active workspace correctly. Read permission does not imply mutation
-or paid-call authority. Use stable command IDs, expected revisions, explicit
-admitted/applied/conflicted/failed receipts and shared allowance.
-
-Verify actual machine authentication and transport behavior with the protected
-deployment model; never compensate by opening the app publicly or installing
-a second browser password. Keep schemas progressive and descriptions honest.
-
-Document a cold-start task: discover the active workspace, find two specified
-ideas, inspect their source revisions, request one authorized scoped operation
-and retrieve its actual receipt/result. A fresh client must do this using the
-published interface documentation without a builder's private walkthrough or
-a one-off wrapper written just for the demonstration.
-
-Exercise one full read-to-action-to-receipt journey through an actual compatible
-client, plus denied scope, duplicate delivery and stale source cases. A list
-of tool definitions without a working invocation is incomplete. Update C15
-evidence and operator instructions; do not deploy without authorization.
-Milestone closeout: demonstrate this complete M5 journey:
-Invoke each instrument independently; produce a structured prototype and isolated runnable HTML; compare a controlled pair; save/download a synthesis and coding handoff; navigate and invoke the same scoped operation through REST and an actual MCP client.
-Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
-this milestone's independent review prompt. Record and resolve material findings;
-Fable's opinion does not replace user acceptance or observed behavior.
-Still open at this milestone: All C01-C16 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
-Package complete when: an actual compatible MCP client completes the cold-start
-read-to-action-to-receipt journey from published instructions alone, plus the denied-scope, duplicate and stale
-cases against shared operations; machine authentication is verified; C15
-evidence and operator instructions are updated; and the Fable M5 review packet
-is prepared.
+pass with unmeasured effects left unresolved; C05/C14 evidence is updated;
+and the Fable M5 review packet is prepared.
 ```
 
 ### Fable review M5: Remaining product capabilities
@@ -2156,24 +2092,23 @@ and design contracts, capability matrix and startup/fixture instructions.
 No earlier application source, template, external screenshot or conversation is
 required. The full product is a relationship-rich spatial creative studio with
 three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice, outputs and REST/MCP. This milestone is not the entire release.
+concurrent voice and outputs. The browser-only prototype has no sign-in and
+defaults to local access. This milestone is not the entire release.
 
 Required demonstration:
-Invoke each instrument independently; produce a structured prototype and isolated runnable HTML; compare a controlled pair; save/download a synthesis and coding handoff; navigate and invoke the same scoped operation through REST and an actual MCP client.
+Invoke each instrument in the browser; produce a structured prototype and isolated runnable HTML; compare a controlled pair; save/download a synthesis and coding handoff.
 
 Review focus:
-Try the distinct instruments rather than merely inspecting their names. Exercise prototype interactions, source-linked experiments/handoffs/synthesis, and the same operation through REST and a real MCP client. Check shared business logic, source identity, authority and cost admission. Confirm generated artifacts cannot acquire application authority. Do not expand into a generic execution platform.
-For the external-client journey, begin without implementation source or Astra's
-walkthrough. Use only published API/MCP instructions, the assigned task, endpoint
-and approved access to discover the workspace, inspect the specified ideas and
-their revisions, invoke an authorized operation and retrieve the receipt/result.
-Record discovery or usability failures before reading source to diagnose them.
-Do not silently repair the interface or obtain extra coaching and then call
-the cold-start attempt successful. Missing paid-call allowance is a stated
-limit, not permission to spend or substitute a fabricated response.
+Try the distinct instruments in the browser rather than merely inspecting their
+names. Exercise prototype interactions and source-linked experiments, handoffs
+and synthesis. Check shared operations, source identity and cost admission.
+Confirm generated artifacts cannot acquire application authority. No external
+API, machine-client journey or generic execution platform is required.
+Missing paid-call allowance is a stated limit, not permission to spend or
+substitute a fabricated response.
 
 Still-open scope at this boundary:
-All C01-C16 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
+All C01-C14 and C16 scope is now implemented or explicitly identified as a gap. Cross-product qualification, infrastructure readiness and final user acceptance remain.
 
 Complete the whole review in one pass; the user is not watching while you work
 and has already authorized every read-only step in this prompt, so do not pause
@@ -2189,7 +2124,8 @@ source-only inspection cannot approve visual or live-interaction claims.
 Use synthetic data and existing project commands. Preserve private access.
 
 Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY TO DEPLOY from DEPLOYED OUTCOME CONFIRMED.
+BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
+Report hosted outcomes separately only when hosting was authorized.
 For each material finding give capability ID, expected versus observed behavior,
 reproduction/evidence, consequence, confidence and the smallest corrective
 outcome. Separate observed failures, hypotheses and optional suggestions.
@@ -2203,11 +2139,11 @@ claim that the problem was fixed. This review never authorizes reduced scope.
 
 ## Milestone 6: Integrated release
 
-**Entry:** Implemented C01-C16 paths and evidence/findings from all previous milestones; no unacknowledged scope cuts.
+**Entry:** Implemented C01-C14 and C16 paths and evidence/findings from all previous milestones; no unacknowledged scope cuts.
 
-**Working demonstration:** Run the complete cross-view, voice, exploration, comparison, output and external-client journey; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify deployment/data ownership and restore instructions.
+**Working demonstration:** Run the complete cross-view, voice, exploration, comparison and output journey locally with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify local service/data ownership and restore instructions.
 
-**Exit and review:** Fable's release-candidate review, Astra's evidence-based resolution of material findings, user experience acceptance and the authorized deployed smoke all complete. Temporary or blocked infrastructure is reported as an incomplete review deployment, not a finished release.
+**Exit and review:** Fable's release-candidate review, Astra's evidence-based resolution of material findings, user experience acceptance and local operation with configured services all complete. Missing live provider evidence remains a gap; lack of hosted deployment does not block a local prototype release.
 
 **Demonstration:** prepare one coherent before/after story targeting roughly
 90 seconds of presentation, not a 90-second provider-response guarantee.
@@ -2216,7 +2152,7 @@ short demonstration highlights the complete product; it does not reduce scope.
 
 **Still open:** Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
 
-**Review order:** complete Astra packages 31-33, run the Fable M6 review below against the release candidate, resolve material findings, then run Astra package 34. Return to Fable for the post-deployment outcome confirmation. Do not wait until after publication for the first release review.
+**Review order:** complete Astra packages 31-33, run the Fable M6 review below against the release candidate, resolve material findings, then run Astra package 34. Return to Fable for local-operation confirmation. Confirm optional hosting only if separately authorized; do not wait until after publication for the first release review.
 
 ### Prompt 31: qualify concurrency and bounded recovery across the product
 
@@ -2324,12 +2260,12 @@ with their next unfinished outcome. Prepare the handoff for an operator-started
 Fable session in a separate checkout; do not routinely launch your own critic.
 
 Audit this newly authored Minerva implementation against every required
-capability C01-C16 and the backend architecture contract. No old application source
+capability C01-C14 and C16 and the backend architecture contract. No old application source
 or prior conversation is needed. Do not substitute "core works" for completeness.
 
 For each capability, trace a visible user workflow through application logic,
-persistence/provider execution and back to the UI, plus the relevant external
-adapters. Record evidence and gaps. A stored edge is not a visible relationship;
+persistence/provider execution and back to the browser. Record evidence and gaps.
+A stored edge is not a visible relationship;
 a generic action enum is not contextual planning; a text summary is not a map;
 transcription is not conversation; tabs are not implemented views.
 
@@ -2343,8 +2279,9 @@ must share business operations. Content/layout/run writes remain independent.
 
 Inspect infrastructure as well as modules: environment isolation, migration
 execution, database pooling, durable dispatch/reconciliation, observable failures,
-backup/restore instructions and reproducible deployment. Durable release data
-must not depend on a temporary preview expiry. Exercise the recovery path
+backup/restore instructions and reproducible local startup. Distinguish closing
+the browser from stopping local services; reconcile interrupted work on restart.
+Optional hosted data must not depend on a temporary preview expiry. Exercise the recovery path
 without touching working data; no multi-region or enterprise platform is required.
 Confirm custom code/assets were authored for this project rather than imported
 from an earlier application. Standard dependencies are not custom application reuse.
@@ -2356,7 +2293,7 @@ explicit user-approved scope amendment can change the contract.
 Missing user experience acceptance also blocks an overall completed-product
 claim, even if automated functional checks pass.
 Update the matrix and a concise handoff, including all remaining blockers.
-Package complete when: every C01-C16 journey is traced with evidence or a
+Package complete when: every C01-C14 and C16 journey is traced with evidence or a
 named gap; the representative change and dependency rules are verified;
 infrastructure and provenance checks are recorded; functional, visual,
 architecture, infrastructure, runtime and efficacy statuses are separated; the
@@ -2364,36 +2301,43 @@ matrix and handoff list all blockers; and the Fable release-candidate packet is
 prepared.
 ```
 
-### Prompt 34: publish the complete private application honestly
+### Prompt 34: release the local browser prototype honestly
 
 ```text
 You are GPT-6 Astra in Codex, implementing a work package in M6: Integrated release.
-Required prerequisites: Fable's M6 pre-deployment review of the exact candidate, material findings resolved, user acceptance and deployment authorization.
+Required prerequisites: Fable's M6 release-candidate review, material findings resolved, user acceptance and authorized configured services for local operation.
 Work only in the new project's code and contracts. Preserve the full product
 scope and report package readiness separately from milestone/user acceptance.
 Choose one demonstrable outcome for this session; label partial checkpoints
 with their next unfinished outcome. Prepare the handoff for an operator-started
 Fable session in a separate checkout; do not routinely launch your own critic.
 
-Publish Minerva from this newly authored codebase only when authorized.
+Deliver Minerva as a single-user, browser-only local prototype with no sign-in.
+Publication or optional private hosting requires separate authorization.
 It is the complete spatial creative studio: relationship-rich cards and
 inheritance, three real views, contextual moves, comparison/Weave, instruments,
-Wander and space analysis, Agent Drive, concurrent voice, outputs and REST/MCP.
+Wander and space analysis, Agent Drive, concurrent voice and outputs.
 Read the capability matrix, design acceptance and architecture/infrastructure
 evidence. No previous application repository or conversation is required.
 
-Do not publish a reduced MVP as completed Minerva. All required behaviors must
+Do not present further scope cuts as completed Minerva. All required behaviors must
 have evidence; unresolved subjective acceptance stays explicit.
 If representative user experience acceptance is missing, deliver a review build,
 not an overall product-completion claim.
 Development previews may be shared as incomplete, never relabeled complete
 because a deployment is Ready or a CI run is green.
 
-Target the public GitHub repository and separate Vercel project with authorized
-database/model resources. Verify platform protection without a second owner
-password and actual machine access. Public source is not public hosting: confirm
-the deployed application is private and that no secret, fixture user data or
-unlicensed asset has been committed.
+Default to a loopback-bound local server with authorized database/model resources.
+Open the browser URL and work without accounts or a login redirect. Confirm
+same-origin request protections and rejection of unexpected Host/Origin.
+Document local startup, required running services, persistence and recovery.
+Do not expose the no-sign-in app to a shared network or the internet.
+
+Only if optional hosting is requested and separately authorized, use an existing
+suitable private boundary that preserves no-sign-in use and denies outside access
+on every serving address. Otherwise remain local without adding access
+infrastructure. Public source is not public hosting: confirm no secret, user data
+or unlicensed asset has been committed.
 Do not silently change visibility. Never accept marketplace/legal terms for
 the person or copy a pre-existing application's custom code/assets.
 
@@ -2413,25 +2357,30 @@ unrelated team limits, buy credits, silently reset caps or imply a hard total
 ceiling that metering cannot enforce. Distinguish temporary preview storage
 from owned durable production storage and disclose expiration.
 
-Exercise the integrated deployed journey using real configured services within
+Exercise the integrated local journey using real configured services within
 authorization, including relationship tracing, views, contextual choice,
 recombination, conversation, partial failure and reconnect. Deliver actual
-URLs, source provenance, operating instructions, cost limits and blockers.
+local URL/startup commands, source provenance, operating instructions, cost
+limits and blockers. If hosting was separately authorized, additionally exercise
+the hosted journey and denial outside its existing private boundary.
 Update the handoff. Functional completion is not empirical proof of creativity;
 never disguise missing functionality as later optional extensions.
 Milestone closeout: demonstrate this complete M6 journey:
-Run the complete cross-view, voice, exploration, comparison, output and external-client journey; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify deployment/data ownership and restore instructions.
+Run the complete cross-view, voice, exploration, comparison and output journey locally with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify local service/data ownership and restore instructions.
 Prepare the exact revision and evidence packet for Fable 5.1 in Claude using
 this milestone's independent review prompt. Record and resolve material findings;
 Fable's opinion does not replace user acceptance or observed behavior.
 Still open at this milestone: Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
-Package complete when: the authorized deployment serves the complete
-application privately from the public repository with verified protection and
-machine access; the integrated deployed journey is exercised; budget
-allocations and storage ownership are confirmed and disclosed; URLs,
+Package complete when: the complete prototype operates locally with no sign-in,
+loopback binding and internal request protections; the integrated local journey
+is exercised against configured services; budget allocations and storage ownership
+are confirmed and disclosed; startup commands and local URL,
 provenance, operating instructions, cost limits and blockers are delivered; and
 the concise demonstration distinguishes prepared, live, recorded and unavailable
-behavior; and the post-deployment Fable confirmation packet is prepared.
+behavior; and the Fable local-operation confirmation packet is prepared.
+Hosting is not required to complete this package. If separately authorized,
+record its private-boundary evidence and serving outcome without conflating it
+with local completion.
 ```
 
 ### Fable review M6: Integrated release
@@ -2453,26 +2402,34 @@ and design contracts, capability matrix and startup/fixture instructions.
 No earlier application source, template, external screenshot or conversation is
 required. The full product is a relationship-rich spatial creative studio with
 three views, contextual operations, comparison/Weave, Wander/Agent Drive,
-concurrent voice, outputs and REST/MCP. This milestone is not the entire release.
+concurrent voice and outputs. The browser-only prototype has no sign-in and
+defaults to local access. This milestone is not the entire release.
 
 Required demonstration:
-Run the complete cross-view, voice, exploration, comparison, output and external-client journey; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify deployment/data ownership and restore instructions.
+Run the complete cross-view, voice, exploration, comparison and output journey locally with no sign-in; inject failures; recover and reload; inspect dense scenes and narrow layouts; verify local service/data ownership and restore instructions.
 
 Review focus:
-Audit all C01-C16 against running behavior and the exact candidate revision, not the builder's completion narrative. Reproduce representative concurrency/recovery, relationship and external-client journeys. Inspect architecture extension points and infrastructure evidence, plus populated desktop/mobile views. Distinguish ready-to-deploy from an actual deployed result. Verify the post-deploy evidence before closing the milestone; model agreement is not a substitute for user acceptance.
+Audit C01-C14 and C16 against running behavior and the exact candidate revision,
+not the builder's completion narrative. Reproduce representative concurrency,
+recovery, relationship and browser output journeys. Inspect architecture and
+local infrastructure evidence, plus populated desktop/mobile views. Confirm
+opening and operating without sign-in, loopback binding and internal request
+protections. Hosted operation is not required; review it only if separately
+authorized behind an existing suitable private boundary. Model agreement is
+not a substitute for user acceptance.
 Sample IB01-IB06 on the final implementation and revisit cases adjacent to
 recent fixes. Verify the relationship list is bidirectional in coverage while
 preserving each edge's actual direction. Distinguish input simulation, physical
 device observation, technical defects and user experience preferences.
 Distinguish written, integrated, local/live demonstration, reviewed, accepted
-and deployed facts in the handoff. A merge or local server does not establish
-a hosted application; verify the actual serving candidate before confirming
-deployed outcome.
+and optional hosted facts in the handoff. Confirm the actual locally served
+candidate. A merge or local server does not establish hosted operation; confirm
+that separately only if hosting was authorized.
 Watch the central before/after journey without builder narration compensating
 for missing behavior. Confirm the user can see the challenge, proposed change,
 actual outcome and source evidence. Distinguish prepared, live, recorded and
 fallback segments; a short polished presentation cannot conceal missing
-capabilities, failed transformations or unusable external interfaces.
+capabilities, failed transformations or unusable browser outputs.
 
 Still-open scope at this boundary:
 Empirical creative superiority may remain unproven and must be described honestly. Required functionality, material unresolved defects or missing experience acceptance cannot be silently deferred.
@@ -2491,7 +2448,8 @@ source-only inspection cannot approve visual or live-interaction claims.
 Use synthetic data and existing project commands. Preserve private access.
 
 Return a milestone verdict: READY FOR NEXT MILESTONE, CHANGES REQUIRED, or
-BLOCKED; for M6 distinguish READY TO DEPLOY from DEPLOYED OUTCOME CONFIRMED.
+BLOCKED; for M6 distinguish READY FOR LOCAL RELEASE from LOCAL OPERATION CONFIRMED.
+Report hosted outcomes separately only when hosting was authorized.
 For each material finding give capability ID, expected versus observed behavior,
 reproduction/evidence, consequence, confidence and the smallest corrective
 outcome. Separate observed failures, hypotheses and optional suggestions.

@@ -3,11 +3,12 @@
 [![CI](https://github.com/brandyn-s/minerva-template/actions/workflows/ci.yml/badge.svg)](https://github.com/brandyn-s/minerva-template/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-A product contract and thin runnable starter for a private **spatial creative
-studio**: a living atlas of ideas with visible relationships and inheritance,
-three views, contextual creative operations, comparison and Weave, bounded
+A product contract and thin runnable starter for a single-user, browser-only
+**spatial creative prototype** with no sign-in: a living atlas of ideas with
+visible relationships and inheritance, three views, contextual creative
+operations, comparison and Weave, bounded
 Wander exploration, goal-directed Agent Drive, a concurrent typed and spoken
-collaborator, materialized outputs, and REST and MCP access.
+collaborator and materialized outputs.
 
 **A living atlas of ideas.** The starter expresses the paper-and-ink identity
 with an original owl mark and native disclosure controls. It does not simulate
@@ -21,7 +22,7 @@ Keep this template content-free; build the application in a new repository.
 
 ## Product direction
 
-The complete product is defined by sixteen required capabilities, C01-C16, in
+The prototype is defined by fifteen required capabilities, C01-C14 and C16, in
 [SPEC](./docs/product/SPEC.md). All of them are release
 requirements; none is an optional extension. People edit, zoom, trace
 relationships and recombine distant ideas while exploration and conversation
@@ -37,6 +38,13 @@ attention and speech have distinct responsibilities. UI and agents call the
 same bounded operations. Public GitHub source does not grant public access to
 workspaces, credentials or paid AI.
 
+Open localhost and work without accounts, passwords or a sign-in screen.
+The browser is the only client, not the only runtime: internal server endpoints,
+server-held provider credentials, Postgres and durable runs remain. External
+REST/MCP APIs are excluded. Hosting is optional, only when an existing suitable
+private boundary preserves no-sign-in use and denies outside access; otherwise
+stay local. Do not build an access platform or expose an anonymous paid service.
+
 ## Run the shell
 
 Node and npm are exact pins:
@@ -47,7 +55,7 @@ npx --yes --package=node@24.20.0 --package=npm@12.0.2 npm run dev
 ```
 
 Open [localhost:3000](http://localhost:3000). The placeholder page needs no
-cloud account or provider key. Database, auth, model and voice configuration
+cloud account or provider key. Database, model and voice configuration
 arrive with their working application slices, not unused dependencies here.
 
 The linter uses ESLint 9.39.5 because the current Next.js 16.3.4 React,
@@ -59,14 +67,15 @@ remove lint rules to force that upgrade. Application runtime pins are unchanged.
 
 ## Build in Astra sessions, review in Claude
 
-[docs/build-prompts.md](./docs/build-prompts.md) holds the milestone plan: 34
+[docs/build-prompts.md](./docs/build-prompts.md) holds the milestone plan: 32
 GPT-6 Astra work packages grouped into six milestones, one Fable 5.1 review
 prompt per milestone and one consultation prompt for decisions or impasses.
 Paste one complete package into a fresh Astra session in the new repository.
 Each package states its prerequisites and ends with an explicit "Package
 complete when" condition. Related packages may share a session; a hard package
-may span several. Publication is the last package and follows the
-release-candidate review.
+may span several. Original package IDs are retained; 29-30 are retired.
+Local release is the last package and follows the release-candidate review.
+Publication and optional private hosting require separate authorization.
 
 Use separate terminals and checkouts: Astra in Codex builds; Fable 5.1 in Claude
 reviews the exact committed candidate without editing application source.

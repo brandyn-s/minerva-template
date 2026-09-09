@@ -35,6 +35,13 @@ who want attribution. This project does not currently operate a bug bounty.
 
 ## Security boundaries
 
+This single-user prototype has no sign-in and defaults to loopback-only access.
+Do not expose it directly to the internet or a shared network. Optional hosting
+requires an existing suitable private boundary that denies outside access.
+Internal endpoints must still reject unexpected Host/Origin and cross-origin
+mutations; no sign-in is not permission for arbitrary websites to use local
+credentials or paid operations. External REST/MCP APIs are out of scope.
+
 Especially relevant reports include:
 
 - credentials or private content reaching the browser, logs, Git, or evidence;

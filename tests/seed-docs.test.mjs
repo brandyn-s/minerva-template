@@ -6,13 +6,16 @@ import { test } from "node:test";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const read = (path) => readFile(resolve(root, path), "utf8");
-const capabilityIds = Array.from({ length: 16 }, (_, i) => `C${String(i + 1).padStart(2, "0")}`);
+const capabilityIds = Array.from({ length: 16 }, (_, i) => `C${String(i + 1).padStart(2, "0")}`)
+  .filter((id) => id !== "C15");
+const packageIds = Array.from({ length: 34 }, (_, i) => i + 1)
+  .filter((id) => id !== 29 && id !== 30);
 const packagesIn = (source) => [...source.matchAll(/^### Prompt (\d+): ([^\n]+)\n\n```text\n([\s\S]*?)\n```/gm)];
 
-test("the standard edition retains all packages, milestones and independent reviews", async () => {
+test("the prototype retires only external API packages and retains milestone reviews", async () => {
   const prompts = await read("docs/build-prompts.md");
   const packages = packagesIn(prompts);
-  assert.deepEqual(packages.map((p) => Number(p[1])), Array.from({ length: 34 }, (_, i) => i + 1));
+  assert.deepEqual(packages.map((p) => Number(p[1])), packageIds);
   assert.deepEqual([...prompts.matchAll(/^## Milestone (\d):/gm)].map((m) => Number(m[1])), [1, 2, 3, 4, 5, 6]);
   assert.deepEqual([...prompts.matchAll(/^### Fable review M(\d):/gm)].map((m) => Number(m[1])), [1, 2, 3, 4, 5, 6]);
   assert.equal([...prompts.matchAll(/^## Fable consultation:/gm)].length, 1);
@@ -44,8 +47,8 @@ test("SPEC owns the full scope and the evidence matrix covers the same capabilit
   assert.match(contract, /index, not a duplicate specification/);
   assert.match(prompts[0][3], /If the active contract is already correct, leave it intact/);
   assert.match(prompts[0][3], /active inherited contract is verified\s+current or reconciled/);
-  assert.match(spec, /platform protection without a second owner-password screen/);
-  assert.match(await read("docs/product/INTENT.md"), /C01-C16 in \[SPEC\.md\]\(\.\/SPEC\.md\)/);
+  assert.match(spec, /loopback-only local access with no sign-in/);
+  assert.match(await read("docs/product/INTENT.md"), /C01-C14 and C16 in \[SPEC\.md\]\(\.\/SPEC\.md\)/);
   assert.match(await read("docs/product/INTENT.md"), /recovery begin with the M2 working spine/);
 });
 
@@ -105,7 +108,7 @@ test("checkpoints emit bounded operator launch prompts, not just a handoff link"
   assert.match(review, /Review checkout: <absolute-review-checkout-path>/);
   assert.match(review, /Exact committed candidate: <candidate-sha>/);
   assert.match(review, /read-only for application source/);
-  assert.match(review, /M5 preserve its published-interface-first/);
+  assert.doesNotMatch(review, /published-interface-first|cold-start/);
   assert.match(review, /Do not implement fixes/);
   assert.match(resume, /Worktree: <absolute-existing-build-worktree-path>/);
   assert.match(resume, /Branch and expected checkpoint: <branch> at <commit-sha>/);
@@ -116,6 +119,48 @@ test("checkpoints emit bounded operator launch prompts, not just a handoff link"
     assert.match(block, /CAPABILITIES\.md/);
   }
   assert.match(resume, /Do not launch Fable automatically or advance to another increment/);
+});
+
+test("prototype entry points retain the local no-sign-in scope and internal backend", async () => {
+  for (const file of ["README.md", "AGENTS.md", "docs/setup.md",
+    "docs/product/INTENT.md", "docs/product/SPEC.md", "docs/product/ARCHITECTURE.md",
+    "docs/build-prompts.md"]) {
+    const source = await read(file);
+    assert.match(source, /no.sign.in/i, file);
+    assert.match(source, /loopback|localhost/i, file);
+    assert.doesNotMatch(source, /C01-C16|sixteen required|34 (?:Astra work |mandatory |work )?packages/, file);
+    assert.doesNotMatch(source, /READY TO DEPLOY|DEPLOYED OUTCOME CONFIRMED|platform-authenticated access/, file);
+  }
+  const spec = await read("docs/product/SPEC.md");
+  const architecture = await read("docs/product/ARCHITECTURE.md");
+  assert.match(spec, /Host\/Origin/);
+  assert.match(spec, /cross-origin\s+mutations/);
+  assert.match(architecture, /Postgres/);
+  assert.match(architecture, /Vercel Workflow/);
+  assert.match(architecture, /existing suitable\s+private boundary/);
+
+  const manifest = JSON.parse(await read("package.json"));
+  assert.equal(manifest.scripts.dev, "next dev --hostname 127.0.0.1");
+  assert.equal(manifest.scripts.start, "next start --hostname 127.0.0.1");
+});
+
+test("M5 ends with browser outputs and M6 permits local completion without hosting", async () => {
+  const source = await read("docs/build-prompts.md");
+  const packages = packagesIn(source);
+  const outputs = packages.find((p) => p[1] === "28")[3];
+  assert.match(outputs, /Milestone closeout: demonstrate this complete M5 journey/);
+  assert.match(outputs, /Fable M5 review packet is prepared/);
+  const m5 = source.match(/### Fable review M5: [^\n]+\n\n```text\n([\s\S]*?)\n```/)[1];
+  assert.doesNotMatch(m5, /actual MCP client|published API|cold-start/);
+  assert.match(m5, /instruments in the browser/);
+  const release = packages.find((p) => p[1] === "34")[3];
+  assert.match(release, /Hosting is not required to complete this package/);
+  assert.match(release, /integrated local journey/);
+  assert.match(release, /existing\s+suitable private boundary/);
+  assert.doesNotMatch(release, /machine access|pre-deployment review/);
+  const m6 = source.match(/### Fable review M6: [^\n]+\n\n```text\n([\s\S]*?)\n```/)[1];
+  assert.match(m6, /LOCAL OPERATION CONFIRMED/);
+  assert.match(m6, /Hosted operation is not required/);
 });
 
 test("repository documentation links resolve without external workspace paths", async () => {

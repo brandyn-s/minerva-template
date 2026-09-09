@@ -7,7 +7,7 @@ of incompatible first-prototype decisions.
 ## System shape
 
 ```text
-Canvas / typed collaborator / voice / HTTP / MCP
+Browser canvas / typed collaborator / voice
                     |
            named application operations
                     |
@@ -19,6 +19,11 @@ Canvas / typed collaborator / voice / HTTP / MCP
 One Next.js/React/TypeScript application is the deployment unit. Start with
 feature folders in one package, not empty packages or independently deployed
 services. Add dependencies when a working slice needs them.
+
+This is a single-user, browser-only prototype with no sign-in. Default to
+loopback-only local access. Browser-only does not remove the internal backend:
+browser/voice requests still reach shared operations, Postgres and workflows.
+Do not build an external REST/MCP surface, machine-client credentials or accounts.
 
 ## Ownership and dependencies
 
@@ -141,12 +146,17 @@ owns identity, revision consistency, graph-reference integrity, permissions,
 spend admission and state transitions. Deterministic code still requires
 correctness evidence; valid parent IDs do not certify meaningful inheritance.
 
-Use platform-authenticated browser entry without a second owner-password
-screen. An environment flag is not proof of platform identity/protection.
-Verify each preview/production/custom address and scoped machine access.
+Open the local application without a login flow. Bind to loopback and validate
+Host/Origin on internal requests; reject cross-origin mutations and permissive
+CORS. Server-held credentials do not by themselves protect paid operations
+from an unrelated website. Keep admission and validation without adding accounts.
 
-The target is a separate Vercel project with private application access and
-separate preview/production data. Provisionally use a cumulative $100 total
+Hosting is optional and requires separate authorization plus an existing suitable
+private boundary that preserves no-sign-in use and denies outside access.
+Verify every enabled serving address; a flag or obscure URL is not a boundary.
+Otherwise stay local rather than provisioning access infrastructure.
+If hosting is used, separate its data/configuration from local development.
+Provisionally use a cumulative $100 total
 application envelope, pending explicit scope/period confirmation before spend.
 Model, voice, hosting/workflow and database charges need separate accounting
 within that envelope. See [Vercel facts](../vercel-facts.md) for vendor limitations.
@@ -156,11 +166,13 @@ configured budget, database, voice implementation or deployed application.
 
 ## Infrastructure and extension evidence
 
-The application implements environment-separated data/configuration, explicit
+The application implements isolated development/review data/configuration, explicit
 migration execution, pooler-compatible database connections, durable dispatch
 reconciliation, correlated run/request diagnostics, and documented backup/
-restore and reproducible deployment paths. Test recovery on isolated data.
-An expiring preview is not durable release storage. These are responsibilities
+restore and reproducible local startup paths. Test recovery on isolated data.
+Browser close does not stop running local services; service shutdown does stop
+local execution. Preserve checkpoints and reconcile work after service restart.
+If hosted, an expiring preview is not durable release storage. These are responsibilities
 to implement during the application milestones, not unused seed dependencies.
 
 An ordinary new operation should extend its feature contract/definition,

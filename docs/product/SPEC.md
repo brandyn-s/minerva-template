@@ -1,7 +1,7 @@
 # Minerva: observable product specification
 
 This is the authoritative required scope. The seed implements a shell, not
-these application capabilities. All C01-C16 are required before product
+these application capabilities. C01-C14 and C16 are required before prototype
 completion; milestones are demonstrations of progress, not smaller products.
 Implementation and composition may improve without a pixel-for-pixel replica.
 
@@ -25,8 +25,19 @@ Export versioned content, revisions, relationships, layouts, proposals, decision
 runs/attempts and provenance from a consistent snapshot without pagination loss.
 Old-system imports, endpoint compatibility and offline synchronization are not required.
 Public code does not grant access to workspaces or paid operations. Use verified
-platform protection without a second owner-password screen; local access is
-explicit, loopback-only and unavailable on hosted deployments.
+loopback-only local access with no sign-in, accounts or owner-password screen.
+The browser is the only client; internal application endpoints and server-held
+provider credentials remain. Reject unexpected Host/Origin values and cross-origin
+mutations; do not enable permissive CORS or treat localhost as permission for
+unrelated websites to trigger paid work. These are internal request protections,
+not a user login flow.
+
+Hosting is optional only behind an existing suitable private boundary that
+preserves no-sign-in use and denies outside access on every serving address.
+If that boundary is unavailable, stay local rather than creating access
+infrastructure or exposing anonymous workspace/paid endpoints. Local services
+must stay running for work to execute; browser closure is not service shutdown.
+After service restart, recover saved state and reconcile interrupted work.
 
 ### C02: Spatial canvas and view controls
 
@@ -214,19 +225,6 @@ Paired experiments declare comparable conditions and preserve contradictory
 outcomes; model scores are not human observations. Save observed effect,
 evidence, rationale and reusable synthesis linked to source records.
 
-### C15: REST and MCP
-
-Expose independent creative instruments and progressive workspace discovery,
-active scope, summaries/graph/search, exact cards/history, context, comparison,
-runs/control, outputs and full exports through shared application functions.
-Scope workspace and authority per caller; read access does not imply mutation
-or spending. Preserve IDs, expected revisions and admission/application receipts.
-
-An actual client must discover and complete a read-to-action-to-result journey
-using published instructions alone, with approved access and no private
-walkthrough. Record the first failed attempt before source-based diagnosis.
-A schema, tool list or endpoint declaration without usable invocation is incomplete.
-
 ### C16: Living-atlas experience
 
 Follow [DESIGN.md](./DESIGN.md): original cartographic paper/ink, expressive
@@ -255,8 +253,8 @@ Use an original scenario with a brief anchor, independent roots, a grandchild,
 a multi-parent child, a semantic cycle, revised source, unkept/rejected work
 and an unknown mechanism. Trace relationships while moving and accepting;
 compare/Weave and revisit; speak and switch views while results arrive; challenge
-recurrence; pursue successful/impossible goals; produce outputs and invoke an
-external client. Inject stale writes, malformed results, unavailable review,
+recurrence; pursue successful/impossible goals; produce and download outputs
+through the browser. Inject stale writes, malformed results, unavailable review,
 voice loss and exhausted allowance.
 
 Milestone evidence, review findings and user acceptance are recorded in
@@ -293,5 +291,9 @@ and separate reproduced failures from preferences.
 
 ## Product exclusions
 
+C15 (external REST/MCP access) is retired by the prototype scope decision.
+Keep the remaining IDs stable. External API buildout, machine-client credentials,
+accounts/sign-in and new hosting-access infrastructure are excluded. Internal
+browser/voice server endpoints are not an external API product and remain required.
 Multi-human co-editing, billing, a plugin marketplace, microservices, desktop
 agent hosting, global scale and a large research harness remain outside scope.

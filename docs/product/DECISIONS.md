@@ -16,7 +16,7 @@ context, immutable lineage, visible acknowledgement and retained history.
 
 | ID | Decision | Consequence |
 |---|---|---|
-| D-101 | Fresh public source repository; private single-owner online-first app | No anonymous paid operations, multi-user product or data import |
+| D-101 (amended by D-128) | Fresh public source repository; single-user local prototype | No public anonymous paid service, multi-user product or data import |
 | D-102 | Next.js/TypeScript modular monolith; Postgres is canonical | Browser state is interaction/cache; no microservices or renderer-owned truth |
 | D-103 | Durable Vercel workflows for longer work | Browser close does not terminate product jobs; checkpoints and dispatch recovery are explicit |
 | D-104 (superseded by D-115) | Canvas, Wander and concurrent voice formed the earlier first-release boundary | Historical decision; not permission to defer required capabilities |
@@ -30,23 +30,34 @@ context, immutable lineage, visible acknowledgement and retained history.
 | D-112 | Medium development effort baseline; runner permissions remain user-managed | No template-wide approval bypass, experimental context mode or delegation requirement |
 | D-113 | Living-atlas identity: Wander, Weave, Talk to Minerva | Plain action labels accompany thematic names; attention animates, user layout stays stable |
 | D-114 | Optional tactile sound, off by default, with voice priority | No autoplay, ambient soundtrack, or audio implying an idea is correct |
-| D-115 | All C01-C16 in SPEC are required; new implementation from this content-free seed | No old application port and no reduced MVP presented as complete |
-| D-116 | Six milestones over 34 standard work packages | Related packages may share a coherent session; a hard package can span sessions |
+| D-115 (amended by D-128) | C01-C14 and C16 in SPEC are required; new implementation from this content-free seed | C15 retired; no old application port or other silent scope cuts |
+| D-116 (amended by D-128) | Six milestones over 32 standard work packages | IDs 29-30 retired; related packages may share a coherent session and a hard package can span sessions |
 | D-117 | Astra implements, Fable 5.1 independently reviews, both start at medium effort | Review findings need evidence-based disposition; user experience acceptance is separate |
 | D-118 | M1 proves the interactive experience; M2 brings real generation/acceptance and voice forward | M2 has interim review after package 10 and final review after package 12 |
-| D-119 | Public repository named minerva; private platform-authenticated application | No second owner password; verify browser and machine access on actual hosting |
+| D-119 (superseded by D-128) | Public repository named minerva; formerly platform-authenticated application | Historical access requirement; no platform sign-in or machine access requirement in the prototype |
 | D-120 | SPEC owns scope; CAPABILITIES owns evidence; CONTRACT is an index | Standard prompts live in Git; HTML and Downloads are exports, not parallel sources |
 | D-121 | Central loop: explore, observe, challenge, intervene, inspect | A narrow demonstration highlights the complete product; recurrence/escape claims need evidence |
-| D-122 | Cold-start external-client review and pre/post-deployment release review | Fable gets published API/MCP instructions before source coaching in M5 |
+| D-122 (superseded by D-128) | Formerly cold-start external-client and pre/post-deployment review | M5 now reviews browser instruments/outputs; M6 confirms local operation, with hosting only if authorized |
 | D-123 | Separate operator-initiated Codex/Astra and Claude/Fable sessions on distinct checkouts | Exact committed review candidate; no routine builder-launched critic or automated coordinator |
 | D-124 | One demonstrable outcome per task and a concise evidence-based handoff | Partial checkpoints stay partial; whole capability scope is not the next task's scope |
 | D-125 | One independent review per planned boundary plus focused recheck by default; proportionate measurement | Further cycles need material unresolved failures or new evidence, never a waiver of known defects |
 | D-126 | Working user-action increments integrate before feature expansion | Resolve external uncertainty with small authorized probes; returned subsystem code is not delivered behavior |
 | D-127 | Delivery evidence distinguishes written, integrated, local/live demonstration, review, acceptance and deployment | Record facts in existing capability/handoff fields; no new status engine or implied completion |
+| D-128 | Single-user, browser-only prototype with no sign-in; local access by default | Retire C15 and packages 29-30. Keep internal endpoints, Postgres, durable runs and the other capabilities. Hosting is optional only behind an existing suitable private boundary; do not build one or expose anonymous paid work |
+
+The owner's September 8 prototype scope decision explicitly removes external
+REST/MCP/API buildout and sign-in. Browser-only means the sole client is a browser,
+not browser-only storage or execution. Preserve all other capability/package IDs
+so existing checkpoints retain their meaning. Public GitHub source remains
+separate from application access. A missing hosting boundary is not a local-release
+blocker; no login, client-integration or hosted-release gate may reintroduce it.
 
 ## Provisional deployment detail
 
-Use a separate Vercel project. The requested application spending ceiling is
+Local access is the default. Use a separate Vercel project only if hosting is
+explicitly authorized and an existing suitable private boundary preserves
+no-sign-in use while denying outside access. The requested application spending
+ceiling is
 $100; treat it provisionally as cumulative and nonrenewing until the owner
 confirms scope/period. Confirm included hosting, workflow, database, model and
 voice charges before live work. No automatic credit purchase or independent
@@ -55,8 +66,9 @@ headroom; do not claim an exact hard cap.
 
 ## Deliberately open
 
-- Authorized Vercel team/project and managed Postgres provider.
-- Protection supporting the chosen deployment addresses and machine clients.
+- Local Postgres configuration.
+- If optional hosting is requested, its authorized project/database and existing
+  suitable private boundary for all serving addresses; no machine-client buildout.
 - Canvas renderer and application-level implementation details.
 - Runtime text and voice model profiles; Astra is the development model.
 - Exact exploration mixture, evaluation thresholds and layout algorithms.
