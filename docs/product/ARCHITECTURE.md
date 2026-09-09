@@ -1,6 +1,11 @@
 # Minerva: architecture
 
-The shell does not yet implement the services described here.
+The shell does not yet implement the services described here. This file
+describes the complete product. For the default demonstration target in
+[AGENTS](../../AGENTS.md#current-direction), only the browser canvas, named
+application operations and the AI Gateway adapter apply; Postgres, Vercel
+Workflow, durable execution, receipts, admission and reconciliation are opened
+by a task message, not by this document.
 
 ## System shape
 

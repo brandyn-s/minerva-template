@@ -1,2 +1,4 @@
 model = "gpt-6-astra"
-model_reasoning_effort = "medium"
+# Low is the default for demonstration builds; raise to "medium" only for a
+# demonstrated difficulty, then return to low (AGENTS.md, Review).
+model_reasoning_effort = "low"

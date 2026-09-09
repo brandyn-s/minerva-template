@@ -102,7 +102,7 @@ git -C "<absolute-build-worktree-path>" worktree add --detach "<absolute-review-
 cd "<absolute-review-checkout-path>"
 ```
 
-Open Fable 5.1 at medium effort in Claude and paste:
+Open Fable 5.1 at low effort in Claude and paste:
 
 ```text
 Review checkout: <absolute-review-checkout-path>
@@ -114,8 +114,8 @@ Exclusions: <out-of-scope work; no paid calls without explicit allowance>
 
 This is an operator-started review, read-only for application source.
 Verify the exact checkout/candidate without resetting or recreating it.
-Read AGENTS.md, docs/HANDOFF.md, relevant docs/product/CAPABILITIES.md rows
-and the applicable milestone review in docs/build-prompts.md.
+Read AGENTS.md, docs/HANDOFF.md and relevant docs/product/CAPABILITIES.md rows;
+apply the rubric in docs/review/judge-fable-5-1.system.md.
 Form your view from the contract and behavior before the builder's conclusions.
 Exercise the bounded journey and failure case using existing checks.
 Return evidence-based findings and unverified boundaries to the operator.
@@ -130,7 +130,7 @@ Return to the existing writable build tree, not the review checkout:
 cd "<absolute-existing-build-worktree-path>"
 ```
 
-Open Astra at medium effort in Codex and paste:
+Open Astra at low effort in Codex and paste:
 
 ```text
 Worktree: <absolute-existing-build-worktree-path>
@@ -143,8 +143,9 @@ Failure boundary: <specific case and stopping evidence>
 Runtime/startup: <mode and exact command>
 
 Verify the existing checkout and changes without resetting or regenerating.
-Read AGENTS.md, docs/HANDOFF.md, relevant docs/product/CAPABILITIES.md rows
-and the selected work package. Preserve existing work and evidence.
+Read AGENTS.md, docs/HANDOFF.md and relevant docs/product/CAPABILITIES.md rows;
+read a docs/build-prompts.md package only if this task names one. Preserve
+existing work and evidence.
 Implement the connected UI/backend outcome or reproduce and fix the named findings.
 Exercise the affected journey, failure boundary and required checks.
 Prepare a coherent candidate, commit if authorized, and provide the standard
